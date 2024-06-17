@@ -576,3 +576,4 @@
 [2024-06-13 15:24:14] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>130</b> 
 [2024-06-13 15:24:14] ERROR: <br>PHP notice : <em>Undefined property: Gcms\Config::$eleave_csv_language</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>103</b> 
 [2024-06-14 16:26:23] ERROR: <br>Exception : <em>SQLSTATE[42S02]: Base table or view not found: 1146 Table 'eleave.app_category' doesn't exist</em> in <b>/var/www/html/Kotchasan/Database/Driver.php</b> on line <b>254</b> 
+[2024-06-17 08:37:00] ERROR: <br>Exception : <em>SQLSTATE[42S02]: Base table or view not found: 1146 Table 'eleave.app_category' doesn't exist</em> in <b>/var/www/html/Kotchasan/Database/Driver.php</b> on line <b>254</b> 
