@@ -34,10 +34,40 @@ return array(
   'ELEAVE_CATEGORIES' => array(
     'department' => 'Department'
   ),
+  'LEAVE_HOUR' => array(
+    0 => '00',
+    1 => '01',
+    2 => '02',
+    3 => '03',
+    4 => '04',
+    5 => '05',
+    6 => '06',
+    7 => '07',
+    8 => '08',
+    9 => '09',
+    10 => '10',
+    11 => '11',
+    12 => '12',
+    13 => '13',
+    14 => '14',
+    15 => '15',
+    16 => '16',
+    17 => '17',
+    18 => '18',
+    19 => '19',
+    20 => '20',
+    21 => '21',
+    22 => '22',
+    23 => '23',
+    24 => '24'
+  ),
+  'LEAVE_MINUTES' => array(
+    00 => '00',
+    30 => '30'
+  ),
   'LEAVE_PERIOD' => array(
     0 => 'All day',
-    1 => 'Half day morning',
-    2 => 'Half day afternoon'
+    1 => 'Period'
   ),
   'LEAVE_STATUS' => array(
     0 => 'Pending',

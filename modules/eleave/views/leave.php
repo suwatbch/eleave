@@ -105,7 +105,7 @@ class View extends \Gcms\View
         $groups->add('date', array(
             'id' => 'start_date',
             'labelClass' => 'g-input icon-calendar',
-            'itemClass' => 'width50',
+            'itemClass' => 'width25',
             'label' => '{LNG_Start date}',
             'disabled' => $notEdit,
             'value' => isset($index->start_date) ? $index->start_date : date('Y-m-d')
@@ -115,18 +115,38 @@ class View extends \Gcms\View
         $groups->add('select', array(
             'id' => 'start_period',
             'labelClass' => 'g-input icon-clock',
-            'itemClass' => 'width50',
+            'itemClass' => 'width25',
             'label' => '&nbsp;',
             'options' => $leave_period,
             'disabled' => $notEdit,
             'value' => isset($index->start_period) ? $index->start_period : 0
+        ));
+        $leave_hour = Language::get('LEAVE_HOUR');
+        $leave_minutes = Language::get('LEAVE_MINUTES');
+        $groups->add('select', array(
+            'id' => 'start_hour',
+            'labelClass' => 'g-input icon-clock',
+            'itemClass' => 'width25',
+            'label' => '&nbsp;',
+            'options' => $leave_hour,
+            'disabled' => $notEdit,
+            'value' => isset($index->start_hour) ? $index->start_hour : 0
+        ));
+        $groups->add('select', array(
+            'id' => 'start_minutes',
+            'labelClass' => 'g-input icon-clock',
+            'itemClass' => 'width25',
+            'label' => '&nbsp;',
+            'options' => $leave_minutes,
+            'disabled' => $notEdit,
+            'value' => isset($index->start_minutes) ? $index->start_minutes : 0
         ));
         $groups = $fieldset->add('groups');
         // end_date
         $groups->add('date', array(
             'id' => 'end_date',
             'labelClass' => 'g-input icon-calendar',
-            'itemClass' => 'width50',
+            'itemClass' => 'width25',
             'label' => '{LNG_End date}',
             'disabled' => $notEdit,
             'value' => isset($index->end_date) ? $index->end_date : date('Y-m-d')
@@ -136,11 +156,29 @@ class View extends \Gcms\View
         $groups->add('select', array(
             'id' => 'end_period',
             'labelClass' => 'g-input icon-clock',
-            'itemClass' => 'width50',
+            'itemClass' => 'width25',
             'label' => '&nbsp;',
             'options' => $leave_period,
             'disabled' => $notEdit,
             'value' => isset($index->end_period) ? $index->end_period : 0
+        ));
+        $groups->add('select', array(
+            'id' => 'end_hour',
+            'labelClass' => 'g-input icon-clock',
+            'itemClass' => 'width25',
+            'label' => '&nbsp;',
+            'options' => $leave_hour,
+            'disabled' => $notEdit,
+            'value' => isset($index->end_hour) ? $index->end_hour : 0
+        ));
+        $groups->add('select', array(
+            'id' => 'end_minutes',
+            'labelClass' => 'g-input icon-clock',
+            'itemClass' => 'width25',
+            'label' => '&nbsp;',
+            'options' => $leave_minutes,
+            'disabled' => $notEdit,
+            'value' => isset($index->end_minutes) ? $index->end_minutes : 0
         ));
         if (!$notEdit) {
             // file eleave
@@ -163,10 +201,10 @@ class View extends \Gcms\View
         // communication
         $fieldset->add('textarea', array(
             'id' => 'communication',
-            'labelClass' => 'g-input icon-clock',
+            'labelClass' => 'g-input icon-file',
             'itemClass' => 'item',
-            'label' => '{LNG_Communication} {LNG_Example_time}',
-            // 'comment' => '{LNG_Contact information during leave}',
+            'label' => '{LNG_Communication}',
+            'comment' => '{LNG_Contact information during leave}',
             'rows' => 3,
             'disabled' => $notEdit,
             'value' => isset($index->communication) ? $index->communication : ''

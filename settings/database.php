@@ -1,5 +1,4 @@
 <?php
-// 000webhost
 // $servername = "localhost";
 // $username = "id22283322_ptn_eleaveadmin"; //PTN_eleaveadmin / id22283322_ptn_eleaveadmin
 // $password = "PTN_eleave1234"; //PTN_eleave1234
@@ -8,23 +7,13 @@
 // $prefix = "app";
 // $dbdriver = "mysql";
 
-// docker
-$servername = "db";
-$username = "useradmin231231"; 
-$password = "passwordadmin231231";
+$servername = "localhost";
+$username = "root"; 
+$password = "";
 $dbname = "eleave"; 
 $port = "3306";
 $prefix = "app";
 $dbdriver = "mysql";
-
-// xampp
-// $servername = "localhost";
-// $username = "root"; 
-// $password = "";
-// $dbname = "eleave"; 
-// $port = "3306";
-// $prefix = "app";
-// $dbdriver = "mysql";
 
 return array (
   'mysql' => 

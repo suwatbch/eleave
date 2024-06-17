@@ -147,6 +147,10 @@ class Model extends \Kotchasan\Model
                     $end_date = $request->post('end_date')->date();
                     $start_period = $request->post('start_period')->toInt();
                     $end_period = $request->post('end_period')->toInt();
+                    $start_hour = $request->post('start_hour')->text();
+                    $end_hour = $request->post('end_hour')->text();
+                    $start_minutes = $request->post('start_minutes')->text();
+                    $end_minutes = $request->post('end_minutes')->text();
                     if ($save['detail'] == '') {
                         // ไม่ได้กรอก detail
                         $ret['ret_detail'] = 'Please fill in';
@@ -160,15 +164,15 @@ class Model extends \Kotchasan\Model
                         $ret['ret_start_date'] = 'Please fill in';
                     }
                     if ( ($start_period != 0) && ($save['leave_id'] == 3 || $save['leave_id'] == 7 || $save['leave_id'] == 8) ) {
-                        $ret['ret_start_period'] = Language::get('ลาครึ่งวันไม่ได้');
+                        $ret['ret_start_period'] = Language::get('ลาได้แค่ เต็มวัน/ปิดกะ');
                     }
                     if ( ($end_period != 0) && ($save['leave_id'] == 3 || $save['leave_id'] == 7 || $save['leave_id'] == 8) ) {
-                        $ret['ret_end_period'] = Language::get('ลาครึ่งวันไม่ได้');
+                        $ret['ret_end_period'] = Language::get('ลาได้แค่ เต็มวัน/ปิดกะ');
                     }
 
                     $diff = Date::compare($start_date, $end_date);
                     if ($diff['days'] > 0 && $start_period == 1) {
-                        // ถ้าลาหลายวัน ไม่สามารถเลือกตัวเลือก ครึ่งวันเช้าได้
+                        // ถ้าลาหลายวัน ไม่สามารถเลือกตัวเลือก ช่วงเวลา
                         $ret['ret_start_period'] = Language::get('Cannot select this option');  
                     } else {
                         if ($end_date < $start_date) {
@@ -195,6 +199,10 @@ class Model extends \Kotchasan\Model
                         $save['end_date'] = $end_date;
                         $save['start_period'] = $start_period;
                         $save['end_period'] = $end_period;
+                        $save['start_hour'] = $start_hour;
+                        $save['end_hour'] = $end_hour;
+                        $save['start_minutes'] = $start_minutes;
+                        $save['end_minutes'] = $end_minutes;
                     }
                     if ($save['days'] > 6 && $save['leave_id'] == 2) {
                         // ไม่สามารถลากิจได้มากกว่า 6 วัน
@@ -214,11 +222,6 @@ class Model extends \Kotchasan\Model
                         }
                         // อัปโหลดไฟล์แนบ
                         \Download\Upload\Model::execute($ret, $request, $save['id'], 'eleave', self::$cfg->eleave_file_typies, self::$cfg->eleave_upload_size);
-                    }
-                    //เวลาลา
-                    if ((($start_period + $end_period) > 0) && ($save['communication'] == '') && !($save['leave_id'] == 3 || $save['leave_id'] == 7 || $save['leave_id'] == 8)) {
-                        // ไม่ได้กรอก communication
-                        $ret['ret_communication'] = 'Please fill in';
                     }
 
                     // ตรวจสอบวันลากิจและลาพักร้อน
