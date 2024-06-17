@@ -34,6 +34,7 @@ return array(
   'ELEAVE_CATEGORIES' => array(
     'department' => 'Department'
   ),
+  'Full day no need to choose a time' => 'Full day, no need to choose a time',
   'LEAVE_HOUR' => array(
     0 => '00',
     1 => '01',

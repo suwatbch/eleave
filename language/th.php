@@ -26,6 +26,7 @@ return array(
     0 => 'ปิดใช้งาน',
     1 => 'เปิดใช้งาน'
   ),
+  'Break time' => 'เวลาพัก',
   'Browse file' => 'เลือกไฟล์',
   'Browse image uploaded, type :type' => 'เลือกรูปภาพอัปโหลด ชนิด :type',
   'Can be approve' => 'สามารถอนุมัติได้',
@@ -132,6 +133,7 @@ return array(
   'for login by LINE account' => 'สำหรับการเข้าระบบโดยบัญชีไลน์',
   'Forgot' => 'ลืมรหัสผ่าน',
   'from' => 'จาก',
+  'Full day no need to choose a time' => 'เต็มวัน/ทั้งกะ ไม่ต้องเลือกเวลา',
   'General' => 'ทั่วไป',
   'General site settings' => 'ตั้งค่าพื้นฐานของเว็บไซต์',
   'Get new password' => 'ขอรหัสผ่าน',
@@ -315,6 +317,7 @@ return array(
   'scroll to top' => 'เลื่อนขึ้นด้านบน',
   'Search' => 'ค้นหา',
   'Search <strong>:search</strong> found :count entries, displayed :start to :end, page :page of :total pages' => 'ค้นหา <strong>:search</strong> พบ :count รายการ แสดงรายการที่ :start - :end หน้าที่ :page จากทั้งหมด :total หน้า',
+  'Select' => 'เลือก',
   'select all' => 'เลือกทั้งหมด',
   'Select leave' => 'เลือกการลา',
   'Send a welcome email to new members' => 'ส่งข้อความต้อนรับสมาชิกใหม่',

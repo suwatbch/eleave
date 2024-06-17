@@ -89,7 +89,7 @@ class View extends \Gcms\View
             $content .= '<th>'.$item->topic.'</th>';
             $num_days = (float) $item->num_days;
             $days = (float) $item->days;
-            $lable = $days.' {LNG_days}';
+            $lable = self::getdatstime($days).' {LNG_days}';
 
             // ปิดวันลาเหลือ
             // if ($num_days > 0) {
@@ -104,5 +104,51 @@ class View extends \Gcms\View
         $content .= '</section>';
         // คืนค่า HTML
         return $content;
+    }
+
+    /**
+     * ฟังกชั่นตรวจสอบว่าสามารถสร้างปุ่มได้หรือไม่
+     *
+     * @param float $days
+     *
+     * @return string
+     */
+    public function getdatstime($days)
+    {
+        // แยกชั่วโมงและนาทีออกจากกัน
+        list($pDay, $pTime) = explode('.', $days);
+        $result = $pTime*8;
+        $zeros = self::searchzeros($pTime);
+        if ($pTime!=null) {
+            $x = "";
+            for ($i=0; $i<$zeros; $i++) {
+                $x += $x.'0';
+            }
+            $result = $x.$result;
+        }
+        return $pTime == null ? $pDay : $pDay.'.'.rtrim($result, '0');
+    }
+
+    /**
+     * ฟังกชั่นตรวจสอบว่าสามารถสร้างปุ่มได้หรือไม่
+     *
+     * @param string $number
+     *
+     * @return int
+     */
+    public function searchzeros($number)
+    {
+        $count = 0;
+        // แปลงตัวเลขเป็นสตริงเพื่อให้สามารถตรวจสอบแต่ละตัวอักษรได้
+        $numberStr = (string)$number;
+        // ใช้ for loop ในการตรวจสอบตัวอักษรแต่ละตัว
+        for ($i = 0; $i < strlen($numberStr); $i++) {
+            if ($numberStr[$i] === '0') {
+                $count++;
+            } else {
+                break; // หยุดเมื่อพบตัวอักษรที่ไม่ใช่ 0
+            }
+        }
+        return $count;
     }
 }

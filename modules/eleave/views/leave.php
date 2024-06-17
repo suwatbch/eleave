@@ -100,6 +100,16 @@ class View extends \Gcms\View
             'disabled' => $notEdit,
             'value' => isset($index->detail) ? $index->detail : ''
         ));
+        // break time
+        // $fieldset->add('select', array(
+        //     'id' => 'break_id',
+        //     'labelClass' => 'g-input icon-clock',
+        //     'itemClass' => 'item',
+        //     'label' => '{LNG_Break time}',
+        //     'options' => \Eleave\Leavetype\Model::getbreak()->selectbreak(),
+        //     'disabled' => $notEdit,
+        //     'value' => isset($index->break_id) ? $index->break_id : 0
+        // ));
         $groups = $fieldset->add('groups');
         // start_date
         $groups->add('date', array(
@@ -107,6 +117,7 @@ class View extends \Gcms\View
             'labelClass' => 'g-input icon-calendar',
             'itemClass' => 'width25',
             'label' => '{LNG_Start date}',
+            'comment' => '{LNG_Full day no need to choose a time}',
             'disabled' => $notEdit,
             'value' => isset($index->start_date) ? $index->start_date : date('Y-m-d')
         ));
@@ -123,6 +134,11 @@ class View extends \Gcms\View
         ));
         $leave_hour = Language::get('LEAVE_HOUR');
         $leave_minutes = Language::get('LEAVE_MINUTES');
+        $pAdd = array(-1 => Language::get('Select'));
+        foreach ($pAdd as $key => $value){
+            $leave_hour = array($key => $value) + $leave_hour;
+            $leave_minutes = array($key => $value) + $leave_minutes;
+        }
         $groups->add('select', array(
             'id' => 'start_hour',
             'labelClass' => 'g-input icon-clock',
@@ -130,7 +146,7 @@ class View extends \Gcms\View
             'label' => '&nbsp;',
             'options' => $leave_hour,
             'disabled' => $notEdit,
-            'value' => isset($index->start_hour) ? $index->start_hour : 0
+            'value' => isset($index->start_hour) ? $index->start_hour : -1
         ));
         $groups->add('select', array(
             'id' => 'start_minutes',
@@ -139,7 +155,7 @@ class View extends \Gcms\View
             'label' => '&nbsp;',
             'options' => $leave_minutes,
             'disabled' => $notEdit,
-            'value' => isset($index->start_minutes) ? $index->start_minutes : 0
+            'value' => isset($index->start_minutes) ? $index->start_minutes : -1
         ));
         $groups = $fieldset->add('groups');
         // end_date
@@ -148,6 +164,7 @@ class View extends \Gcms\View
             'labelClass' => 'g-input icon-calendar',
             'itemClass' => 'width25',
             'label' => '{LNG_End date}',
+            'comment' => '{LNG_Full day no need to choose a time}',
             'disabled' => $notEdit,
             'value' => isset($index->end_date) ? $index->end_date : date('Y-m-d')
         ));
@@ -169,7 +186,7 @@ class View extends \Gcms\View
             'label' => '&nbsp;',
             'options' => $leave_hour,
             'disabled' => $notEdit,
-            'value' => isset($index->end_hour) ? $index->end_hour : 0
+            'value' => isset($index->end_hour) ? $index->end_hour : -1
         ));
         $groups->add('select', array(
             'id' => 'end_minutes',
@@ -178,7 +195,7 @@ class View extends \Gcms\View
             'label' => '&nbsp;',
             'options' => $leave_minutes,
             'disabled' => $notEdit,
-            'value' => isset($index->end_minutes) ? $index->end_minutes : 0
+            'value' => isset($index->end_minutes) ? $index->end_minutes : -1
         ));
         if (!$notEdit) {
             // file eleave

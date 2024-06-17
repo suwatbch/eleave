@@ -70,6 +70,31 @@ class Model
     }
 
     /**
+     * @return static
+     */
+    public static function getbreak()
+    {
+        $obj = new static;
+        // Query
+        $query = \Kotchasan\Model::createQuery()
+            ->select('id', 'description')
+            ->from('break')
+            ->cacheOn();
+        foreach ($query->execute() as $item) {
+            $obj->datas[$item->id] = $item->description;
+        }
+        return $obj;
+    }
+
+    /**
+     * @return array
+     */
+    public function selectbreak()
+    {
+        return $this->datas;
+    }
+
+    /**
      * อ่านรายชื่อการลาจาก $id
      * ไม่พบ คืนค่าว่าง
      *

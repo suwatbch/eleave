@@ -55,6 +55,37 @@ class Model extends \Kotchasan\Model
     }
 
     /**
+     * @param float  $numtime
+     * @param string $start_hour
+     * @param string $start_minutes
+     * @param string $end_hour
+     * @param string $end_minutes
+     * @return float
+     */
+    public static function gettimes($numtime, $start_hour, $start_minutes, $end_hour, $end_minutes)
+    {
+        if ($numtime == 0.5) {
+            // แปลงเวลาเป็นนาทีทั้งหมด
+            $totalMinutes1 = $start_hour * 60 + $start_minutes;
+            $totalMinutes2 = $end_hour * 60 + $end_minutes;
+
+            // คำนวณส่วนต่างในหน่วยนาที
+            $diffMinutes = $totalMinutes2 - $totalMinutes1;
+
+            // แปลงนาทีทั้งหมดกลับเป็นชั่วโมงและนาที
+            $diffHours = floor($diffMinutes / 60);
+            $diffMinutesTemp = $diffMinutes % 60; 
+            $diffMinutes = ($diffMinutesTemp % 60) == 30 ? 50 : 00; 
+
+            // แสดงผลลัพธ์ในรูปแบบชั่วโมงและนาที
+            $pTime = sprintf('%d.%02d', $diffHours, $diffMinutes);
+            $pTimeช = $pTime > 8 ? 8 : $pTime;
+            return (float)$pTime / 8;
+        }
+        return $numtime;
+    }
+
+    /**
      * คืนค่ารายละเอียดการลาที่เลือก
      * เป็น JSON
      *
@@ -121,6 +152,7 @@ class Model extends \Kotchasan\Model
                 // ค่าที่ส่งมา
                 $save = array(
                     'leave_id' => $request->post('leave_id')->toInt(),
+                    // 'break_id' => $request->post('break_id')->toInt(),
                     'detail' => $request->post('detail')->textarea(),
                     'communication' => $request->post('communication')->textarea()
                 );
@@ -170,6 +202,25 @@ class Model extends \Kotchasan\Model
                         $ret['ret_end_period'] = Language::get('ลาได้แค่ เต็มวัน/ปิดกะ');
                     }
 
+                    // วันเวลา
+                    if ($start_period != $end_period){
+                        $ret['ret_start_period'] = "validate data";
+                        $ret['ret_end_period'] = "validate data";
+                    }
+                    else if ( ($start_period == 0) && ($start_hour != "-1" || $start_minutes != "-1" ) ) {
+                        $ret['ret_start_period'] = "validate data";
+                        $ret['ret_start_hour'] = "validate data";
+                        $ret['ret_start_minutes'] = "validate data";
+                    }
+                    else if ( ($end_period == 0) && ($end_hour != "-1" || $end_minutes != "-1" ) ) {
+                        $ret['ret_end_period'] = "validate data";
+                        $ret['ret_end_hour'] = "validate data";
+                        $ret['ret_end_minutes'] = "validate data";
+                    }
+                    
+
+
+
                     $diff = Date::compare($start_date, $end_date);
                     if ($diff['days'] > 0 && $start_period == 1) {
                         // ถ้าลาหลายวัน ไม่สามารถเลือกตัวเลือก ช่วงเวลา
@@ -180,7 +231,7 @@ class Model extends \Kotchasan\Model
                             $ret['ret_end_date'] = Language::get('End date must be greater than or equal to the start date');
                         } elseif ($start_date == $end_date) {
                             // ลาภายใน 1 วัน ใช้จำนวนวันลาจาก คาบการลา
-                            $save['days'] = self::$cfg->eleave_periods[$start_period];
+                            $save['days'] = self::gettimes(self::$cfg->eleave_periods[$start_period],$start_hour,$start_minutes,$end_hour,$end_minutes);
                         } else {
                             // ตรวจสอบลาข้ามปีงบประมาณ
                             $end_year = date('Y', strtotime($end_date));

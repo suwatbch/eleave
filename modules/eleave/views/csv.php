@@ -86,15 +86,19 @@ class View extends \Kotchasan\KBase
             $dataleave = \Eleave\Export\Model::csv($params);
             foreach ($dataleave as $item) {
                 $result = [];
-                $result[] = Date::format($item->create_date, 'd M Y');
+                $result[] = "'".Date::format($item->create_date, 'd M Y');
                 $result[] = "'".$item->username;
                 $result[] = $item->name;
                 $result[] = $item->department;
                 $result[] = $item->topic;
                 $result[] = $item->detail;
                 $result[] = self::datefoleave($item);
-                $result[] = $item->days;
-                $result[] = $item->communication;
+                $result[] = self::getdatstime($item->days);
+                if ($item->start_period == 0) {
+                    $result[] = [];
+                } else {
+                    $result[] = self::gettimestr($item->start_hour).'.'.self::gettimestr($item->start_minutes).' - '.self::gettimestr($item->end_hour).'.'.self::gettimestr($item->end_minutes);
+                }
                 $result[] = self::approve_status($item->status);
                 $result[] = $item->reason;
                 $datas[] = $result;
@@ -112,25 +116,32 @@ class View extends \Kotchasan\KBase
     public static function datefoleave($item)
     {
         $res = "";
-        if ($item->date == 0.5 && $item->start_period == 1) {
-            $res = Date::format($item->start_date, 'd M Y')." ครึ่งวันเช้า";
-        } else if ($item->date == 0.5 && $item->start_period == 2) {
-            $res = Date::format($item->start_date, 'd M Y')." ครึ่งวันบ่าย";
-        } else if ($item->date == 1 && $item->start_date == $item->end_date) {
-            $res = Date::format($item->start_date, 'd M Y');
-        } else if ($item->start_period < 2 && $item->end_period == 0) {
-            $res = Date::format($item->start_date, 'd M Y')." - ".Date::format($item->end_date, 'd M Y');
-        } else if ($item->start_period < 2 && $item->end_period == 1) {
-            $res = Date::format($item->start_date, 'd M Y')." - ".Date::format($item->end_date, 'd M Y')." ครึ่งวันเช้า";
-        } else if ($item->start_period < 2 && $item->end_period == 2) {
-            $res = Date::format($item->start_date, 'd M Y')." - ".Date::format($item->end_date, 'd M Y')." ครึ่งวันบ่าย";
-        } else if ($item->start_period == 2 && $item->end_period == 0) {
-            $res = Date::format($item->start_date, 'd M Y')." ครึ่งวันบ่าย - ".Date::format($item->end_date, 'd M Y');
-        } else if ($item->start_period == 2 && $item->end_period == 1) {
-            $res = Date::format($item->start_date, 'd M Y')." ครึ่งวันบ่าย - ".Date::format($item->end_date, 'd M Y')." ครึ่งวันเช้า";
-        } else if ($item->start_period == 2 && $item->end_period == 2) {
-            $res = Date::format($item->start_date, 'd M Y')." ครึ่งวันบ่าย - ".Date::format($item->end_date, 'd M Y')." ครึ่งวันบ่าย";
+        if ($item->date < 1 && $item->start_period != 0 && $item->start_date == $item->end_date) {
+            $res = "'".Date::format($item->start_date, 'd M Y')." ช่วงเวลา";
+        } else if ($item->start_period == 0 && $item->start_date == $item->end_date) {
+            $res = "'".Date::format($item->start_date, 'd M Y');
+        } else {
+            $res = "'".Date::format($item->start_date, 'd M Y')." - ".Date::format($item->end_date, 'd M Y');
         }
+        // if ($item->date == 0.5 && $item->start_period == 1) {
+        //     $res = Date::format($item->start_date, 'd M Y')." ครึ่งวันเช้า";
+        // } else if ($item->date == 0.5 && $item->start_period == 2) {
+        //     $res = Date::format($item->start_date, 'd M Y')." ครึ่งวันบ่าย";
+        // } else if ($item->date == 1 && $item->start_date == $item->end_date) {
+        //     $res = Date::format($item->start_date, 'd M Y');
+        // } else if ($item->start_period < 2 && $item->end_period == 0) {
+        //     $res = Date::format($item->start_date, 'd M Y')." - ".Date::format($item->end_date, 'd M Y');
+        // } else if ($item->start_period < 2 && $item->end_period == 1) {
+        //     $res = Date::format($item->start_date, 'd M Y')." - ".Date::format($item->end_date, 'd M Y')." ครึ่งวันเช้า";
+        // } else if ($item->start_period < 2 && $item->end_period == 2) {
+        //     $res = Date::format($item->start_date, 'd M Y')." - ".Date::format($item->end_date, 'd M Y')." ครึ่งวันบ่าย";
+        // } else if ($item->start_period == 2 && $item->end_period == 0) {
+        //     $res = Date::format($item->start_date, 'd M Y')." ครึ่งวันบ่าย - ".Date::format($item->end_date, 'd M Y');
+        // } else if ($item->start_period == 2 && $item->end_period == 1) {
+        //     $res = Date::format($item->start_date, 'd M Y')." ครึ่งวันบ่าย - ".Date::format($item->end_date, 'd M Y')." ครึ่งวันเช้า";
+        // } else if ($item->start_period == 2 && $item->end_period == 2) {
+        //     $res = Date::format($item->start_date, 'd M Y')." ครึ่งวันบ่าย - ".Date::format($item->end_date, 'd M Y')." ครึ่งวันบ่าย";
+        // }
         return $res;
     }
 
@@ -149,5 +160,71 @@ class View extends \Kotchasan\KBase
             }
         }
         return $res;
+    }
+    
+    /**
+     * ฟังกชั่นตรวจสอบว่าสามารถสร้างปุ่มได้หรือไม่
+     *
+     * @param float $days
+     *
+     * @return string
+     */
+    public function getdatstime($days)
+    {
+        // แยกชั่วโมงและนาทีออกจากกัน
+        list($pDay, $pTime) = explode('.', $days);
+        $result = $pTime*8;
+        $zeros = self::searchzeros($pTime);
+        if ($pTime!=null) {
+            $x = "";
+            for ($i=0; $i<$zeros; $i++) {
+                $x += $x.'0';
+            }
+            $result = $x.$result;
+        }
+        return $pTime == null ? $pDay : $pDay.'.'.rtrim($result, '0');
+    }
+
+    /**
+     * ฟังกชั่นตรวจสอบว่าสามารถสร้างปุ่มได้หรือไม่
+     *
+     * @param string $number
+     *
+     * @return int
+     */
+    public function searchzeros($number)
+    {
+        $count = 0;
+        // แปลงตัวเลขเป็นสตริงเพื่อให้สามารถตรวจสอบแต่ละตัวอักษรได้
+        $numberStr = (string)$number;
+        // ใช้ for loop ในการตรวจสอบตัวอักษรแต่ละตัว
+        for ($i = 0; $i < strlen($numberStr); $i++) {
+            if ($numberStr[$i] === '0') {
+                $count++;
+            } else {
+                break; // หยุดเมื่อพบตัวอักษรที่ไม่ใช่ 0
+            }
+        }
+        return $count;
+    }
+
+    /**
+     * ฟังกชั่นตรวจสอบว่าสามารถสร้างปุ่มได้หรือไม่
+     *
+     * @param string $tines
+     *
+     * @return string
+     */
+    public function gettimestr($tines)
+    {
+        // ตรวจสอบและเพิ่มศูนย์นำหน้าชั่วโมงถ้าจำเป็น
+        if (strlen($tines) < 2) {
+            $tines = '0' . $tines;
+        }
+        // ตรวจสอบและเติมศูนย์หลังจุดทศนิยมถ้าจำเป็น
+        if (strlen($tines) < 2) {
+            $tines = $tines . '0';
+        }
+        return $tines;
     }
 }

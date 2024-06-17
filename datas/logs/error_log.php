@@ -577,3 +577,561 @@
 [2024-06-13 15:24:14] ERROR: <br>PHP notice : <em>Undefined property: Gcms\Config::$eleave_csv_language</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>103</b> 
 [2024-06-14 16:26:23] ERROR: <br>Exception : <em>SQLSTATE[42S02]: Base table or view not found: 1146 Table 'eleave.app_category' doesn't exist</em> in <b>/var/www/html/Kotchasan/Database/Driver.php</b> on line <b>254</b> 
 [2024-06-17 08:37:00] ERROR: <br>Exception : <em>SQLSTATE[42S02]: Base table or view not found: 1146 Table 'eleave.app_category' doesn't exist</em> in <b>/var/www/html/Kotchasan/Database/Driver.php</b> on line <b>254</b> 
+[2024-06-17 10:07:21] ERROR: <br>PHP notice : <em>Undefined property: Kotchasan\Database\QueryBuilder::$cacheOn</em> in <b>xdebug://debug-eval</b> on line <b>8</b> 
+[2024-06-17 10:28:39] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>226</b> 
+[2024-06-17 10:30:41] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>226</b> 
+[2024-06-17 10:33:59] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>226</b> 
+[2024-06-17 10:39:04] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>226</b> 
+[2024-06-17 10:40:24] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>226</b> 
+[2024-06-17 10:42:22] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>226</b> 
+[2024-06-17 10:44:28] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>226</b> 
+[2024-06-17 10:57:39] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>226</b> 
+[2024-06-17 10:57:39] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>232</b> 
+[2024-06-17 10:58:00] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>226</b> 
+[2024-06-17 10:58:43] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>232</b> 
+[2024-06-17 10:58:43] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>226</b> 
+[2024-06-17 10:58:43] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>232</b> 
+[2024-06-17 10:58:43] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>232</b> 
+[2024-06-17 11:00:10] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>226</b> 
+[2024-06-17 11:00:25] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>232</b> 
+[2024-06-17 11:03:16] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>226</b> 
+[2024-06-17 11:03:16] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>232</b> 
+[2024-06-17 11:03:33] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>226</b> 
+[2024-06-17 11:03:49] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>226</b> 
+[2024-06-17 11:03:49] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>232</b> 
+[2024-06-17 11:04:00] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>226</b> 
+[2024-06-17 11:04:00] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>232</b> 
+[2024-06-17 11:06:36] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>226</b> 
+[2024-06-17 11:06:36] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>220</b> 
+[2024-06-17 11:08:02] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>273</b> 
+[2024-06-17 11:08:02] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>279</b> 
+[2024-06-17 11:08:19] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>225</b> 
+[2024-06-17 11:08:19] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>219</b> 
+[2024-06-17 11:08:27] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>273</b> 
+[2024-06-17 11:08:27] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>279</b> 
+[2024-06-17 11:08:33] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>273</b> 
+[2024-06-17 11:08:33] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>279</b> 
+[2024-06-17 11:08:35] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>225</b> 
+[2024-06-17 11:08:35] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>219</b> 
+[2024-06-17 11:08:36] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>219</b> 
+[2024-06-17 11:08:37] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>219</b> 
+[2024-06-17 11:08:38] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>225</b> 
+[2024-06-17 11:08:38] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>219</b> 
+[2024-06-17 11:08:39] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>219</b> 
+[2024-06-17 11:08:40] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>219</b> 
+[2024-06-17 11:08:42] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>225</b> 
+[2024-06-17 11:08:42] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>219</b> 
+[2024-06-17 11:08:52] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>225</b> 
+[2024-06-17 11:08:52] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>219</b> 
+[2024-06-17 11:09:34] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>225</b> 
+[2024-06-17 11:09:34] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>219</b> 
+[2024-06-17 11:15:44] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>225</b> 
+[2024-06-17 11:15:44] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>219</b> 
+[2024-06-17 11:16:17] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>225</b> 
+[2024-06-17 11:16:17] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>219</b> 
+[2024-06-17 11:16:23] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>273</b> 
+[2024-06-17 11:16:23] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>279</b> 
+[2024-06-17 11:16:48] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>226</b> 
+[2024-06-17 11:16:48] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>232</b> 
+[2024-06-17 11:21:44] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>227</b> 
+[2024-06-17 11:21:44] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>233</b> 
+[2024-06-17 11:22:25] ERROR: <br>PHP notice : <em>Undefined index: start_hour</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:22:25] ERROR: <br>PHP notice : <em>Undefined index: start_minutes</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:22:25] ERROR: <br>PHP notice : <em>Undefined index: end_hour</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:22:25] ERROR: <br>PHP notice : <em>Undefined index: end_minutes</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:22:25] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>227</b> 
+[2024-06-17 11:22:25] ERROR: <br>PHP notice : <em>Undefined index: start_hour</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:22:25] ERROR: <br>PHP notice : <em>Undefined index: start_minutes</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:22:25] ERROR: <br>PHP notice : <em>Undefined index: end_hour</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:22:25] ERROR: <br>PHP notice : <em>Undefined index: end_minutes</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:22:25] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>233</b> 
+[2024-06-17 11:22:25] ERROR: <br>PHP notice : <em>Undefined index: start_hour</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:22:25] ERROR: <br>PHP notice : <em>Undefined index: start_minutes</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:22:25] ERROR: <br>PHP notice : <em>Undefined index: end_hour</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:22:25] ERROR: <br>PHP notice : <em>Undefined index: end_minutes</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:22:49] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>227</b> 
+[2024-06-17 11:22:49] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>233</b> 
+[2024-06-17 11:23:02] ERROR: <br>PHP notice : <em>Undefined index: start_minutes</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:23:02] ERROR: <br>PHP notice : <em>Undefined index: end_hour</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:23:02] ERROR: <br>PHP notice : <em>Undefined index: end_minutes</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:23:02] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>227</b> 
+[2024-06-17 11:23:02] ERROR: <br>PHP notice : <em>Undefined index: start_minutes</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:23:02] ERROR: <br>PHP notice : <em>Undefined index: end_hour</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:23:02] ERROR: <br>PHP notice : <em>Undefined index: end_minutes</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:23:02] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>233</b> 
+[2024-06-17 11:23:02] ERROR: <br>PHP notice : <em>Undefined index: start_minutes</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:23:02] ERROR: <br>PHP notice : <em>Undefined index: end_hour</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:23:02] ERROR: <br>PHP notice : <em>Undefined index: end_minutes</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>186</b> 
+[2024-06-17 11:25:41] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>227</b> 
+[2024-06-17 11:25:41] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>233</b> 
+[2024-06-17 11:25:57] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>227</b> 
+[2024-06-17 11:25:57] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>233</b> 
+[2024-06-17 11:29:52] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 11:29:52] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 11:30:15] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 11:30:15] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 11:35:31] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 11:35:31] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 11:35:49] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>225</b> 
+[2024-06-17 11:35:49] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>219</b> 
+[2024-06-17 11:38:38] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>230</b> 
+[2024-06-17 11:38:38] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 11:39:04] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 11:39:04] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 11:39:10] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>230</b> 
+[2024-06-17 11:39:10] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 11:39:13] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>273</b> 
+[2024-06-17 11:39:13] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>279</b> 
+[2024-06-17 11:41:08] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>278</b> 
+[2024-06-17 11:41:08] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>284</b> 
+[2024-06-17 11:41:12] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>278</b> 
+[2024-06-17 11:41:12] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>284</b> 
+[2024-06-17 11:42:28] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>278</b> 
+[2024-06-17 11:42:28] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>284</b> 
+[2024-06-17 11:42:42] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 11:42:42] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 11:46:43] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 11:46:43] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 11:46:49] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>81</b> 
+[2024-06-17 11:46:53] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>87</b> 
+[2024-06-17 12:13:27] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 12:13:27] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 13:08:34] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>82</b> 
+[2024-06-17 13:08:35] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 13:08:35] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 13:08:35] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 13:15:07] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 13:15:07] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 13:15:07] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 13:15:29] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>82</b> 
+[2024-06-17 13:19:41] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 13:19:41] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 13:19:41] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 13:19:47] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>86</b> 
+[2024-06-17 13:20:17] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>230</b> 
+[2024-06-17 13:20:17] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 13:20:17] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 13:21:26] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>278</b> 
+[2024-06-17 13:21:26] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>278</b> 
+[2024-06-17 13:21:26] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>284</b> 
+[2024-06-17 13:23:35] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>115</b> 
+[2024-06-17 13:23:35] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>117</b> 
+[2024-06-17 13:23:35] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 13:23:35] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>115</b> 
+[2024-06-17 13:23:35] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>117</b> 
+[2024-06-17 13:23:35] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 13:23:35] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>115</b> 
+[2024-06-17 13:23:35] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>117</b> 
+[2024-06-17 13:23:35] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 13:23:35] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>115</b> 
+[2024-06-17 13:23:35] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>117</b> 
+[2024-06-17 13:23:35] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 13:23:35] ERROR: <br>PHP notice : <em>Undefined property: Gcms\Config::$eleave_csv_language</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>103</b> 
+[2024-06-17 13:32:20] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 13:32:20] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 13:32:20] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 13:32:21] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>120</b> 
+[2024-06-17 13:32:21] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>122</b> 
+[2024-06-17 13:32:21] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>124</b> 
+[2024-06-17 13:32:58] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 13:32:58] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>169</b> 
+[2024-06-17 13:32:58] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>171</b> 
+[2024-06-17 13:33:06] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>120</b> 
+[2024-06-17 13:33:06] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>122</b> 
+[2024-06-17 13:33:06] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>124</b> 
+[2024-06-17 13:33:10] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 13:33:10] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>169</b> 
+[2024-06-17 13:33:10] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>171</b> 
+[2024-06-17 13:33:12] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>120</b> 
+[2024-06-17 13:33:12] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>122</b> 
+[2024-06-17 13:33:12] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>124</b> 
+[2024-06-17 13:33:14] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 13:33:14] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>171</b> 
+[2024-06-17 13:33:23] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:33:23] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:33:23] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:33:23] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:33:24] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>120</b> 
+[2024-06-17 13:33:24] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>122</b> 
+[2024-06-17 13:33:24] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>124</b> 
+[2024-06-17 13:33:24] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 13:33:24] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>171</b> 
+[2024-06-17 13:33:24] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>175</b> 
+[2024-06-17 13:33:24] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:33:24] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:33:24] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:33:24] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:33:24] ERROR: <br>PHP notice : <em>Undefined property: Gcms\Config::$eleave_csv_language</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>108</b> 
+[2024-06-17 13:33:24] ERROR: <br>PHP warning : <em>iconv() expects parameter 3 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Csv.php</b> on line <b>199</b> 
+[2024-06-17 13:33:24] ERROR: <br>PHP warning : <em>iconv() expects parameter 3 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Csv.php</b> on line <b>199</b> 
+[2024-06-17 13:42:12] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 13:42:12] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 13:42:12] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>120</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>176</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>120</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>176</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>120</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>120</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP notice : <em>Undefined property: Gcms\Config::$eleave_csv_language</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>108</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP warning : <em>iconv() expects parameter 3 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Csv.php</b> on line <b>199</b> 
+[2024-06-17 13:42:15] ERROR: <br>PHP warning : <em>iconv() expects parameter 3 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Csv.php</b> on line <b>199</b> 
+[2024-06-17 13:44:10] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 13:44:10] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 13:44:10] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>120</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>176</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>120</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>176</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>120</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>120</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP notice : <em>Undefined property: Gcms\Config::$eleave_csv_language</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>108</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP warning : <em>iconv() expects parameter 3 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Csv.php</b> on line <b>199</b> 
+[2024-06-17 13:44:12] ERROR: <br>PHP warning : <em>iconv() expects parameter 3 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Csv.php</b> on line <b>199</b> 
+[2024-06-17 13:57:26] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>92</b> 
+[2024-06-17 13:57:28] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 13:57:28] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 13:57:59] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>86</b> 
+[2024-06-17 13:58:01] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 13:58:01] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 13:58:01] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 13:59:34] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 13:59:34] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:23:01] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>86</b> 
+[2024-06-17 14:23:05] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 14:23:05] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:23:05] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:32:00] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>86</b> 
+[2024-06-17 14:32:02] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 14:32:02] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:32:02] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:32:02] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:33:06] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 14:33:06] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:33:06] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:34:17] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 14:34:17] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:34:17] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:35:34] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>230</b> 
+[2024-06-17 14:35:34] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:35:34] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:37:10] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:37:11] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:37:12] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>230</b> 
+[2024-06-17 14:37:12] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:37:12] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:37:18] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>230</b> 
+[2024-06-17 14:37:18] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:37:18] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:37:22] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>230</b> 
+[2024-06-17 14:37:22] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:37:22] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:37:36] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>230</b> 
+[2024-06-17 14:37:36] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:37:36] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:37:37] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:37:37] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:37:38] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:37:39] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>230</b> 
+[2024-06-17 14:37:39] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:37:39] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:42:27] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>230</b> 
+[2024-06-17 14:42:27] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:42:29] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:42:30] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:42:32] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>230</b> 
+[2024-06-17 14:42:32] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:43:46] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 14:43:46] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>120</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>176</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>120</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>120</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>120</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP notice : <em>Undefined property: Gcms\Config::$eleave_csv_language</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>108</b> 
+[2024-06-17 14:44:11] ERROR: <br>PHP warning : <em>iconv() expects parameter 3 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Csv.php</b> on line <b>199</b> 
+[2024-06-17 14:46:29] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>230</b> 
+[2024-06-17 14:46:29] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:46:37] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>230</b> 
+[2024-06-17 14:46:37] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:50:22] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>86</b> 
+[2024-06-17 14:50:23] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:50:23] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:50:35] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>86</b> 
+[2024-06-17 14:50:36] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:50:36] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:50:36] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:51:05] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>92</b> 
+[2024-06-17 14:51:07] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:51:07] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:51:07] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 14:51:07] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 14:51:50] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:51:50] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:51:50] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 14:52:31] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:52:31] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>231</b> 
+[2024-06-17 14:52:31] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>237</b> 
+[2024-06-17 14:56:31] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 14:56:31] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 14:56:31] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 14:56:36] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:56:36] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:56:36] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>230</b> 
+[2024-06-17 14:57:05] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:57:05] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:57:05] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>230</b> 
+[2024-06-17 14:57:48] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:57:48] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:57:48] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>230</b> 
+[2024-06-17 14:57:52] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:57:52] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:57:52] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>224</b> 
+[2024-06-17 14:57:52] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>230</b> 
+[2024-06-17 15:02:59] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\statistics.php</b> on line <b>119</b> 
+[2024-06-17 15:02:59] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\statistics.php</b> on line <b>119</b> 
+[2024-06-17 15:02:59] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\statistics.php</b> on line <b>119</b> 
+[2024-06-17 15:02:59] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\statistics.php</b> on line <b>119</b> 
+[2024-06-17 15:02:59] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\statistics.php</b> on line <b>119</b> 
+[2024-06-17 15:02:59] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\statistics.php</b> on line <b>119</b> 
+[2024-06-17 15:03:44] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:03:44] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:03:44] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 15:03:56] ERROR: <br>Exception : <em>SQLSTATE[42S22]: Column not found: 1054 Unknown column 'communication' in 'order clause'</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-06-17 15:03:59] ERROR: <br>Exception : <em>SQLSTATE[42S22]: Column not found: 1054 Unknown column 'communication' in 'order clause'</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-06-17 15:03:59] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:03:59] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:03:59] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 15:04:00] ERROR: <br>Exception : <em>SQLSTATE[42S22]: Column not found: 1054 Unknown column 'communication' in 'order clause'</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-06-17 15:04:02] ERROR: <br>Exception : <em>SQLSTATE[42S22]: Column not found: 1054 Unknown column 'communication' in 'order clause'</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-06-17 15:04:03] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 15:04:03] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:04:03] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:04:04] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:04:04] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:04:04] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 15:04:06] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:04:06] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:04:06] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>181</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>175</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>175</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP notice : <em>Undefined property: Gcms\Config::$eleave_csv_language</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>107</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP warning : <em>iconv() expects parameter 3 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Csv.php</b> on line <b>199</b> 
+[2024-06-17 15:04:11] ERROR: <br>PHP warning : <em>iconv() expects parameter 3 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Csv.php</b> on line <b>199</b> 
+[2024-06-17 15:04:52] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:04:52] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:04:52] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>181</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>175</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>175</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP notice : <em>Undefined property: Gcms\Config::$eleave_csv_language</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>107</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP warning : <em>iconv() expects parameter 3 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Csv.php</b> on line <b>199</b> 
+[2024-06-17 15:04:54] ERROR: <br>PHP warning : <em>iconv() expects parameter 3 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Csv.php</b> on line <b>199</b> 
+[2024-06-17 15:05:57] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:05:57] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:05:57] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 15:06:01] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:06:01] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:06:01] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>181</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>175</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>175</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP notice : <em>Undefined property: Gcms\Config::$eleave_csv_language</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>107</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP warning : <em>iconv() expects parameter 3 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Csv.php</b> on line <b>199</b> 
+[2024-06-17 15:06:05] ERROR: <br>PHP warning : <em>iconv() expects parameter 3 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Csv.php</b> on line <b>199</b> 
+[2024-06-17 15:07:09] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:07:09] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:07:09] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:07:09] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:07:09] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:07:09] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:07:09] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:07:09] ERROR: <br>PHP notice : <em>Undefined property: Gcms\Config::$eleave_csv_language</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>107</b> 
+[2024-06-17 15:07:20] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:07:20] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:07:20] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 15:07:24] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 15:07:24] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:07:24] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:07:26] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:07:26] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:07:26] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 15:07:27] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:07:27] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:07:27] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 15:07:29] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:07:29] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:07:29] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 15:07:31] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:07:31] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>277</b> 
+[2024-06-17 15:07:31] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>283</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>175</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP notice : <em>Undefined offset: 1</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>175</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP warning : <em>A non-numeric value encountered</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>181</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>119</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::getdatstime() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>96</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::searchzeros() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>177</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP Error : <em>Non-static method Eleave\Csv\View::gettimestr() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>100</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP notice : <em>Undefined property: Gcms\Config::$eleave_csv_language</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>107</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP warning : <em>iconv() expects parameter 3 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Csv.php</b> on line <b>199</b> 
+[2024-06-17 15:07:36] ERROR: <br>PHP warning : <em>iconv() expects parameter 3 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Csv.php</b> on line <b>199</b> 

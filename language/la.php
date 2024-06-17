@@ -26,6 +26,7 @@ return array(
     0 => 'ປິດໃຊ້ວຽກ',
     1 => 'ເປີດໃຊ້ວຽກ'
   ),
+  'Break time' => 'ພັກ​ຜ່ອນ',
   'Browse file' => 'ເລືອກໄຟລ໌',
   'Browse image uploaded, type :type' => 'ເລືອກຮູບພາບອັບໂຫຼດຊະນິດ :type',
   'Can be approve' => 'ສາມາດອະນຸມັດ',
@@ -132,6 +133,7 @@ return array(
   'for login by LINE account' => 'ສໍາລັບການເຂົ້າສູ່ລະບົບດ້ວຍບັນຊີ LINE',
   'Forgot' => 'ລືມລະຫັດຜ່ານ',
   'from' => 'ຈາກ',
+  'Full day no need to choose a time' => 'ເຕັມມື້, ບໍ່ຈໍາເປັນຕ້ອງເລືອກເວລາ',
   'General' => 'ທົ່ວໄປ',
   'General site settings' => 'ຕັ້ງຄ່າພື້ນຖານຂອງເວັບໄຊ',
   'Get new password' => 'ຂໍລະຫັດຜ່ານ',
@@ -315,6 +317,7 @@ return array(
   'scroll to top' => 'ເລື່ອນຂື້ນດ້ານເທິງ',
   'Search' => 'ຄົ້ນຫາ',
   'Search <strong>:search</strong> found :count entries, displayed :start to :end, page :page of :total pages' => 'ຄົ້ນຫາ <strong>:search</strong> ພົບ :count ລາຍການ ສະແດງລາຍການທີ່:start - :end ໜ້າທີ່:page ຈາກທັງໝົດ :total ໜ້າ',
+  'Select' => 'ເລືອກ',
   'select all' => 'ເລືອກທັງໝົດ',
   'Select leave' => 'ເລືອກອອກ',
   'Send a welcome email to new members' => 'ສົ່ງອີເມວຕ້ອນຮັບກັບສະມາຊິກໃຫມ່',

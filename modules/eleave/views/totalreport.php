@@ -68,7 +68,7 @@ class View extends \Gcms\View
             /* ฟังก์ชั่นแสดงผล Footer */
             'onCreateFooter' => array($this, 'onCreateFooter'),
             /* คอลัมน์ที่ไม่ต้องแสดงผล */
-            'hideColumns' => array('id', 'start_period', 'end_date', 'end_period', 'member_id'),
+            'hideColumns' => array('id', 'start_period', 'end_date', 'end_period', 'member_id', 'end_hour', 'start_minutes', 'end_minutes'),
             /* คอลัมน์ที่สามารถค้นหาได้ */
             'searchColumns' => array('name'),
             /* ตัวเลือกการแสดงผลที่ส่วนหัว */
@@ -134,7 +134,7 @@ class View extends \Gcms\View
                     'class' => 'center',
                     'sort' => 'days'
                 ),
-                'communication' => array(
+                'start_hour' => array(
                     'text' => '{LNG_Time}',
                     'sort' => 'communication'
                 ),
@@ -202,12 +202,18 @@ class View extends \Gcms\View
     public function onRow($item, $o, $prop)
     {
         $this->days += $item['days'];
+        $item['days'] = self::getdatstime($item['days']);
         $item['create_date'] = Date::format($item['create_date'], 'd M Y');
         $item['leave_id'] = $this->leavetype->get($item['leave_id']);
         if ($item['start_date'] == $item['end_date']) {
             $item['start_date'] = Date::format($item['start_date'], 'd M Y').' '.$this->leave_period[$item['start_period']];
         } else {
             $item['start_date'] = Date::format($item['start_date'], 'd M Y').' '.$this->leave_period[$item['start_period']].' - '.Date::format($item['end_date'], 'd M Y').' '.$this->leave_period[$item['end_period']];
+        }
+        if ($item['start_period'] == 0) {
+            $item['start_hour'] = "";
+        } else {
+            $item['start_hour'] = self::gettimestr($item['start_hour']).'.'.self::gettimestr($item['start_minutes']).' - '.self::gettimestr($item['end_hour']).'.'.self::gettimestr($item['end_minutes']);
         }
         $item['status'] = self::leave_status($item['status']) ? '<span class=status'.self::status_adap($item['status']).'>{LNG_'.self::leave_status($item['status']).'}</span>' : '';
         return $item;
@@ -221,7 +227,7 @@ class View extends \Gcms\View
     public function onCreateFooter()
     {
         // return '<tr><td></td><td class=check-column><a class="checkall icon-uncheck" title="{LNG_Select all}"></a></td><td class=right colspan=3>{LNG_Total}</td><td class=center>'.$this->days.'</td><td colspan="2"></td></tr>';
-        return '<tr><td></td><td class=right colspan=4>{LNG_Total}</td><td class=center>'.$this->days.'</td><td colspan="2"></td></tr>';
+        return '<tr><td></td><td class=right colspan=4>{LNG_Total}</td><td class=center>'.self::getdatstime($this->days).'</td><td colspan="2"></td></tr>';
     }
     
     /**
@@ -256,5 +262,71 @@ class View extends \Gcms\View
             $res = 1;
         }
         return $res;
+    }
+
+    /**
+     * ฟังกชั่นตรวจสอบว่าสามารถสร้างปุ่มได้หรือไม่
+     *
+     * @param float $days
+     *
+     * @return string
+     */
+    public function getdatstime($days)
+    {
+        // แยกชั่วโมงและนาทีออกจากกัน
+        list($pDay, $pTime) = explode('.', $days);
+        $result = $pTime*8;
+        $zeros = self::searchzeros($pTime);
+        if ($pTime!=null) {
+            $x = "";
+            for ($i=0; $i<$zeros; $i++) {
+                $x += $x.'0';
+            }
+            $result = $x.$result;
+        }
+        return $pTime == null ? $pDay : $pDay.'.'.rtrim($result, '0');
+    }
+
+    /**
+     * ฟังกชั่นตรวจสอบว่าสามารถสร้างปุ่มได้หรือไม่
+     *
+     * @param string $number
+     *
+     * @return int
+     */
+    public function searchzeros($number)
+    {
+        $count = 0;
+        // แปลงตัวเลขเป็นสตริงเพื่อให้สามารถตรวจสอบแต่ละตัวอักษรได้
+        $numberStr = (string)$number;
+        // ใช้ for loop ในการตรวจสอบตัวอักษรแต่ละตัว
+        for ($i = 0; $i < strlen($numberStr); $i++) {
+            if ($numberStr[$i] === '0') {
+                $count++;
+            } else {
+                break; // หยุดเมื่อพบตัวอักษรที่ไม่ใช่ 0
+            }
+        }
+        return $count;
+    }
+
+    /**
+     * ฟังกชั่นตรวจสอบว่าสามารถสร้างปุ่มได้หรือไม่
+     *
+     * @param string $tines
+     *
+     * @return string
+     */
+    public function gettimestr($tines)
+    {
+        // ตรวจสอบและเพิ่มศูนย์นำหน้าชั่วโมงถ้าจำเป็น
+        if (strlen($tines) < 2) {
+            $tines = '0' . $tines;
+        }
+        // ตรวจสอบและเติมศูนย์หลังจุดทศนิยมถ้าจำเป็น
+        if (strlen($tines) < 2) {
+            $tines = $tines . '0';
+        }
+        return $tines;
     }
 }

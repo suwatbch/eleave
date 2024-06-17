@@ -65,7 +65,7 @@ class Model extends \Kotchasan\Model
         }
         return static::createQuery()
             ->select('F.id', 'F.create_date', 'U.name', 'F.leave_id', 'F.start_date',
-                'F.days', 'F.start_period', 'F.end_date', 'F.end_period', 'F.member_id', 'F.communication')
+                'F.days', 'F.start_period', 'F.end_date', 'F.end_period', 'F.member_id', 'F.start_hour', 'F.end_hour', 'F.start_minutes', 'F.end_minutes')
             ->from('leave_items F')
             ->join('user U', 'LEFT', array('U.id', 'F.member_id'))
             ->where($where);

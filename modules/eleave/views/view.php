@@ -51,7 +51,12 @@ class View extends \Gcms\View
             $row .= Date::format($index['start_date'], 'd M Y').' '.$leave_period[$index['start_period']].' - '.Date::format($index['end_date'], 'd M Y').' '.$leave_period[$index['end_period']];
         }
         $content[] = $row.'</td></tr>';
-        $content[] = '<tr><td class="item"><span class="icon-event">{LNG_Number of leave days}</span></td><td class="item"> : </td><td class="item">'.$index['days'].' {LNG_days}</td></tr>';
+        $content[] = '<tr><td class="item"><span class="icon-event">{LNG_Number of leave days}</span></td><td class="item"> : </td><td class="item">'.self::getdatstime($index['days']).' {LNG_days}</td></tr>';
+        if ($index['start_period']==0) {
+            $content[] = '<tr><td class="item"><span class="icon-clock">{LNG_Time}</span></td><td class="item"> : </td><td class="item"></td></tr>';
+        } else {
+            $content[] = '<tr><td class="item"><span class="icon-clock">{LNG_Time}</span></td><td class="item"> : </td><td class="item">'.nl2br(self::gettimestr($index['start_hour']).'.'.self::gettimestr($index['start_minutes']).' - '.self::gettimestr($index['end_hour']).'.'.self::gettimestr($index['end_minutes'])).'</td></tr>';
+        }
         $content[] = '<tr><td class="item"><span class="icon-file">{LNG_Communication}</span></td><td class="item"> : </td><td class="item">'.nl2br($index['communication']).'</td></tr>';
         $content[] = '<tr><td class="item"><span class="icon-star0">{LNG_Status}</span></td><td class="item"> : </td><td class="item">'.self::showStatus(Language::get('LEAVE_STATUS'), $index['status'], !$email).'</td></tr>';
         if (!empty($index['reason'])) {
@@ -66,5 +71,71 @@ class View extends \Gcms\View
         $content[] = '</table></article>';
         // คืนค่า HTML
         return implode("\n", $content);
+    }
+
+    /**
+     * ฟังกชั่นตรวจสอบว่าสามารถสร้างปุ่มได้หรือไม่
+     *
+     * @param float $days
+     *
+     * @return string
+     */
+    public function getdatstime($days)
+    {
+        // แยกชั่วโมงและนาทีออกจากกัน
+        list($pDay, $pTime) = explode('.', $days);
+        $result = $pTime*8;
+        $zeros = self::searchzeros($pTime);
+        if ($pTime!=null) {
+            $x = "";
+            for ($i=0; $i<$zeros; $i++) {
+                $x += $x.'0';
+            }
+            $result = $x.$result;
+        }
+        return $pTime == null ? $pDay : $pDay.'.'.rtrim($result, '0');
+    }
+
+    /**
+     * ฟังกชั่นตรวจสอบว่าสามารถสร้างปุ่มได้หรือไม่
+     *
+     * @param string $number
+     *
+     * @return int
+     */
+    public function searchzeros($number)
+    {
+        $count = 0;
+        // แปลงตัวเลขเป็นสตริงเพื่อให้สามารถตรวจสอบแต่ละตัวอักษรได้
+        $numberStr = (string)$number;
+        // ใช้ for loop ในการตรวจสอบตัวอักษรแต่ละตัว
+        for ($i = 0; $i < strlen($numberStr); $i++) {
+            if ($numberStr[$i] === '0') {
+                $count++;
+            } else {
+                break; // หยุดเมื่อพบตัวอักษรที่ไม่ใช่ 0
+            }
+        }
+        return $count;
+    }
+
+    /**
+     * ฟังกชั่นตรวจสอบว่าสามารถสร้างปุ่มได้หรือไม่
+     *
+     * @param string $tines
+     *
+     * @return string
+     */
+    public function gettimestr($tines)
+    {
+        // ตรวจสอบและเพิ่มศูนย์นำหน้าชั่วโมงถ้าจำเป็น
+        if (strlen($tines) < 2) {
+            $tines = '0' . $tines;
+        }
+        // ตรวจสอบและเติมศูนย์หลังจุดทศนิยมถ้าจำเป็น
+        if (strlen($tines) < 2) {
+            $tines = $tines . '0';
+        }
+        return $tines;
     }
 }
