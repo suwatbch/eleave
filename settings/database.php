@@ -9,22 +9,22 @@
 // $dbdriver = "mysql";
 
 // docker
-$servername = "db";
-$username = "useradmin231231"; 
-$password = "passwordadmin231231";
-$dbname = "eleave"; 
-$port = "3306";
-$prefix = "app";
-$dbdriver = "mysql";
-
-// xampp
-// $servername = "localhost";
-// $username = "root"; 
-// $password = "";
+// $servername = "db";
+// $username = "useradmin231231"; 
+// $password = "passwordadmin231231";
 // $dbname = "eleave"; 
 // $port = "3306";
 // $prefix = "app";
 // $dbdriver = "mysql";
+
+// xampp
+$servername = "localhost";
+$username = "admineleave";
+$password = "7~b0x74sB";
+$dbname = "eleave"; 
+$port = "3306";
+$prefix = "app";
+$dbdriver = "mysql";
 
 return array (
   'mysql' => 
