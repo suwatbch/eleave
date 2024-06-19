@@ -70,7 +70,7 @@ class View extends \Kotchasan\KBase
                 'Status',
                 'Reason',
             ));
-            $header = [] ;
+            $header = [];
             $header[] = $lng['Transaction date'];
             $header[] = $lng['Username'];
             $header[] = $lng['Name'];
@@ -86,8 +86,8 @@ class View extends \Kotchasan\KBase
             $dataleave = \Eleave\Export\Model::csv($params);
             foreach ($dataleave as $item) {
                 $result = [];
-                $result[] = Date::format($item->create_date, 'd M Y');
-                $result[] = "'".$item->username;
+                $result[] = '="'.Date::format($item->create_date, 'd M Y').'"';
+                $result[] = '="'.$item->username.'"';
                 $result[] = $item->name;
                 $result[] = $item->department;
                 $result[] = $item->topic;
@@ -100,9 +100,72 @@ class View extends \Kotchasan\KBase
                 $datas[] = $result;
             }
             // export to CSV
-            return \Kotchasan\Csv::send('leave', $header, $datas, self::$cfg->eleave_csv_language);
+            return self::sendCsv('leave', $header, $datas, 'UTF-8');
         }
         return false;
+    }
+
+    /**
+     * ส่งออกไฟล์ CSV
+     *
+     * @param string $file ชื่อไฟล์ (ไม่รวม .csv)
+     * @param array $header รายชื่อแถวหัวข้อ
+     * @param array $datas ข้อมูล
+     * @param string $charset การเข้ารหัสตัวอักษร (default: UTF-8)
+     * @param bool $bom รวม BOM (default: true)
+     * @return bool
+     */
+    public static function sendCsv($file, $header, $datas, $charset = 'UTF-8', $bom = true)
+    {
+        // Set response headers for the CSV file download
+        header('Content-Type: text/csv;charset="'.$charset.'"');
+        header('Content-Disposition: attachment;filename="'.$file.'.csv"');
+
+        // Create a stream for output
+        $f = fopen('php://output', 'w');
+
+        // Add BOM for UTF-8 if requested
+        if ($charset == 'UTF-8' && $bom) {
+            fwrite($f, "\xEF\xBB\xBF");
+        }
+
+        // Convert charset to uppercase
+        $charset = strtoupper($charset);
+
+        // Write the CSV header if it's not empty
+        if (!empty($header)) {
+            fputcsv($f, self::convert($header, $charset));
+        }
+
+        // Write the CSV content row by row
+        foreach ($datas as $item) {
+            fputcsv($f, self::convert($item, $charset));
+        }
+
+        // Close the stream
+        fclose($f);
+
+        // Return success
+        return true;
+    }
+
+    /**
+     * Convert data array to the specified character encoding
+     *
+     * @param array $datas ข้อมูล
+     * @param string $charset การเข้ารหัสตัวอักษร
+     * @return array ข้อมูลที่ถูกแปลง
+     */
+    private static function convert($datas, $charset)
+    {
+        if ($charset != 'UTF-8') {
+            foreach ($datas as $k => $v) {
+                if ($v != '') {
+                    $datas[$k] = iconv('UTF-8', $charset.'//IGNORE', $v);
+                }
+            }
+        }
+        return $datas;
     }
 
     /**
@@ -151,3 +214,4 @@ class View extends \Kotchasan\KBase
         return $res;
     }
 }
+?>
