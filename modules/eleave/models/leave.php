@@ -54,6 +54,20 @@ class Model extends \Kotchasan\Model
         }
     }
 
+    // /**
+    //  * @param int $id
+    //  *
+    //  * @return array
+    //  */
+    // public static function getdatashift($id)
+    // {
+    //     return static::createQuery()
+    //         ->select('id', 'description')
+    //         ->from('shift')
+    //         ->where(array('id', $id))
+    //         ->cacheOn();
+    // }
+
     /**
      * @param float  $leavetype
      * @param string $start_date
@@ -228,7 +242,6 @@ class Model extends \Kotchasan\Model
                         $ret['ret_end_date'] = Language::get('End date must be greater than or equal to the start date');
                     } elseif ($start_period) {
                         // ลาภายใน 1 วัน เช็คกะเพิ่มถ้ากะข้ามวัน end > start ได้
-                        // $shiftskip = 
                         // $end_date = $start_date;
                         $save['days'] = self::$cfg->eleave_periods[$start_period];
                     } else {
