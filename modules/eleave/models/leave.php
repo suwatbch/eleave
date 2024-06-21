@@ -55,39 +55,60 @@ class Model extends \Kotchasan\Model
     }
 
     /**
-     * @param float  $leavetype
      * @param string $start_date
      * @param string $start_time
      * @param string $end_date
      * @param string $end_time
+     * @param string $start_break_time
+     * @param string $end_break_time
      * @return float
      */
-    public static function gettimes($leavetype, $start_date, $start_time, $end_date, $end_time)
+    public static function gettimes($start_date, $start_time, $end_date, $end_time, $start_break_time, $end_break_time)
     {
-        if ($leavetype == 1) {
-            // สร้าง DateTime objects จาก input new \DateTime();
-            $startDateTime = new \DateTime($start_date.' '.$start_time);
-            $endDateTime = new \DateTime($end_date.' '.$end_time);
+        // แปลงเวลาเป็น Timestamp
+        $start = strtotime($start_date.' '.$start_time);
+        $end = strtotime($end_date.' '.$end_time);
+        $breakStart = strtotime($start_date.' '.$start_break_time);
+        $breakEnd = strtotime($end_date.' '.$end_break_time);
 
-            // คำนวณความแตกต่างระหว่างสองช่วงเวลา
-            $interval = $startDateTime->diff($endDateTime);
-
-            // แปลงความแตกต่างเป็นชั่วโมงและนาที
-            $hours = $interval->h;
-            $minutes = $interval->i;
-
-            // หากความแตกต่างมีมากกว่า 24 ชั่วโมงให้เพิ่มวันเข้าไป
-            if ($interval->d > 0) {
-                $hours += $interval->d * 24;
-            }
-
-            // แสดงผลลัพธ์เป็นรูปแบบชั่วโมง.นาที
-            $time = str_pad($minutes, 2, '0', STR_PAD_LEFT);
-            $time = $time == '30' ? '5' : $time;
-            $times = $hours .'.'.  $time;
-            return  (float)$times;
+        // ตรวจสอบว่าเวลาพักอยู่ในช่วงเวลาทำงานหรือไม่
+        if ($breakStart < $start || $breakEnd > $end) {
+            // ถ้าไม่อยู่ในช่วงเวลาทำงาน ให้กำหนดเวลาพักเป็น 0
+            $breakTime = 0;
+        } else {
+            // คำนวณเวลาพัก
+            $breakTime = ($breakEnd - $breakStart) / 3600;
         }
-        return 0;
+
+        // คำนวณเวลาทำงานทั้งหมด
+        $totalWorkTime = ($end - $start) / 3600;
+
+        // คำนวณเวลาทำงานจริง
+        $actualWorkTime = $totalWorkTime - $breakTime;
+
+        return $actualWorkTime;
+
+        // // สร้าง DateTime objects จาก input new \DateTime();
+        // $startDateTime = new \DateTime($start_date.' '.$start_time);
+        // $endDateTime = new \DateTime($end_date.' '.$end_time);
+
+        // // คำนวณความแตกต่างระหว่างสองช่วงเวลา
+        // $interval = $startDateTime->diff($endDateTime);
+
+        // // แปลงความแตกต่างเป็นชั่วโมงและนาที
+        // $hours = $interval->h;
+        // $minutes = $interval->i;
+
+        // // หากความแตกต่างมีมากกว่า 24 ชั่วโมงให้เพิ่มวันเข้าไป
+        // if ($interval->d > 0) {
+        //     $hours += $interval->d * 24;
+        // }
+
+        // // แสดงผลลัพธ์เป็นรูปแบบชั่วโมง.นาที
+        // $time = str_pad($minutes, 2, '0', STR_PAD_LEFT);
+        // $time = $time == '30' ? '5' : $time;
+        // $times = $hours .'.'.  $time;
+        // return  (float)$times;
     }
 
     /**
@@ -238,15 +259,25 @@ class Model extends \Kotchasan\Model
                             ->cacheOn()
                             ->first('id', 'description', 'shifttype', 'worktime', 'skipdate'
                             , 'start_time', 'end_time', 'start_break_time', 'end_break_time');
-                        if (!$shiftdata->skipdate) {
-                            $end_date = $start_date;
-                        }
 
-                        $times = self::gettimes($start_period,$start_date,$start_time,$end_date,$end_time);
-                        if ($times >= 8) {
-                            $save['days'] = 1;
+                        if ($shiftdata) {
+                            if (!$shiftdata->skipdate) {
+                                // กะภายในวัน วันที่สิ้นสุดเท่ากันวันที่เริ่มต้น
+                                $end_date = $start_date;
+                            } else if ($diff['days'] > 1) {
+                                // กะข้ามวัน เลือกวันที่สิ้นสุด มากกว่า 1 วัน
+                                $ret['ret_end_date'] = Language::get('วันที่สิ้นสุดไม่ถูกต้อง');
+                            }
+                            $start_break_time = $shiftdata->start_break_time;
+                            $end_break_tine = $shiftdata->end_break_time;
+                            $times = self::gettimes($start_date,$start_time,$end_date,$end_time,$start_break_time,$end_break_tine);
+                            if ($times >= 8) {
+                                $save['days'] = 1;
+                            } else {
+                                $save['times'] = $times;
+                            }
                         } else {
-                            $save['times'] = $times;
+                            $ret['ret_shift_id'] = Language::get('ไม่พบกะการทำงาน');
                         }
                     } else {
                         // ตรวจสอบลาข้ามปีงบประมาณ

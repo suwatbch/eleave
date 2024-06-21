@@ -602,3 +602,5 @@
 [2024-06-21 10:57:22] ERROR: <br>PHP notice : <em>Undefined property: Kotchasan\Database\QueryBuilder::$select</em> in <b>xdebug://debug-eval</b> on line <b>2</b> 
 [2024-06-21 11:47:39] ERROR: <br>PHP notice : <em>Undefined index: end_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
 [2024-06-21 11:47:39] ERROR: <br>PHP notice : <em>Undefined index: </em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-06-21 13:54:41] ERROR: <br>PHP notice : <em>Undefined index: end_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-06-21 13:54:41] ERROR: <br>PHP notice : <em>Undefined index: </em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
