@@ -226,7 +226,7 @@ class Model extends \Kotchasan\Model
                     if ($end_date < $start_date) {
                         // วันที่สิ้นสุด น้อยกว่าวันที่เริ่มต้น
                         $ret['ret_end_date'] = Language::get('End date must be greater than or equal to the start date');
-                    } elseif ($start_date == $end_date) {
+                    } elseif ($start_date == $end_date || $start_period) {
                         // ลาภายใน 1 วัน ใช้จำนวนวันลาจาก คาบการลา
                         // ต้องนี้ต้องเช็คกะเพิ่มถ้ากะข้ามวัน end สามารถ < start ได้
                         // $end_date = $start_date;
