@@ -76,15 +76,15 @@ class View extends \Gcms\View
             ));
         }
         // shift
-        // $fieldset->add('select', array(
-        //     'id' => 'shift_id',
-        //     'labelClass' => 'g-input icon-clock',
-        //     'itemClass' => 'item',
-        //     'label' => '{LNG_Shift work}',
-        //     'options' => \Eleave\Leavetype\Model::getshift($login['shift_id'])->selectshift(),
-        //     'disabled' => true,
-        //     'value' => isset($index->shift_id) ? $index->shift_id : 0
-        // ));
+        $fieldset->add('select', array(
+            'id' => 'shift_id',
+            'labelClass' => 'g-input icon-clock',
+            'itemClass' => 'item',
+            'label' => '{LNG_Shift work}',
+            'options' => \Eleave\Leavetype\Model::getshift($login['shift_id'])->selectshift(),
+            'disabled' => true,
+            'value' => isset($index->shift_id) ? $index->shift_id : 0
+        ));
         // รูปแบบการลา start_period
         $leave_period = Language::get('LEAVE_PERIOD');
         $fieldset->add('select', array(
@@ -96,17 +96,40 @@ class View extends \Gcms\View
             'disabled' => $notEdit,
             'value' => isset($index->start_period) ? $index->start_period : 0
         ));
+        $groups = $fieldset->add('groups');
         // start_date
-        $fieldset->add('date', array(
+        $groups->add('date', array(
             'id' => 'start_date',
             'labelClass' => 'g-input icon-calendar',
-            'itemClass' => 'item',
+            'itemClass' => 'width50',
             'label' => '{LNG_Start date}',
             'disabled' => $notEdit,
             'value' => isset($index->start_date) ? $index->start_date : date('Y-m-d')
         ));
+        // $leave_time = Language::get('LEAVE_TIME');
+        // // เวลาเริ่มต้น
+        // $groups->add('select', array(
+        //     'id' => 'start_time',
+        //     'labelClass' => 'g-input icon-clock',
+        //     'itemClass' => 'width25',
+        //     'label' => '{LNG_Start time}',
+        //     'options' => $leave_time,
+        //     'disabled' => true,
+        //     'value' => isset($index->start_time) ? $index->start_time : '00:00'
+        // ));
+        // // เวลาสิ้นสุด
+        // $groups->add('select', array(
+        //     'id' => 'end_time',
+        //     'labelClass' => 'g-input icon-clock',
+        //     'itemClass' => 'width25',
+        //     'label' => '{LNG_End time}',
+        //     'options' => $leave_time,
+        //     'disabled' => true,
+        //     'value' => isset($index->end_time) ? $index->end_time : '00:00'
+        // ));
+        $groups = $fieldset->add('groups');
         // end_date
-        $fieldset->add('date', array(
+        $groups->add('date', array(
             'id' => 'end_date',
             'labelClass' => 'g-input icon-calendar',
             'itemClass' => 'item',
