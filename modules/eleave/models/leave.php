@@ -226,9 +226,9 @@ class Model extends \Kotchasan\Model
                     if ($end_date < $start_date) {
                         // วันที่สิ้นสุด น้อยกว่าวันที่เริ่มต้น
                         $ret['ret_end_date'] = Language::get('End date must be greater than or equal to the start date');
-                    } elseif ($start_date == $end_date || $start_period) {
-                        // ลาภายใน 1 วัน ใช้จำนวนวันลาจาก คาบการลา
-                        // ต้องนี้ต้องเช็คกะเพิ่มถ้ากะข้ามวัน end สามารถ < start ได้
+                    } elseif ($start_period) {
+                        // ลาภายใน 1 วัน เช็คกะเพิ่มถ้ากะข้ามวัน end > start ได้
+                        // $shiftskip = 
                         // $end_date = $start_date;
                         $save['days'] = self::$cfg->eleave_periods[$start_period];
                     } else {
@@ -236,13 +236,13 @@ class Model extends \Kotchasan\Model
                         $end_year = date('Y', strtotime($end_date));
                         $start_year = date('Y', strtotime($start_date));
                         $check_year = max($end_year, $start_year);
-                        $fiscal_year = $check_year.sprintf('-%02d-01', self::$cfg->eleave_fiscal_year);
+                        $fiscal_year = $check_year.sprintf('-%02d-01', 1); // 1 = self::$cfg->eleave_fiscal_year
                         if ($start_date < $fiscal_year && $end_date >= $fiscal_year) {
                             // ไม่สามารถเลือกวันลาข้ามปีงบประมาณได้
                             $ret['ret_start_date'] = Language::get('Unable to take leave across the fiscal year. If you want to take continuous leave, separate the leave form into two. within that fiscal year');
                         } else {
                             // ใช้จำนวนวันลาจากที่คำนวณ
-                            $save['days'] = $diff['days'] + self::$cfg->eleave_periods[$start_period] + self::$cfg->eleave_periods[0] - 1;
+                            $save['days'] = $diff['days'] + 1; // 1 = self::$cfg->eleave_periods[$start_period]
                         }
                     }
                     $save['start_period'] = $start_period;
