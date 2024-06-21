@@ -106,30 +106,29 @@ class View extends \Gcms\View
             'disabled' => $notEdit,
             'value' => isset($index->start_date) ? $index->start_date : date('Y-m-d')
         ));
-        // $leave_time = Language::get('LEAVE_TIME');
-        // // เวลาเริ่มต้น
-        // $groups->add('select', array(
-        //     'id' => 'start_time',
-        //     'labelClass' => 'g-input icon-clock',
-        //     'itemClass' => 'width25',
-        //     'label' => '{LNG_Start time}',
-        //     'options' => $leave_time,
-        //     'disabled' => true,
-        //     'value' => isset($index->start_time) ? $index->start_time : '00:00'
-        // ));
-        // // เวลาสิ้นสุด
-        // $groups->add('select', array(
-        //     'id' => 'end_time',
-        //     'labelClass' => 'g-input icon-clock',
-        //     'itemClass' => 'width25',
-        //     'label' => '{LNG_End time}',
-        //     'options' => $leave_time,
-        //     'disabled' => true,
-        //     'value' => isset($index->end_time) ? $index->end_time : '00:00'
-        // ));
-        $groups = $fieldset->add('groups');
+        $leave_time = Language::get('LEAVE_TIME');
+        // เวลาเริ่มต้น
+        $groups->add('select', array(
+            'id' => 'start_time',
+            'labelClass' => 'g-input icon-clock',
+            'itemClass' => 'width25',
+            'label' => '{LNG_Start time}',
+            'options' => $leave_time,
+            'disabled' => true,
+            'value' => isset($index->start_time) ? $index->start_time : '00:00'
+        ));
+        // เวลาสิ้นสุด
+        $groups->add('select', array(
+            'id' => 'end_time',
+            'labelClass' => 'g-input icon-clock',
+            'itemClass' => 'width25',
+            'label' => '{LNG_End time}',
+            'options' => $leave_time,
+            'disabled' => true,
+            'value' => isset($index->end_time) ? $index->end_time : '00:00'
+        ));
         // end_date
-        $groups->add('date', array(
+        $fieldset->add('date', array(
             'id' => 'end_date',
             'labelClass' => 'g-input icon-calendar',
             'itemClass' => 'item',
@@ -163,9 +162,9 @@ class View extends \Gcms\View
                 'multiple' => true
             ));
         }
-        if ($index->id > 0) {
-            $fieldset->appendChild('<div class="item">'.\Download\Index\Controller::init($index->id, 'eleave', self::$cfg->eleave_file_typies, ($canEdit ? $login['id'] : 0)).'</div>');
-        }
+        // if ($index->id > 0) {
+        //     $fieldset->appendChild('<div class="item">'.\Download\Index\Controller::init($index->id, 'eleave', self::$cfg->eleave_file_typies, ($canEdit ? $login['id'] : 0)).'</div>');
+        // }
         // detail
         $fieldset->add('textarea', array(
             'id' => 'detail',

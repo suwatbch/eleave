@@ -30,4 +30,45 @@ function initEleaveLeave() {
       }
     }
   });
+  $G('start_period').addEvent("change", function() {
+    if (this.value) {
+      var a = this.value.toInt();
+      $E('start_time').disabled = a == 0;
+      $E('end_time').disabled = a == 0;
+      $E('end_date').value = $E('start_date').value;
+      $E('end_date').disabled = a != 0;
+      var skipdate = 0;
+      send(WEB_URL + 'index.php/eleave/model/leave/getShift', 'id=' + $E('shift_id').value, function(xhr) {
+        var ds = xhr.responseText.toJSON();
+        if (ds) {
+          skipdate = ds.skipdate;
+          if (skipdate) {
+            $E('end_date').disabled = 0;
+          } else {
+            $E('end_date').disabled = a != 0;
+          }
+        } else if (xhr.responseText != '') {
+          console.log(xhr.responseText);
+        }
+      });
+    }
+  });
+  $G('leave_id').addEvent("change", function() {
+    if (this.value) {
+      var a = this.value.toInt();
+      if (a==3 || a==7 || a==8){
+        $E('start_period').value = 0;
+        $E('start_period').disabled = 1;
+        $E('start_time').value = '00:00';
+        $E('end_time').value = '00:00';
+        $E('end_date').disabled = 0;
+        $E('start_time').disabled = 1;
+        $E('end_time').disabled = 1;
+        
+      } else {
+        $E('start_period').disabled = 0;
+      }
+      
+    }
+  });
 }

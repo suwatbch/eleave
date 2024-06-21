@@ -208,9 +208,12 @@ class Model extends \Kotchasan\Model
                         }
                     }
                     // วันลา
+                    $start_period = $request->post('start_period')->toInt();
                     $start_date = $request->post('start_date')->date();
                     $end_date = $request->post('end_date')->date();
-                    $start_period = $request->post('start_period')->toInt();
+                    $timetemp = '00:00';
+                    $start_time = $request->post('start_time')->text() == '' ? $timetemp : $request->post('start_time')->text();
+                    $end_time = $request->post('end_time')->text() == '' ? $timetemp : $request->post('end_time')->text();
                     if ($start_date == '') {
                         // ไม่ได้กรอกวันที่เริมต้น
                         $ret['ret_start_date'] = 'Please fill in';
@@ -219,62 +222,38 @@ class Model extends \Kotchasan\Model
                         // ไม่ได้กรอกวันที่สิ้นสุดมา ใช้วันที่เดียวกันกับวันที่เริ่มต้น (ลา 1 วัน)
                         $end_date = $start_date;
                     }
-                    
-
                     $diff = Date::compare($start_date, $end_date);
-                    if ($diff['days'] > 0 && $start_period == 1) {
-                        // ถ้าลาหลายวัน ไม่สามารถเลือกตัวเลือก ครึ่งวันเช้าได้
-                        $ret['ret_start_period'] = Language::get('Cannot select this option');  
+                    if ($end_date < $start_date) {
+                        // วันที่สิ้นสุด น้อยกว่าวันที่เริ่มต้น
+                        $ret['ret_end_date'] = Language::get('End date must be greater than or equal to the start date');
+                    } elseif ($start_date == $end_date) {
+                        // ลาภายใน 1 วัน ใช้จำนวนวันลาจาก คาบการลา
+                        // ต้องนี้ต้องเช็คกะเพิ่มถ้ากะข้ามวัน end สามารถ < start ได้
+                        // $end_date = $start_date;
+                        $save['days'] = self::$cfg->eleave_periods[$start_period];
                     } else {
-                        if ($end_date < $start_date) {
-                            // วันที่สิ้นสุด น้อยกว่าวันที่เริ่มต้น
-                            $ret['ret_end_date'] = Language::get('End date must be greater than or equal to the start date');
-                        } elseif ($start_date == $end_date) {
-                            // ลาภายใน 1 วัน ใช้จำนวนวันลาจาก คาบการลา
-                            $save['days'] = self::$cfg->eleave_periods[$start_period];
+                        // ตรวจสอบลาข้ามปีงบประมาณ
+                        $end_year = date('Y', strtotime($end_date));
+                        $start_year = date('Y', strtotime($start_date));
+                        $check_year = max($end_year, $start_year);
+                        $fiscal_year = $check_year.sprintf('-%02d-01', self::$cfg->eleave_fiscal_year);
+                        if ($start_date < $fiscal_year && $end_date >= $fiscal_year) {
+                            // ไม่สามารถเลือกวันลาข้ามปีงบประมาณได้
+                            $ret['ret_start_date'] = Language::get('Unable to take leave across the fiscal year. If you want to take continuous leave, separate the leave form into two. within that fiscal year');
                         } else {
-                            // ตรวจสอบลาข้ามปีงบประมาณ
-                            $end_year = date('Y', strtotime($end_date));
-                            $start_year = date('Y', strtotime($start_date));
-                            $check_year = max($end_year, $start_year);
-                            $fiscal_year = $check_year.sprintf('-%02d-01', self::$cfg->eleave_fiscal_year);
-                            if ($start_date < $fiscal_year && $end_date >= $fiscal_year) {
-                                // ไม่สามารถเลือกวันลาข้ามปีงบประมาณได้
-                                $ret['ret_start_date'] = Language::get('Unable to take leave across the fiscal year. If you want to take continuous leave, separate the leave form into two. within that fiscal year');
-                            } else {
-                                // ใช้จำนวนวันลาจากที่คำนวณ
-                                $save['days'] = $diff['days'] + self::$cfg->eleave_periods[$start_period] + self::$cfg->eleave_periods[0] - 1;
-                            }
+                            // ใช้จำนวนวันลาจากที่คำนวณ
+                            $save['days'] = $diff['days'] + self::$cfg->eleave_periods[$start_period] + self::$cfg->eleave_periods[0] - 1;
                         }
-                        $save['start_date'] = $start_date;
-                        $save['end_date'] = $end_date;
-                        $save['start_period'] = $start_period;
                     }
+                    $save['start_period'] = $start_period;
+                    $save['start_date'] = $start_date;
+                    $save['start_time'] = $start_time;
+                    $save['end_date'] = $end_date;
+                    $save['end_time'] = $end_time;
                     if ($save['days'] > 6 && $save['leave_id'] == 2) {
                         // ไม่สามารถลากิจได้มากกว่า 6 วัน
                         $ret['ret_end_date'] = Language::get('ไม่สามารถลากิจได้มากกว่า 6 วัน');
                     }
-                    // table
-                    $table = $this->getTableName('leave_items');
-                    // Database
-                    $db = $this->db();
-                    if (empty($ret)) {
-                        // $table = $this->getTableName('leave_items');
-                        // $db = $this->db();
-                        if ($index->id == 0) {
-                            $save['id'] = $db->getNextId($table);
-                        } else {
-                            $save['id'] = $index->id;
-                        }
-                        // อัปโหลดไฟล์แนบ
-                        \Download\Upload\Model::execute($ret, $request, $save['id'], 'eleave', self::$cfg->eleave_file_typies, self::$cfg->eleave_upload_size);
-                    }
-                    //เวลาลา
-                    if ((($start_period) > 0) && ($save['communication'] == '') && !($save['leave_id'] == 3 || $save['leave_id'] == 7 || $save['leave_id'] == 8)) {
-                        // ไม่ได้กรอก communication
-                        $ret['ret_communication'] = 'Please fill in';
-                    }
-
                     // ตรวจสอบวันลากิจและลาพักร้อน
                     $result = false;
                     $result_cota = "";
@@ -310,6 +289,21 @@ class Model extends \Kotchasan\Model
                         }
                     } else if ($result && !$result_cota) {
                         $ret['ret_end_date'] = Language::get('ไม่พบโคต้าการลา');
+                    }
+                    // table
+                    $table = $this->getTableName('leave_items');
+                    // Database
+                    $db = $this->db();
+                    if (empty($ret)) {
+                        // $table = $this->getTableName('leave_items');
+                        // $db = $this->db();
+                        if ($index->id == 0) {
+                            $save['id'] = $db->getNextId($table);
+                        } else {
+                            $save['id'] = $index->id;
+                        }
+                        // อัปโหลดไฟล์แนบ
+                        \Download\Upload\Model::execute($ret, $request, $save['id'], 'eleave', self::$cfg->eleave_file_typies, self::$cfg->eleave_upload_size);
                     }
                     if ($save['detail'] == '') {
                         // ไม่ได้กรอก detail
