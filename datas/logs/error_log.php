@@ -578,3 +578,25 @@
 [2024-06-14 16:26:23] ERROR: <br>Exception : <em>SQLSTATE[42S02]: Base table or view not found: 1146 Table 'eleave.app_category' doesn't exist</em> in <b>/var/www/html/Kotchasan/Database/Driver.php</b> on line <b>254</b> 
 [2024-06-21 10:09:02] ERROR: <br>PHP notice : <em>Undefined index: end_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
 [2024-06-21 10:09:02] ERROR: <br>PHP notice : <em>Undefined index: </em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-06-21 10:54:43] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>253</b> 
+[2024-06-21 10:54:59] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>253</b> 
+[2024-06-21 10:54:59] ERROR: <br>Exception : <em>SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>256</b> 
+[2024-06-21 10:55:04] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>253</b> 
+[2024-06-21 10:55:04] ERROR: <br>Exception : <em>SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>256</b> 
+[2024-06-21 10:55:30] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>253</b> 
+[2024-06-21 10:55:30] ERROR: <br>Exception : <em>SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>256</b> 
+[2024-06-21 10:55:33] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>253</b> 
+[2024-06-21 10:55:33] ERROR: <br>Exception : <em>SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>256</b> 
+[2024-06-21 10:55:34] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>253</b> 
+[2024-06-21 10:55:34] ERROR: <br>Exception : <em>SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>256</b> 
+[2024-06-21 10:55:35] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>253</b> 
+[2024-06-21 10:55:35] ERROR: <br>Exception : <em>SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>256</b> 
+[2024-06-21 10:55:35] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>253</b> 
+[2024-06-21 10:55:35] ERROR: <br>Exception : <em>SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>256</b> 
+[2024-06-21 10:55:35] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>253</b> 
+[2024-06-21 10:55:35] ERROR: <br>Exception : <em>SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>256</b> 
+[2024-06-21 10:55:35] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>253</b> 
+[2024-06-21 10:55:35] ERROR: <br>Exception : <em>SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>256</b> 
+[2024-06-21 10:55:36] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>253</b> 
+[2024-06-21 10:55:36] ERROR: <br>Exception : <em>SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>256</b> 
+[2024-06-21 10:57:22] ERROR: <br>PHP notice : <em>Undefined property: Kotchasan\Database\QueryBuilder::$select</em> in <b>xdebug://debug-eval</b> on line <b>2</b> 
