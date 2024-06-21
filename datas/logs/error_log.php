@@ -600,3 +600,5 @@
 [2024-06-21 10:55:36] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>253</b> 
 [2024-06-21 10:55:36] ERROR: <br>Exception : <em>SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>256</b> 
 [2024-06-21 10:57:22] ERROR: <br>PHP notice : <em>Undefined property: Kotchasan\Database\QueryBuilder::$select</em> in <b>xdebug://debug-eval</b> on line <b>2</b> 
+[2024-06-21 11:47:39] ERROR: <br>PHP notice : <em>Undefined index: end_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-06-21 11:47:39] ERROR: <br>PHP notice : <em>Undefined index: </em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 

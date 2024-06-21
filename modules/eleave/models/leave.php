@@ -82,8 +82,10 @@ class Model extends \Kotchasan\Model
             }
 
             // แสดงผลลัพธ์เป็นรูปแบบชั่วโมง.นาที
-            $times = $hours . '.' . str_pad($minutes, 2, '0', STR_PAD_LEFT);
-            return (float)$times > 8 ? 8 : (float)$times;
+            $time = str_pad($minutes, 2, '0', STR_PAD_LEFT);
+            $time = $time == '30' ? '5' : $time;
+            $times = $hours .'.'.  $time;
+            return  (float)$times;
         }
         return 0;
     }
@@ -214,6 +216,8 @@ class Model extends \Kotchasan\Model
                     $timetemp = '00:00';
                     $start_time = $request->post('start_time')->text() == '' ? $timetemp : $request->post('start_time')->text();
                     $end_time = $request->post('end_time')->text() == '' ? $timetemp : $request->post('end_time')->text();
+                    $save['days'] = 0;
+                    $save['times'] = 0;
                     if ($start_date == '') {
                         // ไม่ได้กรอกวันที่เริมต้น
                         $ret['ret_start_date'] = 'Please fill in';
@@ -237,7 +241,13 @@ class Model extends \Kotchasan\Model
                         if (!$shiftdata->skipdate) {
                             $end_date = $start_date;
                         }
-                        $save['days'] = self::$cfg->eleave_periods[$start_period];
+
+                        $times = self::gettimes($start_period,$start_date,$start_time,$end_date,$end_time);
+                        if ($times >= 8) {
+                            $save['days'] = 1;
+                        } else {
+                            $save['times'] = $times;
+                        }
                     } else {
                         // ตรวจสอบลาข้ามปีงบประมาณ
                         $end_year = date('Y', strtotime($end_date));
