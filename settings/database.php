@@ -45,6 +45,7 @@ return array (
     'leave_cota' => 'leave_cota',
     'leave_items' => 'leave_items',
     'logs' => 'logs',
+    'shift' => 'shift',
     'user' => 'user',
     'user_meta' => 'user_meta',
   ),
