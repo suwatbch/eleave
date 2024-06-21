@@ -55,6 +55,71 @@ class Model extends \Kotchasan\Model
     }
 
     /**
+     * @param float  $leavetype
+     * @param string $start_date
+     * @param string $start_time
+     * @param string $end_date
+     * @param string $end_time
+     * @return float
+     */
+    public static function gettimes($leavetype, $start_date, $start_time, $end_date, $end_time)
+    {
+        if ($leavetype == 1) {
+            // สร้าง DateTime objects จาก input new \DateTime();
+            $startDateTime = new \DateTime($start_date.' '.$start_time);
+            $endDateTime = new \DateTime($end_date.' '.$end_time);
+
+            // คำนวณความแตกต่างระหว่างสองช่วงเวลา
+            $interval = $startDateTime->diff($endDateTime);
+
+            // แปลงความแตกต่างเป็นชั่วโมงและนาที
+            $hours = $interval->h;
+            $minutes = $interval->i;
+
+            // หากความแตกต่างมีมากกว่า 24 ชั่วโมงให้เพิ่มวันเข้าไป
+            if ($interval->d > 0) {
+                $hours += $interval->d * 24;
+            }
+
+            // แสดงผลลัพธ์เป็นรูปแบบชั่วโมง.นาที
+            $times = $hours . '.' . str_pad($minutes, 2, '0', STR_PAD_LEFT);
+            return (float)$times > 8 ? 8 : (float)$times;
+        }
+        return 0;
+    }
+
+    /**
+     * คืนค่ารายละเอียดกะที่เลือก
+     * เป็น JSON
+     *
+     * @param Request $request
+     */
+    public function getShift(Request $request)
+    {
+        // session, referer, member
+        if ($request->initSession() && $request->isReferer() && Login::isMember()) {
+            $shift = $this->createQuery()
+                ->from('shift')
+                ->where(array(
+                    array('id', $request->post('id')->toInt())
+                ))
+                ->cacheOn()
+                ->first('skipdate');
+            if ($shift) {
+                // คืนค่า JSON
+                echo json_encode(array(
+                    'skipdate' => $shift->skipdate
+                ));
+            } else {
+                // คืนค่า JSON
+                echo json_encode(array(
+                    'skipdate' => 0
+                ));
+            }
+        }
+    }
+
+    /**
      * คืนค่ารายละเอียดการลาที่เลือก
      * เป็น JSON
      *
@@ -146,25 +211,15 @@ class Model extends \Kotchasan\Model
                     $start_date = $request->post('start_date')->date();
                     $end_date = $request->post('end_date')->date();
                     $start_period = $request->post('start_period')->toInt();
-                    $end_period = $request->post('end_period')->toInt();
-                    if ($save['detail'] == '') {
-                        // ไม่ได้กรอก detail
-                        $ret['ret_detail'] = 'Please fill in';
+                    if ($start_date == '') {
+                        // ไม่ได้กรอกวันที่เริมต้น
+                        $ret['ret_start_date'] = 'Please fill in';
                     }
                     if ($end_date == '') {
                         // ไม่ได้กรอกวันที่สิ้นสุดมา ใช้วันที่เดียวกันกับวันที่เริ่มต้น (ลา 1 วัน)
                         $end_date = $start_date;
                     }
-                    if ($start_date == '') {
-                        // ไม่ได้กรอกวันที่เริมต้น
-                        $ret['ret_start_date'] = 'Please fill in';
-                    }
-                    if ( ($start_period != 0) && ($save['leave_id'] == 3 || $save['leave_id'] == 7 || $save['leave_id'] == 8) ) {
-                        $ret['ret_start_period'] = Language::get('ลาครึ่งวันไม่ได้');
-                    }
-                    if ( ($end_period != 0) && ($save['leave_id'] == 3 || $save['leave_id'] == 7 || $save['leave_id'] == 8) ) {
-                        $ret['ret_end_period'] = Language::get('ลาครึ่งวันไม่ได้');
-                    }
+                    
 
                     $diff = Date::compare($start_date, $end_date);
                     if ($diff['days'] > 0 && $start_period == 1) {
@@ -188,13 +243,12 @@ class Model extends \Kotchasan\Model
                                 $ret['ret_start_date'] = Language::get('Unable to take leave across the fiscal year. If you want to take continuous leave, separate the leave form into two. within that fiscal year');
                             } else {
                                 // ใช้จำนวนวันลาจากที่คำนวณ
-                                $save['days'] = $diff['days'] + self::$cfg->eleave_periods[$start_period] + self::$cfg->eleave_periods[$end_period] - 1;
+                                $save['days'] = $diff['days'] + self::$cfg->eleave_periods[$start_period] + self::$cfg->eleave_periods[0] - 1;
                             }
                         }
                         $save['start_date'] = $start_date;
                         $save['end_date'] = $end_date;
                         $save['start_period'] = $start_period;
-                        $save['end_period'] = $end_period;
                     }
                     if ($save['days'] > 6 && $save['leave_id'] == 2) {
                         // ไม่สามารถลากิจได้มากกว่า 6 วัน
@@ -216,7 +270,7 @@ class Model extends \Kotchasan\Model
                         \Download\Upload\Model::execute($ret, $request, $save['id'], 'eleave', self::$cfg->eleave_file_typies, self::$cfg->eleave_upload_size);
                     }
                     //เวลาลา
-                    if ((($start_period + $end_period) > 0) && ($save['communication'] == '') && !($save['leave_id'] == 3 || $save['leave_id'] == 7 || $save['leave_id'] == 8)) {
+                    if ((($start_period) > 0) && ($save['communication'] == '') && !($save['leave_id'] == 3 || $save['leave_id'] == 7 || $save['leave_id'] == 8)) {
                         // ไม่ได้กรอก communication
                         $ret['ret_communication'] = 'Please fill in';
                     }
@@ -257,7 +311,10 @@ class Model extends \Kotchasan\Model
                     } else if ($result && !$result_cota) {
                         $ret['ret_end_date'] = Language::get('ไม่พบโคต้าการลา');
                     }
-                    
+                    if ($save['detail'] == '') {
+                        // ไม่ได้กรอก detail
+                        $ret['ret_detail'] = 'Please fill in';
+                    }
                     if (empty($ret)) {
                         if ($index->id == 0) {
                             // ใหม่
