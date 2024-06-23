@@ -133,6 +133,7 @@ class View extends \Gcms\View
             'labelClass' => 'g-input icon-calendar',
             'itemClass' => 'item',
             'label' => '{LNG_End date}',
+            'comment' => 'หากวันที่ถูกปิดไว้ จะใช้วันที่สิ้นสุดร่วมกับวันที่เริ่มต้น',
             'disabled' => $notEdit,
             'value' => isset($index->end_date) ? $index->end_date : date('Y-m-d')
         ));

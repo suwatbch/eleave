@@ -252,7 +252,7 @@ class Model extends \Kotchasan\Model
                         $end_date = $start_date;
                     }
                     $diff = Date::compare($start_date, $end_date);
-                    if ($end_date < $start_date) {
+                    if ($end_date < $start_date && !$start_period) {
                         // วันที่สิ้นสุด น้อยกว่าวันที่เริ่มต้น
                         $ret['ret_end_date'] = Language::get('End date must be greater than or equal to the start date');
                     } elseif ($start_period) {
@@ -265,18 +265,30 @@ class Model extends \Kotchasan\Model
                             , 'start_time', 'end_time', 'start_break_time', 'end_break_time');
 
                         if ($shiftdata) {
+                            $start_date_work = $start_date;
+                            $end_date_work = $start_date;
                             if (!$shiftdata->skipdate) {
                                 // กะภายในวัน วันที่สิ้นสุดเท่ากันวันที่เริ่มต้น
                                 $end_date = $start_date;
-                            } else if ($diff['days'] > 1) {
-                                // กะข้ามวัน เลือกวันที่สิ้นสุด มากกว่า 1 วัน
-                                $ret['ret_end_date'] = Language::get('วันที่สิ้นสุดไม่ถูกต้อง');
+                                $end_date_work = $end_date;
+                            } else {
+                                if ($diff['days'] < 0 || $diff['days'] > 1) {
+                                    // กะข้ามวัน เลือกวันที่สิ้นสุด มากกว่า 1 วัน
+                                    $ret['ret_end_date'] = Language::get('วันที่สิ้นสุดไม่ถูกต้อง');
+                                } else {
+                                    // กะข้าววัน วันที่สิ้นสุดมากกว่าวันที่เริ่มต้น 1 วัน
+                                    $add_one_date = new \DateTime($start_date);
+                                    $add_one_date->modify('+1 day');
+                                    $start_date_work = $add_one_date->format('Y-m-d');
+                                    $end_date_work = $add_one_date->format('Y-m-d');
+                                }
                             }
+                            
                             // จัดรูปแบบวันที่เป็นสตริง
                             $date_start = $start_date.' '.$shiftdata->start_time;
-                            $date_end = $end_date.' '.$shiftdata->end_time;
-                            $break_start = $start_date.' '.$shiftdata->start_break_time;
-                            $break_end = $end_date.' '.$shiftdata->end_break_time;
+                            $date_end = $end_date_work .' '.$shiftdata->end_time;
+                            $break_start = $start_date_work.' '.$shiftdata->start_break_time;
+                            $break_end = $end_date_work.' '.$shiftdata->end_break_time;
                             $leave_periods = [
                                 ['start' => $start_date.' '.$start_time, 'end' => $end_date.' '.$end_time]
                             ];
@@ -289,9 +301,11 @@ class Model extends \Kotchasan\Model
                                 // คิดเป็นราย ซม.
                                 $save['times'] = $times;
                             } else {
-                                // เวลาลาไม่ถูกต้อง
-                                $ret['ret_start_time'] = Language::get('เวลาไม่ถูกต้อง');
-                                $ret['ret_end_time'] = Language::get('เวลาไม่ถูกต้อง');
+                                if ($diff['days'] >= 0 && $diff['days'] <= 1){
+                                    // เวลาลาไม่ถูกต้อง
+                                    $ret['ret_start_time'] = Language::get('เวลาไม่ถูกต้อง');
+                                    $ret['ret_end_time'] = Language::get('เวลาไม่ถูกต้อง');
+                                }
                             }
                         } else {
                             $ret['ret_shift_id'] = Language::get('ไม่พบกะการทำงาน');
