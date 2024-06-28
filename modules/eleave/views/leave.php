@@ -166,7 +166,7 @@ class View extends \Gcms\View
             'id' => 'communication',
             'labelClass' => 'g-input icon-clock',
             'itemClass' => 'item',
-            'label' => '{LNG_Communication} {LNG_Example_time}',
+            'label' => '{LNG_Communication} {LNG_Example_time} ลาเต็มวันไม่ต้องระบุเวลา',
             // 'comment' => '{LNG_Contact information during leave}',
             'rows' => 3,
             'disabled' => $notEdit,
