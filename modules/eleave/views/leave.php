@@ -148,7 +148,7 @@ class View extends \Gcms\View
             $fieldset->add('file', array(
                 'id' => 'eleave',
                 'name' => 'eleave[]',
-                'labelClass' => 'g-input icon-upload',
+                'labelClass' => 'g-input icon-upload',  
                 'itemClass' => 'item',
                 'label' => '{LNG_Attached file}',
                 'comment' => '{LNG_Upload :type files} {LNG_no larger than :size} ({LNG_Can select multiple files})',
@@ -166,7 +166,7 @@ class View extends \Gcms\View
             'id' => 'communication',
             'labelClass' => 'g-input icon-clock',
             'itemClass' => 'item',
-            'label' => '{LNG_Communication} {LNG_Example_time}',
+            'label' => '{LNG_Communication} {LNG_Example_time} ลาเต็มวันไม่ต้องระบุเวลา',
             // 'comment' => '{LNG_Contact information during leave}',
             'rows' => 3,
             'disabled' => $notEdit,
