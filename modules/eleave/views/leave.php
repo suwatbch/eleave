@@ -105,7 +105,7 @@ class View extends \Gcms\View
         $groups->add('date', array(
             'id' => 'start_date',
             'labelClass' => 'g-input icon-calendar',
-            'itemClass' => 'width50',
+            'itemClass' => 'width75',
             'label' => '{LNG_Start date}',
             'disabled' => $notEdit,
             'value' => isset($index->start_date) ? $index->start_date : date('Y-m-d')
@@ -115,7 +115,7 @@ class View extends \Gcms\View
         $groups->add('select', array(
             'id' => 'start_period',
             'labelClass' => 'g-input icon-clock',
-            'itemClass' => 'width50',
+            'itemClass' => 'width25',
             'label' => '&nbsp;',
             'options' => $leave_period,
             'disabled' => $notEdit,
@@ -126,8 +126,9 @@ class View extends \Gcms\View
         $groups->add('date', array(
             'id' => 'end_date',
             'labelClass' => 'g-input icon-calendar',
-            'itemClass' => 'width50',
+            'itemClass' => 'width75',
             'label' => '{LNG_End date}',
+            'comment' => 'กรณีวันที่เริ่มต้นและวันที่สิ้นสุดเป็นวันเดียวกัน ระบบจะคำควณเฉพาะเวลาของวันที่เริ่มต้น',
             'disabled' => $notEdit,
             'value' => isset($index->end_date) ? $index->end_date : date('Y-m-d')
         ));
@@ -136,7 +137,7 @@ class View extends \Gcms\View
         $groups->add('select', array(
             'id' => 'end_period',
             'labelClass' => 'g-input icon-clock',
-            'itemClass' => 'width50',
+            'itemClass' => 'width25',
             'label' => '&nbsp;',
             'options' => $leave_period,
             'disabled' => $notEdit,
