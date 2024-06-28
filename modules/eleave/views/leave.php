@@ -148,7 +148,7 @@ class View extends \Gcms\View
             $fieldset->add('file', array(
                 'id' => 'eleave',
                 'name' => 'eleave[]',
-                'labelClass' => 'g-input icon-upload',
+                'labelClass' => 'g-input icon-upload',  
                 'itemClass' => 'item',
                 'label' => '{LNG_Attached file}',
                 'comment' => '{LNG_Upload :type files} {LNG_no larger than :size} ({LNG_Can select multiple files})',
