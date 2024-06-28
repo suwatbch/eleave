@@ -54,18 +54,18 @@ class Model
             );
         }
         if ($isAdmin) {
-            // $settings['mailserver'] = array(
-            //     'text' => '{LNG_Email settings}',
-            //     'url' => 'index.php?module=mailserver'
-            // );
-            // $settings['linesettings'] = array(
-            //     'text' => '{LNG_LINE settings}',
-            //     'url' => 'index.php?module=linesettings'
-            // );
-            // $settings['apis'] = array(
-            //     'text' => 'API',
-            //     'url' => 'index.php?module=apis'
-            // );
+            $settings['mailserver'] = array(
+                'text' => '{LNG_Email settings}',
+                'url' => 'index.php?module=mailserver'
+            );
+            $settings['linesettings'] = array(
+                'text' => '{LNG_LINE settings}',
+                'url' => 'index.php?module=linesettings'
+            );
+            $settings['apis'] = array(
+                'text' => 'API',
+                'url' => 'index.php?module=apis'
+            );
             $settings['modules'] = array(
                 'text' => '{LNG_Module}',
                 'url' => 'index.php?module=modules'

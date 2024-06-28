@@ -24,21 +24,6 @@ use Kotchasan\Text;
 class View extends \Gcms\View
 {
     /**
-     * @param int $id
-     * @return array
-     */
-    public static function getleave_id($id)
-    {
-        $periodM = Language::get('LEAVE_PERIOD');
-        $period = $periodM;
-        if ($id == 3 || $id == 7 || $id == 8) {
-            unset($period[1]); 
-            unset($period[2]);
-        }
-        return $period;
-    }
-
-    /**
      * แบบฟอร์มขอลา
      *
      * @param object $index
@@ -90,6 +75,97 @@ class View extends \Gcms\View
                 'value' => isset($index->{$k}) ? $index->{$k} : ''
             ));
         }
+        // shift
+        $fieldset->add('select', array(
+            'id' => 'shift_id',
+            'labelClass' => 'g-input icon-clock',
+            'itemClass' => 'item',
+            'label' => '{LNG_Shift work}',
+            'options' => \Eleave\Leavetype\Model::getshift($login['shift_id'])->selectshift(),
+            'disabled' => true,
+            'value' => isset($index->shift_id) ? $index->shift_id : 0
+        ));
+        // รูปแบบการลา start_period
+        $leave_period = Language::get('LEAVE_PERIOD');
+        $fieldset->add('select', array(
+            'id' => 'start_period',
+            'labelClass' => 'g-input icon-clock',
+            'itemClass' => 'item',
+            'label' => '{LNG_Leave type}',
+            'options' => $leave_period,
+            'disabled' => $notEdit,
+            'value' => isset($index->start_period) ? $index->start_period : 0
+        ));
+        $groups = $fieldset->add('groups');
+        // start_date
+        $groups->add('date', array(
+            'id' => 'start_date',
+            'labelClass' => 'g-input icon-calendar',
+            'itemClass' => 'width50',
+            'label' => '{LNG_Start date}',
+            'disabled' => $notEdit,
+            'value' => isset($index->start_date) ? $index->start_date : date('Y-m-d')
+        ));
+        $leave_time = Language::get('LEAVE_TIME');
+        // เวลาเริ่มต้น
+        $groups->add('select', array(
+            'id' => 'start_time',
+            'labelClass' => 'g-input icon-clock',
+            'itemClass' => 'width25',
+            'label' => '{LNG_Start time}',
+            'options' => $leave_time,
+            'disabled' => true,
+            'value' => isset($index->start_time) ? $index->start_time : '00:00'
+        ));
+        // เวลาสิ้นสุด
+        $groups->add('select', array(
+            'id' => 'end_time',
+            'labelClass' => 'g-input icon-clock',
+            'itemClass' => 'width25',
+            'label' => '{LNG_End time}',
+            'options' => $leave_time,
+            'disabled' => true,
+            'value' => isset($index->end_time) ? $index->end_time : '00:00'
+        ));
+        // end_date
+        $fieldset->add('date', array(
+            'id' => 'end_date',
+            'labelClass' => 'g-input icon-calendar',
+            'itemClass' => 'item',
+            'label' => '{LNG_End date}',
+            'comment' => 'หากวันที่ถูกปิดไว้ จะใช้วันที่สิ้นสุดร่วมกับวันที่เริ่มต้น',
+            'disabled' => $notEdit,
+            'value' => isset($index->end_date) ? $index->end_date : date('Y-m-d')
+        ));
+        // unset($leave_period[2]);
+        // // end_period
+        // $groups->add('select', array(
+        //     'id' => 'end_period',
+        //     'labelClass' => 'g-input icon-clock',
+        //     'itemClass' => 'width50',
+        //     'label' => '&nbsp;',
+        //     'options' => $leave_period,
+        //     'disabled' => $notEdit,
+        //     'value' => isset($index->end_period) ? $index->end_period : 0
+        // ));
+        if (!$notEdit) {
+            // file eleave
+            $fieldset->add('file', array(
+                'id' => 'eleave',
+                'name' => 'eleave[]',
+                'labelClass' => 'g-input icon-upload',
+                'itemClass' => 'item',
+                'label' => '{LNG_Attached file}',
+                'comment' => '{LNG_Upload :type files} {LNG_no larger than :size} ({LNG_Can select multiple files})',
+                'accept' => self::$cfg->eleave_file_typies,
+                'capture' => true,
+                'dataPreview' => 'filePreview',
+                'multiple' => true
+            ));
+        }
+        // if ($index->id > 0) {
+        //     $fieldset->appendChild('<div class="item">'.\Download\Index\Controller::init($index->id, 'eleave', self::$cfg->eleave_file_typies, ($canEdit ? $login['id'] : 0)).'</div>');
+        // }
         // detail
         $fieldset->add('textarea', array(
             'id' => 'detail',
@@ -100,73 +176,12 @@ class View extends \Gcms\View
             'disabled' => $notEdit,
             'value' => isset($index->detail) ? $index->detail : ''
         ));
-        $groups = $fieldset->add('groups');
-        // start_date
-        $groups->add('date', array(
-            'id' => 'start_date',
-            'labelClass' => 'g-input icon-calendar',
-            'itemClass' => 'width75',
-            'label' => '{LNG_Start date}',
-            'disabled' => $notEdit,
-            'value' => isset($index->start_date) ? $index->start_date : date('Y-m-d')
-        ));
-        $leave_period = Language::get('LEAVE_PERIOD');
-        // start_period
-        $groups->add('select', array(
-            'id' => 'start_period',
-            'labelClass' => 'g-input icon-clock',
-            'itemClass' => 'width25',
-            'label' => '&nbsp;',
-            'options' => $leave_period,
-            'disabled' => $notEdit,
-            'value' => isset($index->start_period) ? $index->start_period : 0
-        ));
-        $groups = $fieldset->add('groups');
-        // end_date
-        $groups->add('date', array(
-            'id' => 'end_date',
-            'labelClass' => 'g-input icon-calendar',
-            'itemClass' => 'width75',
-            'label' => '{LNG_End date}',
-            'comment' => 'กรณีวันที่เริ่มต้นและวันที่สิ้นสุดเป็นวันเดียวกัน ระบบจะคำควณเฉพาะเวลาของวันที่เริ่มต้น',
-            'disabled' => $notEdit,
-            'value' => isset($index->end_date) ? $index->end_date : date('Y-m-d')
-        ));
-        unset($leave_period[2]);
-        // end_period
-        $groups->add('select', array(
-            'id' => 'end_period',
-            'labelClass' => 'g-input icon-clock',
-            'itemClass' => 'width25',
-            'label' => '&nbsp;',
-            'options' => $leave_period,
-            'disabled' => $notEdit,
-            'value' => isset($index->end_period) ? $index->end_period : 0
-        ));
-        if (!$notEdit) {
-            // file eleave
-            $fieldset->add('file', array(
-                'id' => 'eleave',
-                'name' => 'eleave[]',
-                'labelClass' => 'g-input icon-upload',  
-                'itemClass' => 'item',
-                'label' => '{LNG_Attached file}',
-                'comment' => '{LNG_Upload :type files} {LNG_no larger than :size} ({LNG_Can select multiple files})',
-                'accept' => self::$cfg->eleave_file_typies,
-                'capture' => true,
-                'dataPreview' => 'filePreview',
-                'multiple' => true
-            ));
-        }
-        if ($index->id > 0) {
-            $fieldset->appendChild('<div class="item">'.\Download\Index\Controller::init($index->id, 'eleave', self::$cfg->eleave_file_typies, ($canEdit ? $login['id'] : 0)).'</div>');
-        }
         // communication
         $fieldset->add('textarea', array(
             'id' => 'communication',
             'labelClass' => 'g-input icon-clock',
             'itemClass' => 'item',
-            'label' => '{LNG_Communication} {LNG_Example_time} ลาเต็มวันไม่ต้องระบุเวลา',
+            'label' => '{LNG_Communication} {LNG_Example_time}',
             // 'comment' => '{LNG_Contact information during leave}',
             'rows' => 3,
             'disabled' => $notEdit,

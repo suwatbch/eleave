@@ -70,6 +70,34 @@ class Model
     }
 
     /**
+     * @param int $id
+     *
+     * @return static
+     */
+    public static function getshift($id)
+    {
+        $obj = new static;
+        // Query
+        $query = \Kotchasan\Model::createQuery()
+            ->select('id', 'description')
+            ->from('shift')
+            ->where(array('id', $id))
+            ->cacheOn();
+        foreach ($query->execute() as $item) {
+            $obj->datas[$item->id] = $item->description;
+        }
+        return $obj;
+    }
+
+    /**
+     * @return array
+     */
+    public function selectshift()
+    {
+        return $this->datas;
+    }
+
+    /**
      * อ่านรายชื่อการลาจาก $id
      * ไม่พบ คืนค่าว่าง
      *
