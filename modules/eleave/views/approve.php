@@ -46,8 +46,9 @@ class View extends \Gcms\View
             'ajax' => true,
             'token' => true
         ));
+        $name = \Eleave\Approve\Model::get($index->id);
         $fieldset = $form->add('fieldset', array(
-            'title' => '{LNG_Details of} {LNG_Request for leave}'
+            'title' => '{LNG_Details of request for leave} '.$name->name
         ));
         // leave_id
         $fieldset->add('select', array(

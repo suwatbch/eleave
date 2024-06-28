@@ -54,7 +54,7 @@ class View extends \Gcms\View
             'labelClass' => 'g-input icon-email',
             'label' => '{LNG_Email}/{LNG_Username}',
             'comment' => '{LNG_Email address used for login or request a new password}',
-            'maxlength' => 255,
+            'maxlength' => 8,
             // 'validator' => array('keyup,change', 'checkUsername', 'index.php/index/model/checker/username')
             'validator' => array('keyup,change', 'checkUsername')
         ));
