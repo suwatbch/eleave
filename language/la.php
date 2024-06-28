@@ -85,7 +85,7 @@ return array(
   'Department head' => 'ຫົວໜ້າພະແນກ',
   'Description' => 'ຄຳອະທິບາຍ',
   'Detail' => 'ລາຍະລະອຽດ',
-  'Details of' => 'ລາຍລະອຽດ',
+  'Details of' => 'ລາຍລະອຽດຂອງ',
   'Details of request for leave' => 'ລາຍ​ລະ​ອຽດ​ຂອງ​ຄໍາ​ຮ້ອງ​ສະ​ຫມັກ​ອະ​ນຸ​ມັດ​ອອກ​',
   'Document' => 'ເອກະສານ',
   'Document No.' => 'ເລກທີເອກະສານ',
