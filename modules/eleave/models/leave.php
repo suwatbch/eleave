@@ -335,19 +335,19 @@ class Model extends \Kotchasan\Model
                     }
                     // ตรวจสอบวันลากิจและลาพักร้อน
                     $result = false;
-                    $result_cota = "";
+                    $result_quota = "";
                     $result_items = "";
-                    $leave_cota = 0;
+                    $leave_quota = 0;
                     if ($save['leave_id'] == 2 || $save['leave_id'] == 8) {
-                        $result_cota = $this->createQuery()
-                        ->from('leave_cota C')
+                        $result_quota = $this->createQuery()
+                        ->from('leave_quota C')
                         ->join('user U', 'LEFT', array('U.username', 'C.username'))
                         ->where(array(
                             array('U.id', $login['id']),
                             array('C.leave_id', $save['leave_id'])
                         ))
                         ->cacheOn()
-                        ->first('C.cota');
+                        ->first('C.quota');
 
                         $result_items = [];
                         $result_items = static::createQuery()
@@ -359,14 +359,14 @@ class Model extends \Kotchasan\Model
                             array('I.status', '<', 2)
                         ));
                         $result_itemsdata = $result_items->execute();
-                        $leave_cota = $result_itemsdata[0]->sum == null ? 0 : $result_itemsdata[0]->sum;
+                        $leave_quota = $result_itemsdata[0]->sum == null ? 0 : $result_itemsdata[0]->sum;
                         $result = true;
                     }
-                    if ($result && $result_cota != "" && $result_cota != false) {
-                        if (($save['days'] + $leave_cota) > $result_cota->cota) {
+                    if ($result && $result_quota != "" && $result_quota != false) {
+                        if (($save['days'] + $leave_quota) > $result_quota->quota) {
                             $ret['ret_end_date'] = Language::get('วันลาของท่านมีไม่พอ');
                         }
-                    } else if ($result && !$result_cota) {
+                    } else if ($result && !$result_quota) {
                         $ret['ret_end_date'] = Language::get('ไม่พบโคต้าการลา');
                     }
                     // table
