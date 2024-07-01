@@ -42,7 +42,7 @@ return array (
     'category' => 'category',
     'language' => 'language',
     'leave' => 'leave',
-    'leave_cota' => 'leave_cota',
+    'leave_quota' => 'leave_quota',
     'leave_items' => 'leave_items',
     'logs' => 'logs',
     'user' => 'user',
