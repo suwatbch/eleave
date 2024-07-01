@@ -62,19 +62,18 @@ class Model extends \Kotchasan\Model
      * @param array $leave_periods
      * @return float
      */
-    public static function cal_leave_hours($date_start, $date_end, $break_start, $break_end, $leave_periods = [])
-    {
-        $start_datetime = new \DateTime($date_start);
-        $end_datetime = new \DateTime($date_end);
+    function calculate_leave_hours($start_time, $end_time, $break_start, $break_end, $leave_periods = []) {
+        $start_datetime = new \DateTime($start_time);
+        $end_datetime = new \DateTime($end_time);
         $break_start_datetime = new \DateTime($break_start);
         $break_end_datetime = new \DateTime($break_end);
-        
+    
         $total_leave_hours = 0;
-
+    
         foreach ($leave_periods as $leave_period) {
             $leave_start = new \DateTime($leave_period['start']);
             $leave_end = new \DateTime($leave_period['end']);
-            
+    
             // ตรวจสอบว่าเวลาลางานซ้อนกับเวลาทำงานหรือไม่
             if ($leave_end > $start_datetime && $leave_start < $end_datetime) {
                 // ปรับเวลาลางานให้ไม่เกินช่วงเวลาทำงาน
@@ -84,14 +83,15 @@ class Model extends \Kotchasan\Model
                 if ($leave_end > $end_datetime) {
                     $leave_end = $end_datetime;
                 }
-
+    
                 // ตรวจสอบและหักช่วงเวลาพักที่คาบเกี่ยวออก
                 if ($leave_start < $break_end_datetime && $leave_end > $break_start_datetime) {
                     if ($leave_start < $break_start_datetime && $leave_end > $break_end_datetime) {
                         // ช่วงลางานครอบคลุมทั้งช่วงพัก
                         $leave_interval = $leave_start->diff($leave_end);
-                        $leave_interval->h -= $break_end_datetime->diff($break_start_datetime)->h;
-                        $leave_interval->i -= $break_end_datetime->diff($break_start_datetime)->i;
+                        $break_interval = $break_start_datetime->diff($break_end_datetime);
+                        $leave_interval->h -= $break_interval->h;
+                        $leave_interval->i -= $break_interval->i;
                     } elseif ($leave_start < $break_start_datetime) {
                         // ช่วงลางานครอบคลุมก่อนช่วงพัก
                         $leave_end = $break_start_datetime;
@@ -107,11 +107,11 @@ class Model extends \Kotchasan\Model
                 } else {
                     $leave_interval = $leave_start->diff($leave_end);
                 }
-
+    
                 $total_leave_hours += ($leave_interval->h + ($leave_interval->i / 60) + $leave_interval->days * 24);
             }
         }
-        
+    
         return $total_leave_hours;
     }
 
@@ -239,8 +239,13 @@ class Model extends \Kotchasan\Model
                     $start_date = $request->post('start_date')->date();
                     $end_date = $request->post('end_date')->date();
                     $timetemp = '00:00';
-                    $start_time = $request->post('start_time')->text() == '' ? $timetemp : $request->post('start_time')->text();
-                    $end_time = $request->post('end_time')->text() == '' ? $timetemp : $request->post('end_time')->text();
+                    if ($start_period) {
+                        $start_time = $request->post('start_time')->text() == ''  ? $timetemp : $request->post('start_time')->text();
+                        $end_time = $request->post('end_time')->text() == '' ? $timetemp : $request->post('end_time')->text();
+                    } else {
+                        $start_time = $timetemp;
+                        $end_time = $timetemp;
+                    }
                     $save['days'] = 0;
                     $save['times'] = 0;
                     if ($start_date == '') {
@@ -274,7 +279,7 @@ class Model extends \Kotchasan\Model
                             } else {
                                 if ($diff['days'] < 0 || $diff['days'] > 1) {
                                     // กะข้ามวัน เลือกวันที่สิ้นสุด มากกว่า 1 วัน
-                                    $ret['ret_end_date'] = Language::get('วันที่สิ้นสุดไม่ถูกต้อง');
+                                    $ret['ret_end_date'] = Language::get('The end date is incorrect');
                                 } else {
                                     // กะข้าววัน วันที่สิ้นสุดมากกว่าวันที่เริ่มต้น 1 วัน
                                     $add_one_date = new \DateTime($start_date);
@@ -293,7 +298,7 @@ class Model extends \Kotchasan\Model
                                 ['start' => $start_date.' '.$start_time, 'end' => $end_date.' '.$end_time]
                             ];
 
-                            $times = self::cal_leave_hours($date_start, $date_end, $break_start, $break_end, $leave_periods);
+                            $times = self::calculate_leave_hours($date_start, $date_end, $break_start, $break_end, $leave_periods);
                             if ($times >= 8) {
                                 // 8 ซม. เท่ากัน 1 วัน
                                 $save['days'] = 1;
@@ -303,12 +308,12 @@ class Model extends \Kotchasan\Model
                             } else {
                                 if ($diff['days'] >= 0 && $diff['days'] <= 1){
                                     // เวลาลาไม่ถูกต้อง
-                                    $ret['ret_start_time'] = Language::get('เวลาไม่ถูกต้อง');
-                                    $ret['ret_end_time'] = Language::get('เวลาไม่ถูกต้อง');
+                                    $ret['ret_start_time'] = Language::get('The time is wrong');
+                                    $ret['ret_end_time'] = Language::get('The time is wrong');
                                 }
                             }
                         } else {
-                            $ret['ret_shift_id'] = Language::get('ไม่พบกะการทำงาน');
+                            $ret['ret_shift_id'] = Language::get('Work shift not found');
                         }
                     } else {
                         // ตรวจสอบลาข้ามปีงบประมาณ
@@ -331,7 +336,7 @@ class Model extends \Kotchasan\Model
                     $save['end_time'] = $end_time;
                     if ($save['days'] > 6 && $save['leave_id'] == 2) {
                         // ไม่สามารถลากิจได้มากกว่า 6 วัน
-                        $ret['ret_end_date'] = Language::get('ไม่สามารถลากิจได้มากกว่า 6 วัน');
+                        $ret['ret_end_date'] = Language::get('Unable to take leave for more than 6 days');
                     }
                     // ตรวจสอบวันลากิจและลาพักร้อน
                     $result = false;
@@ -364,10 +369,10 @@ class Model extends \Kotchasan\Model
                     }
                     if ($result && $result_quota != "" && $result_quota != false) {
                         if (($save['days'] + $leave_quota) > $result_quota->quota) {
-                            $ret['ret_end_date'] = Language::get('วันลาของท่านมีไม่พอ');
+                            $ret['ret_end_date'] = Language::get('There arent enough leave days');
                         }
                     } else if ($result && !$result_quota) {
-                        $ret['ret_end_date'] = Language::get('ไม่พบโคต้าการลา');
+                        $ret['ret_end_date'] = Language::get('Leave quota not found');
                     }
                     // table
                     $table = $this->getTableName('leave_items');

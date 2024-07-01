@@ -51,7 +51,7 @@ class View extends \Gcms\View
             $row .= Date::format($index['start_date'], 'd M Y').' '.$leave_period[$index['start_period']].' - '.Date::format($index['end_date'], 'd M Y').' '.$leave_period[$index['end_period']];
         }
         $content[] = $row.'</td></tr>';
-        $content[] = '<tr><td class="item"><span class="icon-event">{LNG_Number of leave days}</span></td><td class="item"> : </td><td class="item">'.$index['days'].' {LNG_days}</td></tr>';
+        $content[] = '<tr><td class="item"><span class="icon-event">{LNG_Number of leave days}</span></td><td class="item"> : </td><td class="item">'.\Gcms\Functions::gettimeleave($index['days'],$index['times']).'</td></tr>';
         $content[] = '<tr><td class="item"><span class="icon-file">{LNG_Communication}</span></td><td class="item"> : </td><td class="item">'.nl2br($index['communication']).'</td></tr>';
         $content[] = '<tr><td class="item"><span class="icon-star0">{LNG_Status}</span></td><td class="item"> : </td><td class="item">'.self::showStatus(Language::get('LEAVE_STATUS'), $index['status'], !$email).'</td></tr>';
         if (!empty($index['reason'])) {

@@ -47,7 +47,7 @@ class View extends \Gcms\View
         ));
         $fieldset = $form->add('fieldset', array(
             // 'title' => '{LNG_Details of} {LNG_Request for leave} '.($index->id > 0 ? self::toStatus((array) $index, true) : '')
-            'title' => '{LNG_Details of} {LNG_Request for leave} '.''  // แก้ไขเพิ่มเติม
+            'title' => '{LNG_Request for leave} '
         ));
         // leave_id
         $fieldset->add('select', array(
@@ -133,7 +133,7 @@ class View extends \Gcms\View
             'labelClass' => 'g-input icon-calendar',
             'itemClass' => 'item',
             'label' => '{LNG_End date}',
-            'comment' => 'หากวันที่ถูกปิดไว้ จะใช้วันที่สิ้นสุดร่วมกับวันที่เริ่มต้น',
+            'comment' => '{LNG_If the date is closed The end date is used together with the start date}',
             'disabled' => $notEdit,
             'value' => isset($index->end_date) ? $index->end_date : date('Y-m-d')
         ));

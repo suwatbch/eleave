@@ -47,7 +47,7 @@ class Model extends \Kotchasan\Model
             $where[] = array('F.start_date', '<=', $params['to']);
         }
         return static::createQuery()
-            ->select('F.id', 'F.create_date', 'F.leave_id', 'F.start_date', 'F.days', 'F.start_period', 'F.end_date', 'F.end_period', 'F.status', 'F.communication', 'F.reason')
+            ->select('F.id', 'F.create_date', 'F.leave_id', 'F.start_date', 'F.days', 'F.times', 'F.start_period', 'F.end_date', 'F.end_period', 'F.status', 'F.reason')
             ->from('leave_items F')
             ->where($where);
     }
