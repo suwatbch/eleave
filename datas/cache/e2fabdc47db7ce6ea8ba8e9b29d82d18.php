@@ -1,1 +1,1 @@
-<?php exit?>[{"id":3,"description":"U1 21.30 - 06.30 \u0e1e\u0e31\u0e01 00:30 - 01:30","shifttype":"U1","worktime":8,"skipdate":1,"start_time":"21:30","end_time":"06:30","start_break_time":"00:30","end_break_time":"01:30"}]
+<?php exit?>[{"id":3,"description":"U1 21.30 - 06.30 \u0e1e\u0e31\u0e01 00.30 - 01.30","shifttype":"U1","worktime":8,"skipdate":1,"start_time":"21:30","end_time":"06:30","start_break_time":"00:30","end_break_time":"01:30"}]
