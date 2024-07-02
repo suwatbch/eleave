@@ -111,31 +111,32 @@ class View extends \Gcms\View
         $groups->add('select', array(
             'id' => 'start_time',
             'labelClass' => 'g-input icon-clock',
-            'itemClass' => 'width25',
+            'itemClass' => 'width50',
             'label' => '{LNG_Start time}',
             'options' => $leave_time,
             'disabled' => true,
             'value' => isset($index->start_time) ? $index->start_time : '00:00'
         ));
-        // เวลาสิ้นสุด
-        $groups->add('select', array(
-            'id' => 'end_time',
-            'labelClass' => 'g-input icon-clock',
-            'itemClass' => 'width25',
-            'label' => '{LNG_End time}',
-            'options' => $leave_time,
-            'disabled' => true,
-            'value' => isset($index->end_time) ? $index->end_time : '00:00'
-        ));
+        $groups = $fieldset->add('groups');
         // end_date
-        $fieldset->add('date', array(
+        $groups->add('date', array(
             'id' => 'end_date',
             'labelClass' => 'g-input icon-calendar',
-            'itemClass' => 'item',
+            'itemClass' => 'width50',
             'label' => '{LNG_End date}',
             'comment' => '{LNG_If the date is closed The end date is used together with the start date}',
             'disabled' => $notEdit,
             'value' => isset($index->end_date) ? $index->end_date : date('Y-m-d')
+        ));
+        // เวลาสิ้นสุด
+        $groups->add('select', array(
+            'id' => 'end_time',
+            'labelClass' => 'g-input icon-clock',
+            'itemClass' => 'width50',
+            'label' => '{LNG_End time}',
+            'options' => $leave_time,
+            'disabled' => true,
+            'value' => isset($index->end_time) ? $index->end_time : '00:00'
         ));
         // unset($leave_period[2]);
         // // end_period

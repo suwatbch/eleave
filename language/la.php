@@ -159,7 +159,7 @@ return array(
   'Leave empty for generate auto' => 'ປ່ອຍຫວ່າງໄວ້ເພື່ອສ້າງອັດໂນມັດ',
   'Leave history' => 'ປະຫວັດສາດການພັກ',
   'Leave quota not found' => 'ບໍ່ພົບໂຄຕ້າອອກ',
-  'Leave type' => 'ປະເພດການພັກວຽກ',
+  'Leave type' => 'ອອກຈາກແບບຟອມ',
   'LEAVE_PERIOD' => array(
     0 => 'ມື້ເຕັມ',
     1 => 'ໄລຍະເວລາ'

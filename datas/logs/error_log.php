@@ -1007,3 +1007,10 @@
 [2024-07-02 13:44:42] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>192</b> 
 [2024-07-02 13:45:37] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Report\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>186</b> 
 [2024-07-02 13:45:37] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>192</b> 
+[2024-07-02 15:52:22] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Report\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>186</b> 
+[2024-07-02 15:52:22] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-02 15:52:22] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-02 15:52:22] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-02 15:52:22] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-02 15:52:22] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-02 15:52:22] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
