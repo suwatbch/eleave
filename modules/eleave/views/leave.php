@@ -181,7 +181,7 @@ class View extends \Gcms\View
             'id' => 'communication',
             'labelClass' => 'g-input icon-clock',
             'itemClass' => 'item',
-            'label' => '{LNG_Communication} {LNG_Example_time}',
+            'label' => '{LNG_Communication}',
             // 'comment' => '{LNG_Contact information during leave}',
             'rows' => 3,
             'disabled' => $notEdit,

@@ -134,7 +134,7 @@ class View extends \Gcms\View
             'labelClass' => 'g-input icon-calendar',
             'itemClass' => 'item',
             'label' => '{LNG_End date}',
-            'comment' => '{LNG_If the date is closed The end date is used together with the start date}',
+            'comment' => !$notEdit ? '{LNG_If the date is closed The end date is used together with the start date}' : '',
             'disabled' => $notEdit,
             'value' => $index->end_date
         ));
@@ -179,8 +179,7 @@ class View extends \Gcms\View
             'id' => 'communication',
             'labelClass' => 'g-input icon-clock',
             'itemClass' => 'item',
-            'label' => '{LNG_Communication} {LNG_Example_time}',
-            // 'comment' => '{LNG_Contact information during leave}',
+            'label' => '{LNG_Communication}',
             'rows' => 3,
             'disabled' => $notEdit,
             'value' => $index->communication
