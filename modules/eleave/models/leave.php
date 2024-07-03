@@ -203,6 +203,7 @@ class Model extends \Kotchasan\Model
                         $ret['ret_end_date'] = Language::get('End date must be greater than or equal to the start date');
                     } elseif ($start_period) {
                         // ลาภายใน 1 วัน เช็คกะเพิ่มถ้ากะข้ามวัน end > start ได้
+                        // $shiftdata = \Gcms\Model::getshift($save['shift_id']);
                         $shiftdata = $this->createQuery()
                             ->from('shift')
                             ->where(array('id', $save['shift_id']))
@@ -235,9 +236,7 @@ class Model extends \Kotchasan\Model
                             $date_end = $end_date_work .' '.$shiftdata->end_time;
                             $break_start = $start_date_work.' '.$shiftdata->start_break_time;
                             $break_end = $end_date_work.' '.$shiftdata->end_break_time;
-                            $leave_periods = [
-                                ['start' => $start_date.' '.$start_time, 'end' => $end_date.' '.$end_time]
-                            ];
+                            $leave_periods = [['start' => $start_date.' '.$start_time, 'end' => $end_date.' '.$end_time]];
 
                             $times = \Gcms\Functions::calculate_leave_hours($date_start, $date_end, $break_start, $break_end, $leave_periods);
                             if ($times >= 8) {

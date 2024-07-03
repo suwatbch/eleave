@@ -13,7 +13,6 @@ namespace Gcms;
 use Kotchasan\Language;
 
 /**
- * คลาสสำหรับอ่านข้อมูลหมวดหมู่
  *
  * @author Goragod Wiriya <admin@goragod.com>
  *
