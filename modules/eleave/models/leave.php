@@ -197,24 +197,34 @@ class Model extends \Kotchasan\Model
                         // ไม่ได้กรอกวันที่สิ้นสุดมา ใช้วันที่เดียวกันกับวันที่เริ่มต้น (ลา 1 วัน)
                         $end_date = $start_date;
                     }
-                    $diff = Date::compare($start_date, $end_date);
+
+                    // $shiftdata = \Gcms\Model::getshift($save['shift_id']);
+                    $shiftdata = $this->createQuery()
+                    ->from('shift')
+                    ->where(array('id', $save['shift_id']))
+                    ->cacheOn()
+                    ->first('*');
+
+                    // กำหนดวันทำงาน
+                    $work_days = json_decode($shiftdata->workday, true);
+
+                    // กำหนดวันหยุด
+                    $holidays = [];
+                    if ($shiftdata->holiday != null){
+                        $holidays = json_decode($shiftdata->holiday, true);
+                    }
+
                     if ($end_date < $start_date && !$start_period) {
                         // วันที่สิ้นสุด น้อยกว่าวันที่เริ่มต้น
                         $ret['ret_end_date'] = Language::get('End date must be greater than or equal to the start date');
                     } elseif ($start_period) {
+                        $diff = Date::compare($start_date, $end_date);
                         // ลาภายใน 1 วัน เช็คกะเพิ่มถ้ากะข้ามวัน end > start ได้
-                        // $shiftdata = \Gcms\Model::getshift($save['shift_id']);
-                        $shiftdata = $this->createQuery()
-                            ->from('shift')
-                            ->where(array('id', $save['shift_id']))
-                            ->cacheOn()
-                            ->first('id', 'description', 'shifttype', 'worktime', 'skipdate'
-                            , 'start_time', 'end_time', 'start_break_time', 'end_break_time');
-
                         if ($shiftdata) {
                             $start_date_work = $start_date;
                             $end_date_work = $start_date;
-                            if (!$shiftdata->skipdate) {
+                            $skipdate = $shiftdata->skipdate;
+                            if (!$skipdate) {
                                 // กะภายในวัน วันที่สิ้นสุดเท่ากันวันที่เริ่มต้น
                                 $end_date = $start_date;
                                 $end_date_work = $end_date;
@@ -236,9 +246,23 @@ class Model extends \Kotchasan\Model
                             $date_end = $end_date_work .' '.$shiftdata->end_time;
                             $break_start = $start_date_work.' '.$shiftdata->start_break_time;
                             $break_end = $end_date_work.' '.$shiftdata->end_break_time;
-                            $leave_periods = [['start' => $start_date.' '.$start_time, 'end' => $end_date.' '.$end_time]];
+                            $leave_start = $start_date.' '.$start_time;
+                            $leave_end = $end_date.' '.$end_time;
 
-                            $times = \Gcms\Functions::calculate_leave_hours($date_start, $date_end, $break_start, $break_end, $leave_periods);
+                            // ปรับเวลาลาให้ข้ามวันถ้าจำเป็น
+                            if ($skipdate && (new \DateTime($start_time) < new \DateTime('12:00'))) {
+                                $ls_Temp = new \DateTime($leave_start);
+                                $ls_Temp->modify('+1 day');
+                                $leave_start = $ls_Temp->format('Y-m-d H:i');
+                            }
+
+                            // สร้างช่วงเวลาลา
+                            $leave_periods = [['start' => $leave_start, 'end' => $leave_end]];
+
+                            // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
+                            $times = \Gcms\Functions::calculate_leave_hours($date_start, $date_end, $break_start, $break_end, $leave_periods, $work_days, $holidays);
+
+                            // แยกวันเวลา
                             if ($times >= 8) {
                                 // 8 ซม. เท่ากัน 1 วัน
                                 $save['days'] = 1;
@@ -252,6 +276,7 @@ class Model extends \Kotchasan\Model
                                     $ret['ret_end_time'] = Language::get('The time is wrong');
                                 }
                             }
+
                         } else {
                             $ret['ret_shift_id'] = Language::get('Work shift not found');
                         }
@@ -266,7 +291,7 @@ class Model extends \Kotchasan\Model
                             $ret['ret_start_date'] = Language::get('Unable to take leave across the fiscal year. If you want to take continuous leave, separate the leave form into two. within that fiscal year');
                         } else {
                             // ใช้จำนวนวันลาจากที่คำนวณ
-                            $save['days'] = $diff['days'] + 1; // 1 = self::$cfg->eleave_periods[$start_period]
+                            $save['days'] = \Gcms\Functions::calculate_leave_days($start_date,$end_date,$work_days,$holidays);
                         }
                     }
                     $save['start_period'] = $start_period;
