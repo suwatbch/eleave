@@ -397,4 +397,38 @@ class Model extends \Kotchasan\Model
         // คืนค่าเป็น JSON
         echo json_encode($ret);
     }
+
+    /**
+     * คืนค่ารายละเอียดกะที่เลือก
+     * เป็น JSON
+     * @param Request $request
+     */
+    public function leavealert(Request $request)
+    {
+        $res = [];
+        $leave_id = $request->post('leave_id')->toInt();
+        if ($leave_id > 0) {
+            $leavedata = self::getLeaveOfId($leave_id);
+            $res['leavename'] = $leavedata['topic'];
+        } else {
+            $res['leavename'] = 'เลือกการลา';
+        }
+
+        // คืนค่า JSON
+        echo json_encode($res);
+    }
+
+    /**
+     * @param int $id
+     * 
+     * @return array
+     */
+    public function getLeaveOfId($id)
+    {
+        return $this->createQuery()
+                    ->from('leave')
+                    ->where(array('id', $id))
+                    ->cacheOn()
+                    ->first('*');
+    }
 }

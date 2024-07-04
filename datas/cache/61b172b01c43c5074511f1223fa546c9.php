@@ -1,0 +1,1 @@
+<?php exit?>[{"id":1,"description":"B2 08.30 - 17.30 \u0e1e\u0e31\u0e01 12.00 - 13.00","shifttype":"\u0e3a\u0e3aB2","start_time":"08:30","end_time":"17:30","start_break_time":"12:00","end_break_time":"13:00","worktime":8,"skipdate":0,"workday":"[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\"]","holiday":"[\"2024-07-29\"]"}]

@@ -21,6 +21,20 @@ use Kotchasan\Language;
 class Functions
 {
     /**
+     * @param string $starttime
+     * @param string $endtime
+     * @return string
+     */
+    public static function showtime($starttime,$endtime)
+    {
+        $result = '';
+        if (!empty($starttime) && !($starttime=='00:00' && $endtime=='00:00')){
+            $result = $starttime.' - '.$endtime;
+        }
+        return $result;
+    }
+
+    /**
      * @param float $days
      * @param float $times
      * @return string

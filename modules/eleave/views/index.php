@@ -67,7 +67,7 @@ class View extends \Gcms\View
             /* ฟังก์ชั่นแสดงผล Footer */
             'onCreateFooter' => array($this, 'onCreateFooter'),
             /* คอลัมน์ที่ไม่ต้องแสดงผล */
-            'hideColumns' => array('id', 'start_period', 'end_date', 'end_period', 'status', 'times'),
+            'hideColumns' => array('id', 'start_period', 'end_date', 'end_period', 'end_time', 'status', 'times'),
             /* ตัวเลือกการแสดงผลที่ส่วนหัว */
             'filters' => array(
                 array(
@@ -118,6 +118,9 @@ class View extends \Gcms\View
                 ),
                 'days' => array(
                     'text' => '{LNG_Date time}'
+                ),
+                'start_time' => array(
+                    'text' => '{LNG_Time}'
                 ),
                 'reason' => array(
                     'text' => '{LNG_Reason}'
@@ -177,9 +180,11 @@ class View extends \Gcms\View
         if ($item['start_date'] == $item['end_date']) {
             $item['start_date'] = Date::format($item['start_date'], 'd M Y').' '.$this->leave_period[$item['start_period']];
         } else {
-            $item['start_date'] = Date::format($item['start_date'], 'd M Y').' '.$this->leave_period[$item['start_period']].' - '.Date::format($item['end_date'], 'd M Y').' '.$this->leave_period[$item['end_period']];
+            // $item['start_date'] = Date::format($item['start_date'], 'd M Y').' '.$this->leave_period[$item['start_period']].' - '.Date::format($item['end_date'], 'd M Y').' '.$this->leave_period[$item['end_period']];
+            $item['start_date'] = Date::format($item['start_date'], 'd M Y').' '.$this->leave_period[$item['start_period']]. ($item['start_period'] ? '' : ' - '.Date::format($item['end_date'], 'd M Y').' '.$this->leave_period[$item['end_period']]);
         }
         $item['days'] = \Gcms\Functions::gettimeleave($item['days'],$item['times']);
+        $item['start_time'] = \Gcms\Functions::showtime($item['start_time'],$item['end_time']);
         return $item;
     }
 

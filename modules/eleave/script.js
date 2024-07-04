@@ -1,7 +1,7 @@
 function initEleaveLeave() {
   var num_days = 0,
-    doLeaveTypeChanged = function() {
-      send(WEB_URL + 'index.php/eleave/model/leave/datas', 'id=' + $E('leave_id').value, function(xhr) {
+    doLeaveTypeChanged = function () {
+      send(WEB_URL + 'index.php/eleave/model/leave/datas', 'id=' + $E('leave_id').value, function (xhr) {
         var maxDate, ds = xhr.responseText.toJSON();
         if (ds) {
           $G('leave_detail').innerHTML = ds.detail.unentityify();
@@ -21,7 +21,7 @@ function initEleaveLeave() {
     };
   $G('leave_id').addEvent('change', doLeaveTypeChanged);
   doLeaveTypeChanged.call(this);
-  $G('start_date').addEvent("change", function() {
+  $G('start_date').addEvent("change", function () {
     if (this.value) {
       $G('end_date').min = this.value;
       if (num_days > 0) {
@@ -30,14 +30,14 @@ function initEleaveLeave() {
       }
     }
   });
-  $G('start_period').addEvent("change", function() {
+  $G('start_period').addEvent("change", function () {
     if (this.value) {
       var a = this.value.toInt();
       $E('start_time').disabled = a == 0;
       $E('end_time').disabled = a == 0;
       $E('end_date').value = $E('start_date').value;
       var skipdate = 0;
-      send(WEB_URL + 'index.php/eleave/model/leave/getShift', 'id=' + $E('shift_id').value, function(xhr) {
+      send(WEB_URL + 'index.php/eleave/model/leave/getShift', 'id=' + $E('shift_id').value, function (xhr) {
         var ds = xhr.responseText.toJSON();
         if (ds) {
           skipdate = ds.skipdate;
@@ -52,10 +52,10 @@ function initEleaveLeave() {
       });
     }
   });
-  $G('leave_id').addEvent("change", function() {
+  $G('leave_id').addEvent("change", function () {
     if (this.value) {
       var a = this.value.toInt();
-      if (a==3 || a==7 || a==8){
+      if (a == 3 || a == 7 || a == 8) {
         $E('start_period').value = 0;
         $E('start_period').disabled = 1;
         $E('start_time').value = '00:00';
@@ -63,11 +63,23 @@ function initEleaveLeave() {
         $E('end_date').disabled = 0;
         $E('start_time').disabled = 1;
         $E('end_time').disabled = 1;
-        
+
       } else {
         $E('start_period').disabled = 0;
       }
-      
     }
   });
+
+  /*var elements = [$G('leave_id'), $G('start_period')];
+  elements.forEach(function(element) {
+    if (element) {
+      element.addEventListener('change', function() {
+        send(WEB_URL + 'index.php/eleave/model/leave/leavealert', 'leave_id'+$E('leave_id').value, function(xhr) {
+          var res = xhr.responseText.toJSON();
+          $G('textalert').value = res.leavename;
+        });
+      });
+    }
+  });*/
+
 }

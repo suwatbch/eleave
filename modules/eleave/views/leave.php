@@ -137,18 +137,14 @@ class View extends \Gcms\View
             'disabled' => $notEdit,
             'value' => isset($index->end_date) ? $index->end_date : date('Y-m-d')
         ));
-        
-        // unset($leave_period[2]);
-        // // end_period
-        // $groups->add('select', array(
-        //     'id' => 'end_period',
-        //     'labelClass' => 'g-input icon-clock',
-        //     'itemClass' => 'width50',
-        //     'label' => '&nbsp;',
-        //     'options' => $leave_period,
-        //     'disabled' => $notEdit,
-        //     'value' => isset($index->end_period) ? $index->end_period : 0
-        // ));
+        // แจ้งเตือนข้อมูลลา
+        $fieldset->add('text', array(
+            'id' => 'textalert',
+            'labelClass' => 'g-input icon-write',
+            'itemClass' => 'item',
+            'disabled' => true,
+            'value' => isset($index->textalert) ? $index->textalert : ''
+        ));
         if (!$notEdit) {
             // file eleave
             $fieldset->add('file', array(
