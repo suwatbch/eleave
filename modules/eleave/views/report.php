@@ -130,7 +130,7 @@ class View extends \Gcms\View
                     'sort' => 'start_date'
                 ),
                 'days' => array(
-                    'text' => '{LNG_days}',
+                    'text' => '{LNG_Date time}',
                     'class' => 'left'
                 ),
                 'start_time' => array(
