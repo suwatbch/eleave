@@ -143,9 +143,8 @@ class View extends \Gcms\View
                     'text' => '{LNG_Communication}',
                     'sort' => 'communication'
                 ),
-                'reason' => array(
-                    'text' => '{LNG_Reason}',
-                    'sort' => 'reason'
+                'detail' => array(
+                    'text' => '{LNG_Detail}'
                 ),
                 'status' => array(
                     'text' => '{LNG_Status}',
