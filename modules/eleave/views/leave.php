@@ -138,13 +138,13 @@ class View extends \Gcms\View
             'value' => isset($index->end_date) ? $index->end_date : date('Y-m-d')
         ));
         // แจ้งเตือนข้อมูลลา
-        $fieldset->add('text', array(
-            'id' => 'textalert',
-            'labelClass' => 'g-input icon-write',
-            'itemClass' => 'item',
-            'disabled' => true,
-            'value' => isset($index->textalert) ? $index->textalert : ''
-        ));
+        // $fieldset->add('text', array(
+        //     'id' => 'textalert',
+        //     'labelClass' => 'g-input icon-write',
+        //     'itemClass' => 'item',
+        //     'disabled' => true,
+        //     'value' => isset($index->textalert) ? $index->textalert : ''
+        // ));
         if (!$notEdit) {
             // file eleave
             $fieldset->add('file', array(
