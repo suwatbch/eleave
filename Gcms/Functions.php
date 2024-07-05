@@ -91,11 +91,11 @@ class Functions
      * @param string $break_start
      * @param string $break_end
      * @param array $leave_periods
-     * @param array $work_days
+     * @param array $workweek
      * @param array $holidays
      * @return float
      */
-    public static function calculate_leave_hours($start_time, $end_time, $break_start, $break_end, $leave_periods = [], $work_days = [], $holidays = []) {
+    public static function calculate_leave_hours($start_time, $end_time, $break_start, $break_end, $leave_periods = [], $workweek = [], $holidays = []) {
         $start_datetime = new \DateTime($start_time);
         $end_datetime = new \DateTime($end_time);
         $break_start_datetime = new \DateTime($break_start);
@@ -111,7 +111,7 @@ class Functions
             $leave_start_day = $leave_start->format('l');
             $leave_start_date = $leave_start->format('Y-m-d');
     
-            if (in_array($leave_start_day, $work_days) && !in_array($leave_start_date, $holidays)) {
+            if (in_array($leave_start_day, $workweek) && !in_array($leave_start_date, $holidays)) {
                 // ตรวจสอบว่าเวลาลางานซ้อนกับเวลาทำงานหรือไม่
                 if ($leave_end > $start_datetime && $leave_start < $end_datetime) {
                     // ปรับเวลาลางานให้ไม่เกินช่วงเวลาทำงาน
@@ -157,11 +157,11 @@ class Functions
     /**
      * @param string $start_date
      * @param string $end_date
-     * @param array $work_days
+     * @param array $workweek
      * @param array $holidays
      * @return float
      */
-    public static function calculate_leave_days($leave_start, $leave_end, $work_days = [], $holidays = []) {
+    public static function calculate_leave_days($leave_start, $leave_end, $workweek = [], $holidays = []) {
         $leave_start_datetime = new \DateTime($leave_start);
         $leave_end_datetime = new \DateTime($leave_end);
         $total_leave_days = 0;
@@ -172,7 +172,7 @@ class Functions
             $current_date = $date->format('Y-m-d');
     
             // ตรวจสอบว่าเป็นวันทำงานและไม่ใช่วันหยุดหรือไม่
-            if (in_array($current_day, $work_days) && !in_array($current_date, $holidays)) {
+            if (in_array($current_day, $workweek) && !in_array($current_date, $holidays)) {
                 $total_leave_days++;
             }
         }

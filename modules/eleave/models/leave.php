@@ -206,7 +206,7 @@ class Model extends \Kotchasan\Model
                     ->first('*');
 
                     // กำหนดวันทำงาน
-                    $work_days = json_decode($shiftdata->workday, true);
+                    $workweek = json_decode($shiftdata->workweek, true);
 
                     // กำหนดวันหยุด
                     $holidays = [];
@@ -260,7 +260,7 @@ class Model extends \Kotchasan\Model
                             $leave_periods = [['start' => $leave_start, 'end' => $leave_end]];
 
                             // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
-                            $times = \Gcms\Functions::calculate_leave_hours($date_start, $date_end, $break_start, $break_end, $leave_periods, $work_days, $holidays);
+                            $times = \Gcms\Functions::calculate_leave_hours($date_start, $date_end, $break_start, $break_end, $leave_periods, $workweek, $holidays);
 
                             // แยกวันเวลา
                             if ($times >= 8) {
@@ -291,7 +291,7 @@ class Model extends \Kotchasan\Model
                             $ret['ret_start_date'] = Language::get('Unable to take leave across the fiscal year. If you want to take continuous leave, separate the leave form into two. within that fiscal year');
                         } else {
                             // ใช้จำนวนวันลาจากที่คำนวณ
-                            $save['days'] = \Gcms\Functions::calculate_leave_days($start_date,$end_date,$work_days,$holidays);
+                            $save['days'] = \Gcms\Functions::calculate_leave_days($start_date,$end_date,$workweek,$holidays);
                         }
                     }
                     $save['start_period'] = $start_period;
