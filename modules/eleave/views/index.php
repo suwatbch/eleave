@@ -118,19 +118,19 @@ class View extends \Gcms\View
                 ),
                 'days' => array(
                     'text' => '{LNG_days}',
-                    'class' => 'center'
+                    'class' => 'left'
                 ),
                 'communication' => array(
                     'text' => '{LNG_Time}'
                 ),
-                'reason' => array(
-                    'text' => '{LNG_Reason}'
+                'detail' => array(
+                    'text' => '{LNG_Detail}'
                 )
             ),
             /* รูปแบบการแสดงผลของคอลัมน์ (tbody) */
             'cols' => array(
                 'days' => array(
-                    'class' => 'center'
+                    'class' => 'left'
                 )
             ),
             /* ฟังก์ชั่นตรวจสอบการแสดงผลปุ่มในแถว */
@@ -193,7 +193,7 @@ class View extends \Gcms\View
     public function onCreateFooter()
     {
         // return '<tr><td></td><td class=check-column><a class="checkall icon-uncheck" title="{LNG_Select all}"></a></td><td class=right colspan=2>{LNG_Total}</td><td class=center>'.$this->days.'</td><td></td></tr>';
-        return '<tr><td></td><td class=right colspan=2>{LNG_Total} </td><td class=center>'.$this->days.'</td><td></td></tr>';
+        return '<tr><td></td><td class=right colspan=2>{LNG_Total} </td><td class=left>'.$this->days.'</td><td></td></tr>';
     }
 
     /**
