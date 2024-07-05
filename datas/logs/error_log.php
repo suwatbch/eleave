@@ -1014,3 +1014,140 @@
 [2024-07-02 15:52:22] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
 [2024-07-02 15:52:22] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
 [2024-07-02 15:52:22] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-03 14:21:29] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
+[2024-07-03 14:22:50] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>194</b> 
+[2024-07-03 15:12:24] ERROR: <br>PHP notice : <em>Undefined index: end_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-03 15:12:24] ERROR: <br>PHP notice : <em>Undefined index: </em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-03 15:12:25] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
+[2024-07-03 15:28:42] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
+[2024-07-03 15:30:22] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Report\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>186</b> 
+[2024-07-03 15:32:20] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Report\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>186</b> 
+[2024-07-03 15:32:50] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Report\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>206</b> 
+[2024-07-04 08:30:28] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Report\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>186</b> 
+[2024-07-04 08:30:28] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-04 08:30:28] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-04 08:30:28] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-04 08:30:28] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-04 08:30:28] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-04 08:30:28] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-04 08:58:30] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
+[2024-07-04 08:59:08] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$work_day</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>255</b> 
+[2024-07-04 08:59:08] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
+[2024-07-04 08:59:08] ERROR: <br>PHP warning : <em>in_array() expects parameter 2 to be array, null given</em> in <b>C:\xampp\htdocs\eleave\Gcms\Functions.php</b> on line <b>100</b> 
+[2024-07-04 08:59:37] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
+[2024-07-04 09:02:39] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$work_day</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>255</b> 
+[2024-07-04 09:02:40] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
+[2024-07-04 09:02:40] ERROR: <br>PHP warning : <em>in_array() expects parameter 2 to be array, null given</em> in <b>C:\xampp\htdocs\eleave\Gcms\Functions.php</b> on line <b>100</b> 
+[2024-07-04 09:03:24] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$work_day</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>255</b> 
+[2024-07-04 09:10:41] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
+[2024-07-04 09:11:31] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
+[2024-07-04 09:11:48] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
+[2024-07-04 09:12:34] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
+[2024-07-04 09:13:01] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
+[2024-07-04 09:37:42] ERROR: <br>PHP notice : <em>Undefined index: end_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-04 09:37:42] ERROR: <br>PHP notice : <em>Undefined index: </em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-04 09:37:44] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
+[2024-07-04 09:39:23] ERROR: <br>Exception : <em>DateTime::__construct() expects parameter 1 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>294</b> 
+[2024-07-04 09:39:25] ERROR: <br>Exception : <em>DateTime::__construct() expects parameter 1 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>294</b> 
+[2024-07-04 09:40:39] ERROR: <br>Exception : <em>DateTime::__construct() expects parameter 1 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>294</b> 
+[2024-07-04 09:42:43] ERROR: <br>Exception : <em>DateTime::__construct() expects parameter 1 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>294</b> 
+[2024-07-04 09:48:25] ERROR: <br>Exception : <em>DateTime::__construct() expects parameter 1 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>294</b> 
+[2024-07-04 09:49:18] ERROR: <br>Exception : <em>DateTime::__construct() expects parameter 1 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>294</b> 
+[2024-07-04 09:49:33] ERROR: <br>Exception : <em>DateTime::__construct() expects parameter 1 to be string, array given</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>294</b> 
+[2024-07-04 09:51:11] ERROR: <br>PHP notice : <em>Undefined index: end_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-04 09:51:11] ERROR: <br>PHP notice : <em>Undefined index: </em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-04 09:51:14] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
+[2024-07-04 09:54:11] ERROR: <br>PHP notice : <em>Undefined index: end_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-04 09:54:11] ERROR: <br>PHP notice : <em>Undefined index: </em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-04 09:54:12] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
+[2024-07-04 10:16:35] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Report\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>186</b> 
+[2024-07-04 10:16:35] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-04 10:19:14] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
+[2024-07-04 10:48:13] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
+[2024-07-04 10:49:32] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
+[2024-07-04 10:50:52] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
+[2024-07-04 11:32:37] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Report\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>186</b> 
+[2024-07-04 11:32:37] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-04 11:32:37] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-04 11:32:37] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-04 11:32:37] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-04 11:32:37] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-04 11:32:37] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-04 11:34:17] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>205</b> 
+[2024-07-04 11:34:17] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 11:34:17] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 11:34:17] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 11:34:17] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 11:34:17] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 11:34:17] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 11:34:17] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>211</b> 
+[2024-07-04 11:34:17] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 13:05:37] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
+[2024-07-04 13:28:00] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
+[2024-07-04 13:28:49] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
+[2024-07-04 13:28:50] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
+[2024-07-04 13:33:08] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>177</b> 
+[2024-07-04 13:34:06] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>177</b> 
+[2024-07-04 13:34:30] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>177</b> 
+[2024-07-04 13:35:08] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>205</b> 
+[2024-07-04 13:35:08] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 13:35:08] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 13:35:08] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 13:35:08] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 13:35:08] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 13:35:08] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 13:35:08] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>211</b> 
+[2024-07-04 13:35:08] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 13:35:20] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>177</b> 
+[2024-07-04 13:36:00] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>177</b> 
+[2024-07-04 13:36:27] ERROR: <br>PHP notice : <em>Undefined index: end_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-04 13:36:27] ERROR: <br>PHP notice : <em>Undefined index: </em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-04 13:36:29] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>177</b> 
+[2024-07-04 13:38:04] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>177</b> 
+[2024-07-04 13:43:01] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>177</b> 
+[2024-07-04 13:49:32] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>177</b> 
+[2024-07-04 13:50:41] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>177</b> 
+[2024-07-04 13:52:20] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>177</b> 
+[2024-07-04 13:52:59] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Report\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>186</b> 
+[2024-07-04 13:52:59] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-04 13:55:55] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Report\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>189</b> 
+[2024-07-04 13:55:55] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>193</b> 
+[2024-07-04 13:57:22] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Report\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>189</b> 
+[2024-07-04 13:57:22] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>193</b> 
+[2024-07-04 14:01:13] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Report\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>189</b> 
+[2024-07-04 14:01:42] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Report\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>189</b> 
+[2024-07-04 14:01:42] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>193</b> 
+[2024-07-04 14:01:42] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>193</b> 
+[2024-07-04 14:01:42] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>193</b> 
+[2024-07-04 14:01:42] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>193</b> 
+[2024-07-04 14:01:42] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>193</b> 
+[2024-07-04 14:01:51] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Report\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>189</b> 
+[2024-07-04 14:01:51] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>193</b> 
+[2024-07-04 14:01:51] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>193</b> 
+[2024-07-04 14:01:51] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>193</b> 
+[2024-07-04 14:03:02] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>177</b> 
+[2024-07-04 14:03:05] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>177</b> 
+[2024-07-04 14:10:08] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>205</b> 
+[2024-07-04 14:10:08] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 14:10:08] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 14:10:08] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 14:10:08] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 14:10:08] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 14:10:08] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>211</b> 
+[2024-07-04 14:10:08] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 14:10:31] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>205</b> 
+[2024-07-04 14:10:31] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 14:10:31] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 14:10:31] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 14:10:31] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 14:10:31] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-04 14:10:43] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>205</b> 
+[2024-07-04 14:10:52] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>205</b> 
+[2024-07-04 14:13:50] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>210</b> 
+[2024-07-04 14:14:03] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>210</b> 
+[2024-07-04 14:14:18] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>210</b> 
+[2024-07-04 14:14:18] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>214</b> 
+[2024-07-04 14:14:18] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>214</b> 
+[2024-07-04 14:15:15] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>210</b> 
+[2024-07-04 14:15:15] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>214</b> 
+[2024-07-04 14:15:15] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>214</b> 

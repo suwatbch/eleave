@@ -1,1 +1,0 @@
-<?php exit?>[{"id":2,"description":"0V 13.00 - 22.00 \u0e1e\u0e31\u0e01 17.00 - 18.00","shifttype":"0V","worktime":8,"skipdate":0,"start_time":"13:00","end_time":"22:00","start_break_time":"17:00","end_break_time":"18:00"}]
