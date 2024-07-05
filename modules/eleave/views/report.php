@@ -130,13 +130,14 @@ class View extends \Gcms\View
                     'sort' => 'start_date'
                 ),
                 'days' => array(
-                    'text' => '{LNG_Date time}'
+                    'text' => '{LNG_days}',
+                    'class' => 'left'
                 ),
                 'communication' => array(
                     'text' => '{LNG_Communication}'
                 ),
-                'reason' => array(
-                    'text' => '{LNG_Reason}'
+                'detail' => array(
+                    'text' => '{LNG_Detail}'
                 )
             ),
             /* รูปแบบการแสดงผลของคอลัมน์ (tbody) */

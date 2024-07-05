@@ -130,7 +130,7 @@ class View extends \Gcms\View
                     'sort' => 'start_date'
                 ),
                 'days' => array(
-                    'text' => '{LNG_Date time}',
+                    'text' => '{LNG_days}',
                     'class' => 'left',
                     'sort' => 'days'
                 ),
@@ -138,23 +138,22 @@ class View extends \Gcms\View
                     'text' => '{LNG_Communication}',
                     'sort' => 'communication'
                 ),
-                'reason' => array(
-                    'text' => '{LNG_Reason}',
-                    'sort' => 'reason'
+                'detail' => array(
+                    'text' => '{LNG_Detail}'
                 ),
                 'status' => array(
                     'text' => '{LNG_Status}',
-                    'class' => 'center',
+                    'class' => 'left',
                     'sort' => 'status'
                 ),
             ),
             /* รูปแบบการแสดงผลของคอลัมน์ (tbody) */
             'cols' => array(
                 'days' => array(
-                    'class' => 'center'
+                    'class' => 'left'
                 ),
                 'status' => array(
-                    'class' => 'center'
+                    'class' => 'left'
                 )
             ),
             /* ปุ่มแสดงในแต่ละแถว */
