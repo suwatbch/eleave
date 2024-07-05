@@ -131,30 +131,29 @@ class View extends \Gcms\View
                 ),
                 'days' => array(
                     'text' => '{LNG_days}',
-                    'class' => 'center',
+                    'class' => 'left',
                     'sort' => 'days'
                 ),
                 'communication' => array(
                     'text' => '{LNG_Time}',
                     'sort' => 'communication'
                 ),
-                'reason' => array(
-                    'text' => '{LNG_Reason}',
-                    'sort' => 'reason'
+                'detail' => array(
+                    'text' => '{LNG_Detail}'
                 ),
                 'status' => array(
                     'text' => '{LNG_Status}',
-                    'class' => 'center',
+                    'class' => 'left',
                     'sort' => 'status'
                 ),
             ),
             /* รูปแบบการแสดงผลของคอลัมน์ (tbody) */
             'cols' => array(
                 'days' => array(
-                    'class' => 'center'
+                    'class' => 'left'
                 ),
                 'status' => array(
-                    'class' => 'center'
+                    'class' => 'left'
                 )
             ),
             /* ปุ่มแสดงในแต่ละแถว */
@@ -221,7 +220,7 @@ class View extends \Gcms\View
     public function onCreateFooter()
     {
         // return '<tr><td></td><td class=check-column><a class="checkall icon-uncheck" title="{LNG_Select all}"></a></td><td class=right colspan=3>{LNG_Total}</td><td class=center>'.$this->days.'</td><td colspan="2"></td></tr>';
-        return '<tr><td></td><td class=right colspan=4>{LNG_Total}</td><td class=center>'.$this->days.'</td><td colspan="2"></td></tr>';
+        return '<tr><td></td><td class=right colspan=4>{LNG_Total}</td><td class=left>'.$this->days.'</td><td colspan="2"></td></tr>';
     }
     
     /**
