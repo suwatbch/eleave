@@ -75,16 +75,6 @@ class View extends \Gcms\View
                 'value' => isset($index->{$k}) ? $index->{$k} : ''
             ));
         }
-        // shift
-        // $fieldset->add('select', array(
-        //     'id' => 'shift_id',
-        //     'labelClass' => 'g-input icon-clock',
-        //     'itemClass' => 'item',
-        //     'label' => '{LNG_Shift work}',
-        //     'options' => \Eleave\Leavetype\Model::getshift($login['shift_id'])->selectshift(),
-        //     'disabled' => true,
-        //     'value' => isset($index->shift_id) ? $index->shift_id : 0
-        // ));
         // รูปแบบการลา start_period
         $leave_period = Language::get('LEAVE_PERIOD');
         $fieldset->add('select', array(
@@ -133,18 +123,10 @@ class View extends \Gcms\View
             'labelClass' => 'g-input icon-calendar',
             'itemClass' => 'item',
             'label' => '{LNG_End date}',
-            'comment' => '{LNG_If the date is closed The end date is used together with the start date}',
+            // 'comment' => '{LNG_If the date is closed The end date is used together with the start date}',
             'disabled' => $notEdit,
             'value' => isset($index->end_date) ? $index->end_date : date('Y-m-d')
         ));
-        // แจ้งเตือนข้อมูลลา
-        // $fieldset->add('text', array(
-        //     'id' => 'textalert',
-        //     'labelClass' => 'g-input icon-write',
-        //     'itemClass' => 'item',
-        //     'disabled' => true,
-        //     'value' => isset($index->textalert) ? $index->textalert : ''
-        // ));
         if (!$notEdit) {
             // file eleave
             $fieldset->add('file', array(
@@ -183,6 +165,15 @@ class View extends \Gcms\View
             'rows' => 3,
             'disabled' => $notEdit,
             'value' => isset($index->communication) ? $index->communication : ''
+        ));
+        // แจ้งเตือนข้อมูลลา
+        $fieldset->add('text', array(
+            'id' => 'textalert',
+            'labelClass' => 'g-input icon-email',
+            'itemClass' => 'item',
+            'label' => '{LNG_Alert}',
+            'disabled' => true,
+            'value' => isset($index->textalert) ? $index->textalert : ''
         ));
         $fieldset = $form->add('fieldset', array(
             'class' => 'submit'

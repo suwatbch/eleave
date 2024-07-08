@@ -36,20 +36,6 @@ function initEleaveLeave() {
       $E('start_time').disabled = a == 0;
       $E('end_time').disabled = a == 0;
       $E('end_date').value = $E('start_date').value;
-      /*var skipdate = 0;
-      send(WEB_URL + 'index.php/eleave/model/leave/getShift', 'id=' + $E('shift_id').value, function (xhr) {
-        var ds = xhr.responseText.toJSON();
-        if (ds) {
-          skipdate = ds.skipdate;
-          if (skipdate) {
-            $E('end_date').disabled = 0;
-          } else {
-            $E('end_date').disabled = a != 0;
-          }
-        } else if (xhr.responseText != '') {
-          console.log(xhr.responseText);
-        }
-      });*/
     }
   });
   $G('leave_id').addEvent("change", function () {
@@ -70,16 +56,27 @@ function initEleaveLeave() {
     }
   });
 
-  /*var elements = [$G('leave_id'), $G('start_period')];
+  var elements = [$G('detail')];
   elements.forEach(function(element) {
     if (element) {
       element.addEventListener('change', function() {
-        send(WEB_URL + 'index.php/eleave/model/leave/leavealert', 'leave_id'+$E('leave_id').value, function(xhr) {
-          var res = xhr.responseText.toJSON();
-          $G('textalert').value = res.leavename;
+        send(WEB_URL + 'index.php/eleave/model/leave/leavealert', 
+                      'leave_id=' + $E('leave_id').value 
+                      + 'start_period=' + $E('start_period').value 
+                      /*+ 'start_date=' + $E('start_date').value 
+                      + 'end_date=' + $E('end_date').value 
+                      + 'start_time=' + $E('start_time').value*/
+                      + 'end_time=' + 88 
+                      , function (xhr) {
+          var ds = xhr.responseText.toJSON();
+          if (ds) {
+            $G('textalert').value = ds.data;
+          } else if (xhr.responseText != '') {
+            console.log(xhr.responseText);
+          }
         });
       });
     }
-  });*/
+  });
 
 }
