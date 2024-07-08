@@ -57,7 +57,7 @@ return array (
   'login_header_color' => '#FFFFFF',
   'login_footer_color' => '#FFFFFF',
   'login_color' => '#FFFFFF',
-  'login_bg_color' => '#47ABEE',
+  'login_bg_color' => '#01579B',
   'noreply_email' => '',
   'email_charset' => 'utf-8',
   'email_Host' => 'localhost',

@@ -36,7 +36,7 @@ function initEleaveLeave() {
       $E('start_time').disabled = a == 0;
       $E('end_time').disabled = a == 0;
       $E('end_date').value = $E('start_date').value;
-      var skipdate = 0;
+      /*var skipdate = 0;
       send(WEB_URL + 'index.php/eleave/model/leave/getShift', 'id=' + $E('shift_id').value, function (xhr) {
         var ds = xhr.responseText.toJSON();
         if (ds) {
@@ -49,7 +49,7 @@ function initEleaveLeave() {
         } else if (xhr.responseText != '') {
           console.log(xhr.responseText);
         }
-      });
+      });*/
     }
   });
   $G('leave_id').addEvent("change", function () {

@@ -152,7 +152,6 @@ class Model extends \Kotchasan\Model
                 // ค่าที่ส่งมา
                 $save = array(
                     'leave_id' => $request->post('leave_id')->toInt(),
-                    'shift_id' => $request->post('shift_id')->toInt(),
                     'detail' => $request->post('detail')->textarea(),
                     'communication' => $request->post('communication')->textarea()
                 );
@@ -198,20 +197,23 @@ class Model extends \Kotchasan\Model
                         $end_date = $start_date;
                     }
 
-                    // $shiftdata = \Gcms\Model::getshift($save['shift_id']);
-                    $shiftdata = $this->createQuery()
-                    ->from('shift')
-                    ->where(array('id', $save['shift_id']))
-                    ->cacheOn()
-                    ->first('*');
+                    // เริ่มการหากะ
+                    $Wstd = new \DateTime($start_date);
+                    if (!$login['shift_id']) {
+                        $Wmonth = \Gcms\Functions::getSurroundingMonths($start_date);
+                        $workdays = self::getShiftWorkdays($login['username'],$Wstd->format('Y'),$Wmonth);
+                        $login['shift_id'] = $workdays->shift_id;
+                        $workdays = \Gcms\Functions::datanap($workdays->days, 'days');
+                    }
+                    $shiftdata = self::getShifts($login['shift_id']);
 
-                    // กำหนดวันทำงาน
-                    $workweek = json_decode($shiftdata->workweek, true);
+                    if ($shiftdata->static) {
+                        // กำหนดวันทำงาน
+                        $workweek = json_decode($shiftdata->workweek, true);
 
-                    // กำหนดวันหยุด
-                    $holidays = [];
-                    if ($shiftdata->holiday != null){
-                        $holidays = json_decode($shiftdata->holiday, true);
+                        // กำหนดวันหยุด
+                        $holidays = self::getShiftHolidays($login['shift_id'],$Wstd->format('Y'));
+                        $holidays = \Gcms\Functions::datanap($holidays, 'holidays');
                     }
 
                     if ($end_date < $start_date && !$start_period) {
@@ -260,7 +262,11 @@ class Model extends \Kotchasan\Model
                             $leave_periods = [['start' => $leave_start, 'end' => $leave_end]];
 
                             // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
-                            $times = \Gcms\Functions::calculate_leave_hours($date_start, $date_end, $break_start, $break_end, $leave_periods, $workweek, $holidays);
+                            if ($shiftdata->static) {
+                                $times = \Gcms\Functions::calculate_static_leave_hours($date_start, $date_end, $break_start, $break_end, $leave_periods, $workweek, $holidays);
+                            } else {
+                                $times = \Gcms\Functions::calculate_notstatic_leave_hours($date_start, $date_end, $break_start, $break_end, $leave_periods, $workdays);
+                            }
 
                             // แยกวันเวลา
                             if ($times >= 8) {
@@ -270,7 +276,7 @@ class Model extends \Kotchasan\Model
                                 // คิดเป็นราย ซม.
                                 $save['times'] = $times;
                             } else {
-                                if ($diff['days'] >= 0 && $diff['days'] <= 1){
+                                if (($diff['days'] >= 0 && $diff['days'] <= 1) || $times == 0 ){
                                     // เวลาลาไม่ถูกต้อง
                                     $ret['ret_start_time'] = Language::get('The time is wrong');
                                     $ret['ret_end_time'] = Language::get('The time is wrong');
@@ -291,7 +297,15 @@ class Model extends \Kotchasan\Model
                             $ret['ret_start_date'] = Language::get('Unable to take leave across the fiscal year. If you want to take continuous leave, separate the leave form into two. within that fiscal year');
                         } else {
                             // ใช้จำนวนวันลาจากที่คำนวณ
-                            $save['days'] = \Gcms\Functions::calculate_leave_days($start_date,$end_date,$workweek,$holidays);
+                            if ($shiftdata->static) {
+                                $save['days'] = \Gcms\Functions::calculate_static_leave_days($start_date,$end_date,$workweek,$holidays);
+                            } else {
+                                $save['days'] = \Gcms\Functions::calculate_notstatic_leave_days($start_date,$end_date,$workdays);
+                            }
+                            // ลาเต็มวัน ต้องลามากกว่า 0 วัน
+                            if ($save['days']==0){
+                                $ret['ret_end_date'] = Language::get('The end date is incorrect');
+                            }
                         }
                     }
                     $save['start_period'] = $start_period;
@@ -430,5 +444,69 @@ class Model extends \Kotchasan\Model
                     ->where(array('id', $id))
                     ->cacheOn()
                     ->first('*');
+    }
+
+    /**
+     * @param int $shift_id
+     * @return static
+     */
+    public function getShifts($shift_id)
+    {
+        return $this->createQuery()
+                        ->from('shift')
+                        ->where(array('id', $shift_id))
+                        ->cacheOn()
+                        ->first('*');
+    }
+
+    /**
+     * @param string $username
+     * @param int $year
+     * @param array $month
+     * @return object
+     */
+    public function getShiftWorkdays($username, $year, $month = [])
+    {
+        $workdays = $this->createQuery()
+                        ->select('id','username','shift_id','days')
+                        ->from('shift_workdays')
+                        ->where(array(
+                            array('username', $username),
+                            array('yaer', $year),
+                            array('month', 'IN', $month)
+                        ))
+                        ->cacheOn();
+        $workdays = $workdays->execute();      
+        // return $workdays;
+        $shift_id = $workdays[0]->shift_id;
+        $days = [];
+
+        foreach ($workdays as $workday) {
+            $days[] = (object) [ 'days' => $workday->days];
+        }
+
+        $res = (object) [
+            'shift_id' => $shift_id,
+            'days' => $days
+        ];            
+        return $res;
+    }
+
+    /**
+     * @param int $shift_id
+     * @param int $year
+     * @return array
+     */
+    public function getShiftHolidays($shift_id, $year)
+    {
+        $holidays = $this->createQuery()
+                        ->select('holidays')
+                        ->from('shift_holidays')
+                        ->where(array(
+                            array('shift_id', $shift_id),
+                            array('year', $year)
+                        ))
+                        ->cacheOn();
+        return $holidays->execute();
     }
 }

@@ -1,1 +1,1 @@
-<?php exit?>[{"type":1,"status":0,"count":2},{"type":1,"status":1,"count":3}]
+<?php exit?>[{"type":1,"status":0,"count":2}]

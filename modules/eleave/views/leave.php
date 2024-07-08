@@ -76,15 +76,15 @@ class View extends \Gcms\View
             ));
         }
         // shift
-        $fieldset->add('select', array(
-            'id' => 'shift_id',
-            'labelClass' => 'g-input icon-clock',
-            'itemClass' => 'item',
-            'label' => '{LNG_Shift work}',
-            'options' => \Eleave\Leavetype\Model::getshift($login['shift_id'])->selectshift(),
-            'disabled' => true,
-            'value' => isset($index->shift_id) ? $index->shift_id : 0
-        ));
+        // $fieldset->add('select', array(
+        //     'id' => 'shift_id',
+        //     'labelClass' => 'g-input icon-clock',
+        //     'itemClass' => 'item',
+        //     'label' => '{LNG_Shift work}',
+        //     'options' => \Eleave\Leavetype\Model::getshift($login['shift_id'])->selectshift(),
+        //     'disabled' => true,
+        //     'value' => isset($index->shift_id) ? $index->shift_id : 0
+        // ));
         // รูปแบบการลา start_period
         $leave_period = Language::get('LEAVE_PERIOD');
         $fieldset->add('select', array(
