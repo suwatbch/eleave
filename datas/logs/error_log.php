@@ -1032,18 +1032,18 @@
 [2024-07-04 08:30:28] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
 [2024-07-04 08:58:30] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
 [2024-07-04 08:59:08] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$work_day</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>255</b> 
-[2024-07-04 08:59:08] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
+[2024-07-04 08:59:08] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_static_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
 [2024-07-04 08:59:08] ERROR: <br>PHP warning : <em>in_array() expects parameter 2 to be array, null given</em> in <b>C:\xampp\htdocs\eleave\Gcms\Functions.php</b> on line <b>100</b> 
 [2024-07-04 08:59:37] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
 [2024-07-04 09:02:39] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$work_day</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>255</b> 
-[2024-07-04 09:02:40] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
+[2024-07-04 09:02:40] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_static_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
 [2024-07-04 09:02:40] ERROR: <br>PHP warning : <em>in_array() expects parameter 2 to be array, null given</em> in <b>C:\xampp\htdocs\eleave\Gcms\Functions.php</b> on line <b>100</b> 
 [2024-07-04 09:03:24] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$work_day</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>255</b> 
-[2024-07-04 09:10:41] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
-[2024-07-04 09:11:31] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
-[2024-07-04 09:11:48] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
-[2024-07-04 09:12:34] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
-[2024-07-04 09:13:01] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
+[2024-07-04 09:10:41] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_static_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
+[2024-07-04 09:11:31] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_static_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
+[2024-07-04 09:11:48] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_static_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
+[2024-07-04 09:12:34] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_static_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
+[2024-07-04 09:13:01] ERROR: <br>PHP Error : <em>Non-static method Gcms\Functions::calculate_static_leave_hours() should not be called statically</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>264</b> 
 [2024-07-04 09:37:42] ERROR: <br>PHP notice : <em>Undefined index: end_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
 [2024-07-04 09:37:42] ERROR: <br>PHP notice : <em>Undefined index: </em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
 [2024-07-04 09:37:44] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>174</b> 
@@ -1151,3 +1151,364 @@
 [2024-07-04 14:15:15] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>210</b> 
 [2024-07-04 14:15:15] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>214</b> 
 [2024-07-04 14:15:15] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>214</b> 
+[2024-07-05 13:31:12] ERROR: <br>Exception : <em>SQLSTATE[42S22]: Column not found: 1054 Unknown column 'description' in 'field list'</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-07-05 13:31:22] ERROR: <br>Exception : <em>SQLSTATE[42S22]: Column not found: 1054 Unknown column 'description' in 'field list'</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-07-05 13:31:58] ERROR: <br>Exception : <em>SQLSTATE[42S22]: Column not found: 1054 Unknown column 'description' in 'field list'</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-07-05 13:32:04] ERROR: <br>Exception : <em>SQLSTATE[42S22]: Column not found: 1054 Unknown column 'description' in 'field list'</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-07-05 13:32:17] ERROR: <br>Exception : <em>SQLSTATE[42S22]: Column not found: 1054 Unknown column 'description' in 'field list'</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-07-05 13:33:22] ERROR: <br>Exception : <em>SQLSTATE[42S22]: Column not found: 1054 Unknown column 'description' in 'field list'</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-07-05 13:33:23] ERROR: <br>Exception : <em>SQLSTATE[42S22]: Column not found: 1054 Unknown column 'description' in 'field list'</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-07-05 13:33:26] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-05 13:33:30] ERROR: <br>Exception : <em>SQLSTATE[42S22]: Column not found: 1054 Unknown column 'description' in 'field list'</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-07-05 13:35:09] ERROR: <br>Exception : <em>SQLSTATE[42S22]: Column not found: 1054 Unknown column 'description' in 'field list'</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-07-05 13:35:11] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-05 13:35:11] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-05 13:35:19] ERROR: <br>Exception : <em>SQLSTATE[42S22]: Column not found: 1054 Unknown column 'description' in 'field list'</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-07-05 13:35:37] ERROR: <br>Exception : <em>SQLSTATE[42S22]: Column not found: 1054 Unknown column 'description' in 'field list'</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-07-05 13:36:14] ERROR: <br>Exception : <em>SQLSTATE[42S22]: Column not found: 1054 Unknown column 'description' in 'field list'</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-07-05 13:36:40] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-05 13:36:40] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-05 13:36:40] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-05 13:36:40] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-05 13:36:40] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-05 13:36:40] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-05 13:36:40] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>215</b> 
+[2024-07-05 13:36:40] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-05 13:36:40] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-05 13:36:40] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-05 14:04:19] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-05 14:04:19] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-05 14:04:19] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-05 14:04:19] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-05 14:04:19] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-05 14:04:19] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-05 14:04:19] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>215</b> 
+[2024-07-05 14:04:19] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-05 14:04:19] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-05 14:04:19] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-05 14:04:25] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-05 14:04:27] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-05 14:04:31] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>178</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>180</b> 
+[2024-07-05 14:04:36] ERROR: <br>PHP notice : <em>Undefined property: stdClass::$date</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\csv.php</b> on line <b>182</b> 
+[2024-07-05 16:16:12] ERROR: <br>PHP warning : <em>json_decode() expects parameter 1 to be string, object given</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>239</b> 
+[2024-07-05 16:16:12] ERROR: <br>PHP warning : <em>json_decode() expects parameter 1 to be string, object given</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>239</b> 
+[2024-07-05 16:30:50] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-05 16:48:20] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-05 16:58:42] ERROR: <br>Exception : <em>SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-07-05 16:58:54] ERROR: <br>Exception : <em>SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Database\Driver.php</b> on line <b>254</b> 
+[2024-07-05 17:20:04] ERROR: <br>PHP notice : <em>Undefined index: end_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-05 17:20:04] ERROR: <br>PHP notice : <em>Undefined index: </em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-05 17:20:05] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-05 17:20:46] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-05 17:21:55] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-05 17:22:46] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-06 16:48:05] ERROR: <br>Exception : <em>Method index not found in Index\Consentsettings\Model</em> in <b>C:\xampp\htdocs\eleave\index.php</b> on line <b>19</b> 
+[2024-07-08 09:53:48] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>208</b> 
+[2024-07-08 09:53:49] ERROR: <br>PHP notice : <em>Trying to get property 'static' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>210</b> 
+[2024-07-08 10:19:16] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-08 10:20:49] ERROR: <br>PHP notice : <em>Undefined index: end_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-08 10:20:49] ERROR: <br>PHP notice : <em>Undefined index: </em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-08 10:20:53] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-08 10:22:36] ERROR: <br>PHP notice : <em>Trying to get property 'static' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>209</b> 
+[2024-07-08 10:22:45] ERROR: <br>PHP notice : <em>Trying to get property 'static' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>299</b> 
+[2024-07-08 10:28:45] ERROR: <br>PHP notice : <em>Trying to get property 'static' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>209</b> 
+[2024-07-08 10:28:50] ERROR: <br>PHP notice : <em>Trying to get property 'static' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>299</b> 
+[2024-07-08 10:29:17] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-08 10:29:53] ERROR: <br>PHP notice : <em>Trying to get property 'static' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>209</b> 
+[2024-07-08 10:29:56] ERROR: <br>PHP notice : <em>Trying to get property 'static' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>299</b> 
+[2024-07-08 10:30:09] ERROR: <br>PHP notice : <em>Undefined index: end_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-08 10:30:09] ERROR: <br>PHP notice : <em>Undefined index: </em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-08 10:30:11] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-08 10:36:30] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-08 10:45:18] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-08 10:47:15] ERROR: <br>PHP notice : <em>Trying to get property 'static' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>209</b> 
+[2024-07-08 10:47:40] ERROR: <br>PHP notice : <em>Trying to get property 'static' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>209</b> 
+[2024-07-08 11:03:00] ERROR: <br>PHP notice : <em>Trying to get property 'static' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>209</b> 
+[2024-07-08 11:03:05] ERROR: <br>PHP notice : <em>Trying to get property 'static' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>209</b> 
+[2024-07-08 12:55:38] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-08 12:57:56] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-08 12:59:55] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-08 13:01:53] ERROR: <br>PHP notice : <em>Undefined index: end_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-08 13:01:53] ERROR: <br>PHP notice : <em>Undefined index: </em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-08 13:01:54] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-08 13:02:45] ERROR: <br>PHP notice : <em>Undefined index: end_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-08 13:02:45] ERROR: <br>PHP notice : <em>Undefined index: </em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\view.php</b> on line <b>51</b> 
+[2024-07-08 13:02:47] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-08 13:15:01] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-08 13:18:47] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-08 13:22:03] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 

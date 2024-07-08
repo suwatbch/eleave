@@ -46,6 +46,8 @@ return array (
     'leave_items' => 'leave_items',
     'logs' => 'logs',
     'shift' => 'shift',
+    'shift_holidays' => 'shift_holidays',
+    'shift_workdays' => 'shift_workdays',
     'user' => 'user',
     'user_meta' => 'user_meta',
   ),
