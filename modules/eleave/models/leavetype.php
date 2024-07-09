@@ -21,6 +21,7 @@ use Kotchasan\Language;
  */
 class Model
 {
+
     /**
      * @var array
      */

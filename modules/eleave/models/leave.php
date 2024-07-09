@@ -568,6 +568,25 @@ class Model extends \Kotchasan\Model
 
     /**
      * @param int $shift_id
+     * @return array
+     */
+    public static function getTime0fShift($shift_id)
+    {
+        $result = \Kotchasan\Model::createQuery()
+                    ->select('*')
+                    ->from('shift')
+                    ->where(array('id', $shift_id))
+                    ->cacheOn()
+                    ->execute();
+
+        $count = count($result) == 0 ? false : true ;
+        $data = $result[0];
+        $Time0fShift = \Gcms\Functions::genTimes($count ? $data->stat_date.' '.$data->start_time : '');
+        return $Time0fShift;
+    }
+
+    /**
+     * @param int $shift_id
      * @return static
      */
     public function getShifts($shift_id)

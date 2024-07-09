@@ -22,6 +22,42 @@ class Functions
 {
 
     /**
+     * @param string $datetime
+     * @return array
+     */
+    public static function genTimes($datetime) {
+        $times = [];
+    
+        if ($datetime != '') {
+            $datetime = new \DateTime($datetime);
+            $startHour = (int)$datetime->format('H');
+            $startMinute = (int)$datetime->format('i');
+            
+            $endHour = ($startHour + 9) % 24;
+            $endMinute = $startMinute;
+
+            for ($hour = $startHour; ; $hour = ($hour + 1) % 24) {
+                for ($minute = ($hour == $startHour) ? $startMinute : 0; $minute < 60; $minute += 30) {
+                    $time = sprintf('%02d:%02d', $hour, $minute);
+                    $times[$time] = $time;
+                    if ($hour == $endHour && $minute == $endMinute) {
+                        break 2;
+                    }
+                }
+            }
+        } else {
+            for ($hour = 0; $hour < 24; $hour++) {
+                for ($minute = 0; $minute < 60; $minute += 30) {
+                    $time = sprintf('%02d:%02d', $hour, $minute);
+                    $times[$time] = $time;
+                }
+            }
+        }
+        
+        return $times;
+    }
+
+    /**
      * @param string $date
      * @return array
      */

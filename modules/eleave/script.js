@@ -21,7 +21,7 @@ function initEleaveLeave() {
     };
   $G('leave_id').addEvent('change', doLeaveTypeChanged);
   doLeaveTypeChanged.call(this);
-  /*$G('start_date').addEvent("change", function () {
+  $G('start_date').addEvent("change", function () {
     if (this.value) {
       $G('end_date').min = this.value;
       if (num_days > 0) {
@@ -29,13 +29,15 @@ function initEleaveLeave() {
         $G('end_date').max = maxDate;
       }
     }
-  });*/
+  });
   $G('start_period').addEvent("change", function () {
     if (this.value) {
       var a = this.value.toInt();
       $E('start_time').disabled = a == 0;
       $E('end_time').disabled = a == 0;
-      /*$E('end_date').value = $E('start_date').value;*/
+      $E('end_date').disabled = a;
+      $E('end_date').value = $E('start_date').value;
+      
     }
   });
   $G('leave_id').addEvent("change", function () {
@@ -56,7 +58,7 @@ function initEleaveLeave() {
     }
   });
 
-  var elements = [$E('leave_id'),$E('start_date'),$G('end_date'),$E('start_time'),$G('end_time'),$G('start_period')];
+  /*var elements = [$E('leave_id'),$E('start_date'),$G('end_date'),$E('start_time'),$G('end_time'),$G('start_period')];
   elements.forEach(function(element) {
     if (element && $E('start_date').value != '' && $E('end_date').value != '') {
       element.addEventListener('change', function() {
@@ -83,6 +85,6 @@ function initEleaveLeave() {
           });
       });
     }
-  });
+  });*/
 
 }
