@@ -215,6 +215,7 @@ class Model extends \Kotchasan\Model
                     if (empty($login['shift_id']) || $start_month || $end_month) {
                         // ไม่พบวันทำงาน
                         $ret['ret_start_date'] = Language::get('No working days found');
+                        $ret['ret_end_date'] = Language::get('No working days found');
                     } else {
                         $shiftdata = self::getShifts($login['shift_id']);
 
