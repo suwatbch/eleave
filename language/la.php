@@ -10,6 +10,7 @@ return array(
   'Address' => 'ທີ່ຢູ່',
   'Address details' => 'ລາຍລະອຽດທີ່ຢູ່',
   'Administrator status It is of utmost importance to do everything' => 'ສະຖານະຜູ້ເບິ່ງແຍງລະບົບມີຄວາມສຳຄັນສຸງທີ່ສຸດສາມາດເຮັດໄດ້ທຸກຢ່າງ',
+  'Alert' => 'ເຕືອນ',
   'All :count entries, displayed :start to :end, page :page of :total pages' => 'ທັງໝົດ :count ລາຍການ, ສະແດງ :start ເຖິງ :end, ໜ້າທີ່ :page ຈາກທັງໝົດ:total ໜ້າ',
   'all items' => 'ທັງໝົດ',
   'Always enabled' => 'ເປີດສະເໝີ',
@@ -43,6 +44,7 @@ return array(
     'department' => 'ພະແນກ'
   ),
   'Change language' => 'ປ່ຽນພາສາ',
+  'Check the accuracy of leave' => 'ກວດເບິ່ງຄວາມຖືກຕ້ອງຂອງການອອກ',
   'Clear selected' => 'ບໍ່ເລືອກ',
   'Click to edit' => 'ກົດເພື່ອແກ້ໄຂ',
   'Comment' => 'ຫມາຍ​ເຫດ​',
@@ -292,6 +294,7 @@ return array(
   'New members' => 'ສະມາຊິກໃໝ່',
   'no larger than :size' => 'ຂະໜາດບໍ່ເກີນ :size',
   'No need to fill in English text. If the English text matches the Key' => 'ບໍ່ຈຳເປັນເພີ່ມຂໍ້ຄວາມໃນພາສາອັງກິດຫາກຂໍ້ຄວາມໃນພາສານອັງກົງກັບແປ້ນພີມ',
+  'No working days found' => 'ບໍ່ພົບມື້ເຮັດວຽກ',
   'not a registered user' => 'ບໍ່ພົບສະມາຊິກນີ້ລົງທະບຽນໄວ້',
   'Not specified' => 'ບໍ່ໄດ້ກໍານົດ',
   'Number of leave days' => 'ຈຳນວນວັນຢຸດ',
