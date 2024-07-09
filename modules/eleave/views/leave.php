@@ -49,6 +49,15 @@ class View extends \Gcms\View
             // 'title' => '{LNG_Details of} {LNG_Request for leave} '.($index->id > 0 ? self::toStatus((array) $index, true) : '')
             'title' => '{LNG_Request for leave} '
         ));
+        $fieldset->add('hidden', array(
+            'id' => 'username',
+            'value' => $login['username']
+        ));
+        $fieldset->add('hidden', array(
+            'id' => 'shift_id',
+            'labelClass' => 'color-red',
+            'value' => $login['shift_id']
+        ));
         // leave_id
         $fieldset->add('select', array(
             'id' => 'leave_id',
@@ -145,6 +154,16 @@ class View extends \Gcms\View
         // if ($index->id > 0) {
         //     $fieldset->appendChild('<div class="item">'.\Download\Index\Controller::init($index->id, 'eleave', self::$cfg->eleave_file_typies, ($canEdit ? $login['id'] : 0)).'</div>');
         // }
+        // แจ้งเตือนข้อมูลลา
+        $fieldset->add('text', array(
+            'id' => 'textalert',
+            'labelClass' => 'g-input icon-email',
+            'itemClass' => 'item',
+            'label' => '{LNG_Alert}',
+            'comment' => '<em>{LNG_Check the accuracy of leave}</em>',
+            'disabled' => true,
+            'value' => '<em>'.(isset($index->textalert) ? $index->textalert : '').'</em>'
+        ));
         // detail
         $fieldset->add('textarea', array(
             'id' => 'detail',
@@ -165,15 +184,6 @@ class View extends \Gcms\View
             'rows' => 3,
             'disabled' => $notEdit,
             'value' => isset($index->communication) ? $index->communication : ''
-        ));
-        // แจ้งเตือนข้อมูลลา
-        $fieldset->add('text', array(
-            'id' => 'textalert',
-            'labelClass' => 'g-input icon-email',
-            'itemClass' => 'item',
-            'label' => '{LNG_Alert}',
-            'disabled' => true,
-            'value' => isset($index->textalert) ? $index->textalert : ''
         ));
         $fieldset = $form->add('fieldset', array(
             'class' => 'submit'

@@ -44,6 +44,7 @@ return array(
     'department' => 'ພະແນກ'
   ),
   'Change language' => 'ປ່ຽນພາສາ',
+  'Check the accuracy of leave' => 'ກວດເບິ່ງຄວາມຖືກຕ້ອງຂອງການອອກ',
   'Clear selected' => 'ບໍ່ເລືອກ',
   'Click to edit' => 'ກົດເພື່ອແກ້ໄຂ',
   'Comment' => 'ຫມາຍ​ເຫດ​',

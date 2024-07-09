@@ -44,6 +44,7 @@ return array(
     'department' => 'แผนก'
   ),
   'Change language' => 'สลับภาษา',
+  'Check the accuracy of leave' => 'ตรวจสอบถวามถูกต้องในการลา',
   'Clear selected' => 'ไม่เลือก',
   'Click to edit' => 'คลิกเพื่อแก้ไข',
   'Comment' => 'หมายเหตุ',

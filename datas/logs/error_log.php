@@ -1589,3 +1589,122 @@
 [2024-07-09 10:01:20] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>511</b> 
 [2024-07-09 10:01:30] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>511</b> 
 [2024-07-09 10:01:30] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>511</b> 
+[2024-07-09 10:03:59] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-09 10:04:29] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-09 10:04:57] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-09 10:05:15] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Report\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-09 10:06:11] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Report\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>190</b> 
+[2024-07-09 10:06:11] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>194</b> 
+[2024-07-09 10:06:11] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>194</b> 
+[2024-07-09 10:06:11] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>194</b> 
+[2024-07-09 10:06:11] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>194</b> 
+[2024-07-09 10:06:11] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\report.php</b> on line <b>194</b> 
+[2024-07-09 10:06:17] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-09 10:06:17] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 10:06:17] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 10:06:17] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 10:06:17] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 10:06:17] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 10:06:17] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>215</b> 
+[2024-07-09 10:06:17] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 10:06:17] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 10:06:17] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 10:09:08] ERROR: <br>PHP notice : <em>Trying to get property 'topic' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>430</b> 
+[2024-07-09 10:10:19] ERROR: <br>PHP notice : <em>Trying to get property 'topic' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>430</b> 
+[2024-07-09 10:10:29] ERROR: <br>PHP notice : <em>Trying to get property 'topic' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>430</b> 
+[2024-07-09 10:11:20] ERROR: <br>PHP notice : <em>Trying to get property 'topic' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>430</b> 
+[2024-07-09 10:12:41] ERROR: <br>PHP notice : <em>Trying to get property 'topic' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>430</b> 
+[2024-07-09 10:37:03] ERROR: <br>PHP notice : <em>Undefined index: leave_id</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>416</b> 
+[2024-07-09 10:37:14] ERROR: <br>PHP notice : <em>Undefined index: leave_id</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>416</b> 
+[2024-07-09 11:30:15] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-09 11:30:15] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 11:30:15] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 11:30:15] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 11:30:15] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 11:30:15] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 11:30:15] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>215</b> 
+[2024-07-09 11:30:15] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 11:30:15] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 11:30:15] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 11:44:02] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Leave\Model::$leave_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>432</b> 
+[2024-07-09 11:44:02] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>432</b> 
+[2024-07-09 11:44:48] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Leave\Model::$leave_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>432</b> 
+[2024-07-09 11:44:48] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>432</b> 
+[2024-07-09 11:44:54] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Totalreport\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>209</b> 
+[2024-07-09 11:44:54] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 11:44:54] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 11:44:54] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 11:44:54] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 11:44:54] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 11:44:54] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>215</b> 
+[2024-07-09 11:44:54] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 11:44:54] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 11:44:54] ERROR: <br>PHP notice : <em>Undefined offset: 2</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\totalreport.php</b> on line <b>213</b> 
+[2024-07-09 11:44:59] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Leave\Model::$leave_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>432</b> 
+[2024-07-09 11:44:59] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>432</b> 
+[2024-07-09 11:47:14] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Leave\Model::$leave_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>433</b> 
+[2024-07-09 11:47:14] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>433</b> 
+[2024-07-09 13:12:03] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Leave\Model::$leave_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>433</b> 
+[2024-07-09 13:12:03] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>433</b> 
+[2024-07-09 13:27:02] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Leave\Model::$leave_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>431</b> 
+[2024-07-09 13:27:02] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>431</b> 
+[2024-07-09 13:27:12] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Leave\Model::$leave_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>434</b> 
+[2024-07-09 13:27:12] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>434</b> 
+[2024-07-09 13:27:12] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Leave\Model::$leave_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>434</b> 
+[2024-07-09 13:27:12] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>434</b> 
+[2024-07-09 13:28:41] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Leave\Model::$leave_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>434</b> 
+[2024-07-09 13:28:41] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>434</b> 
+[2024-07-09 13:28:41] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Leave\Model::$leave_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>434</b> 
+[2024-07-09 13:28:41] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>434</b> 
+[2024-07-09 13:29:59] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Leave\Model::$leave_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>434</b> 
+[2024-07-09 13:29:59] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>434</b> 
+[2024-07-09 13:29:59] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Leave\Model::$leave_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>434</b> 
+[2024-07-09 13:29:59] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>434</b> 
+[2024-07-09 13:30:31] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Leave\Model::$leave_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>431</b> 
+[2024-07-09 13:30:31] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>431</b> 
+[2024-07-09 13:31:32] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Leave\Model::$leave_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>431</b> 
+[2024-07-09 13:31:32] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>431</b> 
+[2024-07-09 13:32:00] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Leave\Model::$leave_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>434</b> 
+[2024-07-09 13:32:00] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>434</b> 
+[2024-07-09 13:32:00] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Leave\Model::$leave_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>434</b> 
+[2024-07-09 13:32:00] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>434</b> 
+[2024-07-09 13:33:01] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Leave\Model::$leave_period</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>431</b> 
+[2024-07-09 13:33:01] ERROR: <br>PHP notice : <em>Trying to access array offset on value of type null</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>431</b> 
+[2024-07-09 14:04:06] ERROR: <br>PHP notice : <em>Undefined index: shift_id</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>419</b> 
+[2024-07-09 14:04:06] ERROR: <br>PHP notice : <em>Undefined index: shift_id</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>419</b> 
+[2024-07-09 14:04:07] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>547</b> 
+[2024-07-09 14:04:07] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>547</b> 
+[2024-07-09 14:04:07] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>547</b> 
+[2024-07-09 14:04:07] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>547</b> 
+[2024-07-09 14:04:48] ERROR: <br>PHP notice : <em>Undefined index: shift_id</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>419</b> 
+[2024-07-09 14:04:48] ERROR: <br>PHP notice : <em>Undefined index: shift_id</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>419</b> 
+[2024-07-09 14:08:02] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>547</b> 
+[2024-07-09 14:08:02] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>547</b> 
+[2024-07-09 14:08:02] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>547</b> 
+[2024-07-09 14:08:02] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>547</b> 
+[2024-07-09 15:26:44] ERROR: <br>Exception : <em>DateTime::__construct(): Failed to parse time string (null) at position 0 (n): The timezone could not be found in the database</em> in <b>C:\xampp\htdocs\eleave\Kotchasan\Router.php</b> on line <b>70</b> 
+[2024-07-09 15:28:18] ERROR: <br>PHP notice : <em>Undefined property: Eleave\Index\View::$times</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\views\index.php</b> on line <b>178</b> 
+[2024-07-09 15:33:57] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:33:57] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:33:57] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:33:57] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:34:08] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:34:08] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:34:23] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:34:23] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:34:29] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:34:29] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:34:29] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:34:29] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:35:04] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:35:04] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:35:09] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:35:09] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:35:17] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:35:17] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:35:20] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:35:20] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:35:35] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:35:35] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:35:43] ERROR: <br>PHP notice : <em>Undefined offset: 0</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
+[2024-07-09 15:35:43] ERROR: <br>PHP notice : <em>Trying to get property 'shift_id' of non-object</em> in <b>C:\xampp\htdocs\eleave\modules\eleave\models\leave.php</b> on line <b>625</b> 
