@@ -20,6 +20,28 @@ use Kotchasan\Language;
  */
 class Functions
 {
+    /**
+     * @param array $times_array
+     * @param string $times_start
+     * @return array
+     */
+    public static function setTimes($times_array, $times_start) {
+        $result = [];
+        $startFound = false;
+
+        // เพิ่ม 30 นาทีให้กับเวลาที่เริ่มต้น
+        $start_time = new \DateTime($times_start);
+        $start_time->modify('+30 minutes');
+        $adjusted_start = $start_time->format('H:i');
+
+        foreach ($times_array as $time => $value) {
+            if ($startFound || $time == $adjusted_start) {
+                $startFound = true;
+                $result[$time] = $value;
+            }
+        }
+        return $result;
+    }
 
     /**
      * @param string $datetime

@@ -411,6 +411,24 @@ class Model extends \Kotchasan\Model
      * เป็น JSON
      * @param Request $request
      */
+    public function setSelectTime(Request $request)
+    {
+        $queryParams = $request->getQueryParams();
+        $shift_id = (int)$queryParams['shift_id'];
+        $start_time = $queryParams['start_time'];
+        $leave_time = self::getTime0fShift($shift_id);
+        $leave_end_time = \Gcms\Functions::setTimes($leave_time,$start_time);
+        $res['leave_end_time'] = $leave_end_time;
+        $res['end_time'] = reset($leave_end_time);
+        // คืนค่า JSON
+        echo json_encode($res);
+    }
+
+    /**
+     * คืนค่ารายละเอียดกะที่เลือก
+     * เป็น JSON
+     * @param Request $request
+     */
     public function leavealert(Request $request)
     {
         // รับค่า

@@ -106,8 +106,12 @@ class View extends \Gcms\View
             'value' => isset($index->start_date) ? $index->start_date : date('Y-m-d')
         ));
         $leave_time = \Eleave\Leave\Model::getTime0fShift($login['shift_id']);
-        $time_stt = array_pop($leave_time);
-        $time_ent = array_shift($leave_time);
+        $time_stt = $leave_time;
+        $time_ent = $leave_time;
+        if (count($leave_time) != 48) {
+            array_pop($time_stt);
+            array_shift($time_ent);
+        }
         // เวลาเริ่มต้น
         $groups->add('select', array(
             'id' => 'start_time',

@@ -23,6 +23,7 @@ function initEleaveLeave() {
   doLeaveTypeChanged.call(this);
   $G('start_date').addEvent("change", function () {
     if (this.value) {
+      $G('end_date').value = this.value;
       $G('end_date').min = this.value;
       if (num_days > 0) {
         var maxDate = new Date(this.value).moveDate(num_days - 1);
@@ -46,8 +47,6 @@ function initEleaveLeave() {
       if (a == 3 || a == 7 || a == 8) {
         $E('start_period').value = 0;
         $E('start_period').disabled = 1;
-        $E('start_time').value = '00:00';
-        $E('end_time').value = '00:00';
         $E('end_date').disabled = 0;
         $E('start_time').disabled = 1;
         $E('end_time').disabled = 1;
@@ -55,6 +54,25 @@ function initEleaveLeave() {
       } else {
         $E('start_period').disabled = 0;
       }
+    }
+  });
+
+  $G('start_time').addEvent("change", function () {
+    if (this.value && $E('start_time').value != '') {
+      var params = new URLSearchParams({
+          'shift_id': $E('shift_id').value
+          ,'start_time': $E('start_time').value
+      }).toString();
+      var url = WEB_URL + 'index.php/eleave/model/leave/setSelectTime?' + params;
+      send(url, '', function(xhr) {
+          var ds = xhr.responseText.toJSON();
+          if (ds) {
+              console.log(ds.leave_end_time);
+              $E('end_time').value = ds.end_time;
+          } else if (xhr.responseText != '') {
+              console.log(xhr.responseText);
+          }
+      });
     }
   });
 
