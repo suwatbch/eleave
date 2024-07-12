@@ -124,7 +124,7 @@ class View extends \Gcms\View
             'id' => 'start_time',
             'labelClass' => 'g-input icon-clock',
             'itemClass' => 'width25',
-            'label' => '{LNG_Start time}',
+            'label' => '{LNG_Start time}<em>*</em>',
             'options' => $time_stt,
             'disabled' => true,
             'value' => isset($index->start_time) ? $index->start_time : ''
@@ -134,7 +134,7 @@ class View extends \Gcms\View
             'id' => 'end_time',
             'labelClass' => 'g-input icon-clock',
             'itemClass' => 'width25',
-            'label' => '{LNG_End time}',
+            'label' => '{LNG_End time}<em>*</em>',
             'options' => $time_ent,
             'disabled' => true,
             'value' => isset($index->end_time) ? $index->end_time : ''
@@ -144,7 +144,7 @@ class View extends \Gcms\View
             'id' => 'end_date',
             'labelClass' => 'g-input icon-calendar',
             'itemClass' => 'item',
-            'label' => '{LNG_End date}',
+            'label' => '{LNG_End date}<em>*</em>',
             // 'comment' => '{LNG_If the date is closed The end date is used together with the start date}',
             'disabled' => $notEdit,
             'value' => isset($index->end_date) ? $index->end_date : date('Y-m-d')
