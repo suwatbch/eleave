@@ -157,7 +157,7 @@ class Model extends \Kotchasan\Model
                     // ค่าที่ส่งมา
                     $save = array(
                         'days' => $request->post('cal_days')->toInt(),
-                        'times' => $request->post('cal_times')->toInt(),
+                        'times' => $request->post('cal_times')->toFloat(),
                         'leave_id' => $request->post('leave_id')->toInt(),
                         'detail' => $request->post('detail')->textarea(),
                         'communication' => $request->post('communication')->textarea()
