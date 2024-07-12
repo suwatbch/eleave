@@ -10,7 +10,7 @@ return array(
   'Address' => 'ที่อยู่',
   'Address details' => 'รายละเอียดที่อยู่',
   'Administrator status It is of utmost importance to do everything' => 'สถานะผู้ดูแลระบบ มีความสำคัญสูงสุดสามารถทำได้ทุกอย่าง',
-  'Alert' => 'ตรวจสอบ',
+  'Alert data' => 'ตรวจสอบข้อมูล',
   'All :count entries, displayed :start to :end, page :page of :total pages' => 'ทั้งหมด :count รายการ, แสดง :start ถึง :end, หน้าที่ :page จากทั้งหมด :total หน้า',
   'all items' => 'ทั้งหมด',
   'Always enabled' => 'เปิดใช้งานตลอดเวลา',
@@ -159,9 +159,11 @@ return array(
   'Leave' => 'ลา',
   'Leave conditions' => 'เงื่อนไขการลา',
   'Leave empty for generate auto' => 'เว้นว่างไว้เพื่อสร้างโดยอัตโนมัติ',
+  'Leave formet' => 'รูปแบบการลา',
   'Leave history' => 'ประวัติการลา',
+  'Leave not found' => 'ไม่พบการลา',
   'Leave quota not found' => 'ไม่พบโคต้าการลา',
-  'Leave type' => 'รูปแบบการลา',
+  'Leave type' => 'ประเภทการลา',
   'LEAVE_PERIOD' => array(
     0 => 'เต็มวัน/ทั้งกะ',
     1 => 'ช่วงเวลา'

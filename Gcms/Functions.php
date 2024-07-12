@@ -20,6 +20,91 @@ use Kotchasan\Language;
  */
 class Functions
 {
+    /**
+     * @param string $start_time
+     * @param string $end_time
+     * @return float
+     */
+    public static function calculateDuration($start_time, $end_time) {
+       // แปลงเวลาเริ่มต้นและเวลาสิ้นสุดเป็น timestamp
+        $startTimestamp = strtotime($start_time);
+        $endTimestamp = strtotime($end_time);
+
+        // ถ้าเวลาสิ้นสุดน้อยกว่าเวลาเริ่มต้น ให้เพิ่ม 24 ชั่วโมงให้กับเวลาสิ้นสุด
+        if ($endTimestamp < $startTimestamp) {
+            $endTimestamp += 24 * 60 * 60; // เพิ่ม 24 ชั่วโมง (86400 วินาที)
+        }
+
+        // คำนวณความแตกต่างในหน่วยวินาที
+        $durationInSeconds = $endTimestamp - $startTimestamp;
+
+        // แปลงความแตกต่างเป็นชั่วโมงและนาที
+        $hours = floor($durationInSeconds / 3600);
+        $minutes = ($durationInSeconds / 60) % 60;
+        $minutes = $minutes == 30 ? 0.5 : 0;
+        $hours += $minutes;
+
+        return $hours; 
+    }
+
+    /**
+     * @param array $times_array
+     * @param string $times_start
+     * @return array
+     */
+    public static function setTimes($times_array, $times_start) {
+        $result = [];
+        $startFound = false;
+
+        // เพิ่ม 30 นาทีให้กับเวลาที่เริ่มต้น
+        $start_time = new \DateTime($times_start);
+        $start_time->modify('+30 minutes');
+        $adjusted_start = $start_time->format('H:i');
+
+        foreach ($times_array as $time => $value) {
+            if ($startFound || $time == $adjusted_start) {
+                $startFound = true;
+                $result[$time] = $value;
+            }
+        }
+        return $result;
+    }
+
+    /**
+     * @param string $datetime
+     * @return array
+     */
+    public static function genTimes($datetime) {
+        $times = [];
+    
+        if ($datetime != '') {
+            $datetime = new \DateTime($datetime);
+            $startHour = (int)$datetime->format('H');
+            $startMinute = (int)$datetime->format('i');
+            
+            $endHour = ($startHour + 9) % 24;
+            $endMinute = $startMinute;
+
+            for ($hour = $startHour; ; $hour = ($hour + 1) % 24) {
+                for ($minute = ($hour == $startHour) ? $startMinute : 0; $minute < 60; $minute += 30) {
+                    $time = sprintf('%02d:%02d', $hour, $minute);
+                    $times[$time] = $time;
+                    if ($hour == $endHour && $minute == $endMinute) {
+                        break 2;
+                    }
+                }
+            }
+        } else {
+            for ($hour = 0; $hour < 24; $hour++) {
+                for ($minute = 0; $minute < 60; $minute += 30) {
+                    $time = sprintf('%02d:%02d', $hour, $minute);
+                    $times[$time] = $time;
+                }
+            }
+        }
+        
+        return $times;
+    }
 
     /**
      * @param string $date

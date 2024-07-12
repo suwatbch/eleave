@@ -10,7 +10,7 @@ return array(
   'Address' => 'ທີ່ຢູ່',
   'Address details' => 'ລາຍລະອຽດທີ່ຢູ່',
   'Administrator status It is of utmost importance to do everything' => 'ສະຖານະຜູ້ເບິ່ງແຍງລະບົບມີຄວາມສຳຄັນສຸງທີ່ສຸດສາມາດເຮັດໄດ້ທຸກຢ່າງ',
-  'Alert' => 'ເຕືອນ',
+  'Alert data' => 'ເຕືອນ',
   'All :count entries, displayed :start to :end, page :page of :total pages' => 'ທັງໝົດ :count ລາຍການ, ສະແດງ :start ເຖິງ :end, ໜ້າທີ່ :page ຈາກທັງໝົດ:total ໜ້າ',
   'all items' => 'ທັງໝົດ',
   'Always enabled' => 'ເປີດສະເໝີ',
@@ -159,7 +159,9 @@ return array(
   'Leave' => 'ລາ',
   'Leave conditions' => 'ເງື່ອນໄຂການໃຫ້ລາ',
   'Leave empty for generate auto' => 'ປ່ອຍຫວ່າງໄວ້ເພື່ອສ້າງອັດໂນມັດ',
+  'Leave formet' => 'ອອກຈາກແບບຟອມ',
   'Leave history' => 'ປະຫວັດສາດການພັກ',
+  'Leave not found' => 'ບໍ່ພົບ',
   'Leave quota not found' => 'ບໍ່ພົບໂຄຕ້າອອກ',
   'Leave type' => 'ອອກຈາກແບບຟອມ',
   'LEAVE_PERIOD' => array(
