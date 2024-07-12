@@ -211,9 +211,8 @@ class Model extends \Kotchasan\Model
                         if ($save['leave_id'] == 2 || $save['leave_id'] == 8) {
                             $result_quota = $this->createQuery()
                             ->from('leave_quota C')
-                            ->join('user U', 'LEFT', array('U.username', 'C.username'))
                             ->where(array(
-                                array('U.id', $index->member_id),
+                                array('C.member_id', $index->member_id),
                                 array('C.leave_id', $save['leave_id'])
                             ))
                             ->cacheOn()

@@ -14,6 +14,7 @@ use Kotchasan\Html;
 use Kotchasan\Language;
 use Kotchasan\Text;
 
+
 /**
  * module=eleave-leave
  *
@@ -50,12 +51,11 @@ class View extends \Gcms\View
             'title' => '{LNG_Request for leave} '
         ));
         $fieldset->add('hidden', array(
-            'id' => 'username',
-            'value' => $login['username']
+            'id' => 'member_id',
+            'value' => $login['id']
         ));
         $fieldset->add('hidden', array(
             'id' => 'shift_id',
-            'labelClass' => 'color-red',
             'value' => $login['shift_id']
         ));
         // leave_id
@@ -63,7 +63,7 @@ class View extends \Gcms\View
             'id' => 'leave_id',
             'labelClass' => 'g-input icon-verfied',
             'itemClass' => 'item',
-            'label' => '{LNG_Leave type}',
+            'label' => '{LNG_Leave type}<em>*</em>',
             'options' => \Eleave\Leavetype\Model::init()->toSelect(),
             'disabled' => $notEdit,
             'value' => isset($index->leave_id) ? $index->leave_id : 0
@@ -72,25 +72,25 @@ class View extends \Gcms\View
             'id' => 'leave_detail',
             'class' => 'subitem message margin-bottom'
         ));
-        $category = \Eleave\Category\Model::init();
-        foreach ($category->items() as $k => $label) {
-            $fieldset->add('select', array(
-                'id' => $k,
-                'labelClass' => 'g-input icon-valid',
-                'itemClass' => 'item',
-                'label' => $label,
-                'options' => array('' => '{LNG_Please select}') + $category->toSelect($k),
-                'disabled' => Language::get('CATEGORIES', '', $k) !== '',
-                'value' => isset($index->{$k}) ? $index->{$k} : ''
-            ));
-        }
+        // $category = \Eleave\Category\Model::init();
+        // foreach ($category->items() as $k => $label) {
+        //     $fieldset->add('select', array(
+        //         'id' => $k,
+        //         'labelClass' => 'g-input icon-valid',
+        //         'itemClass' => 'item',
+        //         'label' => $label,
+        //         'options' => array('' => '{LNG_Please select}') + $category->toSelect($k),
+        //         'disabled' => Language::get('CATEGORIES', '', $k) !== '',
+        //         'value' => isset($index->{$k}) ? $index->{$k} : ''
+        //     ));
+        // }
         // รูปแบบการลา start_period
         $leave_period = Language::get('LEAVE_PERIOD');
         $fieldset->add('select', array(
             'id' => 'start_period',
             'labelClass' => 'g-input icon-clock',
             'itemClass' => 'item',
-            'label' => '{LNG_Leave type}',
+            'label' => '{LNG_Leave formet}<em>*</em>',
             'options' => $leave_period,
             'disabled' => $notEdit,
             'value' => isset($index->start_period) ? $index->start_period : 0
@@ -101,10 +101,17 @@ class View extends \Gcms\View
             'id' => 'start_date',
             'labelClass' => 'g-input icon-calendar',
             'itemClass' => 'width50',
-            'label' => '{LNG_Start date}',
+            'label' => '{LNG_Start date}<em>*</em>',
             'disabled' => $notEdit,
             'value' => isset($index->start_date) ? $index->start_date : date('Y-m-d')
         ));
+        // เก็บข้อมูลวันที่เก่าซ่อนไว้
+        $fieldset->add('hidden', array(
+            'id' => 'last_start_date',
+            'value' => $login['last_start_date']
+        ));
+
+        // อัปเดตตัวแปร $time_ent ด้วยค่าใหม่
         $leave_time = \Eleave\Leave\Model::getTime0fShift($login['shift_id']);
         $time_stt = $leave_time;
         $time_ent = $leave_time;
@@ -120,7 +127,7 @@ class View extends \Gcms\View
             'label' => '{LNG_Start time}',
             'options' => $time_stt,
             'disabled' => true,
-            'value' => isset($index->start_time) ? $index->start_time : '00:00'
+            'value' => isset($index->start_time) ? $index->start_time : ''
         ));
         // เวลาสิ้นสุด
         $groups->add('select', array(
@@ -130,7 +137,7 @@ class View extends \Gcms\View
             'label' => '{LNG_End time}',
             'options' => $time_ent,
             'disabled' => true,
-            'value' => isset($index->end_time) ? $index->end_time : '00:00'
+            'value' => isset($index->end_time) ? $index->end_time : ''
         ));
         // end_date
         $fieldset->add('date', array(
@@ -141,6 +148,31 @@ class View extends \Gcms\View
             // 'comment' => '{LNG_If the date is closed The end date is used together with the start date}',
             'disabled' => $notEdit,
             'value' => isset($index->end_date) ? $index->end_date : date('Y-m-d')
+        ));
+        // แจ้งเตือนข้อมูลลา
+        $fieldset->add('text', array(
+            'id' => 'textalert',
+            'labelClass' => 'g-input icon-email',
+            'itemClass' => 'item',
+            'label' => '{LNG_Alert data}',
+            'comment' => '<em>{LNG_Check the accuracy of leave}</em>',
+            'disabled' => true,
+            'value' => '<em>'.(isset($index->textalert) ? $index->textalert : '').'</em>'
+        ));
+        // สนานะหลังจากคำนวณ
+        $fieldset->add('hidden', array(
+            'id' => 'cal_status',
+            'value' => $login['cal_status']
+        ));
+        // เก็บวันที่คำนวณได้
+        $fieldset->add('hidden', array(
+            'id' => 'cal_days',
+            'value' => $login['cal_days']
+        ));
+        // เก็บเวลาที่คำนวณได้
+        $fieldset->add('hidden', array(
+            'id' => 'cal_times',
+            'value' => $login['cal_times']
         ));
         if (!$notEdit) {
             // file eleave
@@ -160,22 +192,12 @@ class View extends \Gcms\View
         // if ($index->id > 0) {
         //     $fieldset->appendChild('<div class="item">'.\Download\Index\Controller::init($index->id, 'eleave', self::$cfg->eleave_file_typies, ($canEdit ? $login['id'] : 0)).'</div>');
         // }
-        // // แจ้งเตือนข้อมูลลา
-        // $fieldset->add('text', array(
-        //     'id' => 'textalert',
-        //     'labelClass' => 'g-input icon-email',
-        //     'itemClass' => 'item',
-        //     'label' => '{LNG_Alert}',
-        //     'comment' => '<em>{LNG_Check the accuracy of leave}</em>',
-        //     'disabled' => true,
-        //     'value' => '<em>'.(isset($index->textalert) ? $index->textalert : '').'</em>'
-        // ));
         // detail
         $fieldset->add('textarea', array(
             'id' => 'detail',
             'labelClass' => 'g-input icon-file',
             'itemClass' => 'item',
-            'label' => '{LNG_Detail}/{LNG_Reasons for leave}',
+            'label' => '{LNG_Detail}/{LNG_Reasons for leave}<em>*</em>',
             'rows' => 5,
             'disabled' => $notEdit,
             'value' => isset($index->detail) ? $index->detail : ''
