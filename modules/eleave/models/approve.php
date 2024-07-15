@@ -67,7 +67,6 @@ class Model extends \Kotchasan\Model
                     if ($index && Login::checkPermission($login, 'can_approve_eleave')) {
                         if (Login::isAdmin()) {
                             // แอดมิน แก้ไขข้อมูลได้
-                            $save['shift_id'] = $request->post('shift_id')->toInt();
                             $save['days'] = $request->post('cal_days')->toInt();
                             $save['times'] = $request->post('cal_times')->toFloat();
                             $save['leave_id'] = $request->post('leave_id')->toInt();
@@ -89,6 +88,12 @@ class Model extends \Kotchasan\Model
                             } else {
                                 $start_time = $timetemp;
                                 $end_time = $timetemp;
+                            }
+                            // กะลา
+                            $save['shift_id'] = $request->post('shift_id')->toInt();
+                            // เก็บกะหมุนเวียนลาแบบช่วงเวลา
+                            if ($start_period && $save['shift_id']==0) {
+                                $save['shift_id'] = $request->post('cal_shift_id')->toInt();
                             }
                             
                             $save['start_period'] = $start_period;

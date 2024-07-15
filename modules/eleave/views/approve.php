@@ -165,6 +165,11 @@ class View extends \Gcms\View
             'disabled' => true,
             'value' => '<em>'.$index->textalert.'</em>'
         ));
+        // id กะหมุนเวียน
+        $fieldset->add('hidden', array(
+            'id' => 'cal_shift_id',
+            'value' => $index->cal_shift_id
+        ));
         // สนานะหลังจากคำนวณ
         $fieldset->add('hidden', array(
             'id' => 'cal_status',
