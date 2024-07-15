@@ -50,6 +50,14 @@ class View extends \Gcms\View
         $fieldset = $form->add('fieldset', array(
             'title' => '{LNG_Details of request for leave} '.$name->name
         ));
+        $fieldset->add('hidden', array(
+            'id' => 'member_id',
+            'value' => $index->member_id
+        ));
+        $fieldset->add('hidden', array(
+            'id' => 'shift_id',
+            'value' => $index->shift_id
+        ));
         // leave_id
         $fieldset->add('select', array(
             'id' => 'leave_id',
@@ -76,16 +84,6 @@ class View extends \Gcms\View
                 'value' => $index->{$k}
             ));
         }
-        // shift
-        $fieldset->add('select', array(
-            'id' => 'shift_id',
-            'labelClass' => 'g-input icon-clock',
-            'itemClass' => 'item',
-            'label' => '{LNG_Shift work}',
-            'options' => \Eleave\Leavetype\Model::getshiftAll()->selectshiftAll(),
-            'disabled' => $notEdit,
-            'value' => $index->shift_id
-        ));
         // รูปแบบการลา start_period
         $leave_period = Language::get('LEAVE_PERIOD');
         $fieldset->add('select', array(
@@ -107,16 +105,28 @@ class View extends \Gcms\View
             'disabled' => $notEdit,
             'value' => $index->start_date
         ));
-        $leave_time = Language::get('LEAVE_TIME');
+        // เก็บข้อมูลวันที่เก่าซ่อนไว้
+        $fieldset->add('hidden', array(
+            'id' => 'last_start_date',
+            'value' => $index->last_start_date
+        ));
+        // อัปเดตตัวแปร $time_ent ด้วยค่าใหม่
+        $leave_time = \Eleave\Leave\Model::getTime0fShift($index->shift_id);
+        $time_stt = $leave_time;
+        $time_ent = $leave_time;
+        if (count($leave_time) != 48) {
+            array_pop($time_stt);
+            array_shift($time_ent);
+        }
         // เวลาเริ่มต้น
         $groups->add('select', array(
             'id' => 'start_time',
             'labelClass' => 'g-input icon-clock',
             'itemClass' => 'width25',
             'label' => '{LNG_Start time}',
-            'options' => $leave_time,
+            'options' => $time_stt,
             'disabled' => $notEdit,
-            'value' => $index->start_time
+            'value' => $index->start_time === '00:00' ? '' : $index->start_time
         ));
         // เวลาสิ้นสุด
         $groups->add('select', array(
@@ -124,9 +134,9 @@ class View extends \Gcms\View
             'labelClass' => 'g-input icon-clock',
             'itemClass' => 'width25',
             'label' => '{LNG_End time}',
-            'options' => $leave_time,
+            'options' => $time_ent,
             'disabled' => $notEdit,
-            'value' => $index->end_time
+            'value' => $index->end_time === '00:00' ? '' : $index->end_time
         ));
         $groups = $fieldset->add('groups');
         // end_date
@@ -135,21 +145,34 @@ class View extends \Gcms\View
             'labelClass' => 'g-input icon-calendar',
             'itemClass' => 'item',
             'label' => '{LNG_End date}',
-            'comment' => !$notEdit ? '{LNG_If the date is closed The end date is used together with the start date}' : '',
             'disabled' => $notEdit,
             'value' => $index->end_date
         ));
-        // unset($leave_period[2]);
-        // // end_period
-        // $groups->add('select', array(
-        //     'id' => 'end_period',
-        //     'labelClass' => 'g-input icon-clock',
-        //     'itemClass' => 'width50',
-        //     'label' => '&nbsp;',
-        //     'options' => $leave_period,
-        //     'disabled' => $notEdit,
-        //     'value' => $index->end_period
-        // ));
+        // แจ้งเตือนข้อมูลลา
+        $fieldset->add('text', array(
+            'id' => 'textalert',
+            'labelClass' => 'g-input icon-email',
+            'itemClass' => 'item',
+            'label' => '{LNG_Alert data}',
+            'comment' => '<em>{LNG_Check the accuracy of leave}</em>',
+            'disabled' => true,
+            'value' => '<em>'.$index->textalert.'</em>'
+        ));
+        // สนานะหลังจากคำนวณ
+        $fieldset->add('hidden', array(
+            'id' => 'cal_status',
+            'value' => $index->cal_status
+        ));
+        // เก็บวันที่คำนวณได้
+        $fieldset->add('hidden', array(
+            'id' => 'cal_days',
+            'value' => $index->cal_days
+        ));
+        // เก็บเวลาที่คำนวณได้
+        $fieldset->add('hidden', array(
+            'id' => 'cal_times',
+            'value' => $index->cal_times
+        ));
         if (!$notEdit) {
             // file eleave
             $fieldset->add('file', array(

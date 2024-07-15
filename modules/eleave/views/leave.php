@@ -47,7 +47,6 @@ class View extends \Gcms\View
             'token' => true
         ));
         $fieldset = $form->add('fieldset', array(
-            // 'title' => '{LNG_Details of} {LNG_Request for leave} '.($index->id > 0 ? self::toStatus((array) $index, true) : '')
             'title' => '{LNG_Request for leave} '
         ));
         $fieldset->add('hidden', array(
@@ -110,7 +109,6 @@ class View extends \Gcms\View
             'id' => 'last_start_date',
             'value' => $login['last_start_date']
         ));
-
         // อัปเดตตัวแปร $time_ent ด้วยค่าใหม่
         $leave_time = \Eleave\Leave\Model::getTime0fShift($login['shift_id']);
         $time_stt = $leave_time;
@@ -145,7 +143,6 @@ class View extends \Gcms\View
             'labelClass' => 'g-input icon-calendar',
             'itemClass' => 'item',
             'label' => '{LNG_End date}<em>*</em>',
-            // 'comment' => '{LNG_If the date is closed The end date is used together with the start date}',
             'disabled' => $notEdit,
             'value' => isset($index->end_date) ? $index->end_date : date('Y-m-d')
         ));
@@ -208,7 +205,6 @@ class View extends \Gcms\View
             'labelClass' => 'g-input icon-clock',
             'itemClass' => 'item',
             'label' => '{LNG_Communication}',
-            // 'comment' => '{LNG_Contact information during leave}',
             'rows' => 3,
             'disabled' => $notEdit,
             'value' => isset($index->communication) ? $index->communication : ''
