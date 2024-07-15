@@ -118,6 +118,13 @@ class View extends \Gcms\View
             array_pop($time_stt);
             array_shift($time_ent);
         }
+
+        // เพิ่ม "00:00" 
+        $adddata = array("00:00" => "");
+        foreach ($adddata as $key => $value){
+            $time_stt = array($key => $value) +$time_stt;
+            $time_ent = array($key => $value) +$time_ent;
+        }
         // เวลาเริ่มต้น
         $groups->add('select', array(
             'id' => 'start_time',
@@ -126,7 +133,7 @@ class View extends \Gcms\View
             'label' => '{LNG_Start time}',
             'options' => $time_stt,
             'disabled' => $notEdit,
-            'value' => $index->start_time === '00:00' ? '' : $index->start_time
+            'value' => $index->start_time
         ));
         // เวลาสิ้นสุด
         $groups->add('select', array(
@@ -136,7 +143,7 @@ class View extends \Gcms\View
             'label' => '{LNG_End time}',
             'options' => $time_ent,
             'disabled' => $notEdit,
-            'value' => $index->end_time === '00:00' ? '' : $index->end_time
+            'value' => $index->end_time
         ));
         $groups = $fieldset->add('groups');
         // end_date
