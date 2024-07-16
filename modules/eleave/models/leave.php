@@ -16,6 +16,7 @@ use Kotchasan\Date;
 use Kotchasan\Http\Request;
 use Kotchasan\Language;
 
+
 /**
  * module=eleave-leave
  *
@@ -64,10 +65,11 @@ class Model extends \Kotchasan\Model
     {
         // session, referer, member
         if ($request->initSession() && $request->isReferer() && Login::isMember()) {
+            $shift_id = $request->post('id')->toInt();
             $shift = $this->createQuery()
                 ->from('shift')
                 ->where(array(
-                    array('id', $request->post('id')->toInt())
+                    array('id', $shift_id)
                 ))
                 ->cacheOn()
                 ->first('skipdate');
@@ -148,261 +150,131 @@ class Model extends \Kotchasan\Model
         $ret = [];
         // session, token, สมาชิก
         if ($request->initSession() && $request->isSafe() && $login = Login::isMember()) {
-            try {
-                // ค่าที่ส่งมา
-                $save = array(
-                    'leave_id' => $request->post('leave_id')->toInt(),
-                    'detail' => $request->post('detail')->textarea(),
-                    'communication' => $request->post('communication')->textarea()
-                );
-                // ตรวจสอบรายการที่เลือก
-                $index = self::get($request->post('id')->toInt(), $login);
-                $save['shift_id'] = $login['shift_id'];
-                // ไม่ได้เลือกการลา
-                if ($save['leave_id'] == 0) {
-                    $ret['ret_leave_id'] = Language::get('Select leave');  
+        
+            if ($request->post('cal_status')->toInt()) {
+                try {
+                    // ค่าที่ส่งมา
+                    $save = array(
+                        'days' => $request->post('cal_days')->toInt(),
+                        'times' => $request->post('cal_times')->toFloat(),
+                        'leave_id' => $request->post('leave_id')->toInt(),
+                        'detail' => $request->post('detail')->textarea(),
+                        'communication' => $request->post('communication')->textarea()
+                    );
+                    // ตรวจสอบรายการที่เลือก
+                    $index = self::get($request->post('id')->toInt(), $login);
+                    // ไม่ได้เลือกการลา
+                    if ($save['leave_id'] == 0) {
+                        $ret['ret_leave_id'] = Language::get('Select leave');  
+                    }
+                    if ($index && $login && $login['id'] == $index->member_id) {
+                        // หมวดหมู่
+                        $category = \Eleave\Category\Model::init();
+                        foreach ($category->items() as $k => $label) {
+                            if (Language::get('CATEGORIES', '', $k) === '') {
+                                // หมวดหมู่ลา
+                                $save[$k] = $request->post($k)->topic();
+                            } else {
+                                // หมวดหมู่สมาชิก (ใช้ข้อมูลสมาชิก)
+                                $save[$k] = isset($index->{$k}) ? $index->{$k} : null;
+                            }
+                        }
+                        // วันลา
+                        $start_period = $request->post('start_period')->toInt();
+                        $start_date = $request->post('start_date')->date();
+                        $end_date = $request->post('end_date')->date();
+                        $timetemp = '00:00';
+                        if ($start_period) {
+                            $start_time = $request->post('start_time')->text() == ''  ? $timetemp : $request->post('start_time')->text();
+                            $end_time = $request->post('end_time')->text() == '' ? $timetemp : $request->post('end_time')->text();
+                        } else {
+                            $start_time = $timetemp;
+                            $end_time = $timetemp;
+                        }
+                        // กะลา
+                        $save['shift_id'] = $login['shift_id'];
+                        // เก็บกะหมุนเวียนลาแบบช่วงเวลา
+                        if ($start_period && $save['shift_id']==0) {
+                            $save['shift_id'] = $request->post('cal_shift_id')->toInt();
+                        }
+
+                        $save['start_period'] = $start_period;
+                        $save['start_date'] = $start_date;
+                        $save['start_time'] = $start_time;
+                        $save['end_date'] = $end_date;
+                        $save['end_time'] = $end_time;
+                        // ไม่สามารถลากิจได้มากกว่า 6 วัน
+                        if ($save['days'] > 6 && $save['leave_id'] == 2) {
+                            $ret['ret_end_date'] = Language::get('Unable to take leave for more than 6 days');
+                        }
+                        // ตรวจสอบวันลากิจและลาพักร้อน
+                        $result = false;
+                        $result_quota = "";
+                        $leave_quota = 0;
+                        if ($save['leave_id'] == 2 || $save['leave_id'] == 8) {
+                            $result_quota = self::getQuota($login['id'],$save['leave_id']);
+                            $result_sum = self::getSumLeave($login['id'],$save['leave_id']);
+                            $leave_quota = $result_sum->sum == null ? 0 : $result_sum->sum;
+                            $result = true;
+                        }
+                        if ($result && $result_quota != "" && $result_quota != false) {
+                            if (($save['days'] + $leave_quota) > $result_quota->quota) {
+                                $ret['ret_end_date'] = Language::get('There arent enough leave days');
+                            }
+                        } else if ($result && !$result_quota) {
+                            $ret['ret_end_date'] = Language::get('Leave quota not found');
+                        }
+                        // table
+                        $table = $this->getTableName('leave_items');
+                        // Database
+                        $db = $this->db();
+                        if (empty($ret)) {
+                            // $table = $this->getTableName('leave_items');
+                            // $db = $this->db();
+                            if ($index->id == 0) {
+                                $save['id'] = $db->getNextId($table);
+                            } else {
+                                $save['id'] = $index->id;
+                            }
+                            // อัปโหลดไฟล์แนบ
+                            \Download\Upload\Model::execute($ret, $request, $save['id'], 'eleave', self::$cfg->eleave_file_typies, self::$cfg->eleave_upload_size);
+                        }
+                        if ($save['detail'] == '') {
+                            // ไม่ได้กรอก detail
+                            $ret['ret_detail'] = 'Please fill in';
+                        }
+                        if (empty($ret)) {
+                            if ($index->id == 0) {
+                                // ใหม่
+                                $save['member_id'] = $login['id'];
+                                $save['create_date'] = date('Y-m-d H:i:s');
+                                $save['status'] = 0;
+                                $db->insert($table, $save);
+                            } else {
+                                // แก้ไข
+                                $db->update($table, $save['id'], $save);
+                                $save['status'] = $index->status;
+                                $save['member_id'] = $index->member_id;
+                            }
+                            // log
+                            \Index\Log\Model::add($save['id'], 'eleave', 'Status', Language::get('LEAVE_STATUS', '', $save['status']).' ID : '.$save['id'], $login['id']);
+                            if ($index->id == 0 || $save['status'] != $index->status) {
+                                // ประเภทลา
+                                $save['leave_type'] = self::leaveType($save['leave_id']);
+                                // ส่งอีเมลแจ้งการขอลา
+                                $ret['alert'] = \Eleave\Email\Model::send($save);
+                            } else {
+                                // ไม่ต้องส่งอีเมล
+                                $ret['alert'] = Language::get('Saved successfully');
+                            }
+                            $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'eleave', 'status' => $save['status']));
+                            // เคลียร์
+                            $request->removeToken();
+                        }
+                    }
+                } catch (\Kotchasan\InputItemException $e) {
+                    $ret['alert'] = $e->getMessage();
                 }
-                if ($index && $login && $login['id'] == $index->member_id) {
-                    // หมวดหมู่
-                    $category = \Eleave\Category\Model::init();
-                    foreach ($category->items() as $k => $label) {
-                        if (Language::get('CATEGORIES', '', $k) === '') {
-                            // หมวดหมู่ลา
-                            $save[$k] = $request->post($k)->topic();
-                        } else {
-                            // หมวดหมู่สมาชิก (ใช้ข้อมูลสมาชิก)
-                            $save[$k] = isset($index->{$k}) ? $index->{$k} : null;
-                        }
-                    }
-                    // วันลา
-                    $start_period = $request->post('start_period')->toInt();
-                    $start_date = $request->post('start_date')->date();
-                    $end_date = $request->post('end_date')->date();
-                    $timetemp = '00:00';
-                    if ($start_period) {
-                        $start_time = $request->post('start_time')->text() == ''  ? $timetemp : $request->post('start_time')->text();
-                        $end_time = $request->post('end_time')->text() == '' ? $timetemp : $request->post('end_time')->text();
-                    } else {
-                        $start_time = $timetemp;
-                        $end_time = $timetemp;
-                    }
-                    $save['days'] = 0;
-                    $save['times'] = 0;
-                    if ($start_date == '') {
-                        // ไม่ได้กรอกวันที่เริมต้น
-                        $ret['ret_start_date'] = 'Please fill in';
-                    }
-                    if ($end_date == '') {
-                        // ไม่ได้กรอกวันที่สิ้นสุดมา ใช้วันที่เดียวกันกับวันที่เริ่มต้น (ลา 1 วัน)
-                        $end_date = $start_date;
-                    }
-
-                    // เริ่มการหากะ
-                    $Wstd = new \DateTime($start_date);
-                    if (!$login['shift_id']) {
-                        $Wmonth = \Gcms\Functions::getSurroundingMonths($start_date);
-                        $workdays = self::getShiftWorkdays($login['username'],$Wstd->format('Y'),$Wmonth);
-                        $login['shift_id'] = $workdays->shift_id;
-                        $workdays = \Gcms\Functions::datanap($workdays->days, 'days');
-                    }
-                    $shiftdata = self::getShifts($login['shift_id']);
-
-                    if ($shiftdata->static) {
-                        // กำหนดวันทำงาน
-                        $workweek = json_decode($shiftdata->workweek, true);
-
-                        // กำหนดวันหยุด
-                        $holidays = self::getShiftHolidays($login['shift_id'],$Wstd->format('Y'));
-                        $holidays = \Gcms\Functions::datanap($holidays, 'holidays');
-                    }
-
-                    if ($end_date < $start_date && !$start_period) {
-                        // วันที่สิ้นสุด น้อยกว่าวันที่เริ่มต้น
-                        $ret['ret_end_date'] = Language::get('End date must be greater than or equal to the start date');
-                    } elseif ($start_period) {
-                        $diff = Date::compare($start_date, $end_date);
-                        // ลาภายใน 1 วัน เช็คกะเพิ่มถ้ากะข้ามวัน end > start ได้
-                        if ($shiftdata) {
-                            $start_date_work = $start_date;
-                            $end_date_work = $start_date;
-                            $skipdate = $shiftdata->skipdate;
-                            if (!$skipdate) {
-                                // กะภายในวัน วันที่สิ้นสุดเท่ากันวันที่เริ่มต้น
-                                $end_date = $start_date;
-                                $end_date_work = $end_date;
-                            } else {
-                                if ($diff['days'] < 0 || $diff['days'] > 1) {
-                                    // กะข้ามวัน เลือกวันที่สิ้นสุด มากกว่า 1 วัน
-                                    $ret['ret_end_date'] = Language::get('The end date is incorrect');
-                                } else {
-                                    // กะข้าววัน วันที่สิ้นสุดมากกว่าวันที่เริ่มต้น 1 วัน
-                                    $add_one_date = new \DateTime($start_date);
-                                    $add_one_date->modify('+1 day');
-                                    $start_date_work = $add_one_date->format('Y-m-d');
-                                    $end_date_work = $add_one_date->format('Y-m-d');
-                                }
-                            }
-                            
-                            // จัดรูปแบบวันที่เป็นสตริง
-                            $date_start = $start_date.' '.$shiftdata->start_time;
-                            $date_end = $end_date_work .' '.$shiftdata->end_time;
-                            $break_start = $start_date_work.' '.$shiftdata->start_break_time;
-                            $break_end = $end_date_work.' '.$shiftdata->end_break_time;
-                            $leave_start = $start_date.' '.$start_time;
-                            $leave_end = $end_date.' '.$end_time;
-
-                            // ปรับเวลาลาให้ข้ามวันถ้าจำเป็น
-                            if ($skipdate && (new \DateTime($start_time) < new \DateTime('12:00'))) {
-                                $ls_Temp = new \DateTime($leave_start);
-                                $ls_Temp->modify('+1 day');
-                                $leave_start = $ls_Temp->format('Y-m-d H:i');
-                            }
-
-                            // สร้างช่วงเวลาลา
-                            $leave_periods = [['start' => $leave_start, 'end' => $leave_end]];
-
-                            // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
-                            if ($shiftdata->static) {
-                                $times = \Gcms\Functions::calculate_static_leave_hours($date_start, $date_end, $break_start, $break_end, $leave_periods, $workweek, $holidays);
-                            } else {
-                                $times = \Gcms\Functions::calculate_notstatic_leave_hours($date_start, $date_end, $break_start, $break_end, $leave_periods, $workdays);
-                            }
-
-                            // แยกวันเวลา
-                            if ($times >= 8) {
-                                // 8 ซม. เท่ากัน 1 วัน
-                                $save['days'] = 1;
-                            } else if ($times > 0){
-                                // คิดเป็นราย ซม.
-                                $save['times'] = $times;
-                            } else {
-                                if (($diff['days'] >= 0 && $diff['days'] <= 1) || $times == 0 ){
-                                    // เวลาลาไม่ถูกต้อง
-                                    $ret['ret_start_time'] = Language::get('The time is wrong');
-                                    $ret['ret_end_time'] = Language::get('The time is wrong');
-                                }
-                            }
-
-                        } else {
-                            $ret['ret_shift_id'] = Language::get('Work shift not found');
-                        }
-                    } else {
-                        // ตรวจสอบลาข้ามปีงบประมาณ
-                        $end_year = date('Y', strtotime($end_date));
-                        $start_year = date('Y', strtotime($start_date));
-                        $check_year = max($end_year, $start_year);
-                        $fiscal_year = $check_year.sprintf('-%02d-01', 1); // 1 = self::$cfg->eleave_fiscal_year
-                        if ($start_date < $fiscal_year && $end_date >= $fiscal_year) {
-                            // ไม่สามารถเลือกวันลาข้ามปีงบประมาณได้
-                            $ret['ret_start_date'] = Language::get('Unable to take leave across the fiscal year. If you want to take continuous leave, separate the leave form into two. within that fiscal year');
-                        } else {
-                            // ใช้จำนวนวันลาจากที่คำนวณ
-                            if ($shiftdata->static) {
-                                $save['days'] = \Gcms\Functions::calculate_static_leave_days($start_date,$end_date,$workweek,$holidays);
-                            } else {
-                                $save['days'] = \Gcms\Functions::calculate_notstatic_leave_days($start_date,$end_date,$workdays);
-                            }
-                            // ลาเต็มวัน ต้องลามากกว่า 0 วัน
-                            if ($save['days']==0){
-                                $ret['ret_end_date'] = Language::get('The end date is incorrect');
-                            }
-                        }
-                    }
-                    $save['start_period'] = $start_period;
-                    $save['start_date'] = $start_date;
-                    $save['start_time'] = $start_time;
-                    $save['end_date'] = $end_date;
-                    $save['end_time'] = $end_time;
-                    // ไม่สามารถลากิจได้มากกว่า 6 วัน
-                    if ($save['days'] > 6 && $save['leave_id'] == 2) {
-                        $ret['ret_end_date'] = Language::get('Unable to take leave for more than 6 days');
-                    }
-                    // ตรวจสอบวันลากิจและลาพักร้อน
-                    $result = false;
-                    $result_quota = "";
-                    $result_items = "";
-                    $leave_quota = 0;
-                    if ($save['leave_id'] == 2 || $save['leave_id'] == 8) {
-                        $result_quota = $this->createQuery()
-                        ->from('leave_quota C')
-                        ->join('user U', 'LEFT', array('U.username', 'C.username'))
-                        ->where(array(
-                            array('U.id', $login['id']),
-                            array('C.leave_id', $save['leave_id'])
-                        ))
-                        ->cacheOn()
-                        ->first('C.quota');
-
-                        $result_items = [];
-                        $result_items = static::createQuery()
-                        ->select('SQL(SUM(days) AS sum)')
-                        ->from('leave_items I')
-                        ->where(array(
-                            array('I.member_id', $login['id']),
-                            array('I.leave_id', $save['leave_id']),
-                            array('I.status', '<', 2)
-                        ));
-                        $result_itemsdata = $result_items->execute();
-                        $leave_quota = $result_itemsdata[0]->sum == null ? 0 : $result_itemsdata[0]->sum;
-                        $result = true;
-                    }
-                    if ($result && $result_quota != "" && $result_quota != false) {
-                        if (($save['days'] + $leave_quota) > $result_quota->quota) {
-                            $ret['ret_end_date'] = Language::get('There arent enough leave days');
-                        }
-                    } else if ($result && !$result_quota) {
-                        $ret['ret_end_date'] = Language::get('Leave quota not found');
-                    }
-                    // table
-                    $table = $this->getTableName('leave_items');
-                    // Database
-                    $db = $this->db();
-                    if (empty($ret)) {
-                        // $table = $this->getTableName('leave_items');
-                        // $db = $this->db();
-                        if ($index->id == 0) {
-                            $save['id'] = $db->getNextId($table);
-                        } else {
-                            $save['id'] = $index->id;
-                        }
-                        // อัปโหลดไฟล์แนบ
-                        \Download\Upload\Model::execute($ret, $request, $save['id'], 'eleave', self::$cfg->eleave_file_typies, self::$cfg->eleave_upload_size);
-                    }
-                    if ($save['detail'] == '') {
-                        // ไม่ได้กรอก detail
-                        $ret['ret_detail'] = 'Please fill in';
-                    }
-                    if (empty($ret)) {
-                        if ($index->id == 0) {
-                            // ใหม่
-                            $save['member_id'] = $login['id'];
-                            $save['create_date'] = date('Y-m-d H:i:s');
-                            $save['status'] = 0;
-                            $db->insert($table, $save);
-                        } else {
-                            // แก้ไข
-                            $db->update($table, $save['id'], $save);
-                            $save['status'] = $index->status;
-                            $save['member_id'] = $index->member_id;
-                        }
-                        // log
-                        \Index\Log\Model::add($save['id'], 'eleave', 'Status', Language::get('LEAVE_STATUS', '', $save['status']).' ID : '.$save['id'], $login['id']);
-                        if ($index->id == 0 || $save['status'] != $index->status) {
-                            // ประเภทลา
-                            $save['leave_type'] = self::leaveType($save['leave_id']);
-                            // ส่งอีเมลแจ้งการขอลา
-                            $ret['alert'] = \Eleave\Email\Model::send($save);
-                        } else {
-                            // ไม่ต้องส่งอีเมล
-                            $ret['alert'] = Language::get('Saved successfully');
-                        }
-                        $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'eleave', 'status' => $save['status']));
-                        // เคลียร์
-                        $request->removeToken();
-                    }
-                }
-            } catch (\Kotchasan\InputItemException $e) {
-                $ret['alert'] = $e->getMessage();
             }
         }
         if (empty($ret)) {
@@ -412,6 +284,40 @@ class Model extends \Kotchasan\Model
         echo json_encode($ret);
     }
 
+    // /**
+    //  * คืนค่ารายละเอียดกะที่เลือก
+    //  * เป็น JSON
+    //  * @param Request $request
+    //  */
+    // public function setSelectTimeStart(Request $request)
+    // {
+    //     $queryParams = $request->getQueryParams();
+    //     $shift_id = (int)$queryParams['shift_id'];
+    //     $start_time = $queryParams['start_time'];
+    //     $leave_time = self::getTime0fShift($shift_id);
+    //     $leave_end_time = \Gcms\Functions::setTimes($leave_time,$start_time);
+    //     $res['leave_end_time'] = $leave_end_time;
+    //     $res['end_time'] = reset($leave_end_time);
+    //     // คืนค่า JSON
+    //     echo json_encode($res);
+    // }
+
+    /**
+     * คืนค่ารายละเอียดกะที่เลือก
+     * เป็น JSON
+     * @param Request $request
+     */
+    public function calculateDuration(Request $request)
+    {
+        $queryParams = $request->getQueryParams();
+        $start_time = $queryParams['start_time'];
+        $end_time = $queryParams['end_time'];
+        $times = \Gcms\Functions::calculateDuration($start_time,$end_time);
+        $res['data'] = $times;
+        // คืนค่า JSON
+        echo json_encode($res);
+    }
+
     /**
      * คืนค่ารายละเอียดกะที่เลือก
      * เป็น JSON
@@ -419,23 +325,154 @@ class Model extends \Kotchasan\Model
      */
     public function leavealert(Request $request)
     {
+        // รับค่า
+        $queryParams = $request->getQueryParams();
+        $leave_id = (int)$queryParams['leave_id'];
+        $shift_id = (int)$queryParams['shift_id'];
+        $member_id = (int)$queryParams['member_id'];
+        $start_period = (int)$queryParams['start_period'];
+        $start_date = $queryParams['start_date'];
+        $start_time = $queryParams['start_time'];
+        $end_date = $queryParams['end_date'];
+        $end_time = $queryParams['end_time'];
+
+        // เรียกชื่อที่จะแสดง
         $res = [];
-        $leave_id = $request->post('leave_id')->toInt();
-        if ($leave_id > 0) {
-            $leavedata = self::getLeaveOfId($leave_id);
-            $res['leavename'] = $leavedata['topic'];
+        $ret = '';
+        $res['status'] = 0;
+        $res['days'] = 0;
+        $res['times'] = 0;
+        $leave_period = Language::get('LEAVE_PERIOD');
+        if ($start_date == $end_date) {
+            $ret = Date::format($start_date, 'd M Y').' '.$leave_period[$start_period];
         } else {
-            $res['leavename'] = 'เลือกการลา';
+            $ret = Date::format($start_date, 'd M Y').' '.$leave_period[$start_period]. ($start_period ? '' : ' - '.Date::format($end_date, 'd M Y').' '.$leave_period[0]);
         }
 
+        // เริ่มการหากะ
+        $Wstd = new \DateTime($start_date);
+        $Wend = new \DateTime($end_date);
+        $start_month = false;
+        $end_month = false;
+        $workdays = [];
+        $workweek = [];
+        $holidays= [];
+
+        $leave_user = self::getUser($member_id);
+        if ($shift_id==0 || $leave_user->shift_id==0) {
+            $Wmonth = \Gcms\Functions::getSurroundingMonths($start_date);
+            $workdays = self::getShiftWorkdays($start_period,$member_id,$Wstd->format('Y'),$Wmonth,$Wstd->format('m'),$Wend->format('m'),$start_date);
+            $shift_id = $workdays->shift_id;
+            $start_month = $workdays->start_month;
+            $end_month = $workdays->end_month;
+            $workdays = \Gcms\Functions::datanap($workdays->days, 'days');
+        }
+
+        $diff = Date::compare($start_date, $end_date);
+        // เช็คต้องมีเลขกะ กะเปลี่ยนแปลงต้องหาเดือนให้เจอ วันที่เริ่มต้นต้องไม่น้อยกว่าวันที่สิ้นสุด
+        if (!($start_month || $end_month) && $diff['days']>=0) {
+            $shift_id = $shift_id == null ? 0 : $shift_id;
+            $res['shift_id'] = $shift_id;
+            $days = 0;
+            $times = 0;
+            $daysTimes = '';
+            $shiftdata = self::getShifts($shift_id);
+            $static = $shiftdata->static;
+
+            if ($static) {
+                // กำหนดวันทำงาน
+                $workweek = json_decode($shiftdata->workweek, true);
+
+                // กำหนดวันหยุด
+                $holidays = self::getShiftHolidays($shift_id,$Wstd->format('Y'));
+                $holidays = \Gcms\Functions::datanap($holidays, 'holidays');
+            }
+
+            if ($start_period){
+                //คำนวณเวลางานแบบกะ 9 ซม.
+                $leavetimes = \Gcms\Functions::calculateDuration($start_time,$end_time);
+                if ($leavetimes > 0 && $leavetimes <= 9) {
+                    // แสดงเวลาที่เลือก
+                    $showtime = \Gcms\Functions::showtime($start_time,$end_time);
+                    $ret = $ret.' '.$showtime;
+
+                    // ลาภายใน 1 วัน เช็คกะเพิ่มถ้ากะข้ามวัน end > start ได้
+                    if ($shiftdata) {
+                        $start_date_work = $start_date;
+                        $end_date_work = $start_date;
+                        if (!($diff['days'] < 0 || $diff['days'] > 1) && $shiftdata->skipdate) {
+                            // กะข้าววัน วันที่สิ้นสุดมากกว่าวันที่เริ่มต้น 1 วัน
+                            $add_one_date = new \DateTime($start_date);
+                            $add_one_date->modify('+1 day');
+                            $start_date_work = $add_one_date->format('Y-m-d');
+                            $end_date_work = $add_one_date->format('Y-m-d');
+                        }
+                        
+                        // จัดรูปแบบวันที่เป็นสตริง
+                        $date_start = $start_date.' '.$shiftdata->start_time;
+                        $date_end = $end_date_work .' '.$shiftdata->end_time;
+                        $break_start = $start_date_work.' '.$shiftdata->start_break_time;
+                        $break_end = $end_date_work.' '.$shiftdata->end_break_time;
+
+                        // สร้างช่วงเวลาลา
+                        $leave_periods = [['start_time' => $start_time, 'end_time' => $end_time]];
+
+                        // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
+                        $times = \Gcms\Functions::calculateLeaveDuration($date_start, $date_end, $break_start, $break_end, $leave_periods, $static, $workdays, $workweek, $holidays);
+
+                        // แยกวันเวลา
+                        if ($times >= 8) {
+                            // 8 ซม. เท่ากัน 1 วัน
+                            $days = 1;
+                            $times = 0;
+                            $res['status'] = 1;
+                            $res['days'] = (int)$days;
+                            $res['times'] = (float)$times;
+                        } else if ($times > 0){
+                            // คิดเป็นราย ซม.
+                            $times = $times;
+                            $res['status'] = 1;
+                            $res['times'] = (float)$times;
+                        }
+                    }
+                }
+            } else {
+                // ตรวจสอบลาข้ามปีงบประมาณ
+                $end_year = date('Y', strtotime($end_date));
+                $start_year = date('Y', strtotime($start_date));
+                $check_year = max($end_year, $start_year);
+                $fiscal_year = $check_year.sprintf('-%02d-01', 1); // 1 = self::$cfg->eleave_fiscal_year
+                if (!($start_date < $fiscal_year && $end_date >= $fiscal_year)) {
+
+                    // ใช้จำนวนวันลาจากที่คำนวณ
+                    $days = \Gcms\Functions::calculate_leave_days($start_date,$end_date,$static,$workdays,$workweek,$holidays);
+                    
+                    if ($days > 0) { 
+                        $res['status'] = 1;
+                        $res['days'] = (int)$days;
+                    }
+                }
+            }
+            $daysTimes = \Gcms\Functions::gettimeleave($days,$times);
+            $Leavenotfound = $res['status'] ? ': '.Language::get('Leave not found') : null;
+            $daysTimes = empty($daysTimes) ? $Leavenotfound : Language::get('Total').': '.$daysTimes;
+            $ret = $ret.($res['status'] ? ' ' : '').$daysTimes;
+        }
+
+        // กำหนดตัวแปร trturn
+        if (!$res['status']){
+
+            $ret = $ret.' : '.Language::get('Leave not found');
+        }
+        
+        $res['data'] =  $ret;
         // คืนค่า JSON
         echo json_encode($res);
     }
 
     /**
      * @param int $id
-     * 
-     * @return array
+     * @return static
      */
     public function getLeaveOfId($id)
     {
@@ -443,7 +480,44 @@ class Model extends \Kotchasan\Model
                     ->from('leave')
                     ->where(array('id', $id))
                     ->cacheOn()
-                    ->first('*');
+                    ->first('topic');
+    }
+
+    /**
+     * @param int $shift_id
+     * @param int $member_id
+     * @return array
+     */
+    public static function getTime0fShift($shift_id,$member_id)
+    {
+        $user = \Kotchasan\Model::createQuery()
+                    ->select('*')
+                    ->from('user')
+                    ->where(array('id', $member_id))
+                    ->cacheOn()
+                    ->execute();
+
+        $result = \Kotchasan\Model::createQuery()
+                    ->select('*')
+                    ->from('shift')
+                    ->where(array('id', $shift_id))
+                    ->cacheOn()
+                    ->execute();
+
+        $count = count($result) == 0 ? false : true ;
+        $datetime = '';
+        if ($count) {
+            $data = $result[0];
+            $datetime = $data->stat_date.' '.$data->start_time;
+        }
+        $shiftmember_id = 0;        
+        if (count($user) > 0){
+            $user = $user[0];
+            $shiftmember_id = $user->shift_id;
+            $datetime = $shiftmember_id == 0 ? '' : $datetime ;
+        }
+        $Time0fShift = \Gcms\Functions::genTimes($datetime);
+        return $Time0fShift;
     }
 
     /**
@@ -460,33 +534,74 @@ class Model extends \Kotchasan\Model
     }
 
     /**
-     * @param string $username
+     * @param int $start_period
+     * @param int $member_id
      * @param int $year
      * @param array $month
+     * @param string $month_std
+     * @param string $month_end
+     * @param string $start_date
      * @return object
      */
-    public function getShiftWorkdays($username, $year, $month = [])
+    public function getShiftWorkdays($start_period, $member_id, $year, $month = [], $month_std, $month_end, $start_date)
     {
         $workdays = $this->createQuery()
-                        ->select('id','username','shift_id','days')
+                        ->select('id','shift_id','days')
                         ->from('shift_workdays')
                         ->where(array(
-                            array('username', $username),
+                            array('member_id', $member_id),
                             array('yaer', $year),
                             array('month', 'IN', $month)
                         ))
                         ->cacheOn();
-        $workdays = $workdays->execute();      
-        // return $workdays;
-        $shift_id = $workdays[0]->shift_id;
-        $days = [];
+        $workdays = $workdays->execute();    
 
+        $res_month_std = $this->createQuery()
+                            ->from('shift_workdays')
+                            ->where(array(
+                                array('member_id', $member_id),
+                                array('yaer', $year),
+                                array('month', $month_std)
+                            ))
+                            ->cacheOn()
+                            ->first('id');
+
+        $res_month_end = $this->createQuery()
+                            ->from('shift_workdays')
+                            ->where(array(
+                                array('member_id', $member_id),
+                                array('yaer', $year),
+                                array('month', $month_end)
+                            ))
+                            ->cacheOn()
+                            ->first('id');
+        
+        
+        $shift_id = 0;                    
+        if ($start_period) {
+            $shift = $this->createQuery()
+                        ->from('shift_workdays')
+                        ->where(array(
+                            array('member_id', $member_id),
+                            array('yaer', $year),
+                            array('month', $month_std),
+                            array('days', 'LIKE','%'.$start_date.'%'),
+                        ))
+                        ->cacheOn()
+                        ->first('shift_id');
+            // $shiftdata = $shift;
+            $shift_id = $shift->shift_id ;    
+        }
+        $start_month = empty($res_month_std);
+        $end_month = empty($res_month_end);
+        $days = [];
         foreach ($workdays as $workday) {
             $days[] = (object) [ 'days' => $workday->days];
         }
-
         $res = (object) [
             'shift_id' => $shift_id,
+            'start_month' => $start_month,
+            'end_month' => $end_month,
             'days' => $days
         ];            
         return $res;
@@ -508,5 +623,57 @@ class Model extends \Kotchasan\Model
                         ))
                         ->cacheOn();
         return $holidays->execute();
+    }
+
+    /**
+     * @param int $member_id
+     * @return static
+     */
+    public function getUser($member_id)
+    {
+        $user = $this->createQuery()
+                ->from('user U')
+                ->where(array(
+                    array('U.id', $member_id)
+                ))
+                ->cacheOn()
+                ->first('U.*');
+        return $user;
+    }
+
+    /**
+     * @param int $member_id
+     * @param int $leave_id
+     * @return static
+     */
+    public function getQuota($member_id, $leave_id)
+    {
+        $quota = $this->createQuery()
+                ->from('leave_quota C')
+                ->where(array(
+                    array('C.member_id', $member_id),
+                    array('C.leave_id', $leave_id)
+                ))
+                ->cacheOn()
+                ->first('C.quota');
+        return $quota;
+    }
+
+    /**
+     * @param int $member_id
+     * @param int $leave_id
+     * @return static
+     */
+    public function getSumLeave($member_id, $leave_id)
+    {
+        $sum = $this->createQuery()
+                ->from('leave_items I')
+                ->where(array(
+                    array('I.member_id', $member_id),
+                    array('I.leave_id', $leave_id),
+                    array('I.status', '<', 2)
+                ))
+                ->first('SQL(SUM(days) AS sum)');
+        return $sum;
     }
 }

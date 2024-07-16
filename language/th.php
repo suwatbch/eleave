@@ -10,6 +10,7 @@ return array(
   'Address' => 'ที่อยู่',
   'Address details' => 'รายละเอียดที่อยู่',
   'Administrator status It is of utmost importance to do everything' => 'สถานะผู้ดูแลระบบ มีความสำคัญสูงสุดสามารถทำได้ทุกอย่าง',
+  'Alert data' => 'ตรวจสอบข้อมูล',
   'All :count entries, displayed :start to :end, page :page of :total pages' => 'ทั้งหมด :count รายการ, แสดง :start ถึง :end, หน้าที่ :page จากทั้งหมด :total หน้า',
   'all items' => 'ทั้งหมด',
   'Always enabled' => 'เปิดใช้งานตลอดเวลา',
@@ -43,6 +44,7 @@ return array(
     'department' => 'แผนก'
   ),
   'Change language' => 'สลับภาษา',
+  'Check the accuracy of leave' => 'ตรวจสอบถวามถูกต้องในการลา',
   'Clear selected' => 'ไม่เลือก',
   'Click to edit' => 'คลิกเพื่อแก้ไข',
   'Comment' => 'หมายเหตุ',
@@ -157,9 +159,11 @@ return array(
   'Leave' => 'ลา',
   'Leave conditions' => 'เงื่อนไขการลา',
   'Leave empty for generate auto' => 'เว้นว่างไว้เพื่อสร้างโดยอัตโนมัติ',
+  'Leave formet' => 'รูปแบบการลา',
   'Leave history' => 'ประวัติการลา',
+  'Leave not found' => 'ไม่พบการลา',
   'Leave quota not found' => 'ไม่พบโคต้าการลา',
-  'Leave type' => 'รูปแบบการลา',
+  'Leave type' => 'ประเภทการลา',
   'LEAVE_PERIOD' => array(
     0 => 'เต็มวัน/ทั้งกะ',
     1 => 'ช่วงเวลา'
@@ -292,6 +296,7 @@ return array(
   'New members' => 'สมาชิกใหม่',
   'no larger than :size' => 'ขนาดไม่เกิน :size',
   'No need to fill in English text. If the English text matches the Key' => 'ไม่จำเป็นต้องกรอกข้อความในภาษาอังกฤษ หากข้อความในภาษาอังกฤษตรงกับคีย์',
+  'No working days found' => 'ไม่พบวันทำงาน หากไม่แน่ใจโปรดติดต่อ แอดมิน หรือ หัวหน้างาน',
   'not a registered user' => 'ไม่พบสมาชิกนี้ลงทะเบียนไว้',
   'Not specified' => 'ไม่ระบุ',
   'Number of leave days' => 'จำนวนวันลา',
