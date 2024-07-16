@@ -243,6 +243,13 @@ class Model extends \Kotchasan\Model
                             // ไม่ได้กรอก detail
                             $ret['ret_detail'] = 'Please fill in';
                         }
+                        // ผู้อนุมัติ m1
+                        $save['member_id_m1'] = $login['m1'];
+                        $save['member_id_m2'] = null;
+                        if ($save['days'] > 2){
+                            $save['member_id_m2'] = $login['m2'];
+                        }
+                        
                         if (empty($ret)) {
                             if ($index->id == 0) {
                                 // ใหม่
