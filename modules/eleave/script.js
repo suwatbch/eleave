@@ -1,7 +1,7 @@
 function initEleaveLeave() {
   var num_days = 0,
     doLeaveTypeChanged = function () {
-      /*console.log('leave_id');*/
+      console.log('leave_id');
       if (($G('id').value == 0) || ($G('start_time').value == '00:00' && $G('end_time').value == '00:00')) {
         $G('start_time').value = '';
         $G('end_time').value = '';
@@ -32,7 +32,7 @@ function initEleaveLeave() {
 
   $G('leave_id').addEvent("change", function () {
     if (this.value && $E('id').value == 0) {
-      /*console.log('leave_id2');*/
+      console.log('leave_id2');
       var a = this.value.toInt();
       if (a == 3 || a == 7 || a == 8) {
         $E('start_period').value = 0;
@@ -48,7 +48,7 @@ function initEleaveLeave() {
 
   $G('start_period').addEvent("change", function () {
     if (this.value && $E('id').value == 0) {
-      /*console.log('start_period');*/
+      console.log('start_period');
       var a = this.value.toInt();
       $E('start_time').disabled = a == 0;
       $E('end_time').disabled = a == 0;
@@ -63,7 +63,7 @@ function initEleaveLeave() {
 
   $G('start_date').addEvent("change", function () {
     if (this.value && $E('id').value == 0) {
-      /*console.log('start_date');*/
+      console.log('start_date');
       if (new Date(this.value) < new Date($G('end_date').value)){
         $G('end_date').min = this.value;
         $G('end_date').value = this.value;
@@ -81,7 +81,7 @@ function initEleaveLeave() {
         $G('end_date').max = maxDate;
       }
     } else if ($E('id').value == 0) {
-      /*console.log('start_date');*/
+      console.log('start_date');
       var now = new Date();
       var previousMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
       $G('start_date').min = previousMonth.toISOString().split('T')[0];
@@ -91,7 +91,7 @@ function initEleaveLeave() {
 
   $G('end_date').addEvent("change", function () {
     if (!this.value && $E('id').value == 0) {
-      /*console.log('end_date');*/
+      console.log('end_date');
       $G('end_date').value = $G('start_date').value;
     }
   });
@@ -99,7 +99,7 @@ function initEleaveLeave() {
   var elements = [$G('leave_id'),$G('start_period'),$G('start_date'),$G('end_date'),$G('start_time'),$G('end_time')];
   elements.forEach(function(element) {
     if (element && $E('start_date').value != '' && $E('end_date').value != '') {
-      /*console.log('leavealert');*/
+      console.log('leavealert');
       element.addEventListener('change', function() {
           var params = new URLSearchParams({
               'leave_id': $E('leave_id').value

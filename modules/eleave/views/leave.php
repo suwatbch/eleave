@@ -110,7 +110,7 @@ class View extends \Gcms\View
             'value' => $login['last_start_date']
         ));
         // อัปเดตตัวแปร $time_ent ด้วยค่าใหม่
-        $leave_time = \Eleave\Leave\Model::getTime0fShift($login['shift_id']);
+        $leave_time = \Eleave\Leave\Model::getTime0fShift($login['shift_id'],$login['id']);
         $time_stt = $leave_time;
         $time_ent = $leave_time;
         if (count($leave_time) != 48) {

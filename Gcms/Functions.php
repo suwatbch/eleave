@@ -228,6 +228,187 @@ class Functions
     }
 
     /**
+     * @param string $start_date
+     * @param string $end_date
+     * @param array $workweek
+     * @param array $holidays
+     * @return float
+     */
+    public static function calculate_static_leave_days($leave_start, $leave_end, $workweek = [], $holidays = []) {
+        $leave_start_datetime = new \DateTime($leave_start);
+        $leave_end_datetime = new \DateTime($leave_end);
+        $total_leave_days = 0;
+    
+        // ลูปผ่านทุกวันระหว่างวันเริ่มต้นและวันสิ้นสุดการลางาน
+        for ($date = $leave_start_datetime; $date <= $leave_end_datetime; $date->modify('+1 day')) {
+            $current_day = $date->format('l');
+            $current_date = $date->format('Y-m-d');
+    
+            // ตรวจสอบว่าเป็นวันทำงานและไม่ใช่วันหยุดหรือไม่
+            if (in_array($current_day, $workweek) && !in_array($current_date, $holidays)) {
+                $total_leave_days++;
+            }
+        }
+        return $total_leave_days;
+    }
+
+    /**
+     * @param string $start_date
+     * @param string $end_date
+     * @param array $workdays
+     * @return float
+     */
+    public static function calculate_notstatic_leave_days($leave_start, $leave_end, $workdays = []) {
+        $leave_start_datetime = new \DateTime($leave_start);
+        $leave_end_datetime = new \DateTime($leave_end);
+        $total_leave_days = 0;
+
+        // ลูปผ่านทุกวันระหว่างวันเริ่มต้นและวันสิ้นสุดการลางาน
+        for ($date = $leave_start_datetime; $date <= $leave_end_datetime; $date->modify('+1 day')) {
+            $current_date = $date->format('Y-m-d');
+
+            // ตรวจสอบว่าเป็นวันทำงานหรือไม่
+            if (in_array($current_date, $workdays)) {
+                $total_leave_days++;
+            }
+        }
+        return $total_leave_days;
+    }
+
+    /**
+     * @param string $leave_start
+     * @param string $leave_end
+     * @param int $static
+     * @param array $workdays
+     * @param array $workweek
+     * @param array $holidays
+     * @return float
+     */
+    public static function calculate_leave_days($leave_start, $leave_end, $static, $workdays = [], $workweek = [], $holidays = []) {
+        $leave_start_datetime = new \DateTime($leave_start);
+        $leave_end_datetime = new \DateTime($leave_end);
+        $total_leave_days = 0;
+
+        if ($static) {
+            // ลูปผ่านทุกวันระหว่างวันเริ่มต้นและวันสิ้นสุดการลางาน
+            for ($date = $leave_start_datetime; $date <= $leave_end_datetime; $date->modify('+1 day')) {
+                $current_day = $date->format('l');
+                $current_date = $date->format('Y-m-d');
+        
+                // ตรวจสอบว่าเป็นวันทำงานและไม่ใช่วันหยุดหรือไม่
+                if (in_array($current_day, $workweek) && !in_array($current_date, $holidays)) {
+                    $total_leave_days++;
+                }
+            }
+        } else {
+            // ลูปผ่านทุกวันระหว่างวันเริ่มต้นและวันสิ้นสุดการลางาน
+            for ($date = $leave_start_datetime; $date <= $leave_end_datetime; $date->modify('+1 day')) {
+                $current_date = $date->format('Y-m-d');
+
+                // ตรวจสอบว่าเป็นวันทำงานหรือไม่
+                if (in_array($current_date, $workdays)) {
+                    $total_leave_days++;
+                }
+            }
+        }
+        return $total_leave_days;
+    }
+
+    /**
+     * @param string $start_date
+     * @param string $end_date
+     * @param string $break_start
+     * @param string $break_end
+     * @param array $leave_periods
+     * @param int $static
+     * @param array $workdays
+     * @param array $workweek
+     * @param array $holidays
+     * @return float
+     */
+    // รวมกะการทำงานเข้าในฟังชั่นเดียว
+    public static function calculateLeaveDuration($start_date, $end_date, $break_start, $break_end, $leave_periods, $static, $workdays = [], $workweek = [], $holidays = []) {
+        // แปลงเวลาเป็น timestamp
+        $startTimestamp = strtotime($start_date);
+        $endTimestamp = strtotime($end_date);
+        $breakStartTimestamp = strtotime($break_start);
+        $breakEndTimestamp = strtotime($break_end);
+
+        // ตรวจสอบว่าต้องใช้การคำนวณแบบไหน
+        if ($static == 0) {
+            // แบบหมุนเวียนกะ
+            $workday = date('Y-m-d', $startTimestamp);
+            $nextWorkday = date('Y-m-d', strtotime($workday . ' +1 day'));
+            if (!in_array($workday, $workdays) && !in_array($nextWorkday, $workdays)) {
+                return 0; // ถ้าไม่ใช่วันทำงาน ให้คืนค่า 0
+            }
+        } else {
+            // แบบคงที่
+            $workdayName = date('l', $startTimestamp); // 'l' ให้ผลลัพธ์เป็นชื่อวันในสัปดาห์ เช่น Monday
+            $workdayDate = date('Y-m-d', $startTimestamp); // วันที่ในรูปแบบ Y-m-d
+            if (!in_array($workdayName, $workweek) || in_array($workdayDate, $holidays)) {
+                return 0; // ถ้าไม่ใช่วันทำงาน หรือเป็นวันหยุด ให้คืนค่า 0
+            }
+        }
+
+        $totalLeaveDuration = 0;
+        foreach ($leave_periods as $period) {
+            // แปลงเวลาลางานเป็น timestamp โดยไม่คำนึงถึงวันที่
+            $leaveStart = strtotime(date('Y-m-d', $startTimestamp) . ' ' . $period['start_time']);
+            $leaveEnd = strtotime(date('Y-m-d', $startTimestamp) . ' ' . $period['end_time']);
+            
+            // ตรวจสอบและจัดการกรณีที่เวลาลางานข้ามวัน
+            if ($leaveEnd < $leaveStart) {
+                $leaveEnd += 24 * 60 * 60;
+            }
+
+            // ตรวจสอบช่วงเวลาลางานที่ทับซ้อนกันในช่วงเวลาทำงาน
+            $actualLeaveStart = max($leaveStart, $startTimestamp);
+            $actualLeaveEnd = min($leaveEnd, $endTimestamp);
+
+            if ($actualLeaveStart < $actualLeaveEnd) {
+                $leaveDuration = $actualLeaveEnd - $actualLeaveStart;
+
+                // หักเวลาพักออกจากเวลาลางานถ้ามีการคาบเกี่ยวกัน
+                $overlapStart = max($actualLeaveStart, $breakStartTimestamp);
+                $overlapEnd = min($actualLeaveEnd, $breakEndTimestamp);
+
+                if ($overlapStart < $overlapEnd) {
+                    $leaveDuration -= ($overlapEnd - $overlapStart);
+                }
+
+                $leaveDurationInHours = $leaveDuration / 3600;
+                $totalLeaveDuration += $leaveDurationInHours;
+            }
+        }
+
+        // ตรวจสอบกรณีที่เวลาลางานข้ามวันในกรณีของหมุนเวียนกะ
+        if ($static == 0 && $totalLeaveDuration == 0) {
+            foreach ($leave_periods as $period) {
+                $leaveStart = strtotime(date('Y-m-d', $endTimestamp) . ' ' . $period['start_time']);
+                $leaveEnd = strtotime(date('Y-m-d', $endTimestamp) . ' ' . $period['end_time']);
+                if ($leaveEnd < $leaveStart) {
+                    $leaveEnd += 24 * 60 * 60;
+                }
+                $actualLeaveStart = max($leaveStart, $startTimestamp);
+                $actualLeaveEnd = min($leaveEnd, $endTimestamp);
+                if ($actualLeaveStart < $actualLeaveEnd) {
+                    $leaveDuration = $actualLeaveEnd - $actualLeaveStart;
+                    $overlapStart = max($actualLeaveStart, $breakStartTimestamp);
+                    $overlapEnd = min($actualLeaveEnd, $breakEndTimestamp);
+                    if ($overlapStart < $overlapEnd) {
+                        $leaveDuration -= ($overlapEnd - $overlapStart);
+                    }
+                    $leaveDurationInHours = $leaveDuration / 3600;
+                    $totalLeaveDuration += $leaveDurationInHours;
+                }
+            }
+        }
+
+        return $totalLeaveDuration;
+    }
+
+    /**
      * @param string $start_time
      * @param string $end_time
      * @param string $break_start
@@ -297,31 +478,6 @@ class Functions
     }
 
     /**
-     * @param string $start_date
-     * @param string $end_date
-     * @param array $workweek
-     * @param array $holidays
-     * @return float
-     */
-    public static function calculate_static_leave_days($leave_start, $leave_end, $workweek = [], $holidays = []) {
-        $leave_start_datetime = new \DateTime($leave_start);
-        $leave_end_datetime = new \DateTime($leave_end);
-        $total_leave_days = 0;
-    
-        // ลูปผ่านทุกวันระหว่างวันเริ่มต้นและวันสิ้นสุดการลางาน
-        for ($date = $leave_start_datetime; $date <= $leave_end_datetime; $date->modify('+1 day')) {
-            $current_day = $date->format('l');
-            $current_date = $date->format('Y-m-d');
-    
-            // ตรวจสอบว่าเป็นวันทำงานและไม่ใช่วันหยุดหรือไม่
-            if (in_array($current_day, $workweek) && !in_array($current_date, $holidays)) {
-                $total_leave_days++;
-            }
-        }
-        return $total_leave_days;
-    }
-
-    /**
      * @param string $start_time
      * @param string $end_time
      * @param string $break_start
@@ -386,28 +542,5 @@ class Functions
     }
 
     return $total_leave_hours;
-    }
-
-    /**
-     * @param string $start_date
-     * @param string $end_date
-     * @param array $workdays
-     * @return float
-     */
-    public static function calculate_notstatic_leave_days($leave_start, $leave_end, $workdays = []) {
-        $leave_start_datetime = new \DateTime($leave_start);
-        $leave_end_datetime = new \DateTime($leave_end);
-        $total_leave_days = 0;
-
-        // ลูปผ่านทุกวันระหว่างวันเริ่มต้นและวันสิ้นสุดการลางาน
-        for ($date = $leave_start_datetime; $date <= $leave_end_datetime; $date->modify('+1 day')) {
-            $current_date = $date->format('Y-m-d');
-
-            // ตรวจสอบว่าเป็นวันทำงานหรือไม่
-            if (in_array($current_date, $workdays)) {
-                $total_leave_days++;
-            }
-        }
-        return $total_leave_days;
     }
 }

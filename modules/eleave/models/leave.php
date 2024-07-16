@@ -284,23 +284,23 @@ class Model extends \Kotchasan\Model
         echo json_encode($ret);
     }
 
-    /**
-     * คืนค่ารายละเอียดกะที่เลือก
-     * เป็น JSON
-     * @param Request $request
-     */
-    public function setSelectTimeStart(Request $request)
-    {
-        $queryParams = $request->getQueryParams();
-        $shift_id = (int)$queryParams['shift_id'];
-        $start_time = $queryParams['start_time'];
-        $leave_time = self::getTime0fShift($shift_id);
-        $leave_end_time = \Gcms\Functions::setTimes($leave_time,$start_time);
-        $res['leave_end_time'] = $leave_end_time;
-        $res['end_time'] = reset($leave_end_time);
-        // คืนค่า JSON
-        echo json_encode($res);
-    }
+    // /**
+    //  * คืนค่ารายละเอียดกะที่เลือก
+    //  * เป็น JSON
+    //  * @param Request $request
+    //  */
+    // public function setSelectTimeStart(Request $request)
+    // {
+    //     $queryParams = $request->getQueryParams();
+    //     $shift_id = (int)$queryParams['shift_id'];
+    //     $start_time = $queryParams['start_time'];
+    //     $leave_time = self::getTime0fShift($shift_id);
+    //     $leave_end_time = \Gcms\Functions::setTimes($leave_time,$start_time);
+    //     $res['leave_end_time'] = $leave_end_time;
+    //     $res['end_time'] = reset($leave_end_time);
+    //     // คืนค่า JSON
+    //     echo json_encode($res);
+    // }
 
     /**
      * คืนค่ารายละเอียดกะที่เลือก
@@ -354,6 +354,10 @@ class Model extends \Kotchasan\Model
         $Wend = new \DateTime($end_date);
         $start_month = false;
         $end_month = false;
+        $workdays = [];
+        $workweek = [];
+        $holidays= [];
+
         $leave_user = self::getUser($member_id);
         if ($shift_id==0 || $leave_user->shift_id==0) {
             $Wmonth = \Gcms\Functions::getSurroundingMonths($start_date);
@@ -373,8 +377,9 @@ class Model extends \Kotchasan\Model
             $times = 0;
             $daysTimes = '';
             $shiftdata = self::getShifts($shift_id);
+            $static = $shiftdata->static;
 
-            if ($shiftdata->static) {
+            if ($static) {
                 // กำหนดวันทำงาน
                 $workweek = json_decode($shiftdata->workweek, true);
 
@@ -395,19 +400,12 @@ class Model extends \Kotchasan\Model
                     if ($shiftdata) {
                         $start_date_work = $start_date;
                         $end_date_work = $start_date;
-                        $skipdate = $shiftdata->skipdate;
-                        if (!$skipdate) {
-                            // กะภายในวัน วันที่สิ้นสุดเท่ากันวันที่เริ่มต้น
-                            $end_date = $start_date;
-                            $end_date_work = $end_date;
-                        } else {
-                            if (!($diff['days'] < 0 || $diff['days'] > 1)) {
-                                // กะข้าววัน วันที่สิ้นสุดมากกว่าวันที่เริ่มต้น 1 วัน
-                                $add_one_date = new \DateTime($start_date);
-                                $add_one_date->modify('+1 day');
-                                $start_date_work = $add_one_date->format('Y-m-d');
-                                $end_date_work = $add_one_date->format('Y-m-d');
-                            }
+                        if (!($diff['days'] < 0 || $diff['days'] > 1) && $shiftdata->skipdate) {
+                            // กะข้าววัน วันที่สิ้นสุดมากกว่าวันที่เริ่มต้น 1 วัน
+                            $add_one_date = new \DateTime($start_date);
+                            $add_one_date->modify('+1 day');
+                            $start_date_work = $add_one_date->format('Y-m-d');
+                            $end_date_work = $add_one_date->format('Y-m-d');
                         }
                         
                         // จัดรูปแบบวันที่เป็นสตริง
@@ -415,32 +413,12 @@ class Model extends \Kotchasan\Model
                         $date_end = $end_date_work .' '.$shiftdata->end_time;
                         $break_start = $start_date_work.' '.$shiftdata->start_break_time;
                         $break_end = $end_date_work.' '.$shiftdata->end_break_time;
-                        $leave_start = $start_date.' '.$start_time;
-                        $leave_end = $end_date.' '.$end_time;
-
-                        // กะข้ามวันเวลาเริ่มต้นข้ามวัน +1วัน
-                        if ($skipdate && (new \DateTime($start_time) < new \DateTime('12:00'))) {
-                            $ls_Temp = new \DateTime($leave_start);
-                            $ls_Temp->modify('+1 day');
-                            $leave_start = $ls_Temp->format('Y-m-d H:i');
-                        }
-
-                        // กะข้ามวันเวลาสิ้นสุดข้ามวัน +1วัน
-                        if ($skipdate && (new \DateTime($end_time) < new \DateTime('12:00'))) {
-                            $le_Temp = new \DateTime($leave_end);
-                            $le_Temp->modify('+1 day');
-                            $leave_end = $le_Temp->format('Y-m-d H:i');
-                        }
 
                         // สร้างช่วงเวลาลา
-                        $leave_periods = [['start' => $leave_start, 'end' => $leave_end]];
+                        $leave_periods = [['start_time' => $start_time, 'end_time' => $end_time]];
 
                         // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
-                        if ($shiftdata->static) {
-                            $times = \Gcms\Functions::calculate_static_leave_hours($date_start, $date_end, $break_start, $break_end, $leave_periods, $workweek, $holidays);
-                        } else {
-                            $times = \Gcms\Functions::calculate_notstatic_leave_hours($date_start, $date_end, $break_start, $break_end, $leave_periods, $workdays);
-                        }
+                        $times = \Gcms\Functions::calculateLeaveDuration($date_start, $date_end, $break_start, $break_end, $leave_periods, $static, $workdays, $workweek, $holidays);
 
                         // แยกวันเวลา
                         if ($times >= 8) {
@@ -465,12 +443,10 @@ class Model extends \Kotchasan\Model
                 $check_year = max($end_year, $start_year);
                 $fiscal_year = $check_year.sprintf('-%02d-01', 1); // 1 = self::$cfg->eleave_fiscal_year
                 if (!($start_date < $fiscal_year && $end_date >= $fiscal_year)) {
+
                     // ใช้จำนวนวันลาจากที่คำนวณ
-                    if ($shiftdata->static) {
-                        $days = \Gcms\Functions::calculate_static_leave_days($start_date,$end_date,$workweek,$holidays);
-                    } else {
-                        $days = \Gcms\Functions::calculate_notstatic_leave_days($start_date,$end_date,$workdays);
-                    }
+                    $days = \Gcms\Functions::calculate_leave_days($start_date,$end_date,$static,$workdays,$workweek,$holidays);
+                    
                     if ($days > 0) { 
                         $res['status'] = 1;
                         $res['days'] = (int)$days;
@@ -509,10 +485,18 @@ class Model extends \Kotchasan\Model
 
     /**
      * @param int $shift_id
+     * @param int $member_id
      * @return array
      */
-    public static function getTime0fShift($shift_id)
+    public static function getTime0fShift($shift_id,$member_id)
     {
+        $user = \Kotchasan\Model::createQuery()
+                    ->select('*')
+                    ->from('user')
+                    ->where(array('id', $member_id))
+                    ->cacheOn()
+                    ->execute();
+
         $result = \Kotchasan\Model::createQuery()
                     ->select('*')
                     ->from('shift')
@@ -521,8 +505,18 @@ class Model extends \Kotchasan\Model
                     ->execute();
 
         $count = count($result) == 0 ? false : true ;
-        $data = $result[0];
-        $Time0fShift = \Gcms\Functions::genTimes($count ? $data->stat_date.' '.$data->start_time : '');
+        $datetime = '';
+        if ($count) {
+            $data = $result[0];
+            $datetime = $data->stat_date.' '.$data->start_time;
+        }
+        $shiftmember_id = 0;        
+        if (count($user) > 0){
+            $user = $user[0];
+            $shiftmember_id = $user->shift_id;
+            $datetime = $shiftmember_id == 0 ? '' : $datetime ;
+        }
+        $Time0fShift = \Gcms\Functions::genTimes($datetime);
         return $Time0fShift;
     }
 
