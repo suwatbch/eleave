@@ -224,6 +224,13 @@ class Model extends \Kotchasan\Model
                         } else if ($result && !$result_quota) {
                             $ret['ret_end_date'] = Language::get('Leave quota not found');
                         }
+                        // ตรวจสอบ การลาบวช และ การลาคลอด
+                        if ($save['leave_id'] == 3 || $save['leave_id'] == 7) {
+                            $dataleave = self::getleave($save['leave_id']);
+                            if ($dataleave->num_days < $save['days']){
+                                $ret['ret_end_date'] = 'เกิดกำหนด '.$dataleave->num_days.' วัน';
+                            }
+                        }
                         // table
                         $table = $this->getTableName('leave_items');
                         // Database
@@ -639,6 +646,20 @@ class Model extends \Kotchasan\Model
                         ))
                         ->cacheOn();
         return $holidays->execute();
+    }
+
+    /**
+     * @param int $leave_id
+     * @return static
+     */
+    public function getleave($leave_id)
+    {
+        return $this->createQuery()
+                    ->from('leave')
+                    ->where(array('id', $leave_id))
+                    ->cacheOn()
+                    ->first('*');
+                    //->execute();
     }
 
     /**
