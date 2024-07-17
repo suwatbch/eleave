@@ -111,6 +111,12 @@ class Model
                 'url' => 'index.php?module=manage_shifts'
             );
         }
+        if ($isAdmin) {
+            $settings['shift'] = array(
+                'text' => '{LNG_Manage shifts}',
+                'url' => 'index.php?module=manageshift'
+            );
+        }
         if ($login) {
             $result = array(
                 'home' => array(
