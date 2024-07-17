@@ -349,12 +349,12 @@ class Model extends \Kotchasan\Model
         $res['status'] = 0;
         $res['days'] = 0;
         $res['times'] = 0;
-        $leave_period = Language::get('LEAVE_PERIOD');
-        if ($start_date == $end_date) {
-            $ret = Date::format($start_date, 'd M Y').' '.$leave_period[$start_period];
-        } else {
-            $ret = Date::format($start_date, 'd M Y').' '.$leave_period[$start_period]. ($start_period ? '' : ' - '.Date::format($end_date, 'd M Y').' '.$leave_period[0]);
-        }
+        // $leave_period = Language::get('LEAVE_PERIOD');
+        // if ($start_date == $end_date) {
+        //     $ret = Date::format($start_date, 'd M Y').' '.$leave_period[$start_period];
+        // } else {
+        //     $ret = Date::format($start_date, 'd M Y').' '.$leave_period[$start_period]. ($start_period ? '' : ' - '.Date::format($end_date, 'd M Y').' '.$leave_period[0]);
+        // }
 
         // เริ่มการหากะ
         $Wstd = new \DateTime($start_date);
@@ -398,10 +398,12 @@ class Model extends \Kotchasan\Model
             if ($start_period){
                 //คำนวณเวลางานแบบกะ 9 ซม.
                 $leavetimes = \Gcms\Functions::calculateDuration($start_time,$end_time);
+                $pass = false;
                 if ($leavetimes > 0 && $leavetimes <= 9) {
+                    $pass = true;
                     // แสดงเวลาที่เลือก
-                    $showtime = \Gcms\Functions::showtime($start_time,$end_time);
-                    $ret = $ret.' '.$showtime;
+                    // $showtime = \Gcms\Functions::showtime($start_time,$end_time);
+                    // $ret = $ret.' '.$showtime;
 
                     // ลาภายใน 1 วัน เช็คกะเพิ่มถ้ากะข้ามวัน end > start ได้
                     if ($shiftdata) {
@@ -452,8 +454,13 @@ class Model extends \Kotchasan\Model
                 if (!($start_date < $fiscal_year && $end_date >= $fiscal_year)) {
 
                     // ใช้จำนวนวันลาจากที่คำนวณ
-                    $days = \Gcms\Functions::calculate_leave_days($start_date,$end_date,$static,$workdays,$workweek,$holidays);
-                    
+                    if ($leave_id == 3 || $leave_id == 7) {
+                        // ลาคลอกและลาบวช
+                        $days = $diff['days'] +1;
+                    } else {
+                        // ลาหยุดทั่วไป 
+                        $days = \Gcms\Functions::calculate_leave_days($start_date,$end_date,$static,$workdays,$workweek,$holidays);
+                    }
                     if ($days > 0) { 
                         $res['status'] = 1;
                         $res['days'] = (int)$days;
@@ -462,14 +469,16 @@ class Model extends \Kotchasan\Model
             }
             $daysTimes = \Gcms\Functions::gettimeleave($days,$times);
             $Leavenotfound = $res['status'] ? ': '.Language::get('Leave not found') : null;
-            $daysTimes = empty($daysTimes) ? $Leavenotfound : Language::get('Total').': '.$daysTimes;
-            $ret = $ret.($res['status'] ? ' ' : '').$daysTimes;
+            $ret = empty($daysTimes) ? $Leavenotfound : Language::get('Total number of leave this time').': '.$daysTimes;
         }
 
         // กำหนดตัวแปร trturn
         if (!$res['status']){
-
-            $ret = $ret.' : '.Language::get('Leave not found');
+            if ($pass) {
+                $ret = Language::get('Leave not found');
+            } else {
+                $ret = Language::get('Specified incorrect time period');
+            }
         }
         
         $res['data'] =  $ret;

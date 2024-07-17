@@ -131,6 +131,45 @@ class Model extends \Kotchasan\Model
                                 $ret['ret_detail'] = 'Please fill in';
                             }
                         }
+
+                        //ตรวจสอบก่อนการอนุมัติ
+                        $ism1 = !empty($index->member_id_m1);
+                        $ism2 = !empty($index->member_id_m2);
+                        if ($login['id']==1){ //แอดมิน
+                            if ($ism1){
+                                $save['status_m1'] = $save['status'];
+                                $save['approve_datetime_m1'] = date('Y-m-d H:i:s');
+                            }
+                            if ($ism2){
+                                $save['status_m2'] = $save['status'];
+                                $save['approve_datetime_m2'] = date('Y-m-d H:i:s');
+                            }
+                        } else {
+                            $pass1 = false;
+                            $pass2 = false;
+                            if ($index->member_id_m1 == $login['id']){
+                                $save['status_m1'] = $save['status'];
+                                $save['approve_datetime_m1'] = date('Y-m-d H:i:s');
+                                $pass1 = true;
+                            }
+                            if ($index->member_id_m2 == $login['id']){
+                                $save['status_m2'] = $save['status'];
+                                $save['approve_datetime_m2'] = date('Y-m-d H:i:s');
+                                $pass2 = true;
+                            }
+
+                            // ตรวจสอบกรณีมี M2
+                            if ($ism2 && $save['status'] != 2){
+                                if ($pass1 && !$pass2 && $index->status_m2 == 0){
+                                    $save['status'] = 0;
+                                } else if ($pass1 && !$pass2 && $index->status_m2 == 1){
+                                    $save['status'] = 1;
+                                } else if ($pass1 && !$pass2 && $index->status == 2) {
+                                    $save['status'] = $index->status;
+                                }
+                            }
+                        }
+
                         if (empty($ret)) {
                             // แก้ไข
                             $this->db()->update($this->getTableName('leave_items'), $index->id, $save);
