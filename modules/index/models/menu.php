@@ -105,10 +105,10 @@ class Model
             );
         }
         // หน้าจัดการกะการทำงาน
-        if ($can_config) {
+        if ($can_config || $isAdmin) {
             $settings['manage_shifts'] = array(
-                'text' => '{LNG_Manage shift}',
-                'url' => 'modules\eleave\models\manageshifts_export.php'
+                'text' => 'จัดการกะการทำงาน',
+                'url' => 'index.php?module=manage_shifts'
             );
         }
         if ($login) {
