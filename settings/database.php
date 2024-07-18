@@ -21,7 +21,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "eleaveup"; 
+$dbname = "eleave"; 
 $port = "3306";
 $prefix = "app";
 $dbdriver = "mysql";

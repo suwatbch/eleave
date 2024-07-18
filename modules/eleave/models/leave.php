@@ -464,8 +464,8 @@ class Model extends \Kotchasan\Model
                             $res['status'] = 0;
                             $ret = Language::get('Unable to take leave for more than 6 days');
                         }
-                        // ตรวจสอบเกินวันลา การลาบวช และ การลาคลอด
-                        else if ($leave_id == 3 || $leave_id == 7) {
+                        // ตรวจสอบเกินวันลา การลาบวช และ การลาคลอด และ ไปทหาร
+                        else if ($leave_id == 3 || $leave_id == 5 || $leave_id == 7) {
                             $dataleave = self::getleave($leave_id);
                             // ตรวจสอบเพศ ไม่เจอให้ระบุเพศก่อน
                             if (!($leave_user->sex == 'f' || $leave_user->sex == 'm')) {
@@ -474,6 +474,11 @@ class Model extends \Kotchasan\Model
                             }
                             // ผู้หญิงลาบวชไม่ได้
                             else if ($leave_user->sex == 'f' && $leave_id == 7) {
+                                $res['status'] = 0;
+                                $ret = Language::get('Gender does not match leave type');
+                            }
+                            // ผู้หญิงลาไปทหารไม่ได้
+                            else if ($leave_user->sex == 'f' && $leave_id == 5) {
                                 $res['status'] = 0;
                                 $ret = Language::get('Gender does not match leave type');
                             }
@@ -487,11 +492,6 @@ class Model extends \Kotchasan\Model
                                 $res['status'] = 0;
                                 $ret = Language::get('Born on time').' '.$dataleave->num_days.' '.Language::get('days');
                             }
-                        }
-                        // ผู้หญิงลาไปทหารไม่ได้
-                        else if ($leave_user->sex == 'f' && $leave_id == 5) {
-                            $res['status'] = 0;
-                            $ret = Language::get('Gender does not match leave type');
                         }
                     }
                 }
