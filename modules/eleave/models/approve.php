@@ -101,35 +101,6 @@ class Model extends \Kotchasan\Model
                             $save['start_time'] = $start_time;
                             $save['end_date'] = $end_date;
                             $save['end_time'] = $end_time;
-                            // ไม่สามารถลากิจได้มากกว่า 6 วัน
-                            if ($save['days'] > 6 && $save['leave_id'] == 2) {
-                                $ret['ret_end_date'] = Language::get('Unable to take leave for more than 6 days');
-                            }
-                            // ตรวจสอบวันลากิจและลาพักร้อน
-                            $result = false;
-                            $result_quota = "";
-                            $leave_quota = 0;
-                            if ($save['leave_id'] == 2 || $save['leave_id'] == 8) {
-                                $result_quota = self::getQuota($index->member_id,$save['leave_id']);
-                                $result_sum = self::getSumLeave($index->member_id,$save['leave_id']);
-                                $leave_quota = $result_sum->sum == null ? 0 : $result_sum->sum;
-                                $result = true;
-                            }
-                            if ($result && $result_quota != "" && $result_quota != false) {
-                                if (($save['days'] + $leave_quota) > $result_quota->quota) {
-                                    $ret['ret_end_date'] = Language::get('There arent enough leave days');
-                                }
-                            } else if ($result && !$result_quota) {
-                                $ret['ret_end_date'] = Language::get('Leave quota not found');
-                            }
-                            if (empty($ret)) {
-                                // อัปโหลดไฟล์แนบ
-                                \Download\Upload\Model::execute($ret, $request, $index->id, 'eleave', self::$cfg->eleave_file_typies, self::$cfg->eleave_upload_size);
-                            }
-                            if ($save['detail'] == '') {
-                                // ไม่ได้กรอก detail
-                                $ret['ret_detail'] = 'Please fill in';
-                            }
                         }
 
                         //ตรวจสอบก่อนการอนุมัติ
