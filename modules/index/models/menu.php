@@ -112,9 +112,9 @@ class Model
             );
         }
         if ($isAdmin) {
-            $settings['shift'] = array(
+            $settings['manageshifts'] = array(
                 'text' => '{LNG_Manage shifts}',
-                'url' => 'index.php?module=manageshift'
+                'url' => 'index.php?module=manageshifts'
             );
         }
         if ($login) {
