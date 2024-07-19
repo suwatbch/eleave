@@ -1,0 +1,5 @@
+# Ignoring cache files
+datas/cache/*
+
+# Ignoring log files
+datas/logs/*.log
