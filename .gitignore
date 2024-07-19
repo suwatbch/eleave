@@ -44,3 +44,4 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+datas/logs/error_log.php
