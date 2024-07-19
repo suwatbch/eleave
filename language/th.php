@@ -163,7 +163,7 @@ return array(
   'Leave empty for generate auto' => 'เว้นว่างไว้เพื่อสร้างโดยอัตโนมัติ',
   'Leave formet' => 'รูปแบบการลา',
   'Leave history' => 'ประวัติการลา',
-  'Leave not found' => 'ไม่พบการลา',
+  'Leave not found' => 'ไม่พบจำนวนวันและเวลา',
   'Leave quota not found' => 'ไม่พบโคต้าการลา',
   'Leave type' => 'ประเภทการลา',
   'LEAVE_PERIOD' => array(

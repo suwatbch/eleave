@@ -356,6 +356,7 @@ class Model extends \Kotchasan\Model
         $holidays= [];
         $alertyear = false;
         $alerttime = false;
+        $alertdays = false;
 
         // ตรวจสอบปีปัจจุบัน 
         $datenew = \Gcms\Functions::checkyearnow($start_date, $end_date);
@@ -457,6 +458,8 @@ class Model extends \Kotchasan\Model
                         if ($days > 0) { 
                             $res['status'] = 1;
                             $res['days'] = (int)$days;
+                        } else {
+                            $alertdays = true;
                         }
 
                         // ไม่สามารถลากิจได้มากกว่า 6 วัน
@@ -533,7 +536,7 @@ class Model extends \Kotchasan\Model
                 $ret = $ret;
             } else if (!$alertyear) {
                 $ret = Language::get('Unable to take leave over a year');
-            } else if ($alerttime || !$alertmonth) {
+            } else if ($alerttime || !$alertmonth || $alertdays) {
                 $ret = Language::get('Leave not found');
             } else {
                 $ret = Language::get('Specified incorrect time period');
