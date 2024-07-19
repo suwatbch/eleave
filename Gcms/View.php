@@ -127,7 +127,7 @@ class View extends \Kotchasan\View
     public static function showStatus($statuses, $value, $name, $color = true)
     {
         if (isset($statuses[$value])) {
-            return $color ? '<span class="term'.$value.'">'.$statuses[$value].($name != '' ? ' '.$name : '').'</span>' : $statuses[$value];
+            return $color ? '<span class="term'.$value.'">'.($name != '' ? $name.' ' : '').$statuses[$value].($value ? 'แล้ว' : '').'</span>' : $statuses[$value];
         }
         return '';
     }
