@@ -265,7 +265,7 @@ class Model extends \Kotchasan\Model
                                 // ประเภทลา
                                 $save['leave_type'] = self::leaveType($save['leave_id']);
                                 // ส่งอีเมลแจ้งการขอลา
-                                $ret['alert'] = \Eleave\Email\Model::send($save);
+                                // $ret['alert'] = \Eleave\Email\Model::send($save);
                             } else {
                                 // ไม่ต้องส่งอีเมล
                                 $ret['alert'] = Language::get('Saved successfully');

@@ -150,7 +150,7 @@ class Model extends \Kotchasan\Model
                                 $index->status = $save['status'];
                                 $index->reason = $save['reason'];
                                 // ส่งอีเมลแจ้งการขอลา
-                                $ret['alert'] = \Eleave\Email\Model::send((array) $index);
+                                //$ret['alert'] = \Eleave\Email\Model::send((array) $index);
                             } else {
                                 // ไม่ต้องส่งอีเมล
                                 $ret['alert'] = Language::get('Saved successfully');
