@@ -106,9 +106,9 @@ class Model
         }
         // หน้าจัดการกะการทำงาน
         if ($can_config || $isAdmin) {
-            $settings['manage_shifts'] = array(
-                'text' => 'จัดการกะการทำงาน',
-                'url' => 'index.php?module=manage_shifts'
+            $settings['holidays'] = array(
+                'text' => '{LNG_วันหยุดตามประเพณี}',
+                'url' => 'index.php?module=holidays'
             );
         }
         if ($isAdmin) {
