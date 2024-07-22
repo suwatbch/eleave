@@ -203,6 +203,9 @@ class Model extends \Kotchasan\Model
                         $save['start_time'] = $start_time;
                         $save['end_date'] = $end_date;
                         $save['end_time'] = $end_time;
+                        $save['status'] = 0;
+                        $save['status_m1'] = 0;
+                        $save['status_m2'] = 0;
 
                         // table
                         $table = $this->getTableName('leave_items');
@@ -265,7 +268,7 @@ class Model extends \Kotchasan\Model
                                 // ประเภทลา
                                 $save['leave_type'] = self::leaveType($save['leave_id']);
                                 // ส่งอีเมลแจ้งการขอลา
-                                // $ret['alert'] = \Eleave\Email\Model::send($save);
+                                $ret['alert'] = \Eleave\Email\Model::send($save);
                             } else {
                                 // ไม่ต้องส่งอีเมล
                                 $ret['alert'] = Language::get('Saved successfully');

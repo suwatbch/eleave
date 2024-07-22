@@ -45,10 +45,8 @@ class Model extends \Kotchasan\Model
             $where = array(
                 // ผู้ทำรายการ
                 array('id', $order['member_id']),
-                // แอดมิน
-                array('status', 1),
                 // ผู้อนุมัตื
-                array('permission', 'LIKE', '%,can_approve_eleave,%')
+                array('id', $order['member_id_m1']),
             );
         }
         // ตรวจสอบรายชื่อผู้รับ
