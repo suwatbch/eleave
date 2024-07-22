@@ -44,14 +44,23 @@ class Model extends \Kotchasan\Model
             // ส่งหาผู้ทำรายการและผู้ที่เกี่ยวข้อง
             $where = array(
                 // ผู้ทำรายการ
-                array('id', $order['member_id']),
-                // ผู้อนุมัตื
-                array('id', $order['member_id_m1']),
+                array('id', $order['member_id'])
             );
+            // ผู้อนุมัตื
+            $passapprove1 = true;
+            $passapprove2 = true;
+            if (empty($order['member_id_m1']) || $order['member_id_m1'] == 0) { $passapprove1 = false;}
+            if (empty($order['member_id_m2']) || $order['member_id_m2'] == 0) { $passapprove2 = false;}
+            if ($passapprove1 && $order['status'] == 0 && $order['status_m1'] == 0){
+                $where[] = array('id', $order['member_id_m1']);
+            }
+            if ($passapprove2 && $order['status'] == 0 && $order['status_m1'] > 0 && $order['status_m2'] == 0){
+                $where[] = array('id', $order['member_id_m2']);
+            }
         }
         // ตรวจสอบรายชื่อผู้รับ
         $query = static::createQuery()
-            ->select('id', 'username', 'name', 'line_uid')
+            ->select('id', 'username', 'name', 'line_uid', 'email')
             ->from('user')
             ->where(array('active', 1))
             ->andWhere($where, 'OR')
@@ -60,12 +69,12 @@ class Model extends \Kotchasan\Model
             if ($item->id == $order['member_id']) {
                 // ผู้ทำรายการ
                 $name = $item->name;
-                $mailto = $item->username;
+                $mailto = $item->email;
                 $line_uid = $item->line_uid;
                 $order['name'] = $item->name;
             } else {
                 // เจ้าหน้าที่
-                $emails[] = $item->name.'<'.$item->username.'>';
+                $emails[] = $item->name.'<'.$item->email.'>';
                 if ($item->line_uid != '') {
                     $lines[] = $item->line_uid;
                 }
