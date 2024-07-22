@@ -466,5 +466,6 @@ return array(
   'Your message was sent successfully' => 'ສົ່ງຂໍ້ຄວາມໄປຍັງຜູ້ຮັບຮຽບຮ້ອຍແລ້ວ',
   'Your new password is' => 'ລະຫັດຜ່ານໃໝ່ຂອງທ່ານຄື',
   'Your registration information' => 'ຂໍ້ມູນການລົງທະບຽນຂອງທ່ານ',
-  'Zipcode' => 'ລະຫັດໄປສະນີ'
+  'Zipcode' => 'ລະຫັດໄປສະນີ',
+  'ํYear' => 'ປີ'
 );

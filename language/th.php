@@ -466,5 +466,6 @@ return array(
   'Your message was sent successfully' => 'ส่งข้อความไปยังผู้ที่เกี่ยวข้องเรียบร้อยแล้ว',
   'Your new password is' => 'รหัสผ่านใหม่ของคุณคือ',
   'Your registration information' => 'ข้อมูลการลงทะเบียนของคุณ',
-  'Zipcode' => 'รหัสไปรษณีย์'
+  'Zipcode' => 'รหัสไปรษณีย์',
+  'ํYear' => 'ปี'
 );
