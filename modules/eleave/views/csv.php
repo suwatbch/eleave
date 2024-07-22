@@ -68,6 +68,7 @@ class View extends \Kotchasan\KBase
                 'days',
                 'Time',
                 'Status',
+                'Communication',
                 'Reason',
             ));
             $header = [];
@@ -81,9 +82,11 @@ class View extends \Kotchasan\KBase
             $header[] = $lng['days'];
             $header[] = $lng['Time'];
             $header[] = $lng['Status'];
+            $header[] = $lng['Communication'];
             $header[] = $lng['Reason'];
             $datas = [];
             $dataleave = \Eleave\Export\Model::csv($params);
+            $leave_period = Language::get('LEAVE_PERIOD');
             foreach ($dataleave as $item) {
                 $result = [];
                 $result[] = '="'.Date::format($item->create_date, 'd M Y').'"';
@@ -92,10 +95,15 @@ class View extends \Kotchasan\KBase
                 $result[] = $item->department;
                 $result[] = $item->topic;
                 $result[] = $item->detail;
-                $result[] = self::datefoleave($item);
-                $result[] = $item->days;
-                $result[] = $item->communication;
+                if ($item->start_date == $item->end_date) {
+                    $result[] = Date::format($item->start_date, 'd M Y').' '.$leave_period[$item->start_period];
+                } else {
+                    $result[] = Date::format($item->start_date, 'd M Y').' '.$leave_period[$item->start_period].($item->start_period ? '' : ' - '.Date::format($item->end_date, 'd M Y').' '.$leave_period[$item->end_period]);
+                }
+                $result[] = \Gcms\Functions::gettimeleave($item->days,$item->times);
+                $result[] = \Gcms\Functions::showtime($item->start_time,$item->end_time);
                 $result[] = self::approve_status($item->status);
+                $result[] = $item->communication;
                 $result[] = $item->reason;
                 $datas[] = $result;
             }
