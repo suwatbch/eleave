@@ -21,6 +21,23 @@ use Kotchasan\Language;
 class Functions
 {
     /**
+     * @param string $start_date
+     * @param string $end_date
+     * @return int
+     */
+    public static function checkyearnow($start_date, $end_date) {
+        $startYear = date('Y', strtotime($start_date));
+        $endYear = date('Y', strtotime($end_date));
+        $datenew = date('Y');
+
+        $res = 0;
+        if ($startYear === $endYear && $endYear === $datenew) {
+            $res = 1;
+        }
+        return $res; 
+     }
+
+    /**
      * @param string $start_time
      * @param string $end_time
      * @return float

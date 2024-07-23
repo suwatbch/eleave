@@ -27,7 +27,7 @@ class View extends \Gcms\View
     private $publisheds;
 
     /**
-     * รายการวันหยุด
+     * รายการประเภทการลา
      *
      * @param Request $request
      *
@@ -36,27 +36,23 @@ class View extends \Gcms\View
     public function render(Request $request)
     {
         $this->publisheds = Language::get('PUBLISHEDS');
+        
+        // รับค่าปีจาก request
+        $year = $request->request('year', date('Y'))->toInt();
+
         // URL สำหรับส่งให้ตาราง
         $uri = $request->createUriWithGlobals(WEB_URL.'index.php');
-
-        // สร้าง dropdown สำหรับเลือกปี
-        $years = array();
-        $currentYear = (int)date('Y');
-        for ($i = $currentYear - 10; $i <= $currentYear + 10; $i++) {
-            $years[$i] = $i;
-        }
-
-        $year = $request->request('year', $currentYear)->toInt();
-
+        
+        // ฟิลเตอร์สำหรับกรองปี
         $filters = array(
             array(
                 'name' => 'year',
                 'text' => '{LNG_Year}',
-                'options' => $years,
-                'value' => $year
+                'options' => array_combine(range(date('Y'), date('Y') - 10), range(date('Y'), date('Y') - 10)),
+                'value' => $year,
             )
-        );
-
+        ); 
+        
         // ตาราง
         $table = new DataTable(array(
             /* Uri */
@@ -72,10 +68,18 @@ class View extends \Gcms\View
             /* คอลัมน์ที่ไม่ต้องแสดงผล */
             'hideColumns' => array('id'),
             /* ตั้งค่าการกระทำของของตัวเลือกต่างๆ ด้านล่างตาราง ซึ่งจะใช้ร่วมกับการขีดถูกเลือกแถว */
-            'action' => 'index.php/index/model/holidays/delete',
+            'action' => 'index.php/index/model/holidays/action',
             'actionCallback' => 'dataTableActionCallback',
-            
-            
+            'actions' => array(
+                array(
+                    'id' => 'action',
+                    'class' => 'ok',
+                    'text' => '{LNG_With selected}',
+                    'options' => array(
+                        'delete' => '{LNG_Delete}'
+                    )
+                )
+            ),
             /* คอลัมน์ที่สามารถค้นหาได้ */
             'searchColumns' => array('topic', 'document_no'),
             /* ส่วนหัวของตาราง และการเรียงลำดับ (thead) */
@@ -116,12 +120,6 @@ class View extends \Gcms\View
                     'class' => 'icon-edit button green',
                     'href' => $uri->createBackUri(array('module' => 'eleave-write', 'id' => ':id')),
                     'text' => '{LNG_Edit}'
-                ),
-                'delete' => array(
-                    'class' => 'icon-delete button red',
-                    'id' => ':id',
-                    'text' => '{LNG_Delete}',
-                    'data-confirm' => '{LNG_Are you sure you want to delete?}'
                 )
             ),
             /* ปุ่มเพิ่ม */

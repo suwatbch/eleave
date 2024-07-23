@@ -101,36 +101,46 @@ class Model extends \Kotchasan\Model
                             $save['start_time'] = $start_time;
                             $save['end_date'] = $end_date;
                             $save['end_time'] = $end_time;
-                            // ไม่สามารถลากิจได้มากกว่า 6 วัน
-                            if ($save['days'] > 6 && $save['leave_id'] == 2) {
-                                $ret['ret_end_date'] = Language::get('Unable to take leave for more than 6 days');
+                        }
+
+                        //ตรวจสอบก่อนการอนุมัติ
+                        $ism1 = !empty($index->member_id_m1);
+                        $ism2 = !empty($index->member_id_m2);
+                        if ($login['id']==1){ //แอดมิน
+                            if ($ism1){
+                                $save['status_m1'] = $save['status'];
+                                $save['approve_datetime_m1'] = date('Y-m-d H:i:s');
                             }
-                            // ตรวจสอบวันลากิจและลาพักร้อน
-                            $result = false;
-                            $result_quota = "";
-                            $leave_quota = 0;
-                            if ($save['leave_id'] == 2 || $save['leave_id'] == 8) {
-                                $result_quota = self::getQuota($index->member_id,$save['leave_id']);
-                                $result_sum = self::getSumLeave($index->member_id,$save['leave_id']);
-                                $leave_quota = $result_sum->sum == null ? 0 : $result_sum->sum;
-                                $result = true;
+                            if ($ism2){
+                                $save['status_m2'] = $save['status'];
+                                $save['approve_datetime_m2'] = date('Y-m-d H:i:s');
                             }
-                            if ($result && $result_quota != "" && $result_quota != false) {
-                                if (($save['days'] + $leave_quota) > $result_quota->quota) {
-                                    $ret['ret_end_date'] = Language::get('There arent enough leave days');
+                        } else {
+                            $pass1 = false;
+                            $pass2 = false;
+                            if ($index->member_id_m1 == $login['id']){
+                                $save['status_m1'] = $save['status'];
+                                $save['approve_datetime_m1'] = date('Y-m-d H:i:s');
+                                $pass1 = true;
+                            }
+                            if ($index->member_id_m2 == $login['id']){
+                                $save['status_m2'] = $save['status'];
+                                $save['approve_datetime_m2'] = date('Y-m-d H:i:s');
+                                $pass2 = true;
+                            }
+
+                            // ตรวจสอบกรณีมี M2
+                            if ($ism2 && $save['status'] != 2){
+                                if ($pass1 && !$pass2 && $index->status_m2 == 0){
+                                    $save['status'] = 0;
+                                } else if ($pass1 && !$pass2 && $index->status_m2 == 1){
+                                    $save['status'] = 1;
+                                } else if ($pass1 && !$pass2 && $index->status == 2) {
+                                    $save['status'] = $index->status;
                                 }
-                            } else if ($result && !$result_quota) {
-                                $ret['ret_end_date'] = Language::get('Leave quota not found');
-                            }
-                            if (empty($ret)) {
-                                // อัปโหลดไฟล์แนบ
-                                \Download\Upload\Model::execute($ret, $request, $index->id, 'eleave', self::$cfg->eleave_file_typies, self::$cfg->eleave_upload_size);
-                            }
-                            if ($save['detail'] == '') {
-                                // ไม่ได้กรอก detail
-                                $ret['ret_detail'] = 'Please fill in';
                             }
                         }
+
                         if (empty($ret)) {
                             // แก้ไข
                             $this->db()->update($this->getTableName('leave_items'), $index->id, $save);
@@ -140,7 +150,7 @@ class Model extends \Kotchasan\Model
                                 $index->status = $save['status'];
                                 $index->reason = $save['reason'];
                                 // ส่งอีเมลแจ้งการขอลา
-                                $ret['alert'] = \Eleave\Email\Model::send((array) $index);
+                                //$ret['alert'] = \Eleave\Email\Model::send((array) $index);
                             } else {
                                 // ไม่ต้องส่งอีเมล
                                 $ret['alert'] = Language::get('Saved successfully');
