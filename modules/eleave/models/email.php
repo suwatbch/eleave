@@ -49,8 +49,8 @@ class Model extends \Kotchasan\Model
             // ผู้อนุมัตื
             $passapprove1 = true;
             $passapprove2 = true;
-            if (empty($order['member_id_m1']) || $order['member_id_m1'] == 0) { $passapprove1 = false;}
-            if (empty($order['member_id_m2']) || $order['member_id_m2'] == 0) { $passapprove2 = false;}
+            if (empty($order['member_id_m1']) || $order['member_id_m1'] == 0) { $passapprove1 = false; $order['member_id_m1'] = 0;}
+            if (empty($order['member_id_m2']) || $order['member_id_m2'] == 0) { $passapprove2 = false; $order['member_id_m2'] = 0;}
             if ($passapprove1 && $order['status'] == 0 && $order['status_m1'] == 0){
                 $where[] = array('id', $order['member_id_m1']);
             }
@@ -65,6 +65,9 @@ class Model extends \Kotchasan\Model
             ->where(array('active', 1))
             ->andWhere($where, 'OR')
             ->cacheOn();
+
+        $sendmailTo = false;
+        $sendmailApprove = false;
         foreach ($query->execute() as $item) {
             if ($item->id == $order['member_id']) {
                 // ผู้ทำรายการ
@@ -72,11 +75,17 @@ class Model extends \Kotchasan\Model
                 $mailto = $item->email;
                 $line_uid = $item->line_uid;
                 $order['name'] = $item->name;
+                if (!empty($item->email)){
+                    $sendmailTo = true;
+                }
             } else {
                 // เจ้าหน้าที่
-                $emails[] = $item->name.'<'.$item->email.'>';
-                if ($item->line_uid != '') {
-                    $lines[] = $item->line_uid;
+                if (!empty($item->email)){
+                    $sendmailApprove = true;
+                    $emails[] = $item->name.'<'.$item->email.'>';
+                    if ($item->line_uid != '') {
+                        $lines[] = $item->line_uid;
+                    }
                 }
             }
         }
@@ -107,21 +116,25 @@ class Model extends \Kotchasan\Model
                 $ret[] = $err;
             }
         }
-        if (self::$cfg->noreply_email != '') {
+        if (self::$cfg->noreply_email != '' && ($sendmailTo || $sendmailApprove)) {
             // email subject
             $subject = '['.self::$cfg->web_title.'] '.Language::get('Request for leave').' '.Language::get('LEAVE_STATUS', '', $order['status']);
             // ส่งอีเมลไปยังผู้ทำรายการเสมอ
-            $err = \Kotchasan\Email::send($name.'<'.$mailto.'>', self::$cfg->noreply_email, $subject, $user_msg);
-            if ($err->error()) {
-                // คืนค่า error
-                $ret[] = strip_tags($err->getErrorMessage());
-            }
-            foreach ($emails as $item) {
-                // ส่งอีเมล
-                $err = \Kotchasan\Email::send($item, self::$cfg->noreply_email, $subject, $admin_msg);
+            if ($sendmailTo) {
+                $err = \Kotchasan\Email::send($name.'<'.$mailto.'>', self::$cfg->noreply_email, $subject, $user_msg);
                 if ($err->error()) {
                     // คืนค่า error
                     $ret[] = strip_tags($err->getErrorMessage());
+                }
+            }
+            if ($sendmailApprove) {
+                foreach ($emails as $item) {
+                    // ส่งอีเมล
+                    $err = \Kotchasan\Email::send($item, self::$cfg->noreply_email, $subject, $admin_msg);
+                    if ($err->error()) {
+                        // คืนค่า error
+                        $ret[] = strip_tags($err->getErrorMessage());
+                    }
                 }
             }
         }
