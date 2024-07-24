@@ -1,6 +1,6 @@
 <?php
 /**
- * @filesource modules/index/models/holidays.php
+ * @filesource modules/index/model/holidays.php
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
@@ -51,12 +51,12 @@ class Model extends \Kotchasan\Model
                 // id ที่ส่งมา
                 if (preg_match_all('/,?([0-9]+),?/', $request->post('id')->toString(), $match)) {
                     // ตาราง
-                    $table = $this->getTableName('leave');
+                    $table = $this->getTableName('holidays');
                     if ($action === 'delete') {
                         // ลบ
                         $this->db()->delete($table, array('ID', $match[1]), 0);
                         // log
-                        \Index\Log\Model::add(0, 'holidays', 'Delete', '{LNG_Delete} {LNG_Leave type} ID : '.implode(', ', $match[1]), $login['id']);
+                        \Index\Log\Model::add(0, 'holidays', 'Delete', '{LNG_Delete} {LNG_Leave type} id : '.implode(', ', $match[1]), $login['id']);
                         // reload
                         $ret['location'] = 'reload';
                     } elseif ($action === 'published') {

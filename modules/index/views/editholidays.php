@@ -1,6 +1,6 @@
 <?php
 /**
- * @filesource modules/index/views/write.php
+ * @filesource modules/index/views/editholidays.php
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
@@ -13,9 +13,7 @@ namespace Index\Editholidays;
 use Kotchasan\Html;
 
 /**
- * module=holidays-write
- *
- * @author Goragod Wiriya <admin@goragod.com>
+ * module=index-editholidays
  *
  * @since 1.0
  */
@@ -45,6 +43,7 @@ class View extends \Gcms\View
         // date
         $fieldset->add('date', array(
             'id' => 'date',
+            'name' => 'date',
             'labelClass' => 'g-input icon-calendar',
             'itemClass' => 'item',
             'label' => '{LNG_Date}',
@@ -53,6 +52,7 @@ class View extends \Gcms\View
         // description
         $fieldset->add('textarea', array(
             'id' => 'description',
+            'name' => 'description',
             'labelClass' => 'g-input icon-file',
             'itemClass' => 'item',
             'label' => '{LNG_Description}',
@@ -67,9 +67,10 @@ class View extends \Gcms\View
             'class' => 'button ok large icon-save',
             'value' => '{LNG_Save}'
         ));
-        // id
-        $fieldset->add('hidden', array(
+        // hidden id field
+        $form->add('hidden', array(
             'id' => 'id',
+            'name' => 'id',
             'value' => $index->id
         ));
         // คืนค่า HTML
