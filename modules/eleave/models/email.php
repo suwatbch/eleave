@@ -54,7 +54,7 @@ class Model extends \Kotchasan\Model
             if ($passapprove1 && $order['status'] == 0 && $order['status_m1'] == 0){
                 $where[] = array('id', $order['member_id_m1']);
             }
-            if ($passapprove2 && $order['status'] == 0 && $order['status_m1'] > 0 && $order['status_m2'] == 0){
+            if ($passapprove2 && $order['status'] == 0 && $order['status_m1'] == 1 && $order['status_m2'] == 0){
                 $where[] = array('id', $order['member_id_m2']);
             }
         }
