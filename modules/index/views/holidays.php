@@ -77,10 +77,10 @@ class View extends \Gcms\View
             
             
             /* คอลัมน์ที่สามารถค้นหาได้ */
-            'searchColumns' => array('topic', 'document_no'),
+            'searchColumns' => array('ID', 'date', 'description'),
             /* ส่วนหัวของตาราง และการเรียงลำดับ (thead) */
             'headers' => array(
-                'topic' => array(
+                'ID' => array(
                     'text' => '{LNG_ID}'
                 ),
                 'date' => array(
@@ -97,7 +97,7 @@ class View extends \Gcms\View
             ),
             /* รูปแบบการแสดงผลของคอลัมน์ (tbody) */
             'cols' => array(
-                'topic' => array(
+                'ID' => array(
                     'class' => 'center'
                 ),
                 'date' => array(
@@ -114,7 +114,7 @@ class View extends \Gcms\View
             'buttons' => array(
                 'edit' => array(
                     'class' => 'icon-edit button green',
-                    'href' => $uri->createBackUri(array('module' => 'eleave-write', 'id' => ':id')),
+                    'href' => $uri->createBackUri(array('module' => 'index-editholidays', 'id' => ':id')),
                     'text' => '{LNG_Edit}'
                 ),
                 'delete' => array(
