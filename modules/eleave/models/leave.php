@@ -631,7 +631,7 @@ class Model extends \Kotchasan\Model
                         ->from('shift_workdays')
                         ->where(array(
                             array('member_id', $member_id),
-                            array('yaer', $year),
+                            array('year', $year),
                             array('month', 'IN', $month)
                         ))
                         ->cacheOn();
@@ -641,7 +641,7 @@ class Model extends \Kotchasan\Model
                             ->from('shift_workdays')
                             ->where(array(
                                 array('member_id', $member_id),
-                                array('yaer', $year),
+                                array('year', $year),
                                 array('month', $month_std)
                             ))
                             ->cacheOn()
@@ -651,7 +651,7 @@ class Model extends \Kotchasan\Model
                             ->from('shift_workdays')
                             ->where(array(
                                 array('member_id', $member_id),
-                                array('yaer', $year),
+                                array('year', $year),
                                 array('month', $month_end)
                             ))
                             ->cacheOn()
@@ -664,7 +664,7 @@ class Model extends \Kotchasan\Model
                         ->from('shift_workdays')
                         ->where(array(
                             array('member_id', $member_id),
-                            array('yaer', $year),
+                            array('year', $year),
                             array('month', $month_std),
                             array('days', 'LIKE','%'.$start_date.'%'),
                         ))
