@@ -301,7 +301,6 @@ class Model extends \Kotchasan\Model
     //     // คืนค่า JSON
     //     echo json_encode($res);
     // }
-
     /**
      * คืนค่ารายละเอียดกะที่เลือก
      * เป็น JSON

@@ -13,9 +13,10 @@ namespace Index\Manageshifts;
 use Kotchasan\Html;
 use Kotchasan\Http\Request;
 use Kotchasan\Language;
+use Kotchasan\Text;
 
 /**
- * module=manageshifts
+ * module=index-manageshifts
  *
  * @author Goragod Wiriya <admin@goragod.com>
  *

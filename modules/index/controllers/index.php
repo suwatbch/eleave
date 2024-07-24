@@ -21,7 +21,7 @@ use Kotchasan\Template;
  *
  * @author Goragod Wiriya <admin@goragod.com>
  *
- * @since 1.0
+ * @since 1.0 
  */
 class Controller extends \Gcms\Controller
 {

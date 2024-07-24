@@ -22,7 +22,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "eleaveup"; 
-$port = "3306";
+$port = "3307";
 $prefix = "app";
 $dbdriver = "mysql";
 

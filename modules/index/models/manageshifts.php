@@ -15,7 +15,7 @@ use Kotchasan\Database\Sql;
 use Kotchasan\Http\Request;
 use Kotchasan\Database\Query;
 use Kotchasan\DataTable;
-use Kotchasan\Language;
+
 
 
 /**
