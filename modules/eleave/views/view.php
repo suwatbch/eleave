@@ -48,7 +48,7 @@ class View extends \Gcms\View
         if ($index['start_date'] == $index['end_date']) {
             $row .= Date::format($index['start_date'], 'd M Y').' '.$leave_period[$index['start_period']];
         } else {
-            $row .= Date::format($index['start_date'], 'd M Y').' '.$leave_period[$index['start_period']].($index['start_period'] ? '' : ' - '.Date::format($index['end_date'], 'd M Y').' '.$leave_period[$index['end_period']]);
+            $row .= Date::format($index['start_date'], 'd M Y').' '.$leave_period[$index['start_period']].($index['start_period'] ? '' : ' - '.Date::format($index['end_date'], 'd M Y').' '.$leave_period[0]);
         }
         $content[] = $row.'</td></tr>';
         $content[] = '<tr><td class="item"><span class="icon-event">{LNG_Number of leave days}</span></td><td class="item"> : </td><td class="item">'.\Gcms\Functions::gettimeleave($index['days'],$index['times']).'</td></tr>';

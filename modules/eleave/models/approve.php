@@ -109,6 +109,7 @@ class Model extends \Kotchasan\Model
                         if ($login['id']==1){ //แอดมิน
                             if ($ism1){
                                 $save['status_m1'] = $save['status'];
+                                $save['status_m2'] = 0;
                                 $save['approve_datetime_m1'] = date('Y-m-d H:i:s');
                             }
                             if ($ism2){
@@ -120,10 +121,12 @@ class Model extends \Kotchasan\Model
                             $pass2 = false;
                             if ($index->member_id_m1 == $login['id']){
                                 $save['status_m1'] = $save['status'];
+                                $save['status_m2'] = 0;
                                 $save['approve_datetime_m1'] = date('Y-m-d H:i:s');
                                 $pass1 = true;
                             }
                             if ($index->member_id_m2 == $login['id']){
+                                $save['status_m1'] = 1;
                                 $save['status_m2'] = $save['status'];
                                 $save['approve_datetime_m2'] = date('Y-m-d H:i:s');
                                 $pass2 = true;
@@ -146,11 +149,13 @@ class Model extends \Kotchasan\Model
                             $this->db()->update($this->getTableName('leave_items'), $index->id, $save);
                             // log
                             \Index\Log\Model::add($index->id, 'eleave', 'Status', Language::get('LEAVE_STATUS', '', $save['status']).' ID : '.$index->id, $login['id']);
-                            if ($save['status'] != $index->status) {
+                            $index->status_m1 = $save['status_m1'];
+                            $index->status_m2 = $save['status_m2'];
+                            if ($save['status'] != $index->status || ($index->status_m2 == 0 && $index->status_m1)) {
                                 $index->status = $save['status'];
                                 $index->reason = $save['reason'];
                                 // ส่งอีเมลแจ้งการขอลา
-                                //$ret['alert'] = \Eleave\Email\Model::send((array) $index);
+                                $ret['alert'] = \Eleave\Email\Model::send((array) $index);
                             } else {
                                 // ไม่ต้องส่งอีเมล
                                 $ret['alert'] = Language::get('Saved successfully');

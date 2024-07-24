@@ -36,6 +36,9 @@ class View extends \Gcms\View
     {
         // ไม่สามารถแก้ไขได้
         $notEdit = !empty($index->status);
+        if ($index->id > 0) {
+            $notEdit = true;
+        }
         // form
         $form = Html::create('form', array(
             'id' => 'setup_frm',
