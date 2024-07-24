@@ -388,6 +388,8 @@ class Model extends \Kotchasan\Model
                 $shiftdata = self::getShifts($shift_id);
                 $static = $shiftdata->static;
 
+                // ตรวจสอบกะฟิกกับหมุนเวียน
+                if ($leave_user->shift_id==0) { $static=0;}
                 if ($static) {
                     // กำหนดวันทำงาน
                     $workweek = json_decode($shiftdata->workweek, true);
