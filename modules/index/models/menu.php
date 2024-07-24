@@ -70,6 +70,8 @@ class Model
                 'text' => '{LNG_Module}',
                 'url' => 'index.php?module=modules'
             );
+            // ใน Model::getMenus()
+
         }
         if ($can_config) {
             $settings['language'] = array(
@@ -100,6 +102,19 @@ class Model
             $settings['usage'] = array(
                 'text' => '{LNG_Usage history}',
                 'url' => 'index.php?module=usage'
+            );
+        }
+        // หน้าจัดการกะการทำงาน
+        if ($can_config || $isAdmin) {
+            $settings['holidays'] = array(
+                'text' => '{LNG_วันหยุดตามประเพณี}',
+                'url' => 'index.php?module=holidays'
+            );
+        }
+        if ($isAdmin) {
+            $settings['manageshifts'] = array(
+                'text' => '{LNG_Manage shifts}',
+                'url' => 'index.php?module=manageshifts'
             );
         }
         if ($login) {
@@ -134,7 +149,7 @@ class Model
                     'text' => '{LNG_Settings}',
                     'url' => 'index.php?module=settings',
                     'submenus' => $settings
-                )
+                )   
             );
             // เพิ่มรวมรายงานในตำแหน่งรองสุดท้าย
             if ($isAdmin) {
