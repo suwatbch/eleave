@@ -31,8 +31,8 @@ class Model extends \Kotchasan\Model
     public static function toDataTable()
     {
         return static::createQuery()
-            ->select('id', 'topic', 'num_days', 'published')
-            ->from('leave');
+            ->select('ID', 'date', 'description')
+            ->from('holidays');
     }
 
     /**
@@ -54,9 +54,9 @@ class Model extends \Kotchasan\Model
                     $table = $this->getTableName('leave');
                     if ($action === 'delete') {
                         // ลบ
-                        $this->db()->delete($table, array('id', $match[1]), 0);
+                        $this->db()->delete($table, array('ID', $match[1]), 0);
                         // log
-                        \Index\Log\Model::add(0, 'eleave', 'Delete', '{LNG_Delete} {LNG_Leave type} ID : '.implode(', ', $match[1]), $login['id']);
+                        \Index\Log\Model::add(0, 'holidays', 'Delete', '{LNG_Delete} {LNG_Leave type} ID : '.implode(', ', $match[1]), $login['id']);
                         // reload
                         $ret['location'] = 'reload';
                     } elseif ($action === 'published') {
@@ -70,7 +70,7 @@ class Model extends \Kotchasan\Model
                             $ret['title'] = Language::get('PUBLISHEDS', '', $published);
                             $ret['class'] = 'icon-published'.$published;
                             // log
-                            \Index\Log\Model::add(0, 'eleave', 'Save', $ret['title'].' ID : '.$match[1][0], $login['id']);
+                            \Index\Log\Model::add(0, 'holidays', 'Save', $ret['title'].' ID : '.$match[1][0], $login['id']);
                         }
                     }
                 }

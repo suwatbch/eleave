@@ -17,8 +17,6 @@ use Kotchasan\Language;
 /**
  * module=index-holidays
  *
- * @author Goragod Wiriya <admin@goragod.com>
- *
  * @since 1.0
  */
 class View extends \Gcms\View
@@ -27,8 +25,9 @@ class View extends \Gcms\View
      * @var array
      */
     private $publisheds;
+
     /**
-     * รายการประเภทการลา
+     * รายการวันหยุด
      *
      * @param Request $request
      *
@@ -39,42 +38,57 @@ class View extends \Gcms\View
         $this->publisheds = Language::get('PUBLISHEDS');
         // URL สำหรับส่งให้ตาราง
         $uri = $request->createUriWithGlobals(WEB_URL.'index.php');
+
+        // สร้าง dropdown สำหรับเลือกปี
+        $years = array();
+        $currentYear = (int)date('Y');
+        for ($i = $currentYear - 10; $i <= $currentYear + 10; $i++) {
+            $years[$i] = $i;
+        }
+
+        $year = $request->request('year', $currentYear)->toInt();
+
+        $filters = array(
+            array(
+                'name' => 'year',
+                'text' => '{LNG_Year}',
+                'options' => $years,
+                'value' => $year
+            )
+        );
+
         // ตาราง
         $table = new DataTable(array(
             /* Uri */
             'uri' => $uri,
             /* Model */
-            'model' => \Index\Holidays\Model::toDataTable(),
+            'model' => \Index\Holidays\Model::toDataTable($year),
             /* รายการต่อหน้า */
             'perPage' => $request->cookie('eleaveSetup_perPage', 30)->toInt(),
             /* เรียงลำดับ */
-            'sort' => 'id ASC',
+            'sort' => 'date',
             /* ฟังก์ชั่นจัดรูปแบบการแสดงผลแถวของตาราง */
             'onRow' => array($this, 'onRow'),
             /* คอลัมน์ที่ไม่ต้องแสดงผล */
             'hideColumns' => array('id'),
             /* ตั้งค่าการกระทำของของตัวเลือกต่างๆ ด้านล่างตาราง ซึ่งจะใช้ร่วมกับการขีดถูกเลือกแถว */
-            'action' => 'index.php/eleave/model/setup/action',
+            'action' => 'index.php/index/model/holidays/delete',
             'actionCallback' => 'dataTableActionCallback',
-            'actions' => array(
-                array(
-                    'id' => 'action',
-                    'class' => 'ok',
-                    'text' => '{LNG_With selected}',
-                    'options' => array(
-                        'delete' => '{LNG_Delete}'
-                    )
-                )
-            ),
+            
+            
             /* คอลัมน์ที่สามารถค้นหาได้ */
-            'searchColumns' => array('topic', 'document_no'),
+            'searchColumns' => array('ID', 'date', 'description'),
             /* ส่วนหัวของตาราง และการเรียงลำดับ (thead) */
             'headers' => array(
-                'topic' => array(
-                    'text' => '{LNG_Manage shift}'
+                'ID' => array(
+                    'text' => '{LNG_ID}'
                 ),
-                'num_days' => array(
-                    'text' => '{LNG_Number of leave days}',
+                'date' => array(
+                    'text' => '{LNG_date}',
+                    'class' => 'center'
+                ),
+                'description' => array(
+                    'text' => '{LNG_description}',
                     'class' => 'center'
                 ),
                 'published' => array(
@@ -83,7 +97,13 @@ class View extends \Gcms\View
             ),
             /* รูปแบบการแสดงผลของคอลัมน์ (tbody) */
             'cols' => array(
-                'num_days' => array(
+                'ID' => array(
+                    'class' => 'center'
+                ),
+                'date' => array(
+                    'class' => 'center'
+                ),
+                'description' => array(
                     'class' => 'center'
                 ),
                 'published' => array(
@@ -94,8 +114,14 @@ class View extends \Gcms\View
             'buttons' => array(
                 'edit' => array(
                     'class' => 'icon-edit button green',
-                    'href' => $uri->createBackUri(array('module' => 'eleave-write', 'id' => ':id')),
+                    'href' => $uri->createBackUri(array('module' => 'index-editholidays', 'id' => ':id')),
                     'text' => '{LNG_Edit}'
+                ),
+                'delete' => array(
+                    'class' => 'icon-delete button red',
+                    'id' => ':id',
+                    'text' => '{LNG_Delete}',
+                    'data-confirm' => '{LNG_Are you sure you want to delete?}'
                 )
             ),
             /* ปุ่มเพิ่ม */
@@ -103,7 +129,9 @@ class View extends \Gcms\View
                 'class' => 'float_button icon-new',
                 'href' => $uri->createBackUri(array('module' => 'eleave-write')),
                 'title' => '{LNG_Add} {LNG_Leave type}'
-            )
+            ),
+            /* ฟิลเตอร์ */
+            'filters' => $filters
         ));
         // save cookie
         setcookie('eleaveSetup_perPage', $table->perPage, time() + 2592000, '/', HOST, HTTPS, true);

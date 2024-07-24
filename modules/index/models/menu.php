@@ -105,16 +105,16 @@ class Model
             );
         }
         // หน้าจัดการกะการทำงาน
-        if ($isAdmin) {
-            $settings['manage_shifts'] = array(
-                'text' => 'วันหยุดตามประเพณี',
+        if ($can_config || $isAdmin) {
+            $settings['holidays'] = array(
+                'text' => '{LNG_วันหยุดตามประเพณี}',
                 'url' => 'index.php?module=holidays'
             );
         }
         if ($isAdmin) {
             $settings['manageshifts'] = array(
-                'text' => '{LNG_Manage shift}',
-                'url' => 'index.php?module=shifts'
+                'text' => '{LNG_Manage shifts}',
+                'url' => 'index.php?module=manageshifts'
             );
         }
         if ($login) {
