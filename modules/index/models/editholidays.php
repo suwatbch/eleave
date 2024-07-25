@@ -25,7 +25,7 @@ class Model extends \Kotchasan\Model
      * อ่านข้อมูลรายการที่เลือก
      * ถ้า $id = 0 หมายถึงรายการใหม่
      *
-     * @param int $id ID
+     * @param int   $id    ID
      *
      * @return object|null คืนค่าข้อมูล object ไม่พบคืนค่า null
      */
@@ -34,9 +34,7 @@ class Model extends \Kotchasan\Model
         if (empty($id)) {
             // ใหม่
             return (object) array(
-                'id' => 0,
-                'date' => '',
-                'description' => ''
+                'id' => 0
             );
         } else {
             // แก้ไข อ่านรายการที่เลือก
@@ -84,7 +82,7 @@ class Model extends \Kotchasan\Model
                                 $this->db()->insert($this->getTableName('holidays'), $save);
                             } else {
                                 // แก้ไข
-                                $this->db()->update($this->getTableName('holidays'), $index->id, $save);
+                                $this->db()->update($this->getTableName('holidays'), $index->date, $save);
                             }
                             // log
                             \Index\Log\Model::add($index->id, 'holidays', 'Save', '{LNG_Holiday} ID : '.$index->id, $login['id']);
