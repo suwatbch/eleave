@@ -723,6 +723,19 @@ class Model extends \Kotchasan\Model
     }
 
     /**
+     * @param int $leave_id
+     * @return static
+     */
+    public static function getleaveofstatic($leave_id)
+    {
+        return static::createQuery()
+                    ->from('leave')
+                    ->where(array('id', $leave_id))
+                    ->cacheOn()
+                    ->first('*');
+    }
+
+    /**
      * @param int $member_id
      * @return static
      */
