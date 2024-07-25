@@ -155,9 +155,9 @@ class View extends \Gcms\View
             'labelClass' => 'g-input icon-email',
             'itemClass' => 'item',
             'label' => '{LNG_Total number of leave this time}',
-            'comment' => '<em>{LNG_Check the accuracy of leave}</em>',
+            'comment' => '<a>{LNG_Check the accuracy of leave}</a>',
             'disabled' => true,
-            'value' => '<em>'.(isset($index->textalert) ? $index->textalert : '').'</em>'
+            'value' => (isset($index->textalert) ? $index->textalert : '')
         ));
         // id กะหมุนเวียน
         $fieldset->add('hidden', array(
