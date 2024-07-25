@@ -61,12 +61,12 @@ class Model
      */
     public function toSelect()
     {
-        if (!empty($this->datas)) {
-            $add = array(0 => "--".Language::get('Select leave')."--");
-            foreach ($add as $key => $value){
-                $this->datas = array($key => $value) + $this->datas;
-            }
-        }
+        // if (!empty($this->datas)) {
+        //     $add = array(0 => "--".Language::get('Select leave')."--");
+        //     foreach ($add as $key => $value){
+        //         $this->datas = array($key => $value) + $this->datas;
+        //     }
+        // }
         return empty($this->datas) ? [] : $this->datas;
     }
 
