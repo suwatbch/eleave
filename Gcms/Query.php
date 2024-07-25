@@ -10,6 +10,7 @@
 
 namespace Gcms;
 
+use Kotchasan\Date;
 use Kotchasan\Language;
 
 /**
@@ -18,32 +19,17 @@ use Kotchasan\Language;
  *
  * @since 1.0
  */
-class Model
+class Model extends \Kotchasan\Model
 {
-    // /**
-    //  * @param int $id
-    //  *
-    //  * @return array
-    //  */
-    // public function getshift($id)
-    // {
-    //     return $this->createQuery()
-    //         ->from('shift S')
-    //         ->where(array('id', $id))
-    //         ->cacheOn()
-    //         ->first('S.*');
-    // }
-
-    // /**
-    //  * @param int $id
-    //  *
-    //  * @return array
-    //  */
-    // public static function getshift($id)
-    // {
-    //     return static::createQuery()
-    //         ->select('S.*')
-    //         ->from('shift S')
-    //         ->where(array('id', $id));
-    // }
+    /**
+     * @return array
+     */
+    public function getAllLeave()
+    {
+        return \Kotchasan\Model::createQuery()
+                            ->select('*')
+                            ->from('leave')
+                            ->cacheOn()
+                            ->execute();
+    }
 }

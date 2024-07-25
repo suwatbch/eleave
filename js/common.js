@@ -339,6 +339,20 @@ function checkUsername() {
   }
 }
 
+function numBer() {
+  var patt = /^[0-9]+$/,
+    value = this.value,
+    ids = this.id.split('_'),
+    id = '&id=' + parseFloat(document.getElementById(ids[0] + '_id').value);
+  if (value == '') {
+    this.invalid(this.title);
+  } else if (patt.test(value)) {
+    return 'value=' + encodeURIComponent(value) + id;
+  } else {
+    this.invalid(this.title);
+  }
+}
+
 function checkPassword() {
   var ids = this.id.split('_'),
     id = '&id=' + floatval($E(ids[0] + '_id').value),
