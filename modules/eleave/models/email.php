@@ -142,7 +142,7 @@ class Model extends \Kotchasan\Model
         }
         if (isset($err)) {
             // ส่งอีเมลสำเร็จ หรือ error การส่งเมล
-            return empty($ret) ? Language::get('Your message was sent successfully') : implode("\n", array_unique($ret));
+            return empty($ret) ? Language::get('Saved successfully').' '.Language::get('Your message was sent successfully') : implode("\n", array_unique($ret));
         } else {
             // ไม่มีอีเมลต้องส่ง
             return Language::get('Saved successfully');
