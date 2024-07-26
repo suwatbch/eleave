@@ -50,6 +50,14 @@ class View extends \Gcms\View
         $fieldset = $form->add('fieldset', array(
             'title' => '{LNG_Details of request for leave} '.$name->name
         ));
+        $fieldset->add('hidden', array(
+            'id' => 'member_id',
+            'value' => $index->member_id
+        ));
+        $fieldset->add('hidden', array(
+            'id' => 'shift_id',
+            'value' => $index->shift_id
+        ));
         // leave_id
         $fieldset->add('select', array(
             'id' => 'leave_id',
@@ -76,15 +84,16 @@ class View extends \Gcms\View
                 'value' => $index->{$k}
             ));
         }
-        // detail
-        $fieldset->add('textarea', array(
-            'id' => 'detail',
-            'labelClass' => 'g-input icon-file',
+        // รูปแบบการลา start_period
+        $leave_period = Language::get('LEAVE_PERIOD');
+        $fieldset->add('select', array(
+            'id' => 'start_period',
+            'labelClass' => 'g-input icon-clock',
             'itemClass' => 'item',
-            'label' => '{LNG_Detail}/{LNG_Reasons for leave}',
-            'rows' => 5,
+            'label' => '{LNG_Leave type}',
+            'options' => $leave_period,
             'disabled' => $notEdit,
-            'value' => $index->detail
+            'value' => $index->start_period
         ));
         $groups = $fieldset->add('groups');
         // start_date
@@ -96,37 +105,85 @@ class View extends \Gcms\View
             'disabled' => $notEdit,
             'value' => $index->start_date
         ));
-        $leave_period = Language::get('LEAVE_PERIOD');
-        // start_period
+        // เก็บข้อมูลวันที่เก่าซ่อนไว้
+        $fieldset->add('hidden', array(
+            'id' => 'last_start_date',
+            'value' => $index->last_start_date
+        ));
+        // อัปเดตตัวแปร $time_ent ด้วยค่าใหม่
+        $leave_time = \Eleave\Leave\Model::getTime0fShift($index->shift_id,$index->member_id);
+        $time_stt = $leave_time;
+        $time_ent = $leave_time;
+        if (count($leave_time) != 48) {
+            array_pop($time_stt);
+            array_shift($time_ent);
+        }
+
+        // เพิ่ม "00:00" 
+        $adddata = array("00:00" => "");
+        foreach ($adddata as $key => $value){
+            $time_stt = array($key => $value) +$time_stt;
+            $time_ent = array($key => $value) +$time_ent;
+        }
+        // เวลาเริ่มต้น
         $groups->add('select', array(
-            'id' => 'start_period',
+            'id' => 'start_time',
             'labelClass' => 'g-input icon-clock',
-            'itemClass' => 'width50',
-            'label' => '&nbsp;',
-            'options' => Language::get('LEAVE_PERIOD'),
+            'itemClass' => 'width25',
+            'label' => '{LNG_Start time}',
+            'options' => $time_stt,
             'disabled' => $notEdit,
-            'value' => $index->start_period
+            'value' => $index->start_time
+        ));
+        // เวลาสิ้นสุด
+        $groups->add('select', array(
+            'id' => 'end_time',
+            'labelClass' => 'g-input icon-clock',
+            'itemClass' => 'width25',
+            'label' => '{LNG_End time}',
+            'options' => $time_ent,
+            'disabled' => $notEdit,
+            'value' => $index->end_time
         ));
         $groups = $fieldset->add('groups');
         // end_date
-        $groups->add('date', array(
+        $fieldset->add('date', array(
             'id' => 'end_date',
             'labelClass' => 'g-input icon-calendar',
-            'itemClass' => 'width50',
+            'itemClass' => 'item',
             'label' => '{LNG_End date}',
             'disabled' => $notEdit,
             'value' => $index->end_date
         ));
-        unset($leave_period[2]);
-        // end_period
-        $groups->add('select', array(
-            'id' => 'end_period',
-            'labelClass' => 'g-input icon-clock',
-            'itemClass' => 'width50',
-            'label' => '&nbsp;',
-            'options' => $leave_period,
-            'disabled' => $notEdit,
-            'value' => $index->end_period
+        // แจ้งเตือนข้อมูลลา
+        $fieldset->add('text', array(
+            'id' => 'textalert',
+            'labelClass' => 'g-input icon-email',
+            'itemClass' => 'item',
+            'label' => '{LNG_Total number of leave this time}',
+            'comment' => '<em>{LNG_Check the accuracy of leave}</em>',
+            'disabled' => true,
+            'value' => '<em>'.$index->textalert.'</em>'
+        ));
+        // id กะหมุนเวียน
+        $fieldset->add('hidden', array(
+            'id' => 'cal_shift_id',
+            'value' => $index->cal_shift_id
+        ));
+        // สนานะหลังจากคำนวณ
+        $fieldset->add('hidden', array(
+            'id' => 'cal_status',
+            'value' => $index->cal_status
+        ));
+        // เก็บวันที่คำนวณได้
+        $fieldset->add('hidden', array(
+            'id' => 'cal_days',
+            'value' => $index->cal_days
+        ));
+        // เก็บเวลาที่คำนวณได้
+        $fieldset->add('hidden', array(
+            'id' => 'cal_times',
+            'value' => $index->cal_times
         ));
         if (!$notEdit) {
             // file eleave
@@ -143,13 +200,22 @@ class View extends \Gcms\View
             ));
         }
         $fieldset->appendChild('<div class="item">'.\Download\Index\Controller::init($index->id, 'eleave', self::$cfg->eleave_file_typies, $login['id']).'</div>');
+        // detail
+        $fieldset->add('textarea', array(
+            'id' => 'detail',
+            'labelClass' => 'g-input icon-file',
+            'itemClass' => 'item',
+            'label' => '{LNG_Detail}/{LNG_Reasons for leave}',
+            'rows' => 5,
+            'disabled' => $notEdit,
+            'value' => $index->detail
+        ));
         // communication
         $fieldset->add('textarea', array(
             'id' => 'communication',
             'labelClass' => 'g-input icon-clock',
             'itemClass' => 'item',
-            'label' => '{LNG_Communication} {LNG_Example_time}',
-            // 'comment' => '{LNG_Contact information during leave}',
+            'label' => '{LNG_Communication}',
             'rows' => 3,
             'disabled' => $notEdit,
             'value' => $index->communication

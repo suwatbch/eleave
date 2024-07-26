@@ -11,6 +11,7 @@
 namespace Eleave\Home;
 
 use Gcms\Login;
+use Kotchasan\Database\Sql;
 
 /**
  * โมเดลสำหรับอ่านข้อมูลแสดงในหน้า  Home
@@ -36,22 +37,26 @@ class Model extends \Kotchasan\Model
         $setsionlogin = $_SESSION['login'];
         $qs = [];
         if (Login::checkPermission($login, 'can_approve_eleave')) {
+            $status = 0;
             if ($setsionlogin['status'] != 1) {
+                $where = array(
+                    array('status', $status),
+                    array('start_date', '>=', $fiscalyear['from']),
+                    array('start_date', '<=', $fiscalyear['to'])
+                );
+                $sql = "(`member_id_m1`='$setsionlogin[id]' AND `status_m1`='$status')";
+                $sql .= " OR (`member_id_m2`='$setsionlogin[id]' AND `status_m2`='$status' AND `status_m1`>'$status' AND `status`='$status')";
+                $where[] = Sql::create($sql);
                 $qs[] = static::createQuery()
                 ->select('0 type', 'status', 'SQL(COUNT(id) AS count)')
                 ->from('leave_items')
-                ->where(array(
-                    array('status', 0),
-                    array('department', '=', $setsionlogin['department'][0]),
-                    array('start_date', '>=', $fiscalyear['from']),
-                    array('start_date', '<=', $fiscalyear['to'])
-                ));
+                ->where($where);
             } else {
                 $qs[] = static::createQuery()
                 ->select('0 type', 'status', 'SQL(COUNT(id) AS count)')
                 ->from('leave_items')
                 ->where(array(
-                    array('status', 0),
+                    array('status', $status),
                     array('start_date', '>=', $fiscalyear['from']),
                     array('start_date', '<=', $fiscalyear['to'])
                 ));

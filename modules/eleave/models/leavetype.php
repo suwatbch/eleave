@@ -21,6 +21,7 @@ use Kotchasan\Language;
  */
 class Model
 {
+
     /**
      * @var array
      */
@@ -60,13 +61,66 @@ class Model
      */
     public function toSelect()
     {
-        if (!empty($this->datas)) {
-            $add = array(0 => "--".Language::get('Select leave')."--");
-            foreach ($add as $key => $value){
-                $this->datas = array($key => $value) + $this->datas;
-            }
-        }
+        // if (!empty($this->datas)) {
+        //     $add = array(0 => "--".Language::get('Select leave')."--");
+        //     foreach ($add as $key => $value){
+        //         $this->datas = array($key => $value) + $this->datas;
+        //     }
+        // }
         return empty($this->datas) ? [] : $this->datas;
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return static
+     */
+    public static function getshift($id)
+    {
+        $obj = new static;
+        // Query
+        $query = \Kotchasan\Model::createQuery()
+            ->select('id', 'description')
+            ->from('shift')
+            ->where(array('id', $id))
+            ->cacheOn();
+        foreach ($query->execute() as $item) {
+            $obj->datas[$item->id] = $item->description;
+        }
+        return $obj;
+    }
+
+    /**
+     * @return array
+     */
+    public function selectshift()
+    {
+        return $this->datas;
+    }
+
+    /**
+     * @return static
+     */
+    public static function getshiftAll()
+    {
+        $obj = new static;
+        // Query
+        $query = \Kotchasan\Model::createQuery()
+            ->select('id', 'description')
+            ->from('shift')
+            ->cacheOn();
+        foreach ($query->execute() as $item) {
+            $obj->datas[$item->id] = $item->description;
+        }
+        return $obj;
+    }
+
+    /**
+     * @return array
+     */
+    public function selectshiftAll()
+    {
+        return $this->datas;
     }
 
     /**

@@ -68,7 +68,7 @@ class View extends \Gcms\View
             /* ฟังก์ชั่นแสดงผล Footer */
             'onCreateFooter' => array($this, 'onCreateFooter'),
             /* คอลัมน์ที่ไม่ต้องแสดงผล */
-            'hideColumns' => array('id', 'start_period', 'end_date', 'end_period', 'member_id'),
+            'hideColumns' => array('id', 'start_period', 'end_date', 'end_time','end_period', 'member_id', 'times'),
             /* คอลัมน์ที่สามารถค้นหาได้ */
             'searchColumns' => array('name'),
             /* ตัวเลือกการแสดงผลที่ส่วนหัว */
@@ -130,11 +130,14 @@ class View extends \Gcms\View
                     'sort' => 'start_date'
                 ),
                 'days' => array(
-                    'text' => '{LNG_days}',
+                    'text' => '{LNG_Date time}',
                     'class' => 'left'
                 ),
-                'communication' => array(
+                'start_time' => array(
                     'text' => '{LNG_Time}'
+                ),
+                'communication' => array(
+                    'text' => '{LNG_Communication}'
                 ),
                 'detail' => array(
                     'text' => '{LNG_Detail}'
@@ -184,13 +187,16 @@ class View extends \Gcms\View
     public function onRow($item, $o, $prop)
     {
         $this->days += $item['days'];
+        $this->times += $item['times'];
         $item['create_date'] = Date::format($item['create_date'], 'd M Y');
         $item['leave_id'] = $this->leavetype->get($item['leave_id']);
         if ($item['start_date'] == $item['end_date']) {
             $item['start_date'] = Date::format($item['start_date'], 'd M Y').' '.$this->leave_period[$item['start_period']];
         } else {
-            $item['start_date'] = Date::format($item['start_date'], 'd M Y').' '.$this->leave_period[$item['start_period']].' - '.Date::format($item['end_date'], 'd M Y').' '.$this->leave_period[$item['end_period']];
+            $item['start_date'] = Date::format($item['start_date'], 'd M Y').' '.$this->leave_period[$item['start_period']].($item['start_period'] ? '' : ' - '.Date::format($item['end_date'], 'd M Y').' '.$this->leave_period[$item['end_period']]);
         }
+        $item['days'] = \Gcms\Functions::gettimeleave($item['days'],$item['times']);
+        $item['start_time'] = \Gcms\Functions::showtime($item['start_time'],$item['end_time']);
         return $item;
     }
 
@@ -202,6 +208,6 @@ class View extends \Gcms\View
     public function onCreateFooter()
     {
         // return '<tr><td></td><td class=check-column><a class="checkall icon-uncheck" title="{LNG_Select all}"></a></td><td class=right colspan=3>{LNG_Total}</td><td class=center>'.$this->days.'</td><td colspan="2"></td></tr>';
-        return '<tr><td></td><td class=right colspan=3>{LNG_Total}</td><td class=left>'.$this->days.'</td><td colspan="2"></td></tr>';
+        return '<tr><td></td><td class=right colspan=3>{LNG_Total}</td><td class=left>'.\Gcms\Functions::getttotalleave($this->days,$this->times).'</td><td colspan="2"></td></tr>';
     }
 }

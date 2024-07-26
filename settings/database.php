@@ -1,14 +1,14 @@
 <?php
-// server 000webhost
+// server portalnet 103.80.49.238
 // $servername = "localhost";
-// $username = "id22283322_ptn_eleaveadmin"; //PTN_eleaveadmin / id22283322_ptn_eleaveadmin
-// $password = "PTN_eleave1234"; //PTN_eleave1234
-// $dbname = "id22283322_eleave"; //eleave / id22283322_eleave
+// $username = "admineleaveup";
+// $password = "Rf5yl1^63";
+// $dbname = "eleaveup"; 
 // $port = "3306";
 // $prefix = "app";
 // $dbdriver = "mysql";
 
-// server 103.80.49.238
+// server portalnet 103.80.49.238
 // $servername = "localhost";
 // $username = "admineleave";
 // $password = "7~b0x74sB";
@@ -17,11 +17,20 @@
 // $prefix = "app";
 // $dbdriver = "mysql";
 
+// server swmaxnet 115.178.63.11
+// $servername = "localhost";
+// $username = "swmaxnet_admin";
+// $password = "%2Y2il5c0";
+// $dbname = "swmaxnet_eleave"; 
+// $port = "3306";
+// $prefix = "app";
+// $dbdriver = "mysql";
+
 // xampp
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "eleave"; 
+$dbname = "eleaveup"; 
 $port = "3306";
 $prefix = "app";
 $dbdriver = "mysql";
@@ -42,9 +51,12 @@ return array (
     'category' => 'category',
     'language' => 'language',
     'leave' => 'leave',
-    'leave_cota' => 'leave_cota',
+    'leave_quota' => 'leave_quota',
     'leave_items' => 'leave_items',
     'logs' => 'logs',
+    'shift' => 'shift',
+    'shift_holidays' => 'shift_holidays',
+    'shift_workdays' => 'shift_workdays',
     'user' => 'user',
     'user_meta' => 'user_meta',
   ),

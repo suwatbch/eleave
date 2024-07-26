@@ -38,7 +38,7 @@ class Model extends \Kotchasan\Model
             ->join('leave F', 'LEFT', array('F.id', 'I.leave_id'))
             ->join('user U', 'LEFT', array('U.id', 'I.member_id'))
             ->where(array('I.id', $id))
-            ->first('I.*', 'F.topic leave_type', 'U.username', 'U.name');
+            ->first('I.*', 'F.topic leave_type', 'U.username', 'U.name', 'U.shift_id');
     }
 
     /**
@@ -51,99 +51,123 @@ class Model extends \Kotchasan\Model
         $ret = [];
         // session, token, สมาชิก
         if ($request->initSession() && $request->isSafe() && $login = Login::isMember()) {
-            try {
-                // ค่าที่ส่งมา
-                $save = array(
-                    'status' => $request->post('status')->toInt(),
-                    'reason' => $request->post('reason')->topic()
-                );
-                if ($request->post('_status')->toInt() != 0) {
-                    $save['status'] += 1;
-                }
-                // ตรวจสอบรายการที่เลือก
-                $index = self::get($request->post('id')->toInt());
-                // สามารถอนุมัติได้
-                if ($index && Login::checkPermission($login, 'can_approve_eleave')) {
-                    if (Login::isAdmin()) {
-                        // แอดมิน แก้ไขข้อมูลได้
-                        $save['leave_id'] = $request->post('leave_id')->toInt();
-                        $save['department'] = $request->post('department')->topic();
-                        $save['detail'] = $request->post('detail')->textarea();
-                        $save['communication'] = $request->post('communication')->textarea();
-                        // วันลา
-                        $start_date = $request->post('start_date')->date();
-                        $end_date = $request->post('end_date')->date();
-                        $start_period = $request->post('start_period')->toInt();
-                        $end_period = $request->post('end_period')->toInt();
-                        if ($end_date == '') {
-                            // ไม่ได้กรอกวันที่สิ้นสุดมา ใช้วันที่เดียวกันกับวันที่เริ่มต้น (ลา 1 วัน)
-                            $end_date = $start_date;
-                        }
-                        if ($start_date == '') {
-                            // ไม่ได้กรอกวันที่เริมต้น
-                            $ret['ret_start_date'] = 'Please fill in';
-                        }
-                        $diff = Date::compare($start_date, $end_date);
-                        if ($diff['days'] > 0 && $start_period == 1) {
-                            // ถ้าลาหลายวัน ไม่สามารถเลือกตัวเลือก ครึ่งวันเช้าได้
-                            $ret['ret_start_period'] = Language::get('Cannot select this option');
-                        } else {
-                            if ($start_date == $end_date) {
-                                // ลาภายใน 1 วัน ใช้จำนวนวันลาจาก คาบการลา
-                                $save['days'] = self::$cfg->eleave_periods[$start_period];
+            if ($request->post('cal_status')->toInt()) {
+                try {
+                    // ค่าที่ส่งมา
+                    $save = array(
+                        'status' => $request->post('status')->toInt(),
+                        'reason' => $request->post('reason')->topic()
+                    );
+                    if ($request->post('_status')->toInt() != 0) {
+                        $save['status'] += 1;
+                    }
+                    // ตรวจสอบรายการที่เลือก
+                    $index = self::get($request->post('id')->toInt());
+                    // สามารถอนุมัติได้
+                    if ($index && Login::checkPermission($login, 'can_approve_eleave')) {
+                        if (Login::isAdmin()) {
+                            // แอดมิน แก้ไขข้อมูลได้
+                            $save['days'] = $request->post('cal_days')->toInt();
+                            $save['times'] = $request->post('cal_times')->toFloat();
+                            $save['leave_id'] = $request->post('leave_id')->toInt();
+                            $save['department'] = $request->post('department')->topic();
+                            $save['detail'] = $request->post('detail')->textarea();
+                            $save['communication'] = $request->post('communication')->textarea();
+                            // ไม่ได้เลือกการลา
+                            if ($save['leave_id'] == 0) {
+                                $ret['ret_leave_id'] = Language::get('Select leave');  
+                            }
+                            // วันลา
+                            $start_period = $request->post('start_period')->toInt();
+                            $start_date = $request->post('start_date')->date();
+                            $end_date = $request->post('end_date')->date();
+                            $timetemp = '00:00';
+                            if ($start_period) {
+                                $start_time = $request->post('start_time')->text() == ''  ? $timetemp : $request->post('start_time')->text();
+                                $end_time = $request->post('end_time')->text() == '' ? $timetemp : $request->post('end_time')->text();
                             } else {
-                                // ตรวจสอบลาข้ามปีงบประมาณ
-                                $end_year = date('Y', strtotime($end_date));
-                                $start_year = date('Y', strtotime($start_date));
-                                $check_year = max($end_year, $start_year);
-                                $fiscal_year = $check_year.sprintf('-%02d-01', self::$cfg->eleave_fiscal_year);
-                                if ($start_date < $fiscal_year && $end_date >= $fiscal_year) {
-                                    // ไม่สามารถเลือกวันลาข้ามปีงบประมาณได้
-                                    $ret['ret_start_date'] = Language::get('Unable to take leave across the fiscal year. If you want to take continuous leave, separate the leave form into two. within that fiscal year');
-                                } else {
-                                    // ใช้จำนวนวันลาจากที่คำนวณ
-                                    $save['days'] = $diff['days'] + self::$cfg->eleave_periods[$start_period] + self::$cfg->eleave_periods[$end_period] - 1;
+                                $start_time = $timetemp;
+                                $end_time = $timetemp;
+                            }
+                            // กะลา
+                            $save['shift_id'] = $request->post('shift_id')->toInt();
+                            // เก็บกะหมุนเวียนลาแบบช่วงเวลา
+                            if ($start_period && $save['shift_id']==0) {
+                                $save['shift_id'] = $request->post('cal_shift_id')->toInt();
+                            }
+                            
+                            $save['start_period'] = $start_period;
+                            $save['start_date'] = $start_date;
+                            $save['start_time'] = $start_time;
+                            $save['end_date'] = $end_date;
+                            $save['end_time'] = $end_time;
+                        }
+
+                        //ตรวจสอบก่อนการอนุมัติ
+                        $ism1 = !empty($index->member_id_m1);
+                        $ism2 = !empty($index->member_id_m2);
+                        if ($login['id']==1){ //แอดมิน
+                            if ($ism1){
+                                $save['status_m1'] = $save['status'];
+                                $save['status_m2'] = 0;
+                                $save['approve_datetime_m1'] = date('Y-m-d H:i:s');
+                            }
+                            if ($ism2){
+                                $save['status_m2'] = $save['status'];
+                                $save['approve_datetime_m2'] = date('Y-m-d H:i:s');
+                            }
+                        } else {
+                            $pass1 = false;
+                            $pass2 = false;
+                            if ($index->member_id_m1 == $login['id']){
+                                $save['status_m1'] = $save['status'];
+                                $save['status_m2'] = 0;
+                                $save['approve_datetime_m1'] = date('Y-m-d H:i:s');
+                                $pass1 = true;
+                            }
+                            if ($index->member_id_m2 == $login['id']){
+                                $save['status_m1'] = 1;
+                                $save['status_m2'] = $save['status'];
+                                $save['approve_datetime_m2'] = date('Y-m-d H:i:s');
+                                $pass2 = true;
+                            }
+
+                            // ตรวจสอบกรณีมี M2
+                            if ($ism2 && $save['status'] != 2){
+                                if ($pass1 && !$pass2 && $index->status_m2 == 0){
+                                    $save['status'] = 0;
+                                } else if ($pass1 && !$pass2 && $index->status_m2 == 1){
+                                    $save['status'] = 1;
+                                } else if ($pass1 && !$pass2 && $index->status == 2) {
+                                    $save['status'] = $index->status;
                                 }
                             }
-                            $save['start_date'] = $start_date;
-                            $save['end_date'] = $end_date;
-                            $save['start_period'] = $start_period;
-                            $save['end_period'] = $end_period;
                         }
-                        if ($end_date < $start_date) {
-                            // วันที่สิ้นสุด น้อยกว่าวันที่เริ่มต้น
-                            $ret['ret_end_date'] = Language::get('End date must be greater than or equal to the start date');
-                        }
-                        if ($save['detail'] == '') {
-                            // ไม่ได้กรอก detail
-                            $ret['ret_detail'] = 'Please fill in';
-                        }
+
                         if (empty($ret)) {
-                            // อัปโหลดไฟล์แนบ
-                            \Download\Upload\Model::execute($ret, $request, $index->id, 'eleave', self::$cfg->eleave_file_typies, self::$cfg->eleave_upload_size);
+                            // แก้ไข
+                            $this->db()->update($this->getTableName('leave_items'), $index->id, $save);
+                            // log
+                            \Index\Log\Model::add($index->id, 'eleave', 'Status', Language::get('LEAVE_STATUS', '', $save['status']).' ID : '.$index->id, $login['id']);
+                            $index->status_m1 = $save['status_m1'];
+                            $index->status_m2 = $save['status_m2'];
+                            if ($save['status'] != $index->status || ($index->status_m2 == 0 && $index->status_m1)) {
+                                $index->status = $save['status'];
+                                $index->reason = $save['reason'];
+                                // ส่งอีเมลแจ้งการขอลา
+                                $ret['alert'] = \Eleave\Email\Model::send((array) $index);
+                            } else {
+                                // ไม่ต้องส่งอีเมล
+                                $ret['alert'] = Language::get('Saved successfully');
+                            }
+                            $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'eleave-report'));
+                            // เคลียร์
+                            $request->removeToken();
                         }
                     }
-                    if (empty($ret)) {
-                        // แก้ไข
-                        $this->db()->update($this->getTableName('leave_items'), $index->id, $save);
-                        // log
-                        \Index\Log\Model::add($index->id, 'eleave', 'Status', Language::get('LEAVE_STATUS', '', $save['status']).' ID : '.$index->id, $login['id']);
-                        if ($save['status'] != $index->status) {
-                            $index->status = $save['status'];
-                            $index->reason = $save['reason'];
-                            // ส่งอีเมลแจ้งการขอลา
-                            $ret['alert'] = \Eleave\Email\Model::send((array) $index);
-                        } else {
-                            // ไม่ต้องส่งอีเมล
-                            $ret['alert'] = Language::get('Saved successfully');
-                        }
-                        $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'eleave-report'));
-                        // เคลียร์
-                        $request->removeToken();
-                    }
+                } catch (\Kotchasan\InputItemException $e) {
+                    $ret['alert'] = $e->getMessage();
                 }
-            } catch (\Kotchasan\InputItemException $e) {
-                $ret['alert'] = $e->getMessage();
             }
         }
         if (empty($ret)) {
@@ -151,5 +175,41 @@ class Model extends \Kotchasan\Model
         }
         // คืนค่าเป็น JSON
         echo json_encode($ret);
+    }
+
+    /**
+     * @param int $member_id
+     * @param int $leave_id
+     * @return static
+     */
+    public function getQuota($member_id, $leave_id)
+    {
+        $quota = $this->createQuery()
+                ->from('leave_quota C')
+                ->where(array(
+                    array('C.member_id', $member_id),
+                    array('C.leave_id', $leave_id)
+                ))
+                ->cacheOn()
+                ->first('C.quota');
+        return $quota;
+    }
+
+    /**
+     * @param int $member_id
+     * @param int $leave_id
+     * @return static
+     */
+    public function getSumLeave($member_id, $leave_id)
+    {
+        $sum = $this->createQuery()
+                ->from('leave_items I')
+                ->where(array(
+                    array('I.member_id', $member_id),
+                    array('I.leave_id', $leave_id),
+                    array('I.status', '<', 2)
+                ))
+                ->first('SQL(SUM(days) AS sum)');
+        return $sum;
     }
 }
