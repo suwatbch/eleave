@@ -157,7 +157,7 @@ class View extends \Gcms\View
             'label' => '{LNG_Total number of leave this time}',
             'comment' => '<a>{LNG_Check the accuracy of leave}</a>',
             'disabled' => true,
-            'value' => (isset($index->textalert) ? $index->textalert : '')
+            'value' => isset($index->textalert) ? $index->textalert : ''
         ));
         // id กะหมุนเวียน
         $fieldset->add('hidden', array(
