@@ -70,8 +70,6 @@ class Model
                 'text' => '{LNG_Module}',
                 'url' => 'index.php?module=modules'
             );
-            // ใน Model::getMenus()
-
         }
         if ($can_config) {
             $settings['language'] = array(
@@ -107,7 +105,7 @@ class Model
         // หน้าจัดการกะการทำงาน
         if ($can_config || $isAdmin) {
             $settings['holidays'] = array(
-                'text' => '{LNG_วันหยุดตามประเพณี}',
+                'text' => '{LNG_Annual holiday}',
                 'url' => 'index.php?module=holidays'
             );
         }
@@ -153,10 +151,17 @@ class Model
             );
             // เพิ่มรวมรายงานในตำแหน่งรองสุดท้าย
             if ($isAdmin) {
-                $addmenu = ['totalreport' => array(
-                    'text' => '{LNG_Total}{LNG_Report}',
-                    'url' => 'index.php?module=totalreport&status=-1'
-                )];
+                $addmenu = [
+                    'totalreport' => array(
+                        'text' => '{LNG_Total}{LNG_Report}',
+                        'url' => 'index.php?module=totalreport&status=-1'
+                    ),
+                    'manageshifts' => array(
+                        'text' => '{LNG_2024}',
+                        'url' => 'index.php?module=Annual holiday'
+                    )
+                ];
+            
                 $position = count($result) -1;
                 array_splice($result, $position, 0, $addmenu);
             }
@@ -171,3 +176,5 @@ class Model
         );
     }
 }
+
+ 

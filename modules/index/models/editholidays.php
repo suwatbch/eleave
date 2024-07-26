@@ -34,13 +34,13 @@ class Model extends \Kotchasan\Model
         if (empty($id)) {
             // ใหม่
             return (object) array(
-                'id' => 0
+                'ID' => 0
             );
         } else {
             // แก้ไข อ่านรายการที่เลือก
             return static::createQuery()
                 ->from('holidays')
-                ->where(array('id', $id))
+                ->where(array('ID', $id))
                 ->first();
         }
     }
@@ -59,11 +59,12 @@ class Model extends \Kotchasan\Model
                 try {
                     // ค่าที่ส่งมา
                     $save = array(
+                        'ID' => $request->post('ID')->toInt(),
                         'date' => $request->post('date')->date(),
                         'description' => $request->post('description')->textarea()
                     );
                     // ตรวจสอบรายการที่เลือก
-                    $id = $request->post('id')->toInt();
+                    $id = $request->post('ID')->toInt();
                     $index = self::get($id);
                     if (!$index) {
                         // ไม่พบ
@@ -77,15 +78,15 @@ class Model extends \Kotchasan\Model
                             $ret['ret_description'] = 'Please fill in';
                         }
                         if (empty($ret)) {
-                            if ($index->id == 0) {
+                            if ($index->ID == 0) {
                                 // ใหม่
                                 $this->db()->insert($this->getTableName('holidays'), $save);
                             } else {
                                 // แก้ไข
-                                $this->db()->update($this->getTableName('holidays'), $index->date, $save);
+                                $this->db()->update($this->getTableName('holidays'), $index->ID, $save);
                             }
                             // log
-                            \Index\Log\Model::add($index->id, 'holidays', 'Save', '{LNG_Holiday} ID : '.$index->id, $login['id']);
+                            \Index\Log\Model::add($index->ID, 'holidays', 'Save', '{LNG_Holiday} ID : '.$index->id, $login['ID']);
                             // คืนค่า
                             $ret['alert'] = Language::get('Saved successfully');
                             $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'holidays'));

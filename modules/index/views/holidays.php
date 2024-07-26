@@ -72,7 +72,7 @@
              /* คอลัมน์ที่ไม่ต้องแสดงผล */
              'hideColumns' => array('ID'),
              /* ตั้งค่าการกระทำของของตัวเลือกต่างๆ ด้านล่างตาราง ซึ่งจะใช้ร่วมกับการขีดถูกเลือกแถว */
-             'action' => 'index.php/index/model/holidays/delete',
+             'action' => 'index.php/index/model/holidays/action',
              'actionCallback' => 'dataTableActionCallback',
              /* คอลัมน์ที่สามารถค้นหาได้ */
              'searchColumns' => array('id', 'date', 'description'),
@@ -119,12 +119,12 @@
              'buttons' => array(
                  'edit' => array(
                      'class' => 'icon-edit button green',
-                     'href' => $uri->createBackUri(array('module' => 'index-editholidays', 'id' => ':id')),
+                     'href' => $uri->createBackUri(array('module' => 'index-editholidays', 'ID' => ':ID')),
                      'text' => '{LNG_Edit}'
                  ),
                  'delete' => array(
                      'class' => 'icon-delete button red',
-                     'id' => ':id',
+                     'ID' => ':ID',
                      'text' => '{LNG_Delete}',
                      'data-confirm' => '{LNG_Are you sure you want to delete?}'
                  )

@@ -14,6 +14,7 @@ return array(
   'All :count entries, displayed :start to :end, page :page of :total pages' => 'ทั้งหมด :count รายการ, แสดง :start ถึง :end, หน้าที่ :page จากทั้งหมด :total หน้า',
   'all items' => 'ทั้งหมด',
   'Always enabled' => 'เปิดใช้งานตลอดเวลา',
+  'Annual holiday' => 'วันหยุดประจำปี',
   'API settings' => 'ตั้งค่า API',
   'Approval' => 'การอนุมัติ',
   'Approval No. :no' => 'อนุมัติลำดับที่ :no',

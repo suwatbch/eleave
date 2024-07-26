@@ -14,6 +14,7 @@ return array(
   'All :count entries, displayed :start to :end, page :page of :total pages' => 'ທັງໝົດ :count ລາຍການ, ສະແດງ :start ເຖິງ :end, ໜ້າທີ່ :page ຈາກທັງໝົດ:total ໜ້າ',
   'all items' => 'ທັງໝົດ',
   'Always enabled' => 'ເປີດສະເໝີ',
+  'Annual holiday' => 'ວັນພັກປະຈໍາປີ',
   'API settings' => 'ຕັ້ງຄ່າ API',
   'Approval' => 'ການອະນຸມັດ',
   'Approval No. :no' => 'ອັນດັບ :no ການອະນຸມັດ',
