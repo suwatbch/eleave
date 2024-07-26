@@ -123,8 +123,8 @@ class View extends \Gcms\View
             'itemClass' => 'width50',
             'label' => 'กะทำงาน<em>*</em>',
             'options' => \Eleave\Leavetype\Model::getshifttype()->toshifttype(),
-            'value' => 0,
             'disabled' => $isAdmin ? false : true,
+            'value' => $user['shift_id']
         ));
         // email
         $groups->add('text', array(
@@ -134,28 +134,54 @@ class View extends \Gcms\View
             'label' => '{LNG_Email}',
             'validator' => array('keyup,change', 'checkUsername', 'index.php/index/model/checker/username'),
             'disabled' => $isAdmin ? false : true,
+            'value' => $user['email']
         ));
-        $groups = $fieldset->add('groups');
-        // ผู้อนุมัติ M1
-        $groups->add('text', array(
-            'id' => 'register_m1',
-            'labelClass' => 'g-input icon-register',
-            'itemClass' => 'width50',
-            'maxlength' => 8,
-            'label' => 'อนุมัติคนที่หนึ่ง<em>*</em>',
-            'placeholder' => 'กรอกรหัสพนักงาน 8 หลัก',
-            'disabled' => $isAdmin ? false : true,
-        ));
-        // ผู้อนุมัติ M2
-        $groups->add('text', array(
-            'id' => 'register_m2',
-            'labelClass' => 'g-input icon-users',
-            'itemClass' => 'width50',
-            'maxlength' => 8,
-            'label' => 'อนุมัติคนที่สอง',
-            'placeholder' => 'กรอกรหัสพนักงาน 8 หลัก',
-            'disabled' => $isAdmin ? false : true,
-        ));
+
+        if ($isAdmin) {
+            $m1 = NULL;
+            if (!empty($user['m1'])) {
+                $m1 = \Eleave\Leave\Model::getUserForU($user['m1'], NULL);
+            }
+            if (!empty($m1)) {
+                $user['m1'] = $m1->username;
+            } else {
+                $user['m1'] = NULL;
+            }
+
+            $m2 = NULL;
+            if (!empty($user['m2'])) {
+                $m2 = \Eleave\Leave\Model::getUserForU($user['m2'], NULL);
+            }
+            if (!empty($m2)) {
+                $user['m2'] = $m2->username;
+            } else {
+                $user['m2'] = NULL;
+            }
+
+            $groups = $fieldset->add('groups');
+            // ผู้อนุมัติ M1
+            $groups->add('text', array(
+                'id' => 'register_m1',
+                'labelClass' => 'g-input icon-register',
+                'itemClass' => 'width50',
+                'maxlength' => 8,
+                'label' => 'อนุมัติคนที่หนึ่ง<em>*</em>',
+                'placeholder' => 'กรอกรหัสพนักงาน 8 หลัก',
+                'disabled' => $isAdmin ? false : true,
+                'value' => $user['m1']
+            ));
+            // ผู้อนุมัติ M2
+            $groups->add('text', array(
+                'id' => 'register_m2',
+                'labelClass' => 'g-input icon-users',
+                'itemClass' => 'width50',
+                'maxlength' => 8,
+                'label' => 'อนุมัติคนที่สอง',
+                'placeholder' => 'กรอกรหัสพนักงาน 8 หลัก',
+                'disabled' => $isAdmin ? false : true,
+                'value' => $user['m2']
+            ));
+        }
         // หมวดหมู่
         $a = 0;
         foreach ($category->items() as $k => $label) {
@@ -318,6 +344,74 @@ class View extends \Gcms\View
                 'labelClass' => 'g-input icon-list',
                 'options' => \Gcms\Controller::getPermissions(),
                 'value' => $user['permission']
+            ));
+
+            $quota_leave1 = 0;
+            $quota_leave2 = 0;
+            $quota_leave3 = 0;
+            $quota_leave5 = 0;
+            $quota_leave7 = 0;
+            $quota_leave8 = 0;
+            $quotaOption = \Index\Editprofile\Model::getQuotaOfUser(date('Y'), $user['id']);
+            foreach ($quotaOption as $item) {
+                // ลาป่วย
+                if ($item->leave_id == 1) {
+                    $quota_leave1 = $item->quota;
+                } else if ($item->leave_id == 2) {
+                    $quota_leave2 = $item->quota;
+                } else if ($item->leave_id == 3) {
+                    $quota_leave3 = $item->quota;
+                } else if ($item->leave_id == 5) {
+                    $quota_leave5 = $item->quota;
+                } else if ($item->leave_id == 7) {
+                    $quota_leave7 = $item->quota;
+                } else if ($item->leave_id == 8) {
+                    $quota_leave8 = $item->quota;
+                }
+            }
+            $groups = $fieldset->add('groups');
+            $groups->add('text', array(
+                'id' => 'register_quota_leave1',
+                'labelClass' => 'g-input icon-number',
+                'itemClass' => 'width30',
+                'label' => 'ลาป่วย<em>*</em>',
+                'value' => isset($quota_leave1) ? $quota_leave1 : 0
+            ));
+            $groups->add('text', array(
+                'id' => 'register_quota_leave2',
+                'labelClass' => 'g-input icon-number',
+                'itemClass' => 'width30',
+                'label' => 'ลากิจ<em>*</em>',
+                'value' => isset($quota_leave2) ? $quota_leave2 : 0
+            ));
+            $groups->add('text', array(
+                'id' => 'register_quota_leave3',
+                'labelClass' => 'g-input icon-number',
+                'itemClass' => 'width30',
+                'label' => 'ลาคลอดบุตร<em>*</em>',
+                'value' => isset($quota_leave3) ? $quota_leave3 : 0
+            ));
+            $groups = $fieldset->add('groups');
+            $groups->add('text', array(
+                'id' => 'register_quota_leave5',
+                'labelClass' => 'g-input icon-number',
+                'itemClass' => 'width30',
+                'label' => 'ลาเข้ารับการตรวจเลือกทหาร<em>*</em>',
+                'value' => isset($quota_leave5) ? $quota_leave5 : 0
+            ));
+            $groups->add('text', array(
+                'id' => 'register_quota_leave7',
+                'labelClass' => 'g-input icon-number',
+                'itemClass' => 'width30',
+                'label' => 'ลาบวช<em>*</em>',
+                'value' => isset($quota_leave7) ? $quota_leave7 : 0
+            ));
+            $groups->add('text', array(
+                'id' => 'register_quota_leave8',
+                'labelClass' => 'g-input icon-number',
+                'itemClass' => 'width30',
+                'label' => 'ลาพักร้อน<em>*</em>',
+                'value' => isset($quota_leave8) ? $quota_leave8 : 0
             ));
         }
         $fieldset = $form->add('fieldset', array(

@@ -292,7 +292,7 @@ class Model extends \Kotchasan\Model
 
         $m1 = NULL;
         if (!empty($save['m1'])) {
-            $m1 = self::getUser($save['m1']);
+            $m1 = \Eleave\Leave\Model::getUserForU(0, $save['m1']);
         }
         if (!empty($m1)) {
             $save['m1'] = $m1->id;
@@ -302,7 +302,7 @@ class Model extends \Kotchasan\Model
 
         $m2 = NULL;
         if (!empty($save['m2'])) {
-            $m2 = self::getUser($save['m2']);
+            $m2 = \Eleave\Leave\Model::getUserForU(0, $save['m2']);
         }
         if (!empty($m2)) {
             $save['m2'] = $m2->id;

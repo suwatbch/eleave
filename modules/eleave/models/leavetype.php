@@ -99,8 +99,8 @@ class Model
     {
         if (!empty($this->datas)) {
             $add = array(0 => 'กะหมุนเวียน');
-            foreach ($add as $item){
-                $this->datas[] = $item;
+            foreach ($add as $key => $value){
+                $this->datas = $this->datas + array($key => $value);
             }
         }
         return empty($this->datas) ? [] : $this->datas;

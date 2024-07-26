@@ -27,6 +27,26 @@ use Kotchasan\Language;
 class Model extends \Kotchasan\Model
 {
     /**
+     * @param int $year
+     * @param int $member_id
+     * @return array
+     */
+    public static function getQuotaOfUser($year, $member_id)
+    {
+        $where = array(
+            array('year', $year),
+            array('year', NULL),
+        );
+        return \Kotchasan\Model::createQuery()
+                    ->select('*')
+                    ->from('leave_quota')
+                    ->where(array('member_id', $member_id))
+                    ->andWhere($where, 'OR')
+                    ->cacheOn()
+                    ->execute();
+    }
+
+    /**
      * อ่านข้อมูลสมาชิกที่ $id
      * คืนค่าข้อมูล array ไม่พบคืนค่า false
      *

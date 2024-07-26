@@ -98,7 +98,7 @@ class View extends \Gcms\View
             'itemClass' => 'width50',
             'label' => 'กะทำงาน<em>*</em>',
             'options' => \Eleave\Leavetype\Model::getshifttype()->toshifttype(),
-            'value' => 0
+            'value' => 1
         ));
         // email
         $groups->add('text', array(
