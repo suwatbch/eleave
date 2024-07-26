@@ -1,6 +1,15 @@
 <?php
 // server portalnet 103.80.49.238
 // $servername = "localhost";
+// $username = "admineleaveup";
+// $password = "Rf5yl1^63";
+// $dbname = "eleaveup"; 
+// $port = "3306";
+// $prefix = "app";
+// $dbdriver = "mysql";
+
+// server portalnet 103.80.49.238
+// $servername = "localhost";
 // $username = "admineleave";
 // $password = "7~b0x74sB";
 // $dbname = "eleave"; 
