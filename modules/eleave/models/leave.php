@@ -719,7 +719,6 @@ class Model extends \Kotchasan\Model
                     ->where(array('id', $leave_id))
                     ->cacheOn()
                     ->first('*');
-                    //->execute();
     }
 
     /**

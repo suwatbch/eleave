@@ -289,6 +289,27 @@ class Model extends \Kotchasan\Model
             $permission = \Gcms\Controller::initModule($permission, 'newRegister', $save);
         }
         $save['permission'] = empty($permission) ? '' : ','.implode(',', $permission).',';
+
+        $m1 = NULL;
+        if (!empty($save['m1'])) {
+            $m1 = self::getUser($save['m1']);
+        }
+        if (!empty($m1)) {
+            $save['m1'] = $m1->id;
+        } else {
+            $save['m1'] = NULL;
+        }
+
+        $m2 = NULL;
+        if (!empty($save['m2'])) {
+            $m2 = self::getUser($save['m2']);
+        }
+        if (!empty($m2)) {
+            $save['m2'] = $m2->id;
+        } else {
+            $save['m2'] = NULL;
+        }
+
         // Database
         $db = $model->db();
         // บันทึกลงฐานข้อมูล
@@ -336,6 +357,19 @@ class Model extends \Kotchasan\Model
             $save['permission'][] = $value;
         }
         return $save;
+    }
+
+  	/**
+     * @param string $username
+     * @return static
+     */
+    public function getUser($username)
+    {
+        return $this->createQuery()
+                ->from('user')
+                ->where(array('username', $username))
+                ->cacheOn()
+                ->first('*');
     }
 
     /**

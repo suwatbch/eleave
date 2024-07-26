@@ -58,11 +58,11 @@ class View extends \Gcms\View
             $groups->add('text', array(
                 'id' => 'register_username',
                 'itemClass' => 'width50',
-                'labelClass' => 'g-input icon-email',
-                'label' => '{LNG_Email}',
-                'comment' => '{LNG_Email address used for login or request a new password}',
+                'labelClass' => 'g-input icon-user',
+                'label' => '{LNG_Username}',
+                'comment' => '{LNG_Used for login}',
                 'disabled' => $isAdmin ? false : true,
-                'maxlength' => 255,
+                'maxlength' => 8,
                 'value' => $user['username'],
                 'validator' => array('keyup,change', 'checkUsername', 'index.php/index/model/checker/username')
             ));
@@ -114,6 +114,47 @@ class View extends \Gcms\View
             'label' => '{LNG_Sex}',
             'options' => Language::get('SEXES'),
             'value' => $user['sex']
+        ));
+        $groups = $fieldset->add('groups');
+        // กะการทำงาน
+        $groups->add('select', array(
+            'id' => 'register_shift_id',
+            'labelClass' => 'g-input icon-verfied',
+            'itemClass' => 'width50',
+            'label' => 'กะทำงาน<em>*</em>',
+            'options' => \Eleave\Leavetype\Model::getshifttype()->toshifttype(),
+            'value' => 0,
+            'disabled' => $isAdmin ? false : true,
+        ));
+        // email
+        $groups->add('text', array(
+            'id' => 'register_email',
+            'itemClass' => 'width50',
+            'labelClass' => 'g-input icon-email',
+            'label' => '{LNG_Email}',
+            'validator' => array('keyup,change', 'checkUsername', 'index.php/index/model/checker/username'),
+            'disabled' => $isAdmin ? false : true,
+        ));
+        $groups = $fieldset->add('groups');
+        // ผู้อนุมัติ M1
+        $groups->add('text', array(
+            'id' => 'register_m1',
+            'labelClass' => 'g-input icon-register',
+            'itemClass' => 'width50',
+            'maxlength' => 8,
+            'label' => 'อนุมัติคนที่หนึ่ง<em>*</em>',
+            'placeholder' => 'กรอกรหัสพนักงาน 8 หลัก',
+            'disabled' => $isAdmin ? false : true,
+        ));
+        // ผู้อนุมัติ M2
+        $groups->add('text', array(
+            'id' => 'register_m2',
+            'labelClass' => 'g-input icon-users',
+            'itemClass' => 'width50',
+            'maxlength' => 8,
+            'label' => 'อนุมัติคนที่สอง',
+            'placeholder' => 'กรอกรหัสพนักงาน 8 หลัก',
+            'disabled' => $isAdmin ? false : true,
         ));
         // หมวดหมู่
         $a = 0;
