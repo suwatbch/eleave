@@ -146,6 +146,7 @@ return array(
   'go to page' => 'ไปหน้าที่',
   'Header' => 'ส่วนหัว',
   'Height' => 'สูง',
+  'Holiday' => 'วันหยุดตามประเพณี',
   'Home' => 'หน้าหลัก',
   'hours' => 'ชั่วโมง',
   'How to define user authentication for mail servers. If you enable it, you must configure below correctly.' => 'กำหนดวิธีการตรวจสอบผู้ใช้สำหรับเมล์เซิร์ฟเวอร์ หากคุณเปิดใช้งานคุณต้องกำหนดค่าต่างๆด้านล่างถูกต้อง',
@@ -473,6 +474,5 @@ return array(
   'Your message was sent successfully' => 'ส่งข้อความไปยังผู้ที่เกี่ยวข้องเรียบร้อยแล้ว',
   'Your new password is' => 'รหัสผ่านใหม่ของคุณคือ',
   'Your registration information' => 'ข้อมูลการลงทะเบียนของคุณ',
-  'Zipcode' => 'รหัสไปรษณีย์',
-  'ํYear' => 'ปี'
+  'Zipcode' => 'รหัสไปรษณีย์'
 );

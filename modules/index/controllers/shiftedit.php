@@ -37,7 +37,7 @@ class Controller extends \Gcms\Controller
         $index = \Index\Shiftedit\Model::get($request->request('id')->toInt());
         // ข้อความ title bar
         $title = '{LNG_'.(empty($index->id) ? 'Add' : 'Edit').'}';
-        $this->title = Language::trans($title.' {LNG_Leave type}');
+        $this->title = Language::trans($title.' {LNG_Shift}');
         // เลือกเมนู
         $this->menu = 'shift';
         // สามารถจัดการโมดูลได้
@@ -49,9 +49,10 @@ class Controller extends \Gcms\Controller
                 'class' => 'breadcrumbs'
             ));
             $ul = $breadcrumbs->add('ul');
-            $ul->appendChild('<li><span class="icon-verfied">{LNG_E-Leave}</span></li>');
-            $ul->appendChild('<li><a href="{BACKURL?module=index-shift}">{LNG_Manage shift}</a></li>');
+            $ul->appendChild('<li><span class="icon-verfied">{LNG_Settings}</span></li>');
+            $ul->appendChild('<li><a href="{BACKURL?module=index-shiftedit&id=0}">{LNG_Manage shift}</a></li>');
             $ul->appendChild('<li><span>'.$title.'</span></li>');
+            
             $section->add('header', array(
                 'innerHTML' => '<h2 class="icon-write">'.$this->title.'</h2>'
             ));

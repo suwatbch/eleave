@@ -36,7 +36,7 @@ class Model extends \Kotchasan\Model
     }
 
     /**
-     * รับค่าจาก action (shifts.php)
+     * รับค่าจาก action (shiftedit.php)
      *
      * @param Request $request
      */
@@ -54,11 +54,15 @@ class Model extends \Kotchasan\Model
                     $table = $this->getTableName('shift');
                     if ($action === 'delete') {
                         // ลบ
-                        $this->db()->delete($table, array('id', $match[1]), 0);
-                        // log
-                        \Index\Log\Model::add(0, 'shift', 'Delete', '{LNG_Delete} {LNG_Manage shift} ID : '.implode(', ', $match[1]), $login['id']);
-                        // reload
-                        $ret['location'] = 'reload';
+                        $result = $this->db()->delete($table, array('id', $match[1]), 0);
+                        if ($result) {
+                            // log
+                            \Index\Log\Model::add(0, 'shift', 'Delete', '{LNG_Delete} {LNG_Shift} id : '.implode(', ', $match[1]), $login['id']);
+                            // reload
+                            $ret['location'] = 'reload';
+                        } else {
+                            $ret['alert'] = Language::get('Unable to delete the item');
+                        }
                     } elseif ($action === 'published') {
                         // สถานะการเผยแพร่
                         $search = $this->db()->first($table, (int) $match[1][0]);
@@ -70,14 +74,19 @@ class Model extends \Kotchasan\Model
                             $ret['title'] = Language::get('PUBLISHEDS', '', $published);
                             $ret['class'] = 'icon-published'.$published;
                             // log
-                            \Index\Log\Model::add(0, 'shift', 'Save', $ret['title'].' ID : '.$match[1][0], $login['id']);
+                            \Index\Log\Model::add(0, 'shift', 'Save', $ret['title'].' id : '.$match[1][0], $login['id']);
+                        } else {
+                            $ret['alert'] = Language::get('Item not found');
                         }
                     }
+                } else {
+                    $ret['alert'] = Language::get('Invalid ID');
                 }
+            } else {
+                $ret['alert'] = Language::get('Permission denied');
             }
-        }
-        if (empty($ret)) {
-            $ret['alert'] = Language::get('Unable to complete the transaction');
+        } else {
+            $ret['alert'] = Language::get('Session expired or invalid referer');
         }
         // คืนค่าเป็น JSON
         echo json_encode($ret);

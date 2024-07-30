@@ -146,6 +146,7 @@ return array(
   'go to page' => 'ໄປທີ່ໜ້າ',
   'Header' => 'ສ່ວນຫົວ',
   'Height' => 'ສູງ',
+  'Holiday' => 'ວັນພັກປະເພນີ',
   'Home' => 'ໜ້າຫຼັກ',
   'hours' => 'ຊົ່ວໂມງ',
   'How to define user authentication for mail servers. If you enable it, you must configure below correctly.' => 'ກຳນົດວິທີການກວດສອບຜູ້ໃຊ້ສຳລັບເມນເຊິບເວີຫາກທ່ານເປີດໃຊ້ການທ່ານຕ້ອງກຳນົດຄ່າຕ່າງໆດ້ານລຸ່ມຖືກຕ້ອງ',
@@ -473,6 +474,5 @@ return array(
   'Your message was sent successfully' => 'ສົ່ງຂໍ້ຄວາມໄປຍັງຜູ້ຮັບຮຽບຮ້ອຍແລ້ວ',
   'Your new password is' => 'ລະຫັດຜ່ານໃໝ່ຂອງທ່ານຄື',
   'Your registration information' => 'ຂໍ້ມູນການລົງທະບຽນຂອງທ່ານ',
-  'Zipcode' => 'ລະຫັດໄປສະນີ',
-  'ํYear' => 'ປີ'
+  'Zipcode' => 'ລະຫັດໄປສະນີ'
 );

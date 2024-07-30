@@ -47,7 +47,7 @@ class Controller extends \Gcms\Controller
             ));
             $ul = $breadcrumbs->add('ul');
             $ul->appendChild('<li><span class="icon-verfied">{LNG_Settings}</span></li>');
-            $ul->appendChild('<li><span>{LNG_E-Leave}</span></li>');
+            // $ul->appendChild('<li><span>{LNG_E-Leave}</span></li>');
             $ul->appendChild('<li><span>{LNG_Manage shift}</span></li>');
             $section->add('header', array(
                 'innerHTML' => '<h2 class="icon-list">'.$this->title.'</h2>'

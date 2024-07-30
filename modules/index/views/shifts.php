@@ -70,6 +70,10 @@ class View extends \Gcms\View
             'searchColumns' => array('name'),
             /* ส่วนหัวของตาราง และการเรียงลำดับ (thead) */
             'headers' => array(
+                'sequence' => array(
+                     'text' => '{LNG_Sequence}',
+                     'class' => 'center'
+                 ),
                 'id' => array(
                     'text' => '{LNG_Id}',
                     'class' => 'center'
@@ -159,6 +163,7 @@ class View extends \Gcms\View
      */
     public function onRow($item, $o, $prop)
     {
+        $item['sequence'] = $o + 1; 
         $item['static'] = $item['static'] == 1 ? '{LNG_Fixed}' : '{LNG_Rotating}';
         $item['published'] = '<a id=published_'.$item['id'].' class="icon-published'.$item['published'].'" title="'.$this->publisheds[$item['published']].'"></a>';
         return $item;

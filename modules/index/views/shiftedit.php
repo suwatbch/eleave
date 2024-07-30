@@ -15,6 +15,7 @@ use Kotchasan\Form;
 use Kotchasan\Html;
 use Kotchasan\Http\Request;
 use Kotchasan\Language;
+use Gcms\Functions;
 
 /**
  * module=index-shiftedit
@@ -42,13 +43,14 @@ class View extends \Gcms\View
             return 'Error: You must be logged in to edit shifts';
         }
 
-        //Forrm
+        //Form
         $form = Html::create('form', array(
             'id' => 'setup_frm', // กำหนด ID ของฟอร์ม
             'class' => 'setup_frm', 
             'autocomplete' => 'off',
-            'action' => 'index.php/index/model/shifts/submit',
-            'onsubmit' => 'doFormSubmit',
+            'action' => 'index.php/index/model/shiftedit/submit',
+            'onsubmit' => 'return doFormSubmit();', // ปรับให้ฟังก์ชัน doFormSubmit() ทำงานก่อนส่งฟอร์ม
+            'method' => 'post',
             'ajax' => true,
             'token' => true
         ));
@@ -58,11 +60,11 @@ class View extends \Gcms\View
         // shift name
         $fieldset->add('text', array(
             'id' => 'name', 
-            'label' => '{LNG_Shift name}',
+            'label' => '{LNG_Shift name}<em>*</em>',
             'labelClass' => 'g-input icon-edit',
             'itemClass' => 'item',
             'maxlength' => 2,
-            'value' => '',
+            'value' => isset($index->name) ? $index->name : '',
             'required' => true
         ));
         // static
@@ -72,9 +74,13 @@ class View extends \Gcms\View
             'label' => '{LNG_Static}<em>*</em>',
             'itemClass' => 'item',
             'options' => array(0 => 'Rotating', 1 => 'Fixed'),
-            'value' => isset($index->static) ? $index->static : '1'
+            'value' => isset($index->static) ? $index->static : '0'
         ));
         
+        // // ประกาศฟังค์ชั่น genTimes
+        $starttime = empty($index->start_time) ?'': date("Y-m-d").''.$index->start_time;
+        $times = \Gcms\Functions::genTimes($index->starttime);
+
         // กลุ่มสำหรับเวลาเริ่มและเวลาสิ้นสุด
         $work_time_group = $fieldset->add('groups');
 
@@ -84,7 +90,7 @@ class View extends \Gcms\View
             'labelClass' => 'g-input icon-clock',
             'itemClass' => 'width50',
             'label' => '{LNG_Start time}<em>*</em>',
-            // 'options' => $time_options,
+            'options' => $times,
             'value' => isset($index->start_time) ? $index->start_time : '',
             'required' => true
         ));
@@ -95,8 +101,8 @@ class View extends \Gcms\View
             'labelClass' => 'g-input icon-clock',
             'itemClass' => 'width50',
             'label' => '{LNG_End time}<em>*</em>',
-            // 'options' => $time_options,
-            'value' => isset($index->end_time) ? $index->end_time : '',
+            'options' => $times,
+            'value' => isset($index->end_time) ? $index->end_time : ' ',
             'required' => true
         ));
 
@@ -109,7 +115,7 @@ class View extends \Gcms\View
             'labelClass' => 'g-input icon-clock',
             'itemClass' => 'width50',
             'label' => '{LNG_Start break time}<em>*</em>',
-            // 'options' => $time_options,
+            'options' => $times,
             'value' => isset($index->start_break_time) ? $index->start_break_time : '',
             'required' => true
         ));
@@ -120,10 +126,11 @@ class View extends \Gcms\View
             'labelClass' => 'g-input icon-clock',
             'itemClass' => 'width50',
             'label' => '{LNG_End break time}<em>*</em>',
-            // 'options' => $time_options,
+            'options' => $times,
             'value' => isset($index->end_break_time) ? $index->end_break_time : '',
             'required' => true
         ));
+        
         $fieldset = $form->add('fieldset', array(
             'class' => 'submit'
         ));
@@ -137,6 +144,16 @@ class View extends \Gcms\View
             'id' => 'id',
             'value' => $index->id
         ));
+        // description
+        $fieldset->add('hidden', array(
+            'id' => 'description',
+            'value' => ''
+        ));
+        $fieldset->add('hidden', array(
+            'id' => 'skipdate',
+            'value' => ''
+        ));
+
         // คืนค่า HTML
         return $form->render();
     }
