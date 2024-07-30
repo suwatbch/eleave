@@ -107,15 +107,14 @@ class Model
         // หน้าจัดการกะการทำงาน
         if ($can_config || $isAdmin) {
             $settings['holidays'] = array(
-                'text' => '{LNG_Holiday}',
+                'text' => '{LNG_Annual holiday}',
                 'url' => 'index.php?module=holidays'
             );
         }
-        // หน้าจัดการกะการทำงาน
         if ($isAdmin) {
-            $settings['shifts'] = array(
-                'text' => '{LNG_Manage shift}',
-                'url' => 'index.php?module=shifts'
+            $settings['manageshifts'] = array(
+                'text' => '{LNG_Manage shifts}',
+                'url' => 'index.php?module=manageshifts'
             );
         }
         if ($login) {
@@ -152,12 +151,19 @@ class Model
                     'submenus' => $settings
                 )   
             );
+            
             // เพิ่มรวมรายงานในตำแหน่งรองสุดท้าย
             if ($isAdmin) {
                 $addmenu = ['totalreport' => array(
                     'text' => '{LNG_Total}{LNG_Report}',
                     'url' => 'index.php?module=totalreport&status=-1'
-                )];
+                ),
+                'manageshifts' => array(
+                    'text' => '{LNG_Workday Management}',
+                    'url' => 'index.php?module=workdaymanagement'
+                )
+            ];
+            
                 $position = count($result) -1;
                 array_splice($result, $position, 0, $addmenu);
             }

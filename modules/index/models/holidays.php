@@ -1,6 +1,6 @@
 <?php
 /**
- * @filesource modules/index/models/holidays.php
+ * @filesource modules/index/model/holidays.php
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
@@ -36,7 +36,7 @@ class Model extends \Kotchasan\Model
     }
 
     /**
-     * รับค่าจาก action (setup.php)
+     * รับค่าจาก action (Editholidays.php)
      *
      * @param Request $request
      */
@@ -51,35 +51,45 @@ class Model extends \Kotchasan\Model
                 // id ที่ส่งมา
                 if (preg_match_all('/,?([0-9]+),?/', $request->post('id')->toString(), $match)) {
                     // ตาราง
-                    $table = $this->getTableName('leave');
+                    $table = $this->getTableName('holidays');
                     if ($action === 'delete') {
                         // ลบ
-                        $this->db()->delete($table, array('ID', $match[1]), 0);
-                        // log
-                        \Index\Log\Model::add(0, 'holidays', 'Delete', '{LNG_Delete} {LNG_Leave type} ID : '.implode(', ', $match[1]), $login['id']);
-                        // reload
-                        $ret['location'] = 'reload';
+                        $result = $this->db()->delete($table, array('ID', $match[1]), 0);
+                        if ($result) {
+                            // log
+                            \Index\Log\Model::add(0, 'holidays', 'Delete', '{LNG_Delete} {LNG_Leave type} ID : '.implode(', ', $match[1]), $login['id']);
+                            // reload
+                            $ret['location'] = 'reload';
+                        } else {
+                            $ret['alert'] = Language::get('Unable to delete the item');
+                        }
                     } elseif ($action === 'published') {
                         // สถานะการเผยแพร่
                         $search = $this->db()->first($table, (int) $match[1][0]);
                         if ($search) {
                             $published = $search->published == 1 ? 0 : 1;
-                            $this->db()->update($table, $search->id, array('published' => $published));
+                            $this->db()->update($table, $search->ID, array('published' => $published));
                             // คืนค่า
-                            $ret['elem'] = 'published_'.$search->id;
+                            $ret['elem'] = 'published_'.$search->ID;
                             $ret['title'] = Language::get('PUBLISHEDS', '', $published);
                             $ret['class'] = 'icon-published'.$published;
                             // log
-                            \Index\Log\Model::add(0, 'holidays', 'Save', $ret['title'].' ID : '.$match[1][0], $login['id']);
+                            \Index\Log\Model::add(0, 'holidays', 'Save', $ret['title'].' ID : '.$match[1][0], $login['ID']);
+                        } else {
+                            $ret['alert'] = Language::get('Item not found');
                         }
                     }
+                } else {
+                    $ret['alert'] = Language::get('Invalid ID');
                 }
+            } else {
+                $ret['alert'] = Language::get('Permission denied');
             }
-        }
-        if (empty($ret)) {
-            $ret['alert'] = Language::get('Unable to complete the transaction');
+        } else {
+            $ret['alert'] = Language::get('Session expired or invalid referer');
         }
         // คืนค่าเป็น JSON
         echo json_encode($ret);
     }
+    
 }

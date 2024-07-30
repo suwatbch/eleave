@@ -119,14 +119,17 @@ class View extends \Kotchasan\View
      *
      * @param array $statuses
      * @param mixed $value
+     * @param string $name
      * @param bool $color true (default) คืนค่าสถานะพร้อมสี, false คืนค่าสถานะ text
      *
      * @return string
      */
-    public static function showStatus($statuses, $value, $color = true)
+    public static function showStatus($statuses, $value, $name, $color = true)
     {
         if (isset($statuses[$value])) {
-            return $color ? '<span class="term'.$value.'">'.$statuses[$value].'</span>' : $statuses[$value];
+            $name = $name != '' ? $name.' ' : '';
+            $success = $value ? 'แล้ว' : '';
+            return $color ? '<span class="term'.$value.'">'.$name.$statuses[$value].$success.'</span>' : $statuses[$value];
         }
         return '';
     }

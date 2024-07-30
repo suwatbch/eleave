@@ -1,18 +1,18 @@
 <?php
-// server 000webhost
-// $servername = "localhost";
-// $username = "id22283322_ptn_eleaveadmin"; //PTN_eleaveadmin / id22283322_ptn_eleaveadmin
-// $password = "PTN_eleave1234"; //PTN_eleave1234
-// $dbname = "id22283322_eleave"; //eleave / id22283322_eleave
-// $port = "3306";
-// $prefix = "app";
-// $dbdriver = "mysql";
-
-// server 103.80.49.238
+// server portalnet 103.80.49.238
 // $servername = "localhost";
 // $username = "admineleave";
 // $password = "7~b0x74sB";
 // $dbname = "eleave"; 
+// $port = "3306";
+// $prefix = "app";
+// $dbdriver = "mysql";
+
+// server swmaxnet 115.178.63.11
+// $servername = "localhost";
+// $username = "swmaxnet_admin";
+// $password = "%2Y2il5c0";
+// $dbname = "swmaxnet_eleave"; 
 // $port = "3306";
 // $prefix = "app";
 // $dbdriver = "mysql";

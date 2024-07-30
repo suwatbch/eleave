@@ -39,7 +39,14 @@ class Model extends \Kotchasan\Model
             array('F.status', $params['status'])
         );
         if ($setsionlogin['status'] != 1) {
-            $where[] = array('F.department', $setsionlogin['department'][0]);
+            // $where[] = array('F.department', $setsionlogin['department'][0]);
+            if ($params['status']==0) {
+                $sql = "(F.`member_id_m1`='$setsionlogin[id]' AND F.`status_m1`='$params[status]')";
+            } else {
+                $sql = "(F.`member_id_m1`='$setsionlogin[id]' AND (F.`status_m1`='$params[status]' OR F.`status`='$params[status]'))";
+            }
+            $sql .= " OR (F.`member_id_m2`='$setsionlogin[id]' AND F.`status_m2`='$params[status]' AND F.`status_m1`>'$params[status]' AND F.`status`='$params[status]')";
+            $where[] = Sql::create($sql);
         }
         if (!empty($params['department'])) {
             $where[] = array('F.department', $params['department']);
@@ -63,12 +70,14 @@ class Model extends \Kotchasan\Model
             }
             $where[] = Sql::create($sql);
         }
-        return static::createQuery()
+        $res = static::createQuery()
             ->select('F.id', 'F.create_date', 'U.name', 'F.leave_id', 'F.start_date',
                 'F.days', 'F.start_time', 'F.end_time', 'F.times', 'F.start_period', 'F.end_date', 'F.end_period', 'F.member_id', 'F.communication', 'F.detail')
             ->from('leave_items F')
             ->join('user U', 'LEFT', array('U.id', 'F.member_id'))
             ->where($where);
+
+        return $res;
     }
 
     /**

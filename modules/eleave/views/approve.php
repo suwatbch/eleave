@@ -160,7 +160,7 @@ class View extends \Gcms\View
             'id' => 'textalert',
             'labelClass' => 'g-input icon-email',
             'itemClass' => 'item',
-            'label' => '{LNG_Alert data}',
+            'label' => '{LNG_Total number of leave this time}',
             'comment' => '<em>{LNG_Check the accuracy of leave}</em>',
             'disabled' => true,
             'value' => '<em>'.$index->textalert.'</em>'
