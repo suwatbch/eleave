@@ -10,12 +10,7 @@
 
 namespace Index\Shiftedit;
 
-use Kotchasan\DataTable;
-use Kotchasan\Form;
 use Kotchasan\Html;
-use Kotchasan\Http\Request;
-use Kotchasan\Language;
-use Gcms\Functions;
 
 /**
  * module=index-shiftedit
@@ -74,12 +69,32 @@ class View extends \Gcms\View
             'label' => '{LNG_Static}<em>*</em>',
             'itemClass' => 'item',
             'options' => array(0 => 'Rotating', 1 => 'Fixed'),
-            'value' => isset($index->static) ? $index->static : '0'
+            'value' => isset($index->static) ? $index->static : '0',
         ));
+
+        // ฟิลด์วันทำงาน
+        // $fieldset->add('checkboxgroups', array(
+        //     'id' => 'workweek',
+        //     'name' => 'workweek',
+        //     'label' => '{LNG_Workweek}',
+        //     'labelClass' => 'g-input icon-calendar',
+        //     'itemClass' => 'item',
+        //     'options' => array(
+        //         'monday' => 'Monday',
+        //         'tuesday' => 'Tuesday',
+        //         'wednesday' => 'Wednesday',
+        //         'thursday' => 'Thursday',
+        //         'friday' => 'Friday',
+        //         'saturday' => 'Saturday',
+        //         'sunday' => 'Sunday'
+        //     ),
+        //     'value' => isset($index->workweek) ? explode(',', $index->workweek) : array(),
+        //     'style' => 'display:none;' // ซ่อนฟิลด์นี้ในเบื้องต้น
+        // ));
         
         // // ประกาศฟังค์ชั่น genTimes
         $starttime = empty($index->start_time) ?'': date("Y-m-d").''.$index->start_time;
-        $times = \Gcms\Functions::genTimes($index->starttime);
+        $times = \Gcms\Functions::genTimes($index->$starttime);
 
         // กลุ่มสำหรับเวลาเริ่มและเวลาสิ้นสุด
         $work_time_group = $fieldset->add('groups');
@@ -139,20 +154,39 @@ class View extends \Gcms\View
             'class' => 'button ok large icon-save',
             'value' => '{LNG_Save}'
         ));
-        // id
+        // description
+        $fieldset->add('hidden', array(
+            'id' => 'description',
+            'name' => 'description',
+            'value' => ''
+        ));
+
         $fieldset->add('hidden', array(
             'id' => 'id',
             'value' => $index->id
         ));
-        // description
-        $fieldset->add('hidden', array(
-            'id' => 'description',
-            'value' => ''
-        ));
+    
         $fieldset->add('hidden', array(
             'id' => 'skipdate',
             'value' => ''
         ));
+         // workweek
+         $fieldset->add('hidden', array(
+            'id' => 'workweek',
+            'value' => ''
+        ));
+
+        // Javascript to update description field
+        $form->script('
+            document.getElementById("setup_frm").addEventListener("submit", function() {
+                var startTime = document.getElementById("start_time").value;
+                var endTime = document.getElementById("end_time").value;
+                var startBreakTime = document.getElementById("start_break_time").value;
+                var endBreakTime = document.getElementById("end_break_time").value;
+                var description = startTime + " - " + endTime + " พัก " + startBreakTime + " - " + endBreakTime;
+                document.getElementById("description").value = description;
+            });
+        ');
 
         // คืนค่า HTML
         return $form->render();

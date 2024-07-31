@@ -36,7 +36,16 @@ class Model extends \Kotchasan\Model
         if (empty($id)) {
             // ใหม่
             return (object) array(
-                'id' => 0
+                'id' => 0,
+                // 'name' => '',
+                // 'static' => 0,
+                // 'workweek' => '',
+                // 'start_time' => '',
+                // 'end_time' => '',
+                // 'start_break_time' => '',
+                // 'end_break_time' => '',
+                // 'skipdate' => 0,
+                // 'description' => '',
             );
         } else {
             // แก้ไข อ่านรายการที่เลือก
@@ -52,44 +61,15 @@ class Model extends \Kotchasan\Model
      *
      * @param Request $request
      */
-     public function save($data)
-     {
-         if ($data['id'] > 0) {
-             // Update existing shift
-             $this->db()->update('shift', $data['id'], $data);
-         } else {
-             // Add new shift
-             $this->db()->insert('shift', $data);
-         }
-     } 
 
     public function submit(Request $request)
     {
-
         $ret = [];
         // session, token, สามารถจัดการโมดูลได้, ไม่ใช่สมาชิกตัวอย่าง
         if ($request->initSession() && $request->isSafe() && $login = Login::isMember()) {
             if (Login::notDemoMode($login) && Login::checkPermission($login, 'can_manage_shift')) {
                 try {
-                    // ค่าที่ส่งมา
-                    // $name = $request->post('name')->topic();
-                    // $status = $request->post('status')->toInt();
-                    // $start_time = $request->post('start_time')->toTime();
-                    // $end_time = $request->post('end_time')->toTime();
-                    // $start_break_time = $request->post('start_break_time')->toTime();
-                    // $end_break_time = $request->post('end_break_time')->toTime();
-                    // // Example of checking if the shift spans across days
-                    // $skipdate = ($end_time < $start_time) ? 1 : 0;
-
                     $save = array(
-                    //     'name' => $request->post('name')->topic(),
-                    //     'status' => $request->post('status')->toInt(),
-                    //     'start_time' => $request->post('start_time')->toTime(),
-                    //     'end_time' => $request->post('end_time')->toTime(),
-                    //     'start_break_time' => $request->post('start_break_time')->toTime(),
-                    //     'end_break_time' => $request->post('end_break_time')->toTime(),
-                    //     'skipdate' => $skipdate
-
                     'id' => $request->post('id')->toInt(),
                     'name' => $request->post('name')->topic(),
                     'static' => $request->post('static')->toInt(),
@@ -98,12 +78,17 @@ class Model extends \Kotchasan\Model
                     'start_break_time' => $request->post('start_break_time')->time(),
                     'end_break_time' => $request->post('end_break_time')->time(),
                     'skipdate' => $request->post('skipdate')->toInt(),
-                    'description' => $request->post('description')->topic()
+                    'description' => $request->post('description')->topic(),
+                    // 'workweek' => $request->post('workweek')->topic()
                     );
                     
+                    // สร้าง description จากข้อมูล start_time, end_time, start_break_time, end_break_time
+                    $save['description'] = $save['start_time'].' - '.$save['end_time'].' พัก '.$save['start_break_time'].' - '.$save['end_break_time'];
+
                     // ตรวจสอบรายการที่เลือก
-                    $id = ($request->post('id')->toInt());
-                    $index = self::get($id);
+                    $id = $request->post('id')->toInt();
+                    if ($id > 0) {
+                        $index = self::get($id);
                     if (!$index) {
                         // ไม่พบ
                         $ret['alert'] = Language::get('Sorry, Item not found It may be deleted');
@@ -112,10 +97,6 @@ class Model extends \Kotchasan\Model
                             // ไม่ได้กรอก name
                             $ret['ret_name'] = 'Please fill in';
                         }
-                        // if ($save['detail'] == '') {
-                        //     // ไม่ได้กรอก detail
-                        //     $ret['ret_detail'] = 'Please fill in';
-                        // }
                         if (empty($ret)) {
                             if ($index->id == 0) {
                                 // ใหม่
@@ -125,13 +106,14 @@ class Model extends \Kotchasan\Model
                                 $this->db()->update($this->getTableName('shift'), $index->id, $save);
                             }
                             // log
-                            \Index\Log\Model::add($index->id, 'shifts', 'Save', '{LNG_Manage shift} ID : '.$index->id, $login['id']);
+                            \Index\Log\Model::add($index->id, 'index', 'Save', '{LNG_Manage shift} ID : '.$index->id, $login['id']);
                             // คืนค่า
                             $ret['alert'] = Language::get('Saved successfully');
-                            $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'shift', 'id' => null));
+                            $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'index-shifts'));
                             // เคลียร์
                             $request->removeToken();
                         }
+                    }
                     }
                 } catch (\Kotchasan\InputItemException $e) {
                     $ret['alert'] = $e->getMessage();

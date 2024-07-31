@@ -50,7 +50,7 @@ class Controller extends \Gcms\Controller
             ));
             $ul = $breadcrumbs->add('ul');
             $ul->appendChild('<li><span class="icon-verfied">{LNG_Settings}</span></li>');
-            $ul->appendChild('<li><a href="{BACKURL?module=index-shiftedit&id=0}">{LNG_Manage shift}</a></li>');
+            $ul->appendChild('<li><a href="{BACKURL?module=index-shifts}">{LNG_Manage shift}</a></li>');
             $ul->appendChild('<li><span>'.$title.'</span></li>');
             
             $section->add('header', array(
@@ -59,6 +59,7 @@ class Controller extends \Gcms\Controller
             $div = $section->add('div', array(
                 'class' => 'content_bg'
             ));
+
             // แสดงฟอร์ม
             $div->appendChild(\Index\Shiftedit\View::create()->render($index));
             // คืนค่า HTML
