@@ -194,8 +194,15 @@ class Model extends \Kotchasan\Model
                         $member_id = $isAdmin ? $isAdmin['id'] : $save['id'];
                         \Index\Log\Model::add($member_id, 'index', 'User', '{LNG_Create new account} ID : '.$save['id'], $member_id);
                         if ($isAdmin) {
-                            // คืนค่า
-                            $ret['alert'] = Language::get('Saved successfully');
+                            // ส่งอีเมล แจ้งลงทะเบียนสมาชิกใหม่
+                            $err = \Index\Email\Model::send($save, $password);
+                            if ($err != '') {
+                                // คืนค่า error
+                                $ret['alert'] = Language::get('Saved successfully').' '.$err;
+                            } else {
+                                // คืนค่า
+                                $ret['alert'] = Language::get('Saved successfully');
+                            }
                             // ไปหน้าสมาชิก
                             $ret['location'] = 'index.php?module=member';
                         } elseif ($save['active'] == 0) {
