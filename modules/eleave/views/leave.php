@@ -220,31 +220,37 @@ class View extends \Gcms\View
         $fieldset = $form->add('fieldset', array(
             'class' => 'submit'
         ));
+        // id
+        $fieldset->add('hidden', array(
+            'id' => 'id',
+            'value' => $index->id
+        ));
         if (!$notEdit) {
-            // submit
-            $fieldset->add('submit', array(
-                'class' => 'button ok large icon-save',
-                'value' => '{LNG_Save}'
-            ));
-            // id
             $fieldset->add('hidden', array(
-                'id' => 'id',
-                'value' => $index->id
+                'id' => 'status',
+                'value' => 0
             ));
             \Gcms\Controller::$view->setContentsAfter(array(
                 '/:type/' => implode(', ', self::$cfg->eleave_file_typies),
                 '/:size/' => Text::formatFileSize(self::$cfg->eleave_upload_size)
             ));
         } else {
+            $statustemp = Language::get('LEAVE_STATUS');
+            $status = [];
+            foreach ($statustemp as $key => $value) {
+                if ($key == 0 || $key == 4) {
+                    $status[$key] = $value;
+                }
+            }
             // status
             $fieldset->add('select', array(
                 'id' => 'status',
                 'labelClass' => 'g-input icon-star0',
                 'itemClass' => 'item',
                 'label' => '{LNG_Status}',  
-                'options' => Language::get('LEAVE_STATUS'),
+                'options' => $status,
                 'value' => $index->status,
-                'disabled' => true
+                // 'disabled' => true
             ));
             // reason
             $fieldset->add('text', array(
@@ -257,6 +263,11 @@ class View extends \Gcms\View
                 'disabled' => true
             ));
         }
+        // submit
+        $fieldset->add('submit', array(
+            'class' => 'button ok large icon-save',
+            'value' => '{LNG_Save}'
+        ));
         // Javascript
         $form->script('initEleaveLeave();');
         // คืนค่า HTML

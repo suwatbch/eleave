@@ -139,7 +139,6 @@ class Model extends \Kotchasan\Model
             ->first('topic');
         return $leave ? $leave->topic : '';
     }
-
     /**
      * บันทึกข้อมูลที่ส่งมาจากฟอร์ม (leave.php)
      *
@@ -148,10 +147,22 @@ class Model extends \Kotchasan\Model
     public function submit(Request $request)
     {
         $ret = [];
+
         // session, token, สมาชิก
         if ($request->initSession() && $request->isSafe() && $login = Login::isMember()) {
-        
-            if ($request->post('cal_status')->toInt()) {
+
+            // Database
+            $db = $this->db();
+            $pStatus = $request->post('status')->toInt();
+                
+            if ($pStatus == 4) {
+                $db->update($this->getTableName('leave_items'), $request->post('id')->toInt(), array('status' => $pStatus));
+                $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'eleave', 'status' => $pStatus));
+                // เคลียร์
+                $request->removeToken();
+            }
+
+            else if ($request->post('cal_status')->toInt() && $pStatus == 0) {
                 try {
                     // ค่าที่ส่งมา
                     $save = array(
@@ -203,14 +214,13 @@ class Model extends \Kotchasan\Model
                         $save['start_time'] = $start_time;
                         $save['end_date'] = $end_date;
                         $save['end_time'] = $end_time;
-                        $save['status'] = 0;
+                        $save['status'] = $pStatus;
                         $save['status_m1'] = 0;
                         $save['status_m2'] = 0;
 
                         // table
                         $table = $this->getTableName('leave_items');
-                        // Database
-                        $db = $this->db();
+
                         if (empty($ret)) {
                             // $table = $this->getTableName('leave_items');
                             // $db = $this->db();

@@ -42,7 +42,9 @@ return array(
   'LEAVE_STATUS' => array(
     0 => 'Pending',
     1 => 'Approve',
-    2 => 'Not allowed'
+    2 => 'Not allowed',
+    3 => 'Pending cancel',
+    4 => 'Cancel'
   ),
   'LEAVE_TIME' => array(
     '00:00' => '00:00',
