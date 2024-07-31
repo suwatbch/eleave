@@ -567,6 +567,29 @@ class Model extends \Kotchasan\Model
     }
 
     /**
+     * @param int $id
+     * @param string $username
+     * @return static
+     */
+    public static function getUserForU($id, $username)
+    {
+        if (!empty($id) && $id > 0) {
+            $where =  array(
+                array('id', $id)
+            );
+        } else {
+            $where =  array(
+                array('username', $username)
+            );
+        }
+        return \Kotchasan\Model::createQuery()
+                    ->from('user')
+                    ->where($where)
+                    ->cacheOn()
+                    ->first('*');
+    }
+
+    /**
      * @param int $shift_id
      * @param int $member_id
      * @return array
@@ -719,7 +742,6 @@ class Model extends \Kotchasan\Model
                     ->where(array('id', $leave_id))
                     ->cacheOn()
                     ->first('*');
-                    //->execute();
     }
 
     /**

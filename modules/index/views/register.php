@@ -12,6 +12,8 @@ namespace Index\Register;
 
 use Kotchasan\Html;
 use Kotchasan\Http\Request;
+use Kotchasan\Language;
+use Kotchasan\Text;
 
 /**
  * module=register
@@ -51,11 +53,10 @@ class View extends \Gcms\View
         $groups->add('text', array(
             'id' => 'register_username',
             'itemClass' => 'width50',
-            'labelClass' => 'g-input icon-email',
-            'label' => '{LNG_Email}/{LNG_Username}',
-            'comment' => '{LNG_Email address used for login or request a new password}',
+            'labelClass' => 'g-input icon-user',
+            'label' => '{LNG_Username}<em>*</em>',
+            'comment' => '{LNG_Used for login}',
             'maxlength' => 8,
-            // 'validator' => array('keyup,change', 'checkUsername', 'index.php/index/model/checker/username')
             'validator' => array('keyup,change', 'checkUsername')
         ));
         // name
@@ -63,7 +64,7 @@ class View extends \Gcms\View
             'id' => 'register_name',
             'labelClass' => 'g-input icon-customer',
             'itemClass' => 'width50',
-            'label' => '{LNG_Name}',
+            'label' => '{LNG_Name}<em>*</em>',
             'placeholder' => '{LNG_Please fill in} {LNG_Name}'
         ));
         $groups = $fieldset->add('groups');
@@ -72,7 +73,7 @@ class View extends \Gcms\View
             'id' => 'register_password',
             'itemClass' => 'width50',
             'labelClass' => 'g-input icon-password',
-            'label' => '{LNG_Password}',
+            'label' => '{LNG_Password}<em>*</em>',
             'comment' => '{LNG_Passwords must be at least four characters}',
             'maxlength' => 50,
             'showpassword' => true,
@@ -83,11 +84,48 @@ class View extends \Gcms\View
             'id' => 'register_repassword',
             'itemClass' => 'width50',
             'labelClass' => 'g-input icon-password',
-            'label' => '{LNG_Confirm password}',
+            'label' => '{LNG_Confirm password}<em>*</em>',
             'comment' => '{LNG_Enter your password again}',
             'maxlength' => 50,
             'showpassword' => true,
             'validator' => array('keyup,change', 'checkPassword')
+        ));
+        $groups = $fieldset->add('groups');
+        // กะการทำงาน
+        $groups->add('select', array(
+            'id' => 'register_shift_id',
+            'labelClass' => 'g-input icon-verfied',
+            'itemClass' => 'width50',
+            'label' => 'กะทำงาน<em>*</em>',
+            'options' => \Eleave\Leavetype\Model::getshifttype()->toshifttype(),
+            'value' => 1
+        ));
+        // email
+        $groups->add('text', array(
+            'id' => 'register_email',
+            'itemClass' => 'width50',
+            'labelClass' => 'g-input icon-email',
+            'label' => '{LNG_Email}',
+            'validator' => array('keyup,change', 'checkUsername', 'index.php/index/model/checker/username')
+        ));
+        $groups = $fieldset->add('groups');
+        // ผู้อนุมัติ M1
+        $groups->add('text', array(
+            'id' => 'register_m1',
+            'labelClass' => 'g-input icon-register',
+            'itemClass' => 'width50',
+            'maxlength' => 8,
+            'label' => 'อนุมัติคนที่หนึ่ง<em>*</em>',
+            'placeholder' => 'กรอกรหัสพนักงาน 8 หลัก'
+        ));
+        // ผู้อนุมัติ M2
+        $groups->add('text', array(
+            'id' => 'register_m2',
+            'labelClass' => 'g-input icon-users',
+            'itemClass' => 'width50',
+            'maxlength' => 8,
+            'label' => 'อนุมัติคนที่สอง',
+            'placeholder' => 'กรอกรหัสพนักงาน 8 หลัก'
         ));
         // หมวดหมู่
         $a = 0;
@@ -96,7 +134,7 @@ class View extends \Gcms\View
                 $fieldset->add('checkboxgroups', array(
                     'id' => 'register_'.$k,
                     'itemClass' => 'item',
-                    'label' => $category->name($k),
+                    'label' => $category->name($k).'<em>*</em>',
                     'labelClass' => 'g-input icon-group',
                     'options' => $category->toSelect($k)
                 ));
@@ -109,7 +147,7 @@ class View extends \Gcms\View
                     'id' => 'register_'.$k,
                     'labelClass' => 'g-input icon-menus',
                     'itemClass' => 'width50',
-                    'label' => $label,
+                    'label' => $label.'<em>*</em>',
                     'datalist' => $category->toSelect($k),
                     'text' => true
                 ));
@@ -122,7 +160,7 @@ class View extends \Gcms\View
         $groups->add('select', array(
             'id' => 'register_status',
             'itemClass' => 'width50',
-            'label' => '{LNG_Member status}',
+            'label' => '{LNG_Member status}<em>*</em>',
             'labelClass' => 'g-input icon-star0',
             'options' => self::$cfg->member_status,
             'value' => 0
@@ -135,6 +173,68 @@ class View extends \Gcms\View
             'labelClass' => 'g-input icon-list',
             'options' => \Gcms\Controller::getPermissions(),
             'value' => \Gcms\Controller::initModule([], 'newRegister')
+        ));
+        
+        $leaveOption = \Index\register\Model::getAllLeave();
+        foreach ($leaveOption as $item) {
+            // ลาป่วย
+            if ($item->id == 1) {
+                $quota_leave1 = $item->num_days;
+            } else if ($item->id == 2) {
+                $quota_leave2 = $item->num_days;
+            } else if ($item->id == 3) {
+                $quota_leave3 = $item->num_days;
+            } else if ($item->id == 5) {
+                $quota_leave5 = $item->num_days;
+            } else if ($item->id == 7) {
+                $quota_leave7 = $item->num_days;
+            } else if ($item->id == 8) {
+                $quota_leave8 = $item->num_days;
+            }
+        }
+        $groups = $fieldset->add('groups');
+        $groups->add('text', array(
+            'id' => 'register_quota_leave1',
+            'labelClass' => 'g-input icon-number',
+            'itemClass' => 'width30',
+            'label' => 'ลาป่วย<em>*</em>',
+            'value' => isset($quota_leave1) ? $quota_leave1 : 0
+        ));
+        $groups->add('text', array(
+            'id' => 'register_quota_leave2',
+            'labelClass' => 'g-input icon-number',
+            'itemClass' => 'width30',
+            'label' => 'ลากิจ<em>*</em>',
+            'value' => isset($quota_leave2) ? $quota_leave2 : 0
+        ));
+        $groups->add('text', array(
+            'id' => 'register_quota_leave3',
+            'labelClass' => 'g-input icon-number',
+            'itemClass' => 'width30',
+            'label' => 'ลาคลอดบุตร<em>*</em>',
+            'value' => isset($quota_leave3) ? $quota_leave3 : 0
+        ));
+        $groups = $fieldset->add('groups');
+        $groups->add('text', array(
+            'id' => 'register_quota_leave5',
+            'labelClass' => 'g-input icon-number',
+            'itemClass' => 'width30',
+            'label' => 'ลาเข้ารับการตรวจเลือกทหาร<em>*</em>',
+            'value' => isset($quota_leave5) ? $quota_leave5 : 0
+        ));
+        $groups->add('text', array(
+            'id' => 'register_quota_leave7',
+            'labelClass' => 'g-input icon-number',
+            'itemClass' => 'width30',
+            'label' => 'ลาบวช<em>*</em>',
+            'value' => isset($quota_leave7) ? $quota_leave7 : 0
+        ));
+        $groups->add('text', array(
+            'id' => 'register_quota_leave8',
+            'labelClass' => 'g-input icon-number',
+            'itemClass' => 'width30',
+            'label' => 'ลาพักร้อน<em>*</em>',
+            'value' => isset($quota_leave8) ? $quota_leave8 : 0
         ));
         $fieldset = $form->add('fieldset', array(
             'class' => 'submit'

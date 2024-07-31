@@ -443,6 +443,7 @@ return array(
   'URL must begin with http:// or https://' => 'URL ต้องขึ้นต้นด้วย http:// หรือ https://',
   'Usage history' => 'ประวัติการใช้งาน',
   'Use the theme&#039;s default settings.' => 'ใช้การตั้งค่าเริ่มต้นของธีม',
+  'Used for login' => 'ใช้สำหรับเข้าระบบ',
   'User' => 'สมาชิก',
   'Username' => 'ชื่อผู้ใช้',
   'Username for the mail server. (To change, enter a new value.)' => 'ชื่อผู้ใช้ของเมล์เซิร์ฟเวอร์ (ต้องการเปลี่ยน ให้กรอก)',

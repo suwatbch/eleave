@@ -42,7 +42,49 @@ class Model extends \Kotchasan\Model
                     // รับค่าจากการ POST
                     $save = array(
                         'name' => $request->post('register_name')->topic(),
+                        'shift_id' => $request->post('register_shift_id')->toInt(),
+                        'email' => $request->post('register_email')->topic(),
+                        'm1' => $request->post('register_m1')->topic(),
+                        'm2' => $request->post('register_m2')->topic(),
                         'status' => $isAdmin ? $request->post('register_status')->toInt() : 0
+                    );
+
+                    $quota = [];
+                    $quota[] = array(
+                        'year' => date("Y"),
+                        'member_id' => 0,
+                        'leave_id' => 1,
+                        'quota' => $request->post('register_quota_leave1')->toInt()
+                    );
+                    $quota[] = array(
+                        'year' => date("Y"),
+                        'member_id' => 0,
+                        'leave_id' => 2,
+                        'quota' => $request->post('register_quota_leave2')->toInt()
+                    );
+                    $quota[] = array(
+                        'year' => date("Y"),
+                        'member_id' => 0,
+                        'leave_id' => 3,
+                        'quota' => $request->post('register_quota_leave3')->toInt()
+                    );
+                    $quota[] = array(
+                        'year' => date("Y"),
+                        'member_id' => 0,
+                        'leave_id' => 5,
+                        'quota' => $request->post('register_quota_leave5')->toInt()
+                    );
+                    $quota[] = array(
+                        'year' => NULL,
+                        'member_id' => 0,
+                        'leave_id' => 7,
+                        'quota' => $request->post('register_quota_leave7')->toInt()
+                    );
+                    $quota[] = array(
+                        'year' => date("Y"),
+                        'member_id' => 0,
+                        'leave_id' => 8,
+                        'quota' => $request->post('register_quota_leave8')->toInt()
                     );
                     $permission = $isAdmin ? $request->post('register_permission', [])->topic() : [];
                     // table
@@ -147,7 +189,7 @@ class Model extends \Kotchasan\Model
                         // สมัครโดยแอดมินเข้าระบบทันที อื่นๆ ตามที่ตั้งค่า
                         $save['active'] = $isAdmin ? 1 : self::$cfg->new_members_active;
                         // ลงทะเบียนสมาชิกใหม่
-                        $save = self::execute($this, $save, $permission, $user_categories);
+                        $save = self::execute($this, $save, $quota, $permission, $user_categories);
                         // log
                         $member_id = $isAdmin ? $isAdmin['id'] : $save['id'];
                         \Index\Log\Model::add($member_id, 'index', 'User', '{LNG_Create new account} ID : '.$save['id'], $member_id);
@@ -199,12 +241,13 @@ class Model extends \Kotchasan\Model
      *
      * @param Model $model
      * @param array $save ข้อมูลสมาชิก
+     * @param array $quota 
      * @param array $permission
      * @param array $user_meta
      *
      * @return array
      */
-    public static function execute($model, $save, $permission = null, $user_meta = [])
+    public static function execute($model, $save, $quota, $permission = null, $user_meta = [])
     {
         if (!isset($save['username'])) {
             $save['username'] = null;
@@ -222,6 +265,15 @@ class Model extends \Kotchasan\Model
         if (isset($save['id_card']) && $save['id_card'] == '') {
             $save['id_card'] = null;
         }
+        if (!isset($save['email'])) {
+            $save['email'] = null;
+        }
+        if (!isset($save['m1'])) {
+            $save['m1'] = null;
+        }
+        if (!isset($save['m2'])) {
+            $save['m2'] = null;
+        }
         $save['create_date'] = date('Y-m-d H:i:s');
         if ($permission === null) {
             if (self::$cfg->demo_mode) {
@@ -237,10 +289,38 @@ class Model extends \Kotchasan\Model
             $permission = \Gcms\Controller::initModule($permission, 'newRegister', $save);
         }
         $save['permission'] = empty($permission) ? '' : ','.implode(',', $permission).',';
+
+        $m1 = NULL;
+        if (!empty($save['m1'])) {
+            $m1 = \Eleave\Leave\Model::getUserForU(0, $save['m1']);
+        }
+        if (!empty($m1)) {
+            $save['m1'] = $m1->id;
+        } else {
+            $save['m1'] = NULL;
+        }
+
+        $m2 = NULL;
+        if (!empty($save['m2'])) {
+            $m2 = \Eleave\Leave\Model::getUserForU(0, $save['m2']);
+        }
+        if (!empty($m2)) {
+            $save['m2'] = $m2->id;
+        } else {
+            $save['m2'] = NULL;
+        }
+
         // Database
         $db = $model->db();
         // บันทึกลงฐานข้อมูล
         $save['id'] = $db->insert($model->getTableName('user'), $save);
+        // quota
+        if ($save['id'] != 0) {
+            foreach ($quota as $item) {
+                $item['member_id'] = $save['id'];
+                $db->insert($model->getTableName('leave_quota'), $item);
+            }
+        }
         // user_meta
         if (!empty(self::$cfg->default_department) && empty($user_meta['department'])) {
             if (in_array('department', self::$cfg->categories_multiple)) {
@@ -277,5 +357,30 @@ class Model extends \Kotchasan\Model
             $save['permission'][] = $value;
         }
         return $save;
+    }
+
+  	/**
+     * @param string $username
+     * @return static
+     */
+    public function getUser($username)
+    {
+        return $this->createQuery()
+                ->from('user')
+                ->where(array('username', $username))
+                ->cacheOn()
+                ->first('*');
+    }
+
+    /**
+     * @return array
+     */
+    public static function getAllLeave()
+    {
+        return \Kotchasan\Model::createQuery()
+                ->select('*')
+                ->from('leave')
+                ->cacheOn()
+                ->execute();
     }
 }

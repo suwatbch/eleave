@@ -71,8 +71,43 @@ class Model
     }
 
     /**
-     * @param int $id
+     * @return static
+     */
+    public static function getshifttype()
+    {
+        $obj = new static;
+        // Query
+        $query = \Kotchasan\Model::createQuery()
+            ->select('id', 'description')
+            ->from('shift')
+            ->where(array('static', 1))
+            ->order('id')
+            ->cacheOn();
+        foreach ($query->execute() as $item) {
+            $obj->datas[$item->id] = $item->description;
+        }
+        return $obj;
+    }
+
+    /**
+     * ลิสต์รายชื่อการลา
+     * สำหรับใส่ลงใน select
      *
+     * @return array
+     */
+    public function toshifttype()
+    {
+        if (!empty($this->datas)) {
+            $add = array(0 => 'กะหมุนเวียน');
+            foreach ($add as $key => $value){
+                $this->datas = $this->datas + array($key => $value);
+            }
+        }
+        return empty($this->datas) ? [] : $this->datas;
+    }
+
+    /**
+     * @param int $id
      * @return static
      */
     public static function getshift($id)
