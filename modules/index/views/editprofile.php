@@ -346,50 +346,68 @@ class View extends \Gcms\View
                 'value' => $user['permission']
             ));
 
-            $quota_leave1 = 0;
-            $quota_leave2 = 0;
-            $quota_leave3 = 0;
-            $quota_leave5 = 0;
-            $quota_leave7 = 0;
-            $quota_leave8 = 0;
             $quotaOption = \Index\Editprofile\Model::getQuotaOfUser(date('Y'), $user['id']);
             foreach ($quotaOption as $item) {
                 // ลาป่วย
                 if ($item->leave_id == 1) {
-                    $quota_leave1 = $item->quota;
+                    $quota_leave1 = $item;
                 } else if ($item->leave_id == 2) {
-                    $quota_leave2 = $item->quota;
+                    $quota_leave2 = $item;
                 } else if ($item->leave_id == 3) {
-                    $quota_leave3 = $item->quota;
+                    $quota_leave3 = $item;
                 } else if ($item->leave_id == 5) {
-                    $quota_leave5 = $item->quota;
+                    $quota_leave5 = $item;
                 } else if ($item->leave_id == 7) {
-                    $quota_leave7 = $item->quota;
+                    $quota_leave7 = $item;
                 } else if ($item->leave_id == 8) {
-                    $quota_leave8 = $item->quota;
+                    $quota_leave8 = $item;
                 }
             }
+            $fieldset->add('hidden', array(
+                'id' => 'register_quota_leave1_id',
+                'value' => $quota_leave1->id
+            ));
+            $fieldset->add('hidden', array(
+                'id' => 'register_quota_leave2_id',
+                'value' => $quota_leave2->id
+            ));
+            $fieldset->add('hidden', array(
+                'id' => 'register_quota_leave3_id',
+                'value' => $quota_leave3->id
+            ));
+            $fieldset->add('hidden', array(
+                'id' => 'register_quota_leave5_id',
+                'value' => $quota_leave5->id
+            ));
+            $fieldset->add('hidden', array(
+                'id' => 'register_quota_leave7_id',
+                'value' => $quota_leave7->id
+            ));
+            $fieldset->add('hidden', array(
+                'id' => 'register_quota_leave8_id',
+                'value' => $quota_leave8->id
+            ));
             $groups = $fieldset->add('groups');
             $groups->add('text', array(
                 'id' => 'register_quota_leave1',
                 'labelClass' => 'g-input icon-number',
                 'itemClass' => 'width30',
                 'label' => 'ลาป่วย<em>*</em>',
-                'value' => isset($quota_leave1) ? $quota_leave1 : 0
+                'value' => isset($quota_leave1->quota) ? $quota_leave1->quota : 0
             ));
             $groups->add('text', array(
                 'id' => 'register_quota_leave2',
                 'labelClass' => 'g-input icon-number',
                 'itemClass' => 'width30',
                 'label' => 'ลากิจ<em>*</em>',
-                'value' => isset($quota_leave2) ? $quota_leave2 : 0
+                'value' => isset($quota_leave2->quota) ? $quota_leave2->quota : 0
             ));
             $groups->add('text', array(
                 'id' => 'register_quota_leave3',
                 'labelClass' => 'g-input icon-number',
                 'itemClass' => 'width30',
                 'label' => 'ลาคลอดบุตร<em>*</em>',
-                'value' => isset($quota_leave3) ? $quota_leave3 : 0
+                'value' => isset($quota_leave3->quota) ? $quota_leave3->quota : 0
             ));
             $groups = $fieldset->add('groups');
             $groups->add('text', array(
@@ -397,21 +415,21 @@ class View extends \Gcms\View
                 'labelClass' => 'g-input icon-number',
                 'itemClass' => 'width30',
                 'label' => 'ลาเข้ารับการตรวจเลือกทหาร<em>*</em>',
-                'value' => isset($quota_leave5) ? $quota_leave5 : 0
+                'value' => isset($quota_leave5->quota) ? $quota_leave5->quota : 0
             ));
             $groups->add('text', array(
                 'id' => 'register_quota_leave7',
                 'labelClass' => 'g-input icon-number',
                 'itemClass' => 'width30',
                 'label' => 'ลาบวช<em>*</em>',
-                'value' => isset($quota_leave7) ? $quota_leave7 : 0
+                'value' => isset($quota_leave7->quota) ? $quota_leave7->quota : 0
             ));
             $groups->add('text', array(
                 'id' => 'register_quota_leave8',
                 'labelClass' => 'g-input icon-number',
                 'itemClass' => 'width30',
                 'label' => 'ลาพักร้อน<em>*</em>',
-                'value' => isset($quota_leave8) ? $quota_leave8 : 0
+                'value' => isset($quota_leave8->quota) ? $quota_leave8->quota : 0
             ));
         }
         $fieldset = $form->add('fieldset', array(

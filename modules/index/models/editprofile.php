@@ -105,7 +105,7 @@ class Model extends \Kotchasan\Model
                         'provinceID' => $request->post('register_provinceID')->number(),
                         'province' => $request->post('register_province')->topic(),
                         'zipcode' => $request->post('register_zipcode')->number(),
-                        'country' => $request->post('register_country')->filter('A-Z')
+                        'country' => $request->post('register_country')->filter('A-Z'),
                     );
                     // ชื่อตาราง
                     $table_user = $this->getTableName('user');
@@ -116,6 +116,36 @@ class Model extends \Kotchasan\Model
                     // รับค่าจากการ POST
                     if ($isAdmin){
                         $save['name'] = $request->post('register_name')->topic();
+                        $save['shift_id'] = $request->post('register_shift_id')->toInt();
+                        $save['email'] = $request->post('register_email')->topic();
+                        $save['m1'] = $request->post('register_m1')->topic();
+                        $save['m2'] = $request->post('register_m2')->topic();
+
+                        $quota = [];
+                        $quota[] = array(
+                            'id' => $request->post('register_quota_leave1_id')->toInt(),
+                            'quota' => $request->post('register_quota_leave1')->toInt()
+                        );
+                        $quota[] = array(
+                            'id' => $request->post('register_quota_leave2_id')->toInt(),
+                            'quota' => $request->post('register_quota_leave2')->toInt()
+                        );
+                        $quota[] = array(
+                            'id' => $request->post('register_quota_leave3_id')->toInt(),
+                            'quota' => $request->post('register_quota_leave3')->toInt()
+                        );
+                        $quota[] = array(
+                            'id' => $request->post('register_quota_leave5_id')->toInt(),
+                            'quota' => $request->post('register_quota_leave5')->toInt()
+                        );
+                        $quota[] = array(
+                            'id' => $request->post('register_quota_leave7_id')->toInt(),
+                            'quota' => $request->post('register_quota_leave7')->toInt()
+                        );
+                        $quota[] = array(
+                            'id' => $request->post('register_quota_leave8_id')->toInt(),
+                            'quota' => $request->post('register_quota_leave8')->toInt()
+                        );
                     }
                     // ตรวจสอบค่าที่ส่งมา
                     $user = self::get($request->post('register_id')->toInt());
@@ -242,6 +272,30 @@ class Model extends \Kotchasan\Model
                                 }
                             }
                         }
+
+                        // แปลง m1 m2 เป็น id
+                        if ($isAdmin) {
+                            $m1 = NULL;
+                            if (!empty($save['m1'])) {
+                                $m1 = \Eleave\Leave\Model::getUserForU(0, $save['m1']);
+                            }
+                            if (!empty($m1)) {
+                                $save['m1'] = $m1->id;
+                            } else {
+                                $save['m1'] = NULL;
+                            }
+
+                            $m2 = NULL;
+                            if (!empty($save['m2'])) {
+                                $m2 = \Eleave\Leave\Model::getUserForU(0, $save['m2']);
+                            }
+                            if (!empty($m2)) {
+                                $save['m2'] = $m2->id;
+                            } else {
+                                $save['m2'] = NULL;
+                            }
+                        }
+
                         // บันทึก
                         if (empty($ret)) {
                             if (!empty($password)) {
@@ -252,6 +306,12 @@ class Model extends \Kotchasan\Model
                             $db->update($table_user, $user['id'], $save);
                             //เฉพาะแอดมิน
                             if ($isAdmin) {
+                                // leave_quota
+                                foreach ($quota as $item) {
+                                    $quotanum = array('quota' => $item['quota']);
+                                    $db->update($this->getTableName('leave_quota'), $item['id'], $quotanum);
+                                }
+
                                 // user_meta
                                 $table_user_meta = $this->getTableName('user_meta');
                                 foreach ($user_categories as $key => $category) {

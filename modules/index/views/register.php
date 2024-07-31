@@ -175,12 +175,6 @@ class View extends \Gcms\View
             'value' => \Gcms\Controller::initModule([], 'newRegister')
         ));
         
-        $quota_leave1 = 0;
-        $quota_leave2 = 0;
-        $quota_leave3 = 0;
-        $quota_leave5 = 0;
-        $quota_leave7 = 0;
-        $quota_leave8 = 0;
         $leaveOption = \Index\register\Model::getAllLeave();
         foreach ($leaveOption as $item) {
             // ลาป่วย
