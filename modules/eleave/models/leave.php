@@ -154,15 +154,16 @@ class Model extends \Kotchasan\Model
             // Database
             $db = $this->db();
             $pStatus = $request->post('status')->toInt();
+            $pId = $request->post('id')->toInt();
                 
-            if ($pStatus == 4) {
-                $db->update($this->getTableName('leave_items'), $request->post('id')->toInt(), array('status' => $pStatus));
+            if (($pStatus == 4 || $pStatus == 0 ) && $pId > 0) {
+                $db->update($this->getTableName('leave_items'), $pId, array('status' => $pStatus));
                 $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'eleave', 'status' => $pStatus));
                 // เคลียร์
                 $request->removeToken();
             }
 
-            else if ($request->post('cal_status')->toInt() && $pStatus == 0) {
+            else if ($request->post('cal_status')->toInt() && $pStatus == 0 && $pId == 0) {
                 try {
                     // ค่าที่ส่งมา
                     $save = array(
