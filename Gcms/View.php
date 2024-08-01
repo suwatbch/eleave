@@ -128,7 +128,8 @@ class View extends \Kotchasan\View
     {
         if (isset($statuses[$value])) {
             $name = $name != '' ? $name.' ' : '';
-            $success = $value ? 'แล้ว' : '';
+            if ($value == 1 || $value == 4) { $success = 'แล้ว'; }
+            else { $success = ''; }
             return $color ? '<span class="term'.$value.'">'.$name.$statuses[$value].$success.'</span>' : $statuses[$value];
         }
         return '';

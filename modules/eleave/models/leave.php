@@ -155,14 +155,64 @@ class Model extends \Kotchasan\Model
             $db = $this->db();
             $pStatus = $request->post('status')->toInt();
             $pId = $request->post('id')->toInt();
+            // ตรวจสอบรายการที่เลือก
+            $index = self::get($pId, $login);
+
                 
-            if (($pStatus == 4 || $pStatus == 0 ) && $pId > 0) {
-                $db->update($this->getTableName('leave_items'), $pId, array('status' => $pStatus));
-                $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'eleave', 'status' => $pStatus));
+            // ทำการยกเลิกรายการลาด้วยตนเอง
+            if (($pStatus == 0 || $pStatus == 1 || $pStatus == 4) && $pId > 0) {
+                $Items = self::getleaveItems($pId);
+                if ($index->status == 0 && $pStatus == 4) {
+                    if ($Items->status == 0) {
+                        $statusupdate['status'] = $pStatus;
+                        if (!empty($index->member_id_m1) && $index->member_id_m1 > 0) {
+                            $statusupdate['status_m1'] = $pStatus;
+                        }
+                        if (!empty($index->member_id_m2) && $index->member_id_m2 > 0) {
+                            $statusupdate['status_m2'] = $pStatus;
+                        }
+                        $db->update($this->getTableName('leave_items'), $pId, $statusupdate);
+                        $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'eleave', 'status' => $pStatus));
+                    }
+                } else if ($index->status == 1 && $pStatus == 4) {
+                    if ($Items->status == 1) {
+                        $statusupdate['status'] = 3;
+                        $statusupdate['status_m1'] = 3;
+                        $db->update($this->getTableName('leave_items'), $pId, $statusupdate);
+                        
+                        $save = [];
+                        $save['id'] = $index->id;
+                        $save['leave_id'] = $index->leave_id;
+                        $save['member_id'] = $index->member_id;
+                        $save['member_id_m1'] = $index->member_id_m1;
+                        $save['member_id_m2'] = Null;
+                        $save['status'] = $statusupdate['status'];
+                        $save['status_m1'] = $statusupdate['status_m1'];
+                        $save['status_m2'] = 0;
+                        $save['leave_type'] = self::leaveType($index->leave_id);
+                        $save['detail'] = $index->detail;
+                        $save['start_period'] = $index->start_period;
+                        $save['start_date'] = $index->start_date;
+                        $save['end_date'] = $index->end_date;
+                        $save['start_time'] = $index->start_time;
+                        $save['end_time'] = $index->end_time;
+                        $save['days'] = $index->days;
+                        $save['times'] = $index->times;
+                        $save['communication'] = $index->communication;
+                        $save['reason'] = $index->reason;
+
+                        // ส่งอีเมลแจ้งการขอลา
+                        $ret['alert'] = \Eleave\Email\Model::send($save);
+
+                        $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'eleave', 'status' => $statusupdate['status']));
+                    }
+                }
                 // เคลียร์
                 $request->removeToken();
             }
 
+
+            // เพิ่มรายการลา
             else if ($request->post('cal_status')->toInt() && $pStatus == 0 && $pId == 0) {
                 try {
                     // ค่าที่ส่งมา
@@ -173,8 +223,6 @@ class Model extends \Kotchasan\Model
                         'detail' => $request->post('detail')->textarea(),
                         'communication' => $request->post('communication')->textarea()
                     );
-                    // ตรวจสอบรายการที่เลือก
-                    $index = self::get($request->post('id')->toInt(), $login);
                     // ไม่ได้เลือกการลา
                     if ($save['leave_id'] == 0) {
                         $ret['ret_leave_id'] = Language::get('Select leave');  
@@ -809,13 +857,28 @@ class Model extends \Kotchasan\Model
      */
     public function getSumLeave($member_id, $leave_id)
     {
+        $statusIn[] = 0;
+        $statusIn[] = 1;
+        $statusIn[] = 3;
         return $this->createQuery()
                 ->from('leave_items I')
                 ->where(array(
                     array('I.member_id', $member_id),
                     array('I.leave_id', $leave_id),
-                    array('I.status', '<', 2)
+                    array('I.status', 'IN', $statusIn)
                 ))
                 ->first('SQL(SUM(days) AS sum)');
+    }
+
+    /**
+     * @param int $id
+     * @return static
+     */
+    public function getleaveItems($id)
+    {
+        return $this->createQuery()
+                ->from('leave_items I')
+                ->where(array('I.id', $id))
+                ->first('I.*');
     }
 }

@@ -220,9 +220,19 @@ class View extends \Gcms\View
             'disabled' => $notEdit,
             'value' => $index->communication
         ));
-        $status = Language::get('LEAVE_STATUS');
+        $statustemp = Language::get('LEAVE_STATUS');
+        $status = [];
+        $isDisabled = false;
+        if ($index->status == 4) { $statuskey = [4]; $isDisabled = true; }
+        else if ($index->status == 3) { $statuskey = [1, 2, 3]; }
+        else { $statuskey = [0, 1, 2]; }
+        foreach ($statustemp as $key => $value) {
+            if (in_array($key, $statuskey)) {
+                $status[$key] = $value;
+            }
+        }
         $indexstatus = $index->status;
-        if ($index->status != 0) {
+        if ($index->status != 0 && $index->status != 3 && $index->status != 4) {
             $status = array_splice($status,1,2);
             $indexstatus -= 1;
         }
@@ -233,7 +243,8 @@ class View extends \Gcms\View
             'itemClass' => 'item',
             'label' => '{LNG_Status}',
             'options' => $status ,
-            'value' => $indexstatus
+            'value' => $indexstatus,
+            'disabled' => $isDisabled
         ));
         // reason
         $fieldset->add('text', array(
@@ -242,16 +253,19 @@ class View extends \Gcms\View
             'itemClass' => 'item',
             'label' => '{LNG_Reason}',
             'maxlength' => 255,
-            'value' => $index->reason
+            'value' => $index->reason,
+            'disabled' => $isDisabled
         ));
-        $fieldset = $form->add('fieldset', array(
-            'class' => 'submit'
-        ));
-        // submit
-        $fieldset->add('submit', array(
-            'class' => 'button ok large icon-save',
-            'value' => '{LNG_Save}'
-        ));
+        if ($index->status != 4) {
+            $fieldset = $form->add('fieldset', array(
+                'class' => 'submit'
+            ));
+            // submit
+            $fieldset->add('submit', array(
+                'class' => 'button ok large icon-save',
+                'value' => '{LNG_Save}'
+            ));
+        }
         // id
         $fieldset->add('hidden', array(
             'id' => 'id',

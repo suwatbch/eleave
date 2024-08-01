@@ -58,11 +58,11 @@ class Model extends \Kotchasan\Model
                         'status' => $request->post('status')->toInt(),
                         'reason' => $request->post('reason')->topic()
                     );
-                    if ($request->post('_status')->toInt() != 0) {
+                    $index = self::get($request->post('id')->toInt());
+                    $indexStatus = $index->status;
+                    if ($request->post('_status')->toInt() != 0 && $indexStatus != 3) {
                         $save['status'] += 1;
                     }
-                    // ตรวจสอบรายการที่เลือก
-                    $index = self::get($request->post('id')->toInt());
                     // สามารถอนุมัติได้
                     if ($index && Login::checkPermission($login, 'can_approve_eleave')) {
                         if (Login::isAdmin()) {
@@ -103,43 +103,55 @@ class Model extends \Kotchasan\Model
                             $save['end_time'] = $end_time;
                         }
 
-                        //ตรวจสอบก่อนการอนุมัติ
-                        $ism1 = !empty($index->member_id_m1);
-                        $ism2 = !empty($index->member_id_m2);
-                        if ($login['id']==1){ //แอดมิน
-                            if ($ism1){
+                        if ($indexStatus == 3) {
+                            // อนุมัติ รออนุมัติยกเลิก
+                            $Items = self::getleaveItems($index->id);
+                            if ($Items->status == $indexStatus) {
+                                if ($save['status'] == 1) { $save['status'] = 4; }
+                                else if ($save['status'] == 2) { $save['status'] = 1; }
                                 $save['status_m1'] = $save['status'];
-                                $save['status_m2'] = 0;
-                                $save['approve_datetime_m1'] = date('Y-m-d H:i:s');
-                            }
-                            if ($ism2){
-                                $save['status_m2'] = $save['status'];
-                                $save['approve_datetime_m2'] = date('Y-m-d H:i:s');
-                            }
-                        } else {
-                            $pass1 = false;
-                            $pass2 = false;
-                            if ($index->member_id_m1 == $login['id']){
-                                $save['status_m1'] = $save['status'];
-                                $save['status_m2'] = 0;
-                                $save['approve_datetime_m1'] = date('Y-m-d H:i:s');
-                                $pass1 = true;
-                            }
-                            if ($index->member_id_m2 == $login['id']){
-                                $save['status_m1'] = 1;
-                                $save['status_m2'] = $save['status'];
-                                $save['approve_datetime_m2'] = date('Y-m-d H:i:s');
-                                $pass2 = true;
+                                $save['cancel_date'] = date('Y-m-d H:i:s');
                             }
 
-                            // ตรวจสอบกรณีมี M2
-                            if ($ism2 && $save['status'] != 2){
-                                if ($pass1 && !$pass2 && $index->status_m2 == 0){
-                                    $save['status'] = 0;
-                                } else if ($pass1 && !$pass2 && $index->status_m2 == 1){
-                                    $save['status'] = 1;
-                                } else if ($pass1 && !$pass2 && $index->status == 2) {
-                                    $save['status'] = $index->status;
+                        } else {
+                            //ตรวจสอบก่อนการอนุมัติ
+                            $ism1 = !empty($index->member_id_m1);
+                            $ism2 = !empty($index->member_id_m2);
+                            if ($login['id']==1){ //แอดมิน
+                                if ($ism1){
+                                    $save['status_m1'] = $save['status'];
+                                    $save['status_m2'] = 0;
+                                    $save['approve_datetime_m1'] = date('Y-m-d H:i:s');
+                                }
+                                if ($ism2){
+                                    $save['status_m2'] = $save['status'];
+                                    $save['approve_datetime_m2'] = date('Y-m-d H:i:s');
+                                }
+                            } else {
+                                $pass1 = false;
+                                $pass2 = false;
+                                if ($index->member_id_m1 == $login['id']){
+                                    $save['status_m1'] = $save['status'];
+                                    $save['status_m2'] = 0;
+                                    $save['approve_datetime_m1'] = date('Y-m-d H:i:s');
+                                    $pass1 = true;
+                                }
+                                if ($index->member_id_m2 == $login['id']){
+                                    $save['status_m1'] = 1;
+                                    $save['status_m2'] = $save['status'];
+                                    $save['approve_datetime_m2'] = date('Y-m-d H:i:s');
+                                    $pass2 = true;
+                                }
+
+                                // ตรวจสอบกรณีมี M2
+                                if ($ism2 && $save['status'] != 2){
+                                    if ($pass1 && !$pass2 && $index->status_m2 == 0){
+                                        $save['status'] = 0;
+                                    } else if ($pass1 && !$pass2 && $index->status_m2 == 1){
+                                        $save['status'] = 1;
+                                    } else if ($pass1 && !$pass2 && $index->status == 2) {
+                                        $save['status'] = $index->status;
+                                    }
                                 }
                             }
                         }
@@ -151,11 +163,24 @@ class Model extends \Kotchasan\Model
                             \Index\Log\Model::add($index->id, 'eleave', 'Status', Language::get('LEAVE_STATUS', '', $save['status']).' ID : '.$index->id, $login['id']);
                             $index->status_m1 = $save['status_m1'];
                             $index->status_m2 = $save['status_m2'];
-                            if ($save['status'] != $index->status || ($index->status_m2 == 0 && $index->status_m1)) {
+                            if ($save['status'] != $indexStatus || ($index->status_m2 == 0 && $index->status_m1)) {
+                                $sendmail = true;
+                                if ($indexStatus == 3) {
+                                    if ($save['status'] == $indexStatus) { $sendmail = false; }
+                                    $index->cancel_date = $save['cancel_date'];
+                                    if (!empty($index->member_id_m1) && $index->member_id_m1 > 0) {
+                                        $index->status_m1 = $save['status'];
+                                    }
+                                    if (!empty($index->member_id_m2) && $index->member_id_m2 > 0) {
+                                        $index->status_m2 = $save['status'];
+                                    }
+                                }
+
                                 $index->status = $save['status'];
                                 $index->reason = $save['reason'];
                                 // ส่งอีเมลแจ้งการขอลา
-                                $ret['alert'] = \Eleave\Email\Model::send((array) $index);
+                                if ($sendmail)
+                                    $ret['alert'] = \Eleave\Email\Model::send((array) $index);
                             } else {
                                 // ไม่ต้องส่งอีเมล
                                 $ret['alert'] = Language::get('Saved successfully');
@@ -211,5 +236,17 @@ class Model extends \Kotchasan\Model
                 ))
                 ->first('SQL(SUM(days) AS sum)');
         return $sum;
+    }
+
+    /**
+     * @param int $id
+     * @return static
+     */
+    public function getleaveItems($id)
+    {
+        return $this->createQuery()
+                ->from('leave_items I')
+                ->where(array('I.id', $id))
+                ->first('I.*');
     }
 }

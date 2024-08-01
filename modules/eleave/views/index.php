@@ -58,7 +58,7 @@ class View extends \Gcms\View
                 'id' => ':id',
                 'text' => '{LNG_Detail}'
             ));
-        if ($params['status'] == 0) {
+        if ($params['status'] == 0 || $params['status'] == 1) {
             $buttons['cancel'] = array(
                 'class' => 'icon-delete button red',
                 'href' => $uri->createBackUri(array('module' => 'eleave-leave', 'id' => ':id')),

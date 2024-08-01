@@ -120,6 +120,12 @@ class View extends \Gcms\View
             array_pop($time_stt);
             array_shift($time_ent);
         }
+        if ($index->id > 0) {
+            if ($index->start_period == 0) {
+                $time_stt = [];
+                $time_ent = [];
+            }
+        }
         // เวลาเริ่มต้น
         $groups->add('select', array(
             'id' => 'start_time',
@@ -237,8 +243,13 @@ class View extends \Gcms\View
         } else {
             $statustemp = Language::get('LEAVE_STATUS');
             $status = [];
+            $isDisabled = false;
+            if ($index->status == 0) { $statuskey = [0, 4]; }
+            else if ($index->status == 1) { $statuskey = [1, 4]; }
+            else if ($index->status == 3) { $statuskey = [3]; $isDisabled = true; }
+            else if ($index->status == 4) { $statuskey = [4]; $isDisabled = true; }
             foreach ($statustemp as $key => $value) {
-                if ($key == 0 || $key == 4) {
+                if (in_array($key, $statuskey)) {
                     $status[$key] = $value;
                 }
             }
@@ -250,7 +261,7 @@ class View extends \Gcms\View
                 'label' => '{LNG_Status}',  
                 'options' => $status,
                 'value' => $index->status,
-                // 'disabled' => true
+                'disabled' => $isDisabled
             ));
             // reason
             $fieldset->add('text', array(
@@ -263,11 +274,13 @@ class View extends \Gcms\View
                 'disabled' => true
             ));
         }
-        // submit
-        $fieldset->add('submit', array(
-            'class' => 'button ok large icon-save',
-            'value' => '{LNG_Save}'
-        ));
+        if ($index->status != 4) {
+            // submit
+            $fieldset->add('submit', array(
+                'class' => 'button ok large icon-save',
+                'value' => '{LNG_Save}'
+            ));
+        }
         // Javascript
         $form->script('initEleaveLeave();');
         // คืนค่า HTML
