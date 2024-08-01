@@ -51,7 +51,7 @@ class View extends \Gcms\View
         ));
         // description
         $fieldset->add('textarea', array(
-            'ID' => 'description',
+            'id' => 'description',
             'name' => 'description',
             'labelClass' => 'g-input icon-file',
             'itemClass' => 'item',
@@ -69,7 +69,7 @@ class View extends \Gcms\View
         ));
         // hidden id field
         $form->add('hidden', array(
-            'ID' => 'ID',
+            'id' => 'ID',
             'name' => 'ID',
             'value' => $index->ID
         ));

@@ -1,6 +1,6 @@
 <?php
 /**
- * @filesource modules/eleave/views/Workdaymanagement.php
+ * @filesource modules/eleave/views/workdaymanagement.php
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
@@ -15,7 +15,7 @@ use Kotchasan\Http\Request;
 use Kotchasan\Language;
 
 /**
- * module=eleave-Workdaymanagement
+ * module=eleave-workdaymanagement
  *
  * @author Goragod Wiriya <admin@goragod.com>
  *
@@ -44,37 +44,32 @@ class View extends \Gcms\View
             /* Uri */
             'uri' => $uri,
             /* Model */
-            'model' => \Eleave\Setup\Model::toDataTable(),
+            'model' => \Eleave\workdaymanagement\Model::toDataTable(),
             /* รายการต่อหน้า */
             'perPage' => $request->cookie('eleaveSetup_perPage', 30)->toInt(),
             /* เรียงลำดับ */
-            'sort' => 'month',
+            'sort' => ['month', 'year'],
             /* ฟังก์ชั่นจัดรูปแบบการแสดงผลแถวของตาราง */
             'onRow' => array($this, 'onRow'),
             /* คอลัมน์ที่ไม่ต้องแสดงผล */
             'hideColumns' => array('id'),
             /* ตั้งค่าการกระทำของของตัวเลือกต่างๆ ด้านล่างตาราง ซึ่งจะใช้ร่วมกับการขีดถูกเลือกแถว */
-            'action' => 'index.php/eleave/model/setup/action',
+            'action' => 'index.php/eleave/model/workdaymanagement/action',
             'actionCallback' => 'dataTableActionCallback',
-            'actions' => array(
-                array(
-                    'id' => 'action',
-                    'class' => 'ok',
-                    'text' => '{LNG_With selected}',
-                    'options' => array(
-                        'delete' => '{LNG_Delete}'
-                    )
-                )
-            ),
             /* คอลัมน์ที่สามารถค้นหาได้ */
             'searchColumns' => array('topic', 'document_no'),
             /* ส่วนหัวของตาราง และการเรียงลำดับ (thead) */
             'headers' => array(
-                'topic' => array(
-                    'text' => '{LNG_Leave type}'
+                'member_id' => array(
+                    'class' => 'center',
+                    'text' => '{LNG_member_id}'
                 ),
-                'num_days' => array(
-                    'text' => '{LNG_Number of leave days}',
+                'yaer' => array(
+                    'text' => '{LNG_yaer}',
+                    'class' => 'center'
+                ),
+                'month' => array(
+                    'text' => '{LNG_month}',
                     'class' => 'center'
                 ),
                 'published' => array(
@@ -83,10 +78,13 @@ class View extends \Gcms\View
             ),
             /* รูปแบบการแสดงผลของคอลัมน์ (tbody) */
             'cols' => array(
-                'num_days' => array(
+                'member_id' => array(
                     'class' => 'center'
                 ),
-                'published' => array(
+                'yaer' => array(
+                    'class' => 'center'
+                ),
+                'month' => array(
                     'class' => 'center'
                 )
             ),
@@ -94,16 +92,22 @@ class View extends \Gcms\View
             'buttons' => array(
                 'edit' => array(
                     'class' => 'icon-edit button green',
-                    'href' => $uri->createBackUri(array('module' => 'eleave-write', 'id' => ':id')),
+                    'href' => $uri->createBackUri(array('module' => 'eleave-workdaymanagement', 'id' => ':id')),
                     'text' => '{LNG_Edit}'
+                ),
+                'delete' => array(
+                    'class' => 'icon-delete button red',
+                    'id' => ':id',
+                    'text' => '{LNG_Delete}',
+                    'data-confirm' => '{LNG_Are you sure you want to delete?}'
                 )
             ),
             /* ปุ่มเพิ่ม */
             'addNew' => array(
                 'class' => 'float_button icon-new',
-                'href' => $uri->createBackUri(array('module' => 'eleave-write')),
+                'href' => $uri->createBackUri(array('module' => 'eleave-workdaymanagement')),
                 'title' => '{LNG_Add} {LNG_Leave type}'
-            )
+            ),              
         ));
         // save cookie
         setcookie('eleaveSetup_perPage', $table->perPage, time() + 2592000, '/', HOST, HTTPS, true);

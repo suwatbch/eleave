@@ -1,6 +1,6 @@
 <?php
 /**
- * @filesource modules/eleave/views/Workdaymanagement.php
+ * @filesource modules/eleave/models/workdaymanagement.php
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
@@ -10,128 +10,76 @@
 
 namespace Eleave\Workdaymanagement;
 
-use Kotchasan\DataTable;
+use Gcms\Login;
 use Kotchasan\Http\Request;
 use Kotchasan\Language;
 
 /**
- * module=eleave-Workdaymanagement
+ * module=eleave-workdaymanagement
  *
  * @author Goragod Wiriya <admin@goragod.com>
  *
  * @since 1.0
  */
-class View extends \Gcms\View
+class Model extends \Kotchasan\Model
 {
     /**
-     * @var array
-     */
-    private $publisheds;
-
-    /**
-     * รายการประเภทการลา
+     * Query ข้อมูลสำหรับส่งให้กับ DataTable
      *
-     * @param Request $request
-     *
-     * @return string
+     * @return \Kotchasan\Database\QueryBuilder
      */
-    public function render(Request $request)
+    public static function toDataTable()
     {
-        $this->publisheds = Language::get('PUBLISHEDS');
-        // URL สำหรับส่งให้ตาราง
-        $uri = $request->createUriWithGlobals(WEB_URL.'index.php');
-        // ตาราง
-        $table = new DataTable(array(
-            /* Uri */
-            'uri' => $uri,
-            /* Model */
-            'model' => \Eleave\Setup\Model::toDataTable(),
-            /* รายการต่อหน้า */
-            'perPage' => $request->cookie('eleaveSetup_perPage', 30)->toInt(),
-            /* เรียงลำดับ */
-            'sort' => 'month',
-            /* ฟังก์ชั่นจัดรูปแบบการแสดงผลแถวของตาราง */
-            'onRow' => array($this, 'onRow'),
-            /* คอลัมน์ที่ไม่ต้องแสดงผล */
-            'hideColumns' => array('id'),
-            /* ตั้งค่าการกระทำของของตัวเลือกต่างๆ ด้านล่างตาราง ซึ่งจะใช้ร่วมกับการขีดถูกเลือกแถว */
-            'action' => 'index.php/eleave/model/setup/action',
-            'actionCallback' => 'dataTableActionCallback',
-            'actions' => array(
-                array(
-                    'id' => 'action',
-                    'class' => 'ok',
-                    'text' => '{LNG_With selected}',
-                    'options' => array(
-                        'delete' => '{LNG_Delete}'
-                    )
-                )
-            ),
-            /* คอลัมน์ที่สามารถค้นหาได้ */
-            'searchColumns' => array('member_id', 'shift_id', 'year', 'month'),
-            /* ส่วนหัวของตาราง และการเรียงลำดับ (thead) */
-            'headers' => array(
-                'member_id' => array(
-                    'text' => 'Member ID'
-                ),
-                'shift_id' => array(
-                    'text' => 'Shift ID'
-                ),
-                'year' => array(
-                    'text' => 'Year'
-                ),
-                'month' => array(
-                    'text' => 'Month'
-                ),
-                'days' => array(
-                    'text' => 'Days',
-                    'class' => 'center'
-                ),
-                'published' => array(
-                    'text' => ''
-                )
-            ),
-            /* รูปแบบการแสดงผลของคอลัมน์ (tbody) */
-            'cols' => array(
-                'days' => array(
-                    'class' => 'center'
-                ),
-                'published' => array(
-                    'class' => 'center'
-                )
-            ),
-            /* ปุ่มแสดงในแต่ละแถว */
-            'buttons' => array(
-                'edit' => array(
-                    'class' => 'icon-edit button green',
-                    'href' => $uri->createBackUri(array('module' => 'eleave-write', 'id' => ':id')),
-                    'text' => '{LNG_Edit}'
-                )
-            ),
-            /* ปุ่มเพิ่ม */
-            'addNew' => array(
-                'class' => 'float_button icon-new',
-                'href' => $uri->createBackUri(array('module' => 'eleave-write')),
-                'title' => '{LNG_Add} {LNG_Workday}'
-            )
-        ));
-        // save cookie
-        setcookie('eleaveSetup_perPage', $table->perPage, time() + 2592000, '/', HOST, HTTPS, true);
-        // คืนค่า HTML
-        return $table->render();
+        return static::createQuery()
+            ->select('id', 'member_id', 'yaer', 'month')
+            ->from('shift_workdays');
     }
 
     /**
-     * จัดรูปแบบการแสดงผลในแต่ละแถว.
+     * รับค่าจาก action (workdaymanagement.php)
      *
-     * @param array $item
-     *
-     * @return array
+     * @param Request $request
      */
-    public function onRow($item, $o, $prop)
+    public function action(Request $request)
     {
-        $item['days'] = $item['days'] == 0 ? '{LNG_Unlimited}' : $item['days'];
-        $item['published'] = '<a id=published_'.$item['id'].' class="icon-published'.$item['published'].'" title="'.$this->publisheds[$item['published']].'"></a>';
-        return $item;
+        $ret = [];
+        // session, referer, สามารถจัดการโมดูลได้, ไม่ใช่สมาชิกตัวอย่าง
+        if ($request->initSession() && $request->isReferer() && $login = Login::isMember()) {
+            if (Login::notDemoMode($login) && Login::checkPermission($login, 'can_manage_eleave')) {
+                // รับค่าจากการ POST
+                $action = $request->post('action')->toString();
+                // id ที่ส่งมา
+                if (preg_match_all('/,?([0-9]+),?/', $request->post('id')->toString(), $match)) {
+                    // ตาราง
+                    $table = $this->getTableName('shift_workdays');
+                    if ($action === 'delete') {
+                        // ลบ
+                        $this->db()->delete($table, array('id', $match[1]), 0);
+                        // log
+                        \Index\Log\Model::add(0, 'eleave', 'Delete', '{LNG_Delete} {LNG_Leave type} ID : '.implode(', ', $match[1]), $login['id']);
+                        // reload
+                        $ret['location'] = 'reload';
+                    } elseif ($action === 'published') {
+                        // สถานะการเผยแพร่
+                        $search = $this->db()->first($table, (int) $match[1][0]);
+                        if ($search) {
+                            $published = $search->published == 1 ? 0 : 1;
+                            $this->db()->update($table, $search->id, array('published' => $published));
+                            // คืนค่า
+                            $ret['elem'] = 'published_'.$search->id;
+                            $ret['title'] = Language::get('PUBLISHEDS', '', $published);
+                            $ret['class'] = 'icon-published'.$published;
+                            // log
+                            \Index\Log\Model::add(0, 'eleave', 'Save', $ret['title'].' ID : '.$match[1][0], $login['id']);
+                        }
+                    }
+                }
+            }
+        }
+        if (empty($ret)) {
+            $ret['alert'] = Language::get('Unable to complete the transaction');
+        }
+        // คืนค่าเป็น JSON
+        echo json_encode($ret);
     }
 }

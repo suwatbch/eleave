@@ -1,1 +1,1 @@
-<?php exit?>[{"module":"eleave"},{"module":"holidays"},{"module":"index"}]
+<?php exit?>[{"module":"eleave"},{"module":"holidays"},{"module":"index"},{"module":"shift"}]
