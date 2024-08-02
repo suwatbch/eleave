@@ -172,12 +172,18 @@ class Model extends \Kotchasan\Model
                             $statusupdate['status_m2'] = $pStatus;
                         }
                         $db->update($this->getTableName('leave_items'), $pId, $statusupdate);
-                        $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'eleave', 'status' => $pStatus));
+                        $ret['alert'] = Language::get('Saved successfully');
                     }
                 } else if ($index->status == 1 && $pStatus == 4) {
                     if ($Items->status == 1) {
-                        $statusupdate['status'] = 3;
-                        $statusupdate['status_m1'] = 3;
+                        $pStatus -= 1;
+                        $statusupdate['status'] = $pStatus;
+                        if (!empty($index->member_id_m1) && $index->member_id_m1 > 0) {
+                            $statusupdate['status_m1'] = $pStatus;
+                        }
+                        if (!empty($index->member_id_m2) && $index->member_id_m2 > 0) {
+                            $statusupdate['status_m2'] = $pStatus;
+                        }
                         $db->update($this->getTableName('leave_items'), $pId, $statusupdate);
                         
                         $save = [];
@@ -203,10 +209,11 @@ class Model extends \Kotchasan\Model
 
                         // ส่งอีเมลแจ้งการขอลา
                         $ret['alert'] = \Eleave\Email\Model::send($save);
-
-                        $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'eleave', 'status' => $statusupdate['status']));
                     }
+                } else {
+                    $ret['alert'] = Language::get('Saved successfully');
                 }
+                $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'eleave', 'status' => $pStatus));
                 // เคลียร์
                 $request->removeToken();
             }

@@ -250,7 +250,12 @@ class View extends \Gcms\View
             else if ($index->status == 4) { $statuskey = [4]; $isDisabled = true; }
             foreach ($statustemp as $key => $value) {
                 if (in_array($key, $statuskey)) {
-                    $status[$key] = $value;
+                    if ($index->status == 1 && $key == 4) {
+                        $status[$key] = 'ขออนุมัติยกเลิก';
+                    } else {
+                        $status[$key] = $value;
+                    }
+                    
                 }
             }
             // status

@@ -120,7 +120,17 @@ class Model extends \Kotchasan\Model
             // email subject
             $Leavestatus = \Eleave\Leave\Model::getleaveofstatic($order['leave_id']);
             $Leavename = $Leavestatus->topic;
-            $subject = '['.self::$cfg->web_title.'] '.Language::get('Request for approval').$Leavename.Language::get('of').' '.$name.' '.Language::get('LEAVE_STATUS', '', $order['status']);
+            if (isset($order['statusOld'])) {
+                if ($order['status'] == 4) {
+                    $subject = '['.self::$cfg->web_title.'] '.Language::get('Request for approval').$Leavename.Language::get('of').' '.$name.' '.Language::get('LEAVE_STATUS', '', 1).Language::get('LEAVE_STATUS', '', 3);
+                } else {
+                    $subject = '['.self::$cfg->web_title.'] '.Language::get('Request for approval').$Leavename.Language::get('of').' '.$name.' '.Language::get('LEAVE_STATUS', '', 2).Language::get('LEAVE_STATUS', '', 3);
+                }
+            
+            } else {
+                $subject = '['.self::$cfg->web_title.'] '.Language::get('Request for approval').$Leavename.Language::get('of').' '.$name.' '.Language::get('LEAVE_STATUS', '', $order['status']);
+            }
+            
             // ส่งอีเมลไปยังผู้ทำรายการเสมอ
             if ($sendmailTo) {
                 $err = \Kotchasan\Email::send($name.'<'.$mailto.'>', self::$cfg->noreply_email, $subject, $user_msg);
