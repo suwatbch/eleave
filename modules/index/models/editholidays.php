@@ -25,7 +25,7 @@ class Model extends \Kotchasan\Model
      * อ่านข้อมูลรายการที่เลือก
      * ถ้า $id = 0 หมายถึงรายการใหม่
      *
-     * @param int   $id    ID
+     * @param int   $id    id
      *
      * @return object|null คืนค่าข้อมูล object ไม่พบคืนค่า null
      */
@@ -40,7 +40,7 @@ class Model extends \Kotchasan\Model
             // แก้ไข อ่านรายการที่เลือก
             return static::createQuery()
                 ->from('holidays')
-                ->where(array('ID', $id))
+                ->where(array('id', $id))
                 ->first();
         }
     }
@@ -59,39 +59,49 @@ class Model extends \Kotchasan\Model
                 try {
                     // ค่าที่ส่งมา
                     $save = array(
-                        'ID' => $request->post('ID')->toInt(),
+                        'id' => $request->post('id')->toInt(),
                         'date' => $request->post('date')->date(),
                         'description' => $request->post('description')->textarea()
                     );
-                    // ตรวจสอบรายการที่เลือก
-                    $id = $request->post('ID')->toInt();
-                    $index = self::get($id);
-                    if (!$index) {
-                        // ไม่พบ
-                        $ret['alert'] = Language::get('Sorry, Item not found It may be deleted');
+                    $date = $request->post('date')->toString();
+                    // ตรวจสอบว่ามีวันหยุดที่มีวันที่เหมือนกันอยู่ในฐานข้อมูลหรือไม่
+                    $existingHoliday = $this->db()->createQuery()
+                        ->from('holidays') // ควรแก้ไขให้ตรงกับชื่อของตาราง
+                        ->where(array('date', $date))
+                        ->first();
+                    if ($existingHoliday) {
+                        $ret['alert'] = Language::get('This holiday already exists');
                     } else {
-                        // ตรวจสอบค่าที่จำเป็น
-                        if (empty($save['date'])) {
-                            $ret['ret_date'] = 'Please fill in';
-                        }
-                        if (empty($save['description'])) {
-                            $ret['ret_description'] = 'Please fill in';
-                        }
-                        if (empty($ret)) {
-                            if ($index->ID == 0) {
-                                // ใหม่
-                                $this->db()->insert($this->getTableName('holidays'), $save);
-                            } else {
-                                // แก้ไข
-                                $this->db()->update($this->getTableName('holidays'), $index->ID, $save);
+                        // ตรวจสอบรายการที่เลือก
+                        $id = $request->post('id')->toInt();
+                        $index = self::get($id);
+                        if (!$index) {
+                            // ไม่พบ
+                            $ret['alert'] = Language::get('Sorry, Item not found It may be deleted');
+                        } else {
+                            // ตรวจสอบค่าที่จำเป็น
+                            if (empty($save['date'])) {
+                                $ret['ret_date'] = 'Please fill in';
                             }
-                            // log
-                            \Index\Log\Model::add($index->ID, 'holidays', 'Save', '{LNG_Holiday} ID : '.$index->id, $login['ID']);
-                            // คืนค่า
-                            $ret['alert'] = Language::get('Saved successfully');
-                            $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'holidays'));
-                            // เคลียร์
-                            $request->removeToken();
+                            if (empty($save['description'])) {
+                                $ret['ret_description'] = 'Please fill in';
+                            }
+                            if (empty($ret)) {
+                                if ($index->id == 0) {
+                                    // ใหม่
+                                    $this->db()->insert($this->getTableName('holidays'), $save);
+                                } else {
+                                    // แก้ไข
+                                    $this->db()->update($this->getTableName('holidays'), $index->ID, $save);
+                                }
+                                // log
+                                \Index\Log\Model::add($index->ID, 'holidays', 'Save', '{LNG_Holiday} id : '.$index->id, $login['id']);
+                                // คืนค่า
+                                $ret['alert'] = Language::get('Saved successfully');
+                                $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'holidays'));
+                                // เคลียร์
+                                $request->removeToken();
+                            }
                         }
                     }
                 } catch (\Kotchasan\InputItemException $e) {
@@ -104,5 +114,22 @@ class Model extends \Kotchasan\Model
         }
         // คืนค่าเป็น JSON
         echo json_encode($ret);
+    }
+
+    /**
+     * ดึงข้อมูลจาก shift_workdays และ user
+     */
+    public function getShiftWorkdays($where = array(), $params = array())
+    {
+        return \Kotchasan\Model::createQuery()
+            ->select('SW.member_id', 
+                     'U.name', 
+                     'SW.month')
+            ->from('shift_workdays SW')
+            ->join('user U', 'LEFT', array('U.id', 'SW.member_id'))
+            ->where($where)
+            ->order(isset($params['sort']) ? $params['sort'] : 'SW.member_id')
+            ->cacheOn()
+            ->execute();
     }
 }

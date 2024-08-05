@@ -34,10 +34,6 @@ class Controller extends \Gcms\Controller
      */
     public function render(Request $request)
     {
-        // ข้อความ title bar
-        $this->title = Language::get('Total Report');
-        // เลือกเมนู
-        $this->menu = 'Workdaymanagement';
         // สมาชิก
         if ($login = Login::isMember()) {
             // แสดงผล
@@ -46,8 +42,6 @@ class Controller extends \Gcms\Controller
             $breadcrumbs = $section->add('nav', array(
                 'class' => 'breadcrumbs'
             ));
-            $ul = $breadcrumbs->add('ul');
-            $ul->appendChild('<li><span class="icon-menus">{LNG_Report}</span></li>');
             $section->add('header', array(
                 'innerHTML' => '<h2 class="icon-report">'.$this->title.'</h2>'
             ));

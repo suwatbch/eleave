@@ -417,6 +417,7 @@ return array(
   ),
   'There arent enough leave days' => 'ບໍ່ມີມື້ພັກພຽງພໍ',
   'This :name already exist' => 'ມີ :name ນີ້ຢູ່ກ່ອນແລ້ວ',
+  'This date already exists' => 'ວັນທີນີ້ມີຢູ່ແລ້ວ',
   'This website uses cookies to provide our services. To find out more about our use of cookies, please see our :privacy.' => 'ເວັບໄຊທ໌ນີ້ໃຊ້ຄຸກກີເພື່ອປັບປຸງການບໍລິການ. ສໍາລັບຂໍ້ມູນເພີ່ມເຕີມກ່ຽວກັບການນໍາໃຊ້ຄຸກກີຂອງພວກເຮົາ, ເບິ່ງ :privacy',
   'Time' => 'ເວລາ',
   'Time zone' => 'ເຂດເວລາ',

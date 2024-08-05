@@ -27,8 +27,9 @@ class View extends \Gcms\View
      * @var array
      */
     private $publisheds;
+
     /**
-     * รายการประเภทการลา
+     * รายการการจัดการวันทำงาน
      *
      * @param Request $request
      *
@@ -37,18 +38,20 @@ class View extends \Gcms\View
     public function render(Request $request)
     {
         $this->publisheds = Language::get('PUBLISHEDS');
+
         // URL สำหรับส่งให้ตาราง
         $uri = $request->createUriWithGlobals(WEB_URL.'index.php');
+
         // ตาราง
         $table = new DataTable(array(
             /* Uri */
             'uri' => $uri,
             /* Model */
-            'model' => \Eleave\workdaymanagement\Model::toDataTable(),
+            'model' => \Eleave\Workdaymanagement\Model::toDataTable(),
             /* รายการต่อหน้า */
             'perPage' => $request->cookie('eleaveSetup_perPage', 30)->toInt(),
             /* เรียงลำดับ */
-            'sort' => ['month', 'year'],
+            'sort' => ['month'],
             /* ฟังก์ชั่นจัดรูปแบบการแสดงผลแถวของตาราง */
             'onRow' => array($this, 'onRow'),
             /* คอลัมน์ที่ไม่ต้องแสดงผล */
@@ -57,15 +60,15 @@ class View extends \Gcms\View
             'action' => 'index.php/eleave/model/workdaymanagement/action',
             'actionCallback' => 'dataTableActionCallback',
             /* คอลัมน์ที่สามารถค้นหาได้ */
-            'searchColumns' => array('topic', 'document_no'),
+            'searchColumns' => array('member_id', 'yaer', 'month'),
             /* ส่วนหัวของตาราง และการเรียงลำดับ (thead) */
             'headers' => array(
                 'member_id' => array(
                     'class' => 'center',
                     'text' => '{LNG_member_id}'
                 ),
-                'yaer' => array(
-                    'text' => '{LNG_yaer}',
+                'name' => array(
+                    'text' => '{LNG_Name}',
                     'class' => 'center'
                 ),
                 'month' => array(
@@ -81,7 +84,7 @@ class View extends \Gcms\View
                 'member_id' => array(
                     'class' => 'center'
                 ),
-                'yaer' => array(
+                'name' => array(
                     'class' => 'center'
                 ),
                 'month' => array(
@@ -92,7 +95,7 @@ class View extends \Gcms\View
             'buttons' => array(
                 'edit' => array(
                     'class' => 'icon-edit button green',
-                    'href' => $uri->createBackUri(array('module' => 'eleave-workdaymanagement', 'id' => ':id')),
+                    'href' => $uri->createBackUri(array('module' => 'eleave-editworkdaymanagement', 'id' => ':id')),
                     'text' => '{LNG_Edit}'
                 ),
                 'delete' => array(
@@ -105,12 +108,14 @@ class View extends \Gcms\View
             /* ปุ่มเพิ่ม */
             'addNew' => array(
                 'class' => 'float_button icon-new',
-                'href' => $uri->createBackUri(array('module' => 'eleave-workdaymanagement')),
-                'title' => '{LNG_Add} {LNG_Leave type}'
+                'href' => $uri->createBackUri(array('module' => 'eleave-editworkdaymanagement')),
+                'title' => '{LNG_Add} {LNG_Workday}'
             ),              
         ));
+
         // save cookie
         setcookie('eleaveSetup_perPage', $table->perPage, time() + 2592000, '/', HOST, HTTPS, true);
+
         // คืนค่า HTML
         return $table->render();
     }
@@ -124,7 +129,6 @@ class View extends \Gcms\View
      */
     public function onRow($item, $o, $prop)
     {
-        $item['num_days'] = $item['num_days'] == 0 ? '{LNG_Unlimited}' : $item['num_days'];
         $item['published'] = '<a id=published_'.$item['id'].' class="icon-published'.$item['published'].'" title="'.$this->publisheds[$item['published']].'"></a>';
         return $item;
     }

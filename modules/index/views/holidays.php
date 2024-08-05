@@ -58,7 +58,7 @@
             // เรียงลำดับ
               'sort' => 'date',
               'onRow' => array($this, 'onRow'),
-              'hideColumns' => array('ID'),
+              'hideColumns' => array('id'),
             //   ลบ
               'action' => 'index.php/index/model/holidays/action',
               'actionCallback' => 'dataTableActionCallback',
@@ -68,8 +68,8 @@
                       'text' => '{LNG_Sequence}',
                       'class' => 'center'
                   ),
-                  'ID' => array(
-                      'text' => '{LNG_ID}'
+                  'id' => array(
+                      'text' => '{LNG_id}'
                   ),
                   'date' => array(
                       'text' => '{LNG_date}',
@@ -87,7 +87,7 @@
                   'sequence' => array(
                       'class' => 'center'
                   ),
-                  'ID' => array(
+                  'id' => array(
                       'class' => 'center'
                   ),
                   'date' => array(
@@ -103,14 +103,14 @@
               'buttons' => array(
                   'edit' => array(
                       'class' => 'icon-edit button green',
-                      'href' => $uri->createBackUri(array('module' => 'index-editholidays', 'id' => ':ID')),
+                      'href' => $uri->createBackUri(array('module' => 'index-editholidays', 'id' => ':id')),
                       'text' => '{LNG_Edit}'
                   ),
                   'delete' => array(
                       'class' => 'icon-delete button red',
-                      'id' => ':ID',
+                      'id' => ':id',
                       'text' => '{LNG_Delete}',
-                      'data-confirm' => '{LNG_Are you sure you want to delete?}'
+                      'data-confirm' => '{LNG_Are you sure?}'
                   )
               ),
               'addNew' => array(
