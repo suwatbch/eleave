@@ -116,20 +116,5 @@ class Model extends \Kotchasan\Model
         echo json_encode($ret);
     }
 
-    /**
-     * ดึงข้อมูลจาก shift_workdays และ user
-     */
-    public function getShiftWorkdays($where = array(), $params = array())
-    {
-        return \Kotchasan\Model::createQuery()
-            ->select('SW.member_id', 
-                     'U.name', 
-                     'SW.month')
-            ->from('shift_workdays SW')
-            ->join('user U', 'LEFT', array('U.id', 'SW.member_id'))
-            ->where($where)
-            ->order(isset($params['sort']) ? $params['sort'] : 'SW.member_id')
-            ->cacheOn()
-            ->execute();
-    }
+    
 }

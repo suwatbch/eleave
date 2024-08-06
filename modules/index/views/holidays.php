@@ -9,7 +9,6 @@
  */
 
  namespace Index\Holidays;
-
  use Kotchasan\DataTable;
  use Kotchasan\Http\Request;
  use Kotchasan\Language;
