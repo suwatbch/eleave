@@ -77,16 +77,10 @@ class View extends \Kotchasan\Model
             $header[] = $lng['Status'];
             $header[] = $lng['Communication'];
             $header[] = $lng['Reason'];
+            $header[] = 'วันที่ยกเลิก';
             $datas = [];
             $dataleave = \Eleave\Export\Model::csv($params);
             $leave_period = Language::get('LEAVE_PERIOD');
-            $columname = NULL;
-            if ($params['status'] == 4){
-                $columname = 'iscancel';
-            } else {
-                $columname = 'isexport';
-            }
-            
             foreach ($dataleave as $item) {
                 $result = [];
                 $result[] = '="'.Date::format($item->create_date, 'd M Y').'"';
@@ -105,7 +99,14 @@ class View extends \Kotchasan\Model
                 $result[] = self::approve_status($item->status);
                 $result[] = $item->communication;
                 $result[] = $item->reason;
+                $result[] = '="'.Date::format($item->cancel_date, 'd M Y').'"';
                 $datas[] = $result;
+                $columname = NULL;
+                if ($item->status == 4){
+                    $columname = 'iscancel';
+                } else {
+                    $columname = 'isexport';
+                }
                 self::updateLeaveItemsReport($item->id ,$columname);
             }
             // export to CSV

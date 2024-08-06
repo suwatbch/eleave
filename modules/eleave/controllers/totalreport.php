@@ -52,16 +52,15 @@ class Controller extends \Gcms\Controller
                 $params['to'] = date('Y-m-t');
             
             //เพิ่ม leave_status 1 และ 4
-            $leave_status = Language::get('LEAVE_STATUS');
-            $params['leave_status'] = [];
-            foreach ($leave_status as $key => $value){
-                if ($key == 1 || $key == 4){
-                    $params['leave_status'][$key] = $value;
-                }
-            }
-            
-            // $params['leave_id'] = 0;
-            // $params['status'] = 0;
+            // $leave_status = Language::get('LEAVE_STATUS');
+            // $params['leave_status'] = [];
+            // foreach ($leave_status as $key => $value){
+            //     if ($key == 1 || $key == 4){
+            //         $params['leave_status'][$key] = $value;
+            //     }
+            // }
+            $params['status'] = 0;
+
             // แสดงผล
             $section = Html::create('section');
             $div = $section->add('div', array(

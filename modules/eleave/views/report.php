@@ -53,6 +53,26 @@ class View extends \Gcms\View
         $this->leave_period = Language::get('LEAVE_PERIOD');
         // URL สำหรับส่งให้ตาราง
         $uri = $request->createUriWithGlobals(WEB_URL.'index.php');
+
+        $buttons = array(
+            'statistics' => array(
+                'class' => 'icon-stats button pink',
+                'href' => $uri->createBackUri(array('module' => 'eleave-statistics', 'id' => ':member_id', 'start_date' => ':start_date')),
+                'text' => '{LNG_Statistics for leave}'
+            ),
+            'detail' => array(
+                'class' => 'icon-info button orange',
+                'id' => ':id',
+                'text' => '{LNG_Detail}'
+            ));
+        if ($params['status'] == 0 || $params['status'] == 3) {
+            $buttons['edit'] = array(
+                'class' => 'icon-valid button green',
+                'href' => $uri->createBackUri(array('module' => 'eleave-approve', 'id' => ':id')),
+                'text' => '{LNG_Carry_out}'
+            );
+        }
+
         // ตาราง
         $table = new DataTable(array(
             /* Uri */
@@ -150,23 +170,7 @@ class View extends \Gcms\View
                 )
             ),
             /* ปุ่มแสดงในแต่ละแถว */
-            'buttons' => array(
-                'statistics' => array(
-                    'class' => 'icon-stats button pink',
-                    'href' => $uri->createBackUri(array('module' => 'eleave-statistics', 'id' => ':member_id', 'start_date' => ':start_date')),
-                    'text' => '{LNG_Statistics for leave}'
-                ),
-                'detail' => array(
-                    'class' => 'icon-info button orange',
-                    'id' => ':id',
-                    'text' => '{LNG_Detail}'
-                ),
-                'edit' => array(
-                    'class' => 'icon-valid button green',
-                    'href' => $uri->createBackUri(array('module' => 'eleave-approve', 'id' => ':id')),
-                    'text' => '{LNG_Carry_out}'
-                )
-            )
+            'buttons' => $buttons,
         ));
         // save cookie
         setcookie('eleaveReport_perPage', $table->perPage, time() + 2592000, '/', HOST, HTTPS, true);
