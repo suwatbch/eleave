@@ -229,9 +229,21 @@ class View extends \Gcms\View
         $statustemp = Language::get('LEAVE_STATUS');
         $status = [];
         $isDisabled = false;
-        if ($index->status == 4) { $statuskey = [4]; $isDisabled = true; }
-        else if ($index->status == 3) { $statuskey = [1, 2, 3]; }
-        else { $statuskey = [0, 1, 2]; }
+        if ($index->status == 4) { 
+            $statuskey = [4]; 
+            $isDisabled = true; 
+        }
+        else if ($index->status == 3) { 
+            $statuskey = [1, 2, 3]; 
+        } 
+        else if ($index->status == 0) {  
+            $statuskey = [0, 1, 2]; 
+        } 
+        else {  
+            $statuskey = [0, 1, 2]; 
+            $isDisabled = true; 
+        }
+
         foreach ($statustemp as $key => $value) {
             if (in_array($key, $statuskey)) {
                 $status[$key] = $value;
@@ -262,7 +274,7 @@ class View extends \Gcms\View
             'value' => $index->reason,
             'disabled' => $isDisabled
         ));
-        if ($index->status != 4) {
+        if (!$isDisabled) {
             $fieldset = $form->add('fieldset', array(
                 'class' => 'submit'
             ));

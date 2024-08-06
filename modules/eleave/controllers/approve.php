@@ -41,8 +41,25 @@ class Controller extends \Gcms\Controller
         $this->title = Language::trans('{LNG_Approve} {LNG_Request for leave}');
         // เลือกเมนู
         $this->menu = 'report';
+        // ตรวจสอบผู้เข้าอนุมัติ
+        $IsActive = false;
+        // $login['id'] == $index->member_id_m2
+        if ( in_array($index->status, [0,3]) && 
+             in_array($index->status_m1, [0,3]) && 
+             ($login['id'] == 1 || (!empty($index->member_id_m1) && $login['id'] == $index->member_id_m1))) {
+
+            $IsActive = true;
+        }
+        else if ( in_array($index->status, [0]) && 
+                  in_array($index->status_m2, [0]) && 
+                  ($login['id'] == 1 || (!empty($index->member_id_m2) && $login['id'] == $index->member_id_m2))) {
+            
+            if (!($index->status == 0 && $index->status_m1 == 0)){
+                $IsActive = true;
+            }
+        }
         // สิทธิ์ผู้อนุมัติ
-        if ($index && Login::checkPermission($login, 'can_approve_eleave')) {
+        if ($IsActive && $index && Login::checkPermission($login, 'can_approve_eleave')) {
             // แสดงผล
             $section = Html::create('section');
             // breadcrumbs
