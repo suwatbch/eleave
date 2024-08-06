@@ -251,7 +251,7 @@ class View extends \Gcms\View
             foreach ($statustemp as $key => $value) {
                 if (in_array($key, $statuskey)) {
                     if ($index->status == 1 && $key == 4) {
-                        $status[$key] = 'ขออนุมัติยกเลิก';
+                        $status[$key] = Language::get('Request for cancellation approval');
                     } else {
                         $status[$key] = $value;
                     }

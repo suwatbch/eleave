@@ -298,7 +298,7 @@ class Model extends \Kotchasan\Model
                             if (!empty($login['m1'])) {
                                 $passapprove1 = self::getUser($login['m1']);
                                 if (empty($passapprove1)){
-                                    $ret['alert'] = 'ไม่พบผู้อนุมัติ';
+                                    $ret['alert'] = Language::get('No approvers found');
                                 } else {
                                     // ผู้อนุมัติ m1
                                     $save['member_id_m1'] = $login['m1'];
@@ -307,14 +307,14 @@ class Model extends \Kotchasan\Model
                                         // ผู้อนุมัติ m2
                                         $passapprove2 = self::getUser($login['m2']);
                                         if (empty($passapprove2)){
-                                            $ret['alert'] = 'ไม่พบผู้อนุมัติ M2';
+                                            $ret['alert'] = Language::get('No approvers found').' M2';
                                         } else {
                                             $save['member_id_m2'] = $login['m2'];
                                         }
                                     }
                                 }
                             } else {
-                                $ret['alert'] = 'ไม่พบผู้อนุมัติ';
+                                $ret['alert'] = Language::get('No approvers found');
                             }
                             
                             if (empty($ret)) {
@@ -351,7 +351,7 @@ class Model extends \Kotchasan\Model
                     }
                 }
             } else {
-                $ret['alert'] = 'ไม่สามารถทำรายได้';
+                $ret['alert'] = Language::get('Unable to complete the transaction');
             }
         }
         if (empty($ret)) {
