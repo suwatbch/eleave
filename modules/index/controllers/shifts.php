@@ -34,7 +34,7 @@ class Controller extends \Gcms\Controller
     public function render(Request $request)
     {
         // ข้อความ title bar
-        $this->title = Language::trans('{LNG_List of} {LNG_Manage shift}');
+        $this->title = Language::trans('{LNG_Manage shift}');
         // เลือกเมนู
         $this->menu = 'shift';
         // สามารถจัดการโมดูลได้
@@ -53,7 +53,7 @@ class Controller extends \Gcms\Controller
                 'innerHTML' => '<h2 class="icon-list">'.$this->title.'</h2>'
             ));
             // menu
-            $section->appendChild(\Index\Tabmenus\View::render($request, 'settings', 'shift'));
+            $section->appendChild(\Index\Tabmenus\View::render($request, 'settings', 'shifts'));
             $div = $section->add('div', array(
                 'class' => 'content_bg'
             ));

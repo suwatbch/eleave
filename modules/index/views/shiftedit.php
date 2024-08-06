@@ -43,7 +43,7 @@ class View extends \Gcms\View
             'id' => 'setup_frm', // กำหนด ID ของฟอร์ม
             'class' => 'setup_frm', 
             'autocomplete' => 'off',
-            'action' => 'index.php/index/model/shiftedit/submit',
+            'action' => 'index.php/index/models/shiftedit/save',
             'onsubmit' => 'return doFormSubmit();', // ปรับให้ฟังก์ชัน doFormSubmit() ทำงานก่อนส่งฟอร์ม
             'method' => 'post',
             'ajax' => true,
@@ -58,7 +58,7 @@ class View extends \Gcms\View
             'label' => '{LNG_Shift name}<em>*</em>',
             'labelClass' => 'g-input icon-edit',
             'itemClass' => 'item',
-            'maxlength' => 2,
+            'maxlength' => 4,
             'value' => isset($index->name) ? $index->name : '',
             'required' => true
         ));
@@ -66,31 +66,11 @@ class View extends \Gcms\View
         $fieldset->add('select', array(
             'id' => 'static',
             'labelClass' => 'g-input icon-file',
-            'label' => '{LNG_Static}<em>*</em>',
+            'label' => '{LNG_Status}<em>*</em>',
             'itemClass' => 'item',
             'options' => array(0 => 'Rotating', 1 => 'Fixed'),
             'value' => isset($index->static) ? $index->static : '0',
         ));
-
-        // ฟิลด์วันทำงาน
-        // $fieldset->add('checkboxgroups', array(
-        //     'id' => 'workweek',
-        //     'name' => 'workweek',
-        //     'label' => '{LNG_Workweek}',
-        //     'labelClass' => 'g-input icon-calendar',
-        //     'itemClass' => 'item',
-        //     'options' => array(
-        //         'monday' => 'Monday',
-        //         'tuesday' => 'Tuesday',
-        //         'wednesday' => 'Wednesday',
-        //         'thursday' => 'Thursday',
-        //         'friday' => 'Friday',
-        //         'saturday' => 'Saturday',
-        //         'sunday' => 'Sunday'
-        //     ),
-        //     'value' => isset($index->workweek) ? explode(',', $index->workweek) : array(),
-        //     'style' => 'display:none;' // ซ่อนฟิลด์นี้ในเบื้องต้น
-        // ));
         
         // // ประกาศฟังค์ชั่น genTimes
         $starttime = empty($index->start_time) ?'': date("Y-m-d").''.$index->start_time;
@@ -155,38 +135,23 @@ class View extends \Gcms\View
             'value' => '{LNG_Save}'
         ));
         // description
-        $fieldset->add('hidden', array(
+        $fieldset->add('hidden', array( 
             'id' => 'description',
             'name' => 'description',
-            'value' => ''
+            'value' => $index->description
         ));
 
         $fieldset->add('hidden', array(
             'id' => 'id',
+            'name' => 'id',
             'value' => $index->id
         ));
-    
+        
         $fieldset->add('hidden', array(
             'id' => 'skipdate',
-            'value' => ''
+            'name' => 'skipdate',
+            'value' => $index->skipdate
         ));
-         // workweek
-         $fieldset->add('hidden', array(
-            'id' => 'workweek',
-            'value' => ''
-        ));
-
-        // Javascript to update description field
-        $form->script('
-            document.getElementById("setup_frm").addEventListener("submit", function() {
-                var startTime = document.getElementById("start_time").value;
-                var endTime = document.getElementById("end_time").value;
-                var startBreakTime = document.getElementById("start_break_time").value;
-                var endBreakTime = document.getElementById("end_break_time").value;
-                var description = startTime + " - " + endTime + " พัก " + startBreakTime + " - " + endBreakTime;
-                document.getElementById("description").value = description;
-            });
-        ');
 
         // คืนค่า HTML
         return $form->render();

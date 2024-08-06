@@ -242,7 +242,7 @@ class Model extends \Kotchasan\Model
                                 // clear
                                 $request->removeToken();
                             }
-                        }
+                        } 
                     }
                 } catch (\Kotchasan\InputItemException $e) {
                     $ret['alert'] = $e->getMessage();

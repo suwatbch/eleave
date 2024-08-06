@@ -46,7 +46,7 @@ class View extends \Gcms\View
             /* Model */
             'model' => \Index\Shifts\Model::toDataTable(),
             /* รายการต่อหน้า */
-            'perPage' => $request->cookie('eleaveSetup_perPage', 30)->toInt(),
+            'perPage' => $request->cookie('shift_perPage', 30)->toInt(),
             /* เรียงลำดับ */
             'sort' => 'id ASC',
             /* ฟังก์ชั่นจัดรูปแบบการแสดงผลแถวของตาราง */
@@ -54,7 +54,7 @@ class View extends \Gcms\View
             /* คอลัมน์ที่ไม่ต้องแสดงผล */
             // 'hideColumns' => array('id'),
             /* ตั้งค่าการกระทำของของตัวเลือกต่างๆ ด้านล่างตาราง ซึ่งจะใช้ร่วมกับการขีดถูกเลือกแถว */
-            'action' => 'index.php/index/model/shifts/action',
+            'action' => 'index.php/index/models/shifts/action',
             'actionCallback' => 'dataTableActionCallback',
             'actions' => array(
                 array(
@@ -83,7 +83,7 @@ class View extends \Gcms\View
                     'class' => 'center'
                 ),
                 'static' => array(
-                    'text' => '{LNG_Static}',
+                    'text' => '{LNG_Status}',
                     'class' => 'center'
                 ),
                 'start_time' => array(
@@ -102,9 +102,6 @@ class View extends \Gcms\View
                     'text' => '{LNG_End break time}',
                     'class' => 'center'
                 ),
-                'published' => array(
-                    'text' => ''
-                )
             ),
             /* รูปแบบการแสดงผลของคอลัมน์ (tbody) */
             'cols' => array(
@@ -129,9 +126,6 @@ class View extends \Gcms\View
                 'end_break_time' => array(
                     'class' => 'center'
                 ),
-                'published' => array(
-                    'class' => 'center'
-                )
             ),
             /* ปุ่มแสดงในแต่ละแถว */
             'buttons' => array(
@@ -149,8 +143,8 @@ class View extends \Gcms\View
             )
         ));
         // save cookie
-        setcookie('eleaveSetup_perPage', $table->perPage, time() + 2592000, '/', HOST, HTTPS, true);
-        // คืนค่า HTML
+        setcookie('shift_perPage', $table->perPage, time() + 2592000, '/', HOST, HTTPS, true);
+        // คืนค่า HTMLๆๆๆ
         return $table->render();
     }
 
@@ -163,9 +157,7 @@ class View extends \Gcms\View
      */
     public function onRow($item, $o, $prop)
     {
-        $item['sequence'] = $o + 1; 
         $item['static'] = $item['static'] == 1 ? '{LNG_Fixed}' : '{LNG_Rotating}';
-        $item['published'] = '<a id=published_'.$item['id'].' class="icon-published'.$item['published'].'" title="'.$this->publisheds[$item['published']].'"></a>';
         return $item;
     }
 }

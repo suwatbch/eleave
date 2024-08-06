@@ -145,11 +145,15 @@ class Model
                     'url' => 'index.php?module=report',
                     'submenus' => []
                 ),
+                'workingtime' => array(
+                    'text' => '{LNG_Management working time}',
+                    'url' => 'index.php?module=workingtime'
+                ),
                 'settings' => array(
                     'text' => '{LNG_Settings}',
                     'url' => 'index.php?module=settings',
                     'submenus' => $settings
-                )   
+                ),
             );
             
             // เพิ่มรวมรายงานในตำแหน่งรองสุดท้าย
@@ -158,10 +162,6 @@ class Model
                     'text' => '{LNG_Total}{LNG_Report}',
                     'url' => 'index.php?module=totalreport&status=-1'
                 ),
-                'manageshifts' => array(
-                    'text' => '{LNG_Workday Management}',
-                    'url' => 'index.php?module=workdaymanagement'
-                )
             ];
             
                 $position = count($result) -1;

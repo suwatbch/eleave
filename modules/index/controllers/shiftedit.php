@@ -60,6 +60,9 @@ class Controller extends \Gcms\Controller
                 'class' => 'content_bg'
             ));
 
+            // // แสดงฟอร์ม
+            // $view = \Index\Shiftedit\View::create();
+
             // แสดงฟอร์ม
             $div->appendChild(\Index\Shiftedit\View::create()->render($index));
             // คืนค่า HTML

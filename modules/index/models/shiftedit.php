@@ -37,15 +37,15 @@ class Model extends \Kotchasan\Model
             // ใหม่
             return (object) array(
                 'id' => 0,
-                // 'name' => '',
-                // 'static' => 0,
+                'name' => '',
+                'static' => 0,
                 // 'workweek' => '',
-                // 'start_time' => '',
-                // 'end_time' => '',
-                // 'start_break_time' => '',
-                // 'end_break_time' => '',
-                // 'skipdate' => 0,
-                // 'description' => '',
+                'start_time' => '',
+                'end_time' => '',
+                'start_break_time' => '',
+                'end_break_time' => '',
+                'skipdate' => 0,
+                'description' => '',
             );
         } else {
             // แก้ไข อ่านรายการที่เลือก
@@ -69,22 +69,38 @@ class Model extends \Kotchasan\Model
         if ($request->initSession() && $request->isSafe() && $login = Login::isMember()) {
             if (Login::notDemoMode($login) && Login::checkPermission($login, 'can_manage_shift')) {
                 try {
+                    $start_time = $request->post('start_time')->time();
+                    $end_time = $request->post('end_time')->time();
+                    $start_break_time = $request->post('start_break_time')->time();
+                    $end_break_time = $request->post('end_break_time')->time();
+
+                    // คำนวณค่า skipdate
+                    $skipdate = 0;
+                    $start_time_seconds = strtotime($start_time);
+                    $end_time_seconds = strtotime($end_time);
+                    if ($end_time_seconds <= $start_time_seconds) {
+                        $skipdate = 1; // ข้ามวัน
+                    }
+
                     $save = array(
                     'id' => $request->post('id')->toInt(),
                     'name' => $request->post('name')->topic(),
                     'static' => $request->post('static')->toInt(),
-                    'start_time' => $request->post('start_time')->time(),
-                    'end_time' => $request->post('end_time')->time(),
-                    'start_break_time' => $request->post('start_break_time')->time(),
-                    'end_break_time' => $request->post('end_break_time')->time(),
-                    'skipdate' => $request->post('skipdate')->toInt(),
-                    'description' => $request->post('description')->topic(),
+                    'start_time' => $start_time,
+                    'end_time' => $end_time,
+                    'start_break_time' => $start_break_time,
+                    'end_break_time' => $end_break_time,
+                    'skipdate' => $skipdate,
+                    'description' => $start_time.' - '.$end_time.' พัก '.$start_break_time.' - '.$end_break_time,
                     // 'workweek' => $request->post('workweek')->topic()
                     );
-                    
-                    // สร้าง description จากข้อมูล start_time, end_time, start_break_time, end_break_time
-                    $save['description'] = $save['start_time'].' - '.$save['end_time'].' พัก '.$save['start_break_time'].' - '.$save['end_break_time'];
 
+                    // // สร้าง description จากข้อมูล start_time, end_time, start_break_time, end_break_time
+                    // $save['description'] = $start_time.' - '.$end_time.' พัก '.$start_break_time.' - '.$end_break_time;
+                    // if ($skipdate) {
+                    //     $save['description'] .= ' (spanning across days)';
+                    // }
+                    
                     // ตรวจสอบรายการที่เลือก
                     $id = $request->post('id')->toInt();
                     if ($id > 0) {
@@ -105,8 +121,9 @@ class Model extends \Kotchasan\Model
                                 // แก้ไข
                                 $this->db()->update($this->getTableName('shift'), $index->id, $save);
                             }
+                        
                             // log
-                            \Index\Log\Model::add($index->id, 'index', 'Save', '{LNG_Manage shift} ID : '.$index->id, $login['id']);
+                            \Index\Log\Model::add($index->id, 'eleave', 'Save', '{LNG_Save} {LNG_Manage shift} ID : '.$index->id, $login['id']);
                             // คืนค่า
                             $ret['alert'] = Language::get('Saved successfully');
                             $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'index-shifts'));
@@ -114,12 +131,12 @@ class Model extends \Kotchasan\Model
                             $request->removeToken();
                         }
                     }
-                    }
+                  }
                 } catch (\Kotchasan\InputItemException $e) {
                     $ret['alert'] = $e->getMessage();
                 }
-            }
-        }
+            } 
+        } 
         if (empty($ret)) {
             $ret['alert'] = Language::get('Unable to complete the transaction');
         }
