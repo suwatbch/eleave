@@ -120,6 +120,12 @@ class View extends \Gcms\View
             array_pop($time_stt);
             array_shift($time_ent);
         }
+        if ($index->id > 0) {
+            if ($index->start_period == 0) {
+                $time_stt = [];
+                $time_ent = [];
+            }
+        }
         // เวลาเริ่มต้น
         $groups->add('select', array(
             'id' => 'start_time',
@@ -220,31 +226,47 @@ class View extends \Gcms\View
         $fieldset = $form->add('fieldset', array(
             'class' => 'submit'
         ));
+        // id
+        $fieldset->add('hidden', array(
+            'id' => 'id',
+            'value' => $index->id
+        ));
         if (!$notEdit) {
-            // submit
-            $fieldset->add('submit', array(
-                'class' => 'button ok large icon-save',
-                'value' => '{LNG_Save}'
-            ));
-            // id
             $fieldset->add('hidden', array(
-                'id' => 'id',
-                'value' => $index->id
+                'id' => 'status',
+                'value' => 0
             ));
             \Gcms\Controller::$view->setContentsAfter(array(
                 '/:type/' => implode(', ', self::$cfg->eleave_file_typies),
                 '/:size/' => Text::formatFileSize(self::$cfg->eleave_upload_size)
             ));
         } else {
+            $statustemp = Language::get('LEAVE_STATUS');
+            $status = [];
+            $isDisabled = false;
+            if ($index->status == 0) { $statuskey = [0, 4]; }
+            else if ($index->status == 1) { $statuskey = [1, 4]; }
+            else if ($index->status == 3) { $statuskey = [3]; $isDisabled = true; }
+            else if ($index->status == 4) { $statuskey = [4]; $isDisabled = true; }
+            foreach ($statustemp as $key => $value) {
+                if (in_array($key, $statuskey)) {
+                    if ($index->status == 1 && $key == 4) {
+                        $status[$key] = 'ขออนุมัติยกเลิก';
+                    } else {
+                        $status[$key] = $value;
+                    }
+                    
+                }
+            }
             // status
             $fieldset->add('select', array(
                 'id' => 'status',
                 'labelClass' => 'g-input icon-star0',
                 'itemClass' => 'item',
                 'label' => '{LNG_Status}',  
-                'options' => Language::get('LEAVE_STATUS'),
+                'options' => $status,
                 'value' => $index->status,
-                'disabled' => true
+                'disabled' => $isDisabled
             ));
             // reason
             $fieldset->add('text', array(
@@ -257,6 +279,19 @@ class View extends \Gcms\View
                 'disabled' => true
             ));
         }
+        // statusOld
+        $fieldset->add('hidden', array(
+            'id' => 'statusOld',
+            'value' => $index->status
+        ));
+        if ($index->status != 4) {
+            // submit
+            $fieldset->add('submit', array(
+                'class' => 'button ok large icon-save',
+                'value' => '{LNG_Save}'
+            ));
+        }
+
         // Javascript
         $form->script('initEleaveLeave();');
         // คืนค่า HTML

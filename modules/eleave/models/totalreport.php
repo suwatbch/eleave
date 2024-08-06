@@ -40,10 +40,20 @@ class Model extends \Kotchasan\Model
                 array('F.status','<=', 2)
             );
         } else {
+            $statusIn = $params['status'] == 1 ? [1,3] : [4];
             $where = array(
-                array('F.status', $params['status'])
+                array('F.status', 'IN', $statusIn)
             );
+            if ($params['status'] == 1){
+                $where[] = array('F.isexport', 0);
+                $where[] = array('F.iscancel', 0);
+            } else if ($params['status'] == 4){
+                $where[] = array('F.isexport', 1);
+                $where[] = array('F.iscancel', 0);
+                $where[] = array('F.cancel_date', '!=', NULL);
+            }
         }
+
         if (!empty($params['department'])) {
             $where[] = array('F.department', $params['department']);
         }

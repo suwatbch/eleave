@@ -37,26 +37,49 @@ class Model extends \Kotchasan\Model
         $setsionlogin = $_SESSION['login'];
         $qs = [];
         if (Login::checkPermission($login, 'can_approve_eleave')) {
-            $status = 0;
+            $status0 = 0;
+            $status3= 3;
             if ($setsionlogin['status'] != 1) {
                 $where = array(
-                    array('status', $status),
+                    array('status', $status0),
                     array('start_date', '>=', $fiscalyear['from']),
                     array('start_date', '<=', $fiscalyear['to'])
                 );
-                $sql = "(`member_id_m1`='$setsionlogin[id]' AND `status_m1`='$status')";
-                $sql .= " OR (`member_id_m2`='$setsionlogin[id]' AND `status_m2`='$status' AND `status_m1`>'$status' AND `status`='$status')";
+                $sql = "(`member_id_m1`='$setsionlogin[id]' AND `status_m1`='$status0')";
+                $sql .= " OR (`member_id_m2`='$setsionlogin[id]' AND `status_m2`='$status0' AND `status_m1`>'$status0' AND `status`='$status0')";
                 $where[] = Sql::create($sql);
                 $qs[] = static::createQuery()
                 ->select('0 type', 'status', 'SQL(COUNT(id) AS count)')
                 ->from('leave_items')
                 ->where($where);
+
+                $where = array(
+                    array('status', $status3),
+                    array('start_date', '>=', $fiscalyear['from']),
+                    array('start_date', '<=', $fiscalyear['to'])
+                );
+                $sql = "(`member_id_m1`='$setsionlogin[id]' AND `status_m1`='$status3')";
+                $where[] = Sql::create($sql);
+                $qs[] = static::createQuery()
+                ->select('3 type', 'status', 'SQL(COUNT(id) AS count)')
+                ->from('leave_items')
+                ->where($where);
+
             } else {
                 $qs[] = static::createQuery()
                 ->select('0 type', 'status', 'SQL(COUNT(id) AS count)')
                 ->from('leave_items')
                 ->where(array(
-                    array('status', $status),
+                    array('status', $status0),
+                    array('start_date', '>=', $fiscalyear['from']),
+                    array('start_date', '<=', $fiscalyear['to'])
+                ));
+
+                $qs[] = static::createQuery()
+                ->select('3 type', 'status', 'SQL(COUNT(id) AS count)')
+                ->from('leave_items')
+                ->where(array(
+                    array('status', $status3),
                     array('start_date', '>=', $fiscalyear['from']),
                     array('start_date', '<=', $fiscalyear['to'])
                 ));
@@ -76,7 +99,8 @@ class Model extends \Kotchasan\Model
             ->unionAll($qs)
             ->cacheOn();
         $result = [];
-        foreach ($query->execute() as $item) {
+        $datas = $query->execute();
+        foreach ($datas as $item) {
             $result[$item->type][$item->status] = $item->count;
         }
         return $result;

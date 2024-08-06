@@ -51,7 +51,7 @@ class Model extends \Kotchasan\Model
             $passapprove2 = true;
             if (empty($order['member_id_m1']) || $order['member_id_m1'] == 0) { $passapprove1 = false; $order['member_id_m1'] = 0;}
             if (empty($order['member_id_m2']) || $order['member_id_m2'] == 0) { $passapprove2 = false; $order['member_id_m2'] = 0;}
-            if ($passapprove1 && $order['status'] == 0 && $order['status_m1'] == 0){
+            if ($passapprove1 && $order['status'] == 0 && $order['status_m1'] == 0 || ($order['status'] == 3 && $order['status_m1'] == 3)){
                 $where[] = array('id', $order['member_id_m1']);
             }
             if ($passapprove2 && $order['status'] == 0 && $order['status_m1'] == 1 && $order['status_m2'] == 0){
@@ -120,7 +120,19 @@ class Model extends \Kotchasan\Model
             // email subject
             $Leavestatus = \Eleave\Leave\Model::getleaveofstatic($order['leave_id']);
             $Leavename = $Leavestatus->topic;
-            $subject = '['.self::$cfg->web_title.'] '.Language::get('Request for approval').$Leavename.Language::get('of').' '.$name.' '.Language::get('LEAVE_STATUS', '', $order['status']);
+
+            // กณีการอนุมัติยกเลิก
+            if (isset($order['statusOld'])) {
+                if ($order['status'] == 4) {
+                    $subject = '['.self::$cfg->web_title.'] '.Language::get('Request for approval').$Leavename.Language::get('of').' '.$name.' '.Language::get('LEAVE_STATUS', '', 1).Language::get('LEAVE_STATUS', '', 3);
+                } else {
+                    $subject = '['.self::$cfg->web_title.'] '.Language::get('Request for approval').$Leavename.Language::get('of').' '.$name.' '.Language::get('LEAVE_STATUS', '', 2).Language::get('LEAVE_STATUS', '', 3);
+                }
+            
+            } else {
+                $subject = '['.self::$cfg->web_title.'] '.Language::get('Request for approval').$Leavename.Language::get('of').' '.$name.' '.Language::get('LEAVE_STATUS', '', $order['status']);
+            }
+            
             // ส่งอีเมลไปยังผู้ทำรายการเสมอ
             if ($sendmailTo) {
                 $err = \Kotchasan\Email::send($name.'<'.$mailto.'>', self::$cfg->noreply_email, $subject, $user_msg);
@@ -142,7 +154,8 @@ class Model extends \Kotchasan\Model
         }
         if (isset($err)) {
             // ส่งอีเมลสำเร็จ หรือ error การส่งเมล
-            return empty($ret) ? Language::get('Saved successfully').' '.Language::get('Your message was sent successfully') : implode("\n", array_unique($ret));
+            // return empty($ret) ? Language::get('Saved successfully').' '.Language::get('Your message was sent successfully') : implode("\n", array_unique($ret));
+            return Language::get('Saved successfully');
         } else {
             // ไม่มีอีเมลต้องส่ง
             return Language::get('Saved successfully');
