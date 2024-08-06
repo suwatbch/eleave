@@ -196,7 +196,7 @@ class Model extends \Kotchasan\Model
                             }
                         }
                     } else {
-                        $ret['alert'] = 'ไม่สามารถทำรายได้';
+                        $ret['alert'] = Language::get('Unable to complete the transaction');
                     }
                 } catch (\Kotchasan\InputItemException $e) {
                     $ret['alert'] = $e->getMessage();

@@ -49,7 +49,7 @@ class View extends \Gcms\View
         $name = \Eleave\Approve\Model::get($index->id);
         if ($index->status == 3){
             $fieldset = $form->add('fieldset', array(
-                'title' => 'รายละเอียดคำขออนุมัติยกเลิกการลาของ '.$name->name
+                'title' => '{LNG_Details of request for approval to cancel leave} '.$name->name
             ));
         } else {
             $fieldset = $form->add('fieldset', array(

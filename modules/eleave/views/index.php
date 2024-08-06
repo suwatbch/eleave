@@ -62,7 +62,7 @@ class View extends \Gcms\View
             $buttons['cancel'] = array(
                 'class' => 'icon-delete button red',
                 'href' => $uri->createBackUri(array('module' => 'eleave-leave', 'id' => ':id')),
-                'text' => $params['status'] ? 'ขออนุมัติยกเลิก' : 'ยกเลิก'
+                'text' => $params['status'] ? Language::get('Request for cancellation approval') : Language::get('Cancel')
             );
         }
         // ตาราง

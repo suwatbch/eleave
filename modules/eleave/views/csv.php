@@ -63,6 +63,7 @@ class View extends \Kotchasan\Model
                 'Status',
                 'Communication',
                 'Reason',
+                'Cancel date',
             ));
             $header = [];
             $header[] = $lng['Transaction date'];
@@ -77,7 +78,7 @@ class View extends \Kotchasan\Model
             $header[] = $lng['Status'];
             $header[] = $lng['Communication'];
             $header[] = $lng['Reason'];
-            $header[] = 'วันที่ยกเลิก';
+            $header[] = $lng['Cancel date'];
             $datas = [];
             $dataleave = \Eleave\Export\Model::csv($params);
             $leave_period = Language::get('LEAVE_PERIOD');
