@@ -279,6 +279,11 @@ class View extends \Gcms\View
                 'disabled' => true
             ));
         }
+        // statusOld
+        $fieldset->add('hidden', array(
+            'id' => 'statusOld',
+            'value' => $index->status
+        ));
         if ($index->status != 4) {
             // submit
             $fieldset->add('submit', array(
@@ -286,6 +291,7 @@ class View extends \Gcms\View
                 'value' => '{LNG_Save}'
             ));
         }
+
         // Javascript
         $form->script('initEleaveLeave();');
         // คืนค่า HTML

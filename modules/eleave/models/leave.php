@@ -154,199 +154,204 @@ class Model extends \Kotchasan\Model
             // Database
             $db = $this->db();
             $pStatus = $request->post('status')->toInt();
+            $pStatusOld = $request->post('statusOld')->toInt();
             $pId = $request->post('id')->toInt();
             // ตรวจสอบรายการที่เลือก
             $index = self::get($pId, $login);
+            $Items = self::getleaveItems($pId);
+            if ($Items->status == $pStatusOld) {
 
-                
-            // ทำการยกเลิกรายการลาด้วยตนเอง
-            if (($pStatus == 0 || $pStatus == 1 || $pStatus == 4) && $pId > 0) {
-                $Items = self::getleaveItems($pId);
-                if ($index->status == 0 && $pStatus == 4) {
-                    if ($Items->status == 0) {
-                        $statusupdate['status'] = $pStatus;
-                        if (!empty($index->member_id_m1) && $index->member_id_m1 > 0) {
-                            $statusupdate['status_m1'] = $pStatus;
+                // ทำการยกเลิกรายการลาด้วยตนเอง
+                if (($pStatus == 0 || $pStatus == 1 || $pStatus == 4) && $pId > 0) {
+                    
+                    if ($index->status == 0 && $pStatus == 4) {
+                        if ($Items->status == 0) {
+                            $statusupdate['status'] = $pStatus;
+                            if (!empty($index->member_id_m1) && $index->member_id_m1 > 0) {
+                                $statusupdate['status_m1'] = $pStatus;
+                            }
+                            if (!empty($index->member_id_m2) && $index->member_id_m2 > 0) {
+                                $statusupdate['status_m2'] = $pStatus;
+                            }
+                            $db->update($this->getTableName('leave_items'), $pId, $statusupdate);
+                            $ret['alert'] = Language::get('Saved successfully');
                         }
-                        if (!empty($index->member_id_m2) && $index->member_id_m2 > 0) {
-                            $statusupdate['status_m2'] = $pStatus;
+                    } else if ($index->status == 1 && $pStatus == 4) {
+                        if ($Items->status == 1) {
+                            $pStatus -= 1;
+                            $statusupdate['status'] = $pStatus;
+                            if (!empty($index->member_id_m1) && $index->member_id_m1 > 0) {
+                                $statusupdate['status_m1'] = $pStatus;
+                            }
+                            if (!empty($index->member_id_m2) && $index->member_id_m2 > 0) {
+                                $statusupdate['status_m2'] = $pStatus;
+                            }
+                            $db->update($this->getTableName('leave_items'), $pId, $statusupdate);
+                            
+                            $save = [];
+                            $save['id'] = $index->id;
+                            $save['leave_id'] = $index->leave_id;
+                            $save['member_id'] = $index->member_id;
+                            $save['member_id_m1'] = $index->member_id_m1;
+                            $save['member_id_m2'] = Null;
+                            $save['status'] = $statusupdate['status'];
+                            $save['status_m1'] = $statusupdate['status_m1'];
+                            $save['status_m2'] = 0;
+                            $save['leave_type'] = self::leaveType($index->leave_id);
+                            $save['detail'] = $index->detail;
+                            $save['start_period'] = $index->start_period;
+                            $save['start_date'] = $index->start_date;
+                            $save['end_date'] = $index->end_date;
+                            $save['start_time'] = $index->start_time;
+                            $save['end_time'] = $index->end_time;
+                            $save['days'] = $index->days;
+                            $save['times'] = $index->times;
+                            $save['communication'] = $index->communication;
+                            $save['reason'] = $index->reason;
+
+                            // ส่งอีเมลแจ้งการขอลา
+                            $ret['alert'] = \Eleave\Email\Model::send($save);
                         }
-                        $db->update($this->getTableName('leave_items'), $pId, $statusupdate);
+                    } else {
                         $ret['alert'] = Language::get('Saved successfully');
                     }
-                } else if ($index->status == 1 && $pStatus == 4) {
-                    if ($Items->status == 1) {
-                        $pStatus -= 1;
-                        $statusupdate['status'] = $pStatus;
-                        if (!empty($index->member_id_m1) && $index->member_id_m1 > 0) {
-                            $statusupdate['status_m1'] = $pStatus;
-                        }
-                        if (!empty($index->member_id_m2) && $index->member_id_m2 > 0) {
-                            $statusupdate['status_m2'] = $pStatus;
-                        }
-                        $db->update($this->getTableName('leave_items'), $pId, $statusupdate);
-                        
-                        $save = [];
-                        $save['id'] = $index->id;
-                        $save['leave_id'] = $index->leave_id;
-                        $save['member_id'] = $index->member_id;
-                        $save['member_id_m1'] = $index->member_id_m1;
-                        $save['member_id_m2'] = Null;
-                        $save['status'] = $statusupdate['status'];
-                        $save['status_m1'] = $statusupdate['status_m1'];
-                        $save['status_m2'] = 0;
-                        $save['leave_type'] = self::leaveType($index->leave_id);
-                        $save['detail'] = $index->detail;
-                        $save['start_period'] = $index->start_period;
-                        $save['start_date'] = $index->start_date;
-                        $save['end_date'] = $index->end_date;
-                        $save['start_time'] = $index->start_time;
-                        $save['end_time'] = $index->end_time;
-                        $save['days'] = $index->days;
-                        $save['times'] = $index->times;
-                        $save['communication'] = $index->communication;
-                        $save['reason'] = $index->reason;
-
-                        // ส่งอีเมลแจ้งการขอลา
-                        $ret['alert'] = \Eleave\Email\Model::send($save);
-                    }
-                } else {
-                    $ret['alert'] = Language::get('Saved successfully');
+                    $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'eleave', 'status' => $pStatus));
+                    // เคลียร์
+                    $request->removeToken();
                 }
-                $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'eleave', 'status' => $pStatus));
-                // เคลียร์
-                $request->removeToken();
-            }
 
 
-            // เพิ่มรายการลา
-            else if ($request->post('cal_status')->toInt() && $pStatus == 0 && $pId == 0) {
-                try {
-                    // ค่าที่ส่งมา
-                    $save = array(
-                        'days' => $request->post('cal_days')->toInt(),
-                        'times' => $request->post('cal_times')->toFloat(),
-                        'leave_id' => $request->post('leave_id')->toInt(),
-                        'detail' => $request->post('detail')->textarea(),
-                        'communication' => $request->post('communication')->textarea()
-                    );
-                    // ไม่ได้เลือกการลา
-                    if ($save['leave_id'] == 0) {
-                        $ret['ret_leave_id'] = Language::get('Select leave');  
-                    }
-                    if ($index && $login && $login['id'] == $index->member_id) {
-                        // หมวดหมู่
-                        $category = \Eleave\Category\Model::init();
-                        foreach ($category->items() as $k => $label) {
-                            if (Language::get('CATEGORIES', '', $k) === '') {
-                                // หมวดหมู่ลา
-                                $save[$k] = $request->post($k)->topic();
-                            } else {
-                                // หมวดหมู่สมาชิก (ใช้ข้อมูลสมาชิก)
-                                $save[$k] = isset($index->{$k}) ? $index->{$k} : null;
-                            }
+                // เพิ่มรายการลา
+                else if ($request->post('cal_status')->toInt() && $pStatus == 0 && $pId == 0) {
+                    try {
+                        // ค่าที่ส่งมา
+                        $save = array(
+                            'days' => $request->post('cal_days')->toInt(),
+                            'times' => $request->post('cal_times')->toFloat(),
+                            'leave_id' => $request->post('leave_id')->toInt(),
+                            'detail' => $request->post('detail')->textarea(),
+                            'communication' => $request->post('communication')->textarea()
+                        );
+                        // ไม่ได้เลือกการลา
+                        if ($save['leave_id'] == 0) {
+                            $ret['ret_leave_id'] = Language::get('Select leave');  
                         }
-                        // วันลา
-                        $start_period = $request->post('start_period')->toInt();
-                        $start_date = $request->post('start_date')->date();
-                        $end_date = $request->post('end_date')->date();
-                        $timetemp = '00:00';
-                        if ($start_period) {
-                            $start_time = $request->post('start_time')->text() == ''  ? $timetemp : $request->post('start_time')->text();
-                            $end_time = $request->post('end_time')->text() == '' ? $timetemp : $request->post('end_time')->text();
-                        } else {
-                            $start_time = $timetemp;
-                            $end_time = $timetemp;
-                        }
-                        // กะลา
-                        $save['shift_id'] = $login['shift_id'];
-                        // เก็บกะหมุนเวียนลาแบบช่วงเวลา
-                        if ($start_period && $save['shift_id']==0) {
-                            $save['shift_id'] = $request->post('cal_shift_id')->toInt();
-                        }
-
-                        $save['start_period'] = $start_period;
-                        $save['start_date'] = $start_date;
-                        $save['start_time'] = $start_time;
-                        $save['end_date'] = $end_date;
-                        $save['end_time'] = $end_time;
-                        $save['status'] = $pStatus;
-                        $save['status_m1'] = 0;
-                        $save['status_m2'] = 0;
-
-                        // table
-                        $table = $this->getTableName('leave_items');
-
-                        if (empty($ret)) {
-                            // $table = $this->getTableName('leave_items');
-                            // $db = $this->db();
-                            if ($index->id == 0) {
-                                $save['id'] = $db->getNextId($table);
-                            } else {
-                                $save['id'] = $index->id;
-                            }
-                            // อัปโหลดไฟล์แนบ
-                            \Download\Upload\Model::execute($ret, $request, $save['id'], 'eleave', self::$cfg->eleave_file_typies, self::$cfg->eleave_upload_size);
-                        }
-                        if ($save['detail'] == '') {
-                            // ไม่ได้กรอก detail
-                            $ret['ret_detail'] = 'Please fill in';
-                        }
-                        
-                        if (!empty($login['m1'])) {
-                            $passapprove1 = self::getUser($login['m1']);
-                            if (empty($passapprove1)){
-                                $ret['alert'] = 'ไม่พบผู้อนุมัติ';
-                            } else {
-                                // ผู้อนุมัติ m1
-                                $save['member_id_m1'] = $login['m1'];
-                                $save['member_id_m2'] = null;
-                                if ($save['days'] > 2 && !empty($login['m2'])){
-                                    // ผู้อนุมัติ m2
-                                    $passapprove2 = self::getUser($login['m2']);
-                                    if (empty($passapprove2)){
-                                        $ret['alert'] = 'ไม่พบผู้อนุมัติ M2';
-                                    } else {
-                                        $save['member_id_m2'] = $login['m2'];
-                                    }
+                        if ($index && $login && $login['id'] == $index->member_id) {
+                            // หมวดหมู่
+                            $category = \Eleave\Category\Model::init();
+                            foreach ($category->items() as $k => $label) {
+                                if (Language::get('CATEGORIES', '', $k) === '') {
+                                    // หมวดหมู่ลา
+                                    $save[$k] = $request->post($k)->topic();
+                                } else {
+                                    // หมวดหมู่สมาชิก (ใช้ข้อมูลสมาชิก)
+                                    $save[$k] = isset($index->{$k}) ? $index->{$k} : null;
                                 }
                             }
-                        } else {
-                            $ret['alert'] = 'ไม่พบผู้อนุมัติ';
-                        }
-                        
-                        if (empty($ret)) {
-                            if ($index->id == 0) {
-                                // ใหม่
-                                $save['member_id'] = $login['id'];
-                                $save['create_date'] = date('Y-m-d H:i:s');
-                                $save['status'] = 0;
-                                $db->insert($table, $save);
+                            // วันลา
+                            $start_period = $request->post('start_period')->toInt();
+                            $start_date = $request->post('start_date')->date();
+                            $end_date = $request->post('end_date')->date();
+                            $timetemp = '00:00';
+                            if ($start_period) {
+                                $start_time = $request->post('start_time')->text() == ''  ? $timetemp : $request->post('start_time')->text();
+                                $end_time = $request->post('end_time')->text() == '' ? $timetemp : $request->post('end_time')->text();
                             } else {
-                                // แก้ไข
-                                $db->update($table, $save['id'], $save);
-                                $save['status'] = $index->status;
-                                $save['member_id'] = $index->member_id;
+                                $start_time = $timetemp;
+                                $end_time = $timetemp;
                             }
-                            // log
-                            \Index\Log\Model::add($save['id'], 'eleave', 'Status', Language::get('LEAVE_STATUS', '', $save['status']).' ID : '.$save['id'], $login['id']);
-                            if ($index->id == 0 || $save['status'] != $index->status) {
-                                // ประเภทลา
-                                $save['leave_type'] = self::leaveType($save['leave_id']);
-                                // ส่งอีเมลแจ้งการขอลา
-                                $ret['alert'] = \Eleave\Email\Model::send($save);
+                            // กะลา
+                            $save['shift_id'] = $login['shift_id'];
+                            // เก็บกะหมุนเวียนลาแบบช่วงเวลา
+                            if ($start_period && $save['shift_id']==0) {
+                                $save['shift_id'] = $request->post('cal_shift_id')->toInt();
+                            }
+
+                            $save['start_period'] = $start_period;
+                            $save['start_date'] = $start_date;
+                            $save['start_time'] = $start_time;
+                            $save['end_date'] = $end_date;
+                            $save['end_time'] = $end_time;
+                            $save['status'] = $pStatus;
+                            $save['status_m1'] = 0;
+                            $save['status_m2'] = 0;
+
+                            // table
+                            $table = $this->getTableName('leave_items');
+
+                            if (empty($ret)) {
+                                // $table = $this->getTableName('leave_items');
+                                // $db = $this->db();
+                                if ($index->id == 0) {
+                                    $save['id'] = $db->getNextId($table);
+                                } else {
+                                    $save['id'] = $index->id;
+                                }
+                                // อัปโหลดไฟล์แนบ
+                                \Download\Upload\Model::execute($ret, $request, $save['id'], 'eleave', self::$cfg->eleave_file_typies, self::$cfg->eleave_upload_size);
+                            }
+                            if ($save['detail'] == '') {
+                                // ไม่ได้กรอก detail
+                                $ret['ret_detail'] = 'Please fill in';
+                            }
+                            
+                            if (!empty($login['m1'])) {
+                                $passapprove1 = self::getUser($login['m1']);
+                                if (empty($passapprove1)){
+                                    $ret['alert'] = 'ไม่พบผู้อนุมัติ';
+                                } else {
+                                    // ผู้อนุมัติ m1
+                                    $save['member_id_m1'] = $login['m1'];
+                                    $save['member_id_m2'] = null;
+                                    if ($save['days'] > 2 && !empty($login['m2'])){
+                                        // ผู้อนุมัติ m2
+                                        $passapprove2 = self::getUser($login['m2']);
+                                        if (empty($passapprove2)){
+                                            $ret['alert'] = 'ไม่พบผู้อนุมัติ M2';
+                                        } else {
+                                            $save['member_id_m2'] = $login['m2'];
+                                        }
+                                    }
+                                }
                             } else {
-                                // ไม่ต้องส่งอีเมล
-                                $ret['alert'] = Language::get('Saved successfully');
+                                $ret['alert'] = 'ไม่พบผู้อนุมัติ';
                             }
-                            $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'eleave', 'status' => $save['status']));
-                            // เคลียร์
-                            $request->removeToken();
+                            
+                            if (empty($ret)) {
+                                if ($index->id == 0) {
+                                    // ใหม่
+                                    $save['member_id'] = $login['id'];
+                                    $save['create_date'] = date('Y-m-d H:i:s');
+                                    $save['status'] = 0;
+                                    $db->insert($table, $save);
+                                } else {
+                                    // แก้ไข
+                                    $db->update($table, $save['id'], $save);
+                                    $save['status'] = $index->status;
+                                    $save['member_id'] = $index->member_id;
+                                }
+                                // log
+                                \Index\Log\Model::add($save['id'], 'eleave', 'Status', Language::get('LEAVE_STATUS', '', $save['status']).' ID : '.$save['id'], $login['id']);
+                                if ($index->id == 0 || $save['status'] != $index->status) {
+                                    // ประเภทลา
+                                    $save['leave_type'] = self::leaveType($save['leave_id']);
+                                    // ส่งอีเมลแจ้งการขอลา
+                                    $ret['alert'] = \Eleave\Email\Model::send($save);
+                                } else {
+                                    // ไม่ต้องส่งอีเมล
+                                    $ret['alert'] = Language::get('Saved successfully');
+                                }
+                                $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'eleave', 'status' => $save['status']));
+                                // เคลียร์
+                                $request->removeToken();
+                            }
                         }
+                    } catch (\Kotchasan\InputItemException $e) {
+                        $ret['alert'] = $e->getMessage();
                     }
-                } catch (\Kotchasan\InputItemException $e) {
-                    $ret['alert'] = $e->getMessage();
                 }
+            } else {
+                $ret['alert'] = 'ไม่สามารถทำรายได้';
             }
         }
         if (empty($ret)) {

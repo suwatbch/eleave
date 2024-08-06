@@ -255,12 +255,12 @@ class View extends \Gcms\View
     public static function status_adap($id)
     {
         $res = 0;
-        if ($id == 0){
-            $res = 2;
+        if ($id == 4){
+            $res = 1;
         } else if ($id == 1) {
             $res = 0;
         } else {
-            $res = 1;
+            $res = 2;
         }
         return $res;
     }

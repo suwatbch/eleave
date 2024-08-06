@@ -47,9 +47,15 @@ class View extends \Gcms\View
             'token' => true
         ));
         $name = \Eleave\Approve\Model::get($index->id);
-        $fieldset = $form->add('fieldset', array(
-            'title' => '{LNG_Details of request for leave} '.$name->name
-        ));
+        if ($index->status == 3){
+            $fieldset = $form->add('fieldset', array(
+                'title' => 'รายละเอียดคำขออนุมัติยกเลิกการลาของ '.$name->name
+            ));
+        } else {
+            $fieldset = $form->add('fieldset', array(
+                'title' => '{LNG_Details of request for leave}'.' '.$name->name
+            ));
+        }
         $fieldset->add('hidden', array(
             'id' => 'member_id',
             'value' => $index->member_id
@@ -270,6 +276,11 @@ class View extends \Gcms\View
         $fieldset->add('hidden', array(
             'id' => 'id',
             'value' => $index->id
+        ));
+        // statusOld
+        $fieldset->add('hidden', array(
+            'id' => 'statusOld',
+            'value' => $index->status
         ));
         \Gcms\Controller::$view->setContentsAfter(array(
             '/:type/' => implode(', ', self::$cfg->eleave_file_typies),

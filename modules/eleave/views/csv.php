@@ -14,6 +14,7 @@ use Gcms\Login;
 use Kotchasan\Date;
 use Kotchasan\Http\Request;
 use Kotchasan\Language;
+use Kotchasan\Database\Sql;
 
 /**
  * module=eleave-export&typ=csv
@@ -22,14 +23,14 @@ use Kotchasan\Language;
  *
  * @since 1.0
  */
-class View extends \Kotchasan\KBase
+class View extends \Kotchasan\Model
 {
     /**
      * export to CSV
      *
      * @param Request $request
      */
-    public static function execute(Request $request)
+    public function execute(Request $request)
     {
         // สามารถจัดการรายการลงทะเบียนได้
         if (Login::checkPermission(Login::isMember(), 'can_manage_enroll')) {
@@ -39,16 +40,8 @@ class View extends \Kotchasan\KBase
                 'leave_id' => $request->request('leave_id')->toInt(),
                 'member_id' => $request->request('member_id')->toInt(),
                 'status' => $request->request('status')->toInt(),
-                'leave_status' => Language::get('LEAVE_STATUS'),
                 'sort' => []
             );
-            //เพิ่มทั้งหมด
-            $add = array(-1 => Language::get('all items'));
-            foreach ($add as $key => $value){
-                $params['leave_status'] = array($key => $value) + $params['leave_status'];
-            }
-            $params['status'] = isset($params['leave_status'][$params['status']]) ? $params['status'] : -1;
-
             if (preg_match_all('/(create_date|name|leave_id|start_date|days|communication|reason|status)((\s(asc|desc))|)/', $request->get('sort')->toString(), $match, PREG_SET_ORDER)) {
                 foreach ($match as $item) {
                     $params['sort'][] = $item[0];
@@ -87,6 +80,13 @@ class View extends \Kotchasan\KBase
             $datas = [];
             $dataleave = \Eleave\Export\Model::csv($params);
             $leave_period = Language::get('LEAVE_PERIOD');
+            $columname = NULL;
+            if ($params['status'] == 4){
+                $columname = 'iscancel';
+            } else {
+                $columname = 'isexport';
+            }
+            
             foreach ($dataleave as $item) {
                 $result = [];
                 $result[] = '="'.Date::format($item->create_date, 'd M Y').'"';
@@ -106,11 +106,27 @@ class View extends \Kotchasan\KBase
                 $result[] = $item->communication;
                 $result[] = $item->reason;
                 $datas[] = $result;
+                self::updateLeaveItemsReport($item->id ,$columname);
             }
             // export to CSV
             return self::sendCsv('leave', $header, $datas, 'UTF-8');
         }
         return false;
+    }
+
+    /**
+     * @param int $id
+     * @param string $columname
+     */
+    public function updateLeaveItemsReport($id, $columname)
+    {
+        if (!empty($columname)){
+            \Kotchasan\Model::createQuery()
+            ->update('leave_items')
+            ->set(array($columname => 1))
+            ->where(array('id', $id))
+            ->execute();
+        }
     }
 
     /**
