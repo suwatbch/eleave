@@ -59,6 +59,7 @@ class Controller extends \Gcms\Controller
                     $params['leave_status'][$key] = $value;
                 }
             }
+            
             // $params['leave_id'] = 0;
             // $params['status'] = 0;
             // แสดงผล
