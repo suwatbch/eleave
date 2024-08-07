@@ -1,11 +1,6 @@
 <?php
 /**
  * @filesource modules/index/views/editholidays.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
  */
 
 namespace Index\Editholidays;
@@ -14,8 +9,6 @@ use Kotchasan\Html;
 
 /**
  * module=index-editholidays
- *
- * @since 1.0
  */
 class View extends \Gcms\View
 {
@@ -38,7 +31,7 @@ class View extends \Gcms\View
             'token' => true
         ));
         $fieldset = $form->add('fieldset', array(
-            'title' => '{LNG_Details of} {LNG_Holiday}'
+            'title' => '{LNG_Details of}{LNG_Holiday}'
         ));
         // date
         $fieldset->add('date', array(

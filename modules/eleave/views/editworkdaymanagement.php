@@ -29,8 +29,8 @@ class View extends \Gcms\View
     public function render($index)
     {
         $form = Html::create('form', array(
-            'id' => 'editworkdaymanagement_frm',
-            'class' => 'editworkdaymanagement_frm',
+            'id' => 'setup_frm',
+            'class' => 'setup_frm',
             'autocomplete' => 'off',
             'action' => 'index.php/eleave/model/editworkdaymanagement/submit',
             'onsubmit' => 'doFormSubmit',
@@ -38,35 +38,54 @@ class View extends \Gcms\View
             'token' => true
         ));
         $fieldset = $form->add('fieldset', array(
-            'title' => '{LNG_Details of} {LNG_editworkdaymanagement}'
+            'title' => '{LNG_Details of}{LNG_Workday Management}'
         ));
-        // date
-        $fieldset->add('member_id', array(
+        // member_id
+        $fieldset->add('text', array(
             'id' => 'member_id',
             'name' => 'member_id',
-            'labelClass' => 'g-input icon-calendar',
+            'labelClass' => 'g-input icon-number',
             'itemClass' => 'item',
-            'label' => '{LNG_member_id}',
+            'label' => '{LNG_Member_id}',
+            'placeholder' => '{LNG_Member_id}',
+            'maxlength' => 150,
             'value' => isset($index->member_id) ? $index->member_id : ''
         ));
-        // yaer
-        $fieldset->add('textarea', array(
-            'id' => 'yaer',
-            'name' => 'yaer',
-            'labelClass' => 'g-input icon-file',
+        // year
+        $fieldset->add('text', array(
+            'id' => 'year',
+            'name' => 'year',
+            'labelClass' => 'g-input icon-number',
             'itemClass' => 'item',
-            'label' => '{LNG_yaer}',
-            'value' => isset($index->yaer) ? $index->yaer : ''
+            'label' => '{LNG_Year}',
+            'placeholder' => '{LNG_Year}',
+            'value' => isset($index->year) ? $index->year : ''
         ));
-         // month
-         $fieldset->add('textarea', array(
+        // month
+        $fieldset->add('select', array(
             'id' => 'month',
             'name' => 'month',
-            'labelClass' => 'g-input icon-file',
+            'labelClass' => 'g-input icon-calendar',
             'itemClass' => 'item',
-            'label' => '{LNG_month}',
+            'label' => '{LNG_Month}',
+            'options' => array(
+                '' => '{LNG_Select month}',
+                '01' => 'January',
+                '02' => 'February',
+                '03' => 'March',
+                '04' => 'April',
+                '05' => 'May',
+                '06' => 'June',
+                '07' => 'July',
+                '08' => 'August',
+                '09' => 'September',
+                '10' => 'October',
+                '11' => 'November',
+                '12' => 'December'
+            ),
             'value' => isset($index->month) ? $index->month : ''
         ));
+        
         $fieldset = $form->add('fieldset', array(
             'class' => 'submit'
         ));
@@ -76,11 +95,13 @@ class View extends \Gcms\View
             'value' => '{LNG_Save}'
         ));
         // hidden id field
-        $form->add('hidden', array(
-            'id' => 'ID',
-            'name' => 'ID',
-            'value' => $index->ID
-        ));
+        if (isset($index->ID)) {
+            $form->add('hidden', array(
+                'id' => 'ID',
+                'name' => 'ID',
+                'value' => $index->ID
+            ));
+        }
         // คืนค่า HTML
         return $form->render();
     }

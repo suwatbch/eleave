@@ -1,11 +1,6 @@
 <?php
 /**
- * @filesource modules/index/controllers/Editholidays.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @filesource modules/index/controllers/editholidays.php
  */
 
 namespace Index\Editholidays;
@@ -17,8 +12,6 @@ use Kotchasan\Language;
 
 /**
  * module=index-editholidays
- *
- * @since 1.0
  */
 class Controller extends \Gcms\Controller
 {

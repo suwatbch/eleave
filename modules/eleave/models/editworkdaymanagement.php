@@ -71,15 +71,15 @@ class Model extends \Kotchasan\Model
                     } else {
                         if ($save['member_id'] == '') {
                             // ไม่ได้กรอก member_id
-                            // $ret['ret_member_id'] = 'Please fill in';
+                            $ret['ret_member_id'] = 'Please fill in';
                         }
                         if ($save['year'] == '') {
                             // ไม่ได้กรอก year
-                            // $ret['ret_year'] = 'Please fill in';
+                            $ret['ret_year'] = 'Please fill in';
                         }
                         if ($save['month'] == '') {
                             // ไม่ได้กรอก month
-                            // $ret['ret_month'] = 'Please fill in';
+                            $ret['ret_month'] = 'Please fill in';
                         }
                         if (empty($ret)) {
                             if ($index->id == 0) {

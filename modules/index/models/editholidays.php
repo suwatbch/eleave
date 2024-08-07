@@ -1,11 +1,6 @@
 <?php
 /**
- * @filesource modules/index/models/Editholidays.php
- *
- * @copyright 2016 Goragod.com
- * @license https://www.kotchasan.com/license/
- *
- * @see https://www.kotchasan.com/
+ * @filesource modules/index/models/editholidays.php
  */
 
 namespace Index\Editholidays;
@@ -15,9 +10,7 @@ use Kotchasan\Http\Request;
 use Kotchasan\Language;
 
 /**
- * module=Index-Editholidays
- *
- * @since 1.0
+ * module=index-editholidays
  */
 class Model extends \Kotchasan\Model
 {
@@ -25,7 +18,7 @@ class Model extends \Kotchasan\Model
      * อ่านข้อมูลรายการที่เลือก
      * ถ้า $id = 0 หมายถึงรายการใหม่
      *
-     * @param int   $id    id
+     * @param int $id id
      *
      * @return object|null คืนค่าข้อมูล object ไม่พบคืนค่า null
      */
@@ -34,7 +27,9 @@ class Model extends \Kotchasan\Model
         if (empty($id)) {
             // ใหม่
             return (object) array(
-                'ID' => 0
+                'id' => 0,
+                'date' => '',
+                'description' => ''
             );
         } else {
             // แก้ไข อ่านรายการที่เลือก
@@ -66,10 +61,10 @@ class Model extends \Kotchasan\Model
                     $date = $request->post('date')->toString();
                     // ตรวจสอบว่ามีวันหยุดที่มีวันที่เหมือนกันอยู่ในฐานข้อมูลหรือไม่
                     $existingHoliday = $this->db()->createQuery()
-                        ->from('holidays') // ควรแก้ไขให้ตรงกับชื่อของตาราง
+                        ->from('holidays')
                         ->where(array('date', $date))
                         ->first();
-                    if ($existingHoliday) {
+                    if ($existingHoliday && $existingHoliday->id != $save['id']) {
                         $ret['alert'] = Language::get('This holiday already exists');
                     } else {
                         // ตรวจสอบรายการที่เลือก
@@ -92,10 +87,10 @@ class Model extends \Kotchasan\Model
                                     $this->db()->insert($this->getTableName('holidays'), $save);
                                 } else {
                                     // แก้ไข
-                                    $this->db()->update($this->getTableName('holidays'), $index->ID, $save);
+                                    $this->db()->update($this->getTableName('holidays'), $index->id, $save);
                                 }
                                 // log
-                                \Index\Log\Model::add($index->ID, 'holidays', 'Save', '{LNG_Holiday} id : '.$index->id, $login['id']);
+                                \Index\Log\Model::add($index->id, 'holidays', 'Save', '{LNG_Holiday} id : '.$index->id, $login['id']);
                                 // คืนค่า
                                 $ret['alert'] = Language::get('Saved successfully');
                                 $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'holidays'));
@@ -115,6 +110,4 @@ class Model extends \Kotchasan\Model
         // คืนค่าเป็น JSON
         echo json_encode($ret);
     }
-
-    
 }
