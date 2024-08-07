@@ -32,12 +32,11 @@ class View extends \Gcms\View
     {
         //Form
         $form = Html::create('form', array(
-            'id' => 'setup_frm', // กำหนด ID ของฟอร์ม
-            'class' => 'setup_frm', 
+            'id' => 'setup_frm',
+            'class' => 'setup_frm',
             'autocomplete' => 'off',
             'action' => 'index.php/index/model/shiftedit/submit',
-            'onsubmit' => 'return doFormSubmit();', // ปรับให้ฟังก์ชัน doFormSubmit() ทำงานก่อนส่งฟอร์ม
-            'method' => 'post',
+            'onsubmit' => 'doFormSubmit',
             'ajax' => true,
             'token' => true
         ));
