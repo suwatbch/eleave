@@ -1,6 +1,6 @@
 <?php
 /**
- * @filesource modules/index/views/editholidays.php
+ * @filesource modules/eleave/views/editworkdaymanagement.php
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
@@ -8,7 +8,7 @@
  * @see https://www.kotchasan.com/
  */
 
-namespace Index\Editholidays;
+namespace Eleave\Editworkdaymanagement;
 
 use Kotchasan\Html;
 
@@ -29,35 +29,43 @@ class View extends \Gcms\View
     public function render($index)
     {
         $form = Html::create('form', array(
-            'id' => 'setup_frm',
-            'class' => 'setup_frm',
+            'id' => 'editworkdaymanagement_frm',
+            'class' => 'editworkdaymanagement_frm',
             'autocomplete' => 'off',
-            'action' => 'index.php/index/model/editholidays/submit',
+            'action' => 'index.php/eleave/model/editworkdaymanagement/submit',
             'onsubmit' => 'doFormSubmit',
             'ajax' => true,
             'token' => true
         ));
         $fieldset = $form->add('fieldset', array(
-            'title' => '{LNG_Details of} {LNG_Holiday}'
+            'title' => '{LNG_Details of} {LNG_editworkdaymanagement}'
         ));
         // date
-        $fieldset->add('date', array(
-            'id' => 'date',
-            'name' => 'date',
+        $fieldset->add('member_id', array(
+            'id' => 'member_id',
+            'name' => 'member_id',
             'labelClass' => 'g-input icon-calendar',
             'itemClass' => 'item',
-            'label' => '{LNG_Date}',
-            'value' => isset($index->date) ? $index->date : ''
+            'label' => '{LNG_member_id}',
+            'value' => isset($index->member_id) ? $index->member_id : ''
         ));
-        // description
+        // yaer
         $fieldset->add('textarea', array(
-            'id' => 'description',
-            'name' => 'description',
+            'id' => 'yaer',
+            'name' => 'yaer',
             'labelClass' => 'g-input icon-file',
             'itemClass' => 'item',
-            'label' => '{LNG_Description}',
-            'rows' => 5,
-            'value' => isset($index->description) ? $index->description : ''
+            'label' => '{LNG_yaer}',
+            'value' => isset($index->yaer) ? $index->yaer : ''
+        ));
+         // month
+         $fieldset->add('textarea', array(
+            'id' => 'month',
+            'name' => 'month',
+            'labelClass' => 'g-input icon-file',
+            'itemClass' => 'item',
+            'label' => '{LNG_month}',
+            'value' => isset($index->month) ? $index->month : ''
         ));
         $fieldset = $form->add('fieldset', array(
             'class' => 'submit'
@@ -69,9 +77,9 @@ class View extends \Gcms\View
         ));
         // hidden id field
         $form->add('hidden', array(
-            'id' => 'id',
-            'name' => 'id',
-            'value' => $index->id
+            'id' => 'ID',
+            'name' => 'ID',
+            'value' => $index->ID
         ));
         // คืนค่า HTML
         return $form->render();

@@ -32,10 +32,10 @@ class Controller extends \Gcms\Controller
     public function render(Request $request)
     {
         // ตรวจสอบรายการที่เลือก
-        $index = \Index\Editholidays\Model::get($request->request('ID')->toInt());
+        $index = \Index\Editholidays\Model::get($request->request('id')->toInt());
         // ข้อความ title bar
-        $title = '{LNG_'.(empty($index->ID) ? 'Add' : 'Edit').'} {LNG_Holiday}';
-        $this->title = Language::trans($title);
+        $title = '{LNG_'.(empty($index->id) ? 'Add' : 'Edit').'}';
+        $this->title = Language::trans($title.'{LNG_Holiday}');
         // เลือกเมนู
         $this->menu = 'holidays';
 

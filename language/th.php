@@ -427,6 +427,7 @@ return array(
   ),
   'There arent enough leave days' => 'วันลาไม่พอ',
   'This :name already exist' => 'มี :name นี้อยู่ก่อนแล้ว',
+  'This date already exists' => 'วันที่นี้มีอยู่แล้ว',
   'This website uses cookies to provide our services. To find out more about our use of cookies, please see our :privacy.' => 'เว็บไซต์นี้มีการใช้คุกกี้เพื่อปรับปรุงการให้บริการ หากต้องการข้อมูลเพิ่มเติมเกี่ยวกับการใช้คุกกี้ของเรา โปรดดู :privacy',
   'Time' => 'เวลา',
   'Time zone' => 'เขตเวลา',

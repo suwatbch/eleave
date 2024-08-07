@@ -1,6 +1,6 @@
 <?php
 /**
- * @filesource modules/index/controllers/holidays.php
+ * @filesource modules/eleave/controllers/editworkdaymanagement.php
  *
  * @copyright 2016 Goragod.com
  * @license https://www.kotchasan.com/license/
@@ -8,7 +8,7 @@
  * @see https://www.kotchasan.com/
  */
 
-namespace Index\Holidays;
+namespace Eleave\Editworkdaymanagement;
 
 use Gcms\Login;
 use Kotchasan\Html;
@@ -16,7 +16,7 @@ use Kotchasan\Http\Request;
 use Kotchasan\Language;
 
 /**
- * module=index-holidays
+ * module=eleave-editworkdaymanagement
  *
  * @author Goragod Wiriya <admin@goragod.com>
  *
@@ -25,7 +25,7 @@ use Kotchasan\Language;
 class Controller extends \Gcms\Controller
 {
     /**
-     * รายการประเภทการลา
+     * ฟอร์มสร้าง/แก้ไข ประเภทการลา
      *
      * @param Request $request
      *
@@ -33,12 +33,15 @@ class Controller extends \Gcms\Controller
      */
     public function render(Request $request)
     {
+        // ตรวจสอบรายการที่เลือก
+        $index = \Eleave\Editworkdaymanagement\Model::get($request->request('id')->toInt());
         // ข้อความ title bar
-        $this->title = Language::trans(' {LNG_Holidays}');
+        $title = '{LNG_'.(empty($index->id) ? 'Add' : 'Edit').'}';
+        $this->title = Language::trans($title.' {LNG_Leave type}');
         // เลือกเมนู
-        $this->menu = 'Holidays';
+        $this->menu = 'eleave';
         // สามารถจัดการโมดูลได้
-        if (Login::checkPermission(Login::isMember(), 'can_manage_Holidays')) {
+        if ($index && Login::checkPermission(Login::isMember(), 'can_manage_eleave')) {
             // แสดงผล
             $section = Html::create('section');
             // breadcrumbs
@@ -46,19 +49,17 @@ class Controller extends \Gcms\Controller
                 'class' => 'breadcrumbs'
             ));
             $ul = $breadcrumbs->add('ul');
-            $ul->appendChild('<li><span class="icon-verfied">{LNG_Settings}</span></li>');
-            // $ul->appendChild('<li><span>{LNG_E-Leave}</span></li>');
-            $ul->appendChild('<li><span>{LNG_Holidays}</span></li>');
+            $ul->appendChild('<li><span class="icon-verfied">{LNG_E-Leave}</span></li>');
+            $ul->appendChild('<li><a href="{BACKURL?module=eleave-setup}">{LNG_Leave type}</a></li>');
+            $ul->appendChild('<li><span>'.$title.'</span></li>');
             $section->add('header', array(
-                'innerHTML' => '<h2 class="icon-list">'.$this->title.'</h2>'
+                'innerHTML' => '<h2 class="icon-write">'.$this->title.'</h2>'
             ));
-            // menu
-            $section->appendChild(\Index\Tabmenus\View::render($request, 'settings', 'holidays'));
             $div = $section->add('div', array(
                 'class' => 'content_bg'
             ));
-            // ตาราง
-            $div->appendChild(\Index\Holidays\View::create()->render($request));
+            // แสดงฟอร์ม
+            $div->appendChild(\Eleave\Editworkdaymanagement\View::create()->render($index));
             // คืนค่า HTML
             return $section->render();
         }
