@@ -30,14 +30,6 @@ class View extends \Gcms\View
      */
     public function render($index)
     {
-        // ตรวจสอบและกำหนดค่าตัวแปร $login
-        $login = $_SESSION['login'] ?? null; // ตัวอย่างการดึงค่าจากเซสชั่น
-
-        if (!$login) {
-            // หากผู้ใช้ยังไม่ล็อกอิน หรือไม่มีข้อมูลใน $login
-            return 'Error: You must be logged in to edit shifts';
-        }
-
         //Form
         $form = Html::create('form', array(
             'id' => 'setup_frm', // กำหนด ID ของฟอร์ม
@@ -163,6 +155,7 @@ class View extends \Gcms\View
 
         $fieldset->add('hidden', array(
             'id' => 'id',
+            'name' => 'id',
             'value' => $index->id
         ));
     
@@ -176,17 +169,17 @@ class View extends \Gcms\View
             'value' => ''
         ));
 
-        // Javascript to update description field
-        $form->script('
-            document.getElementById("setup_frm").addEventListener("submit", function() {
-                var startTime = document.getElementById("start_time").value;
-                var endTime = document.getElementById("end_time").value;
-                var startBreakTime = document.getElementById("start_break_time").value;
-                var endBreakTime = document.getElementById("end_break_time").value;
-                var description = startTime + " - " + endTime + " พัก " + startBreakTime + " - " + endBreakTime;
-                document.getElementById("description").value = description;
-            });
-        ');
+        // Javascript สำหรับอัพเดท description field
+        // $form->script('
+        //     document.getElementById("setup_frm").addEventListener("submit", function() {
+        //         var startTime = document.getElementById("start_time").value;
+        //         var endTime = document.getElementById("end_time").value;
+        //         var startBreakTime = document.getElementById("start_break_time").value;
+        //         var endBreakTime = document.getElementById("end_break_time").value;
+        //         var description = startTime + " - " + endTime + " พัก " + startBreakTime + " - " + endBreakTime;
+        //         document.getElementById("description").value = description;
+        //     });
+        // ');
 
         // คืนค่า HTML
         return $form->render();

@@ -39,9 +39,9 @@ class Controller extends \Gcms\Controller
         $title = '{LNG_'.(empty($index->id) ? 'Add' : 'Edit').'}';
         $this->title = Language::trans($title.' {LNG_Shift}');
         // เลือกเมนู
-        $this->menu = 'shift';
+        $this->menu = 'shifts';
         // สามารถจัดการโมดูลได้
-        if ($index && Login::checkPermission(Login::isMember(), 'can_manage_shift')) {
+        if ($index && Login::checkPermission(Login::isMember(), 'can_manage_eleave')) {
             // แสดงผล
             $section = Html::create('section');
             // breadcrumbs
