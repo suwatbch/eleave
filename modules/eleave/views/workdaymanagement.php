@@ -17,7 +17,7 @@ use Kotchasan\Language;
 /**
  * module=eleave-workdaymanagement
  *
- * @author Goragod Wiriya <admin@goragod.com>
+ * @autor Goragod Wiriya <admin@goragod.com>
  *
  * @since 1.0
  */
@@ -51,7 +51,7 @@ class View extends \Gcms\View
             /* รายการต่อหน้า */
             'perPage' => $request->cookie('eleaveSetup_perPage', 30)->toInt(),
             /* เรียงลำดับ */
-            'sort' => ['month'],
+           'sort' => ['month','yaer'],
             /* ฟังก์ชั่นจัดรูปแบบการแสดงผลแถวของตาราง */
             'onRow' => array($this, 'onRow'),
             /* คอลัมน์ที่ไม่ต้องแสดงผล */
@@ -60,7 +60,7 @@ class View extends \Gcms\View
             'action' => 'index.php/eleave/model/workdaymanagement/action',
             'actionCallback' => 'dataTableActionCallback',
             /* คอลัมน์ที่สามารถค้นหาได้ */
-            'searchColumns' => array('member_id', 'yaer', 'month'),
+            'searchColumns' => array('member_id', 'name', 'yaer', 'month'),
             /* ส่วนหัวของตาราง และการเรียงลำดับ (thead) */
             'headers' => array(
                 'member_id' => array(

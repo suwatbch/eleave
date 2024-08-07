@@ -30,7 +30,7 @@ class Controller extends \Gcms\Controller
         $title = '{LNG_'.(empty($index->id) ? 'Add' : 'Edit').'}';
         $this->title = Language::trans($title.'{LNG_Holiday}');
         // เลือกเมนู
-        $this->menu = 'holidays';
+        $this->menu = 'eleave';
 
         // สามารถจัดการโมดูลได้
         if ($index && Login::checkPermission(Login::isMember(), 'can_manage_eleave')) {
@@ -41,7 +41,7 @@ class Controller extends \Gcms\Controller
                 'class' => 'breadcrumbs'
             ));
             $ul = $breadcrumbs->add('ul');
-            $ul->appendChild('<li><span class="icon-verfied">{LNG_E-Leave}</span></li>');
+            // $ul->appendChild('<li><span class="icon-verfied">{LNG_E-Leave}</span></li>');
             $ul->appendChild('<li><a href="{BACKURL?module=index-holidays}">{LNG_Holiday}</a></li>');
             $ul->appendChild('<li><span>'.$title.'</span></li>');
             $section->add('header', array(

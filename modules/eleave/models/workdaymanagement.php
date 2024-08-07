@@ -31,8 +31,9 @@ class Model extends \Kotchasan\Model
     public static function toDataTable()
     {
         return static::createQuery()
-            ->select('id', 'member_id', 'yaer', 'month')
-            ->from('shift_workdays');
+        ->select('S.id', 'S.member_id', 'U.name', 'S.yaer', 'S.month')
+        ->from('shift_workdays S')
+        ->join('user U', 'LEFT', array('U.id', 'S.member_id'));
     }
 
     /**

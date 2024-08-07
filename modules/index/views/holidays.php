@@ -114,7 +114,8 @@
               ),
               'addNew' => array(
                   'class' => 'float_button icon-new',
-                  'href' => $uri->createBackUri(array('module' => 'index-editholidays')),
+                //   'href' => $uri->createBackUri(array('module' => 'index-editholidays')),
+                    'href' => $uri->createBackUri(array('module' => 'index-editholidays', 'id' => ':id')),
                   'title' => '{LNG_Add} {LNG_Leave type}'
               ),
               'filters' => $filters,

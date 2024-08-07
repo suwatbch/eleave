@@ -19,7 +19,7 @@ use Kotchasan\Language;
 /**
  * module=totalreport
  *
- * @author Goragod Wiriya <admin@goragod.com>
+ * @autor Goragod Wiriya <admin@goragod.com>
  *
  * @since 1.0
  */
@@ -36,23 +36,31 @@ class Controller extends \Gcms\Controller
     {
         // สมาชิก
         if ($login = Login::isMember()) {
-            // แสดงผล
-            $section = Html::create('section');
-            // breadcrumbs
-            $breadcrumbs = $section->add('nav', array(
-                'class' => 'breadcrumbs'
-            ));
-            $section->add('header', array(
-                'innerHTML' => '<h2 class="icon-report">'.$this->title.'</h2>'
-            ));
-            $div = $section->add('div', array(
-                'class' => 'content_bg'
-            ));
-            // menu
-            // $div->appendChild(\Index\Tabmenus\View::render($request, 'report', 'report'));
-            $div->appendChild(\Eleave\Workdaymanagement\Controller::create()->render($request));
-            // คืนค่า HTML
-            return $section->render();
+            // ตรวจสอบสิทธิ์ในการเข้าถึง (ถ้ามี)
+            if (Login::checkPermission($login, 'can_view_report')) {
+                // แสดงผล
+                $section = Html::create('section');
+                // breadcrumbs
+                $breadcrumbs = $section->add('nav', array(
+                    'class' => 'breadcrumbs'
+                ));
+                $breadcrumbs->add('ul')->appendChild('<li><a href="index.php">{LNG_Home}</a></li>');
+                $breadcrumbs->add('ul')->appendChild('<li><span>{LNG_Report}</span></li>');
+                $section->add('header', array(
+                    'innerHTML' => '<h2 class="icon-report">'.Language::trans('{LNG_Total Report}').'</h2>'
+                ));
+                $div = $section->add('div', array(
+                    'class' => 'content_bg'
+                ));
+                // menu
+                $div->appendChild(\Index\Tabmenus\View::render($request, 'report', 'report'));
+                $div->appendChild(\Eleave\Workdaymanagement\Controller::create()->render($request));
+                // คืนค่า HTML
+                return $section->render();
+            } else {
+                // ไม่มีสิทธิ์ในการเข้าถึง
+                return \Index\Error\Controller::execute($this, $request->getUri());
+            }
         }
         // 404
         return \Index\Error\Controller::execute($this, $request->getUri());
