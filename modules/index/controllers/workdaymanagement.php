@@ -44,16 +44,12 @@ class Controller extends \Gcms\Controller
                 $breadcrumbs = $section->add('nav', array(
                     'class' => 'breadcrumbs'
                 ));
-                $breadcrumbs->add('ul')->appendChild('<li><a href="index.php">{LNG_Home}</a></li>');
-                $breadcrumbs->add('ul')->appendChild('<li><span>{LNG_Report}</span></li>');
-                $section->add('header', array(
-                    'innerHTML' => '<h2 class="icon-report">'.Language::trans('{LNG_Total Report}').'</h2>'
-                ));
+              
                 $div = $section->add('div', array(
                     'class' => 'content_bg'
                 ));
                 // menu
-                $div->appendChild(\Index\Tabmenus\View::render($request, 'report', 'report'));
+             
                 $div->appendChild(\Eleave\Workdaymanagement\Controller::create()->render($request));
                 // คืนค่า HTML
                 return $section->render();
