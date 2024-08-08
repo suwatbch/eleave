@@ -189,7 +189,7 @@ class View extends \Gcms\View
             } else if ($item->id == 7) {
                 $quota_leave7 = $item->num_days;
             } else if ($item->id == 8) {
-                $quota_leave8 = $item->num_days;
+                $quota_leave8 = 0;
             }
         }
         $groups = $fieldset->add('groups');

@@ -432,7 +432,7 @@ class Model extends \Kotchasan\Model
         $alerttime = false;
         $alertdays = false;
 
-        // ตรวจสอบปีปัจจุบัน 
+        // ตรวจสอบปีที่ลาต้องเป็นปีเดียวกัน
         $datenew = \Gcms\Functions::checkyearnow($start_date, $end_date);
         if ($datenew) {
             $alertyear = true;
@@ -517,60 +517,53 @@ class Model extends \Kotchasan\Model
                         }
                     }
                 } else {
-                    // ตรวจสอบลาข้ามปีงบประมาณ
-                    $end_year = date('Y', strtotime($end_date));
-                    $start_year = date('Y', strtotime($start_date));
-                    $check_year = max($end_year, $start_year);
-                    $fiscal_year = $check_year.sprintf('-%02d-01', 1); // 1 = self::$cfg->eleave_fiscal_year
-                    if (!($start_date < $fiscal_year && $end_date >= $fiscal_year)) {
-                        // ใช้จำนวนวันลาจากที่คำนวณ
-                        if ($leave_id == 3 || $leave_id == 7) {
-                            // ลาคลอกและลาบวช
-                            $days = $diff['days'] +1;
-                        } else {
-                            // ลาหยุดทั่วไป 
-                            $days = \Gcms\Functions::calculate_leave_days($start_date,$end_date,$static,$workdays,$workweek,$holidays);
-                        }
-                        if ($days > 0) { 
-                            $res['status'] = 1;
-                            $res['days'] = (int)$days;
-                        } else {
-                            $alertdays = true;
-                        }
+                    // ใช้จำนวนวันลาจากที่คำนวณ
+                    if ($leave_id == 3 || $leave_id == 7) {
+                        // ลาคลอกและลาบวช
+                        $days = $diff['days'] +1;
+                    } else {
+                        // ลาหยุดทั่วไป 
+                        $days = \Gcms\Functions::calculate_leave_days($start_date,$end_date,$static,$workdays,$workweek,$holidays);
+                    }
+                    if ($days > 0) { 
+                        $res['status'] = 1;
+                        $res['days'] = (int)$days;
+                    } else {
+                        $alertdays = true;
+                    }
 
-                        // ไม่สามารถลากิจได้มากกว่า 6 วัน
-                        if ($res['days'] > 6 && $leave_id == 2) {
+                    // ไม่สามารถลากิจได้มากกว่า 6 วัน
+                    if ($res['days'] > 6 && $leave_id == 2) {
+                        $res['status'] = 0;
+                        $ret = Language::get('Unable to take leave for more than 6 days');
+                    }
+                    // ตรวจสอบเกินวันลา การลาบวช และ การลาคลอด และ ไปทหาร
+                    else if ($leave_id == 3 || $leave_id == 5 || $leave_id == 7) {
+                        $dataleave = self::getleave($leave_id);
+                        // ตรวจสอบเพศ ไม่เจอให้ระบุเพศก่อน
+                        if (!($leave_user->sex == 'f' || $leave_user->sex == 'm')) {
                             $res['status'] = 0;
-                            $ret = Language::get('Unable to take leave for more than 6 days');
+                            $ret = Language::get('Unable to determine gender Please edit your personal information to specify your gender first');
                         }
-                        // ตรวจสอบเกินวันลา การลาบวช และ การลาคลอด และ ไปทหาร
-                        else if ($leave_id == 3 || $leave_id == 5 || $leave_id == 7) {
-                            $dataleave = self::getleave($leave_id);
-                            // ตรวจสอบเพศ ไม่เจอให้ระบุเพศก่อน
-                            if (!($leave_user->sex == 'f' || $leave_user->sex == 'm')) {
-                                $res['status'] = 0;
-                                $ret = Language::get('Unable to determine gender Please edit your personal information to specify your gender first');
-                            }
-                            // ผู้หญิงลาบวชไม่ได้
-                            else if ($leave_user->sex == 'f' && $leave_id == 7) {
-                                $res['status'] = 0;
-                                $ret = Language::get('Gender does not match leave type');
-                            }
-                            // ผู้หญิงลาไปทหารไม่ได้
-                            else if ($leave_user->sex == 'f' && $leave_id == 5) {
-                                $res['status'] = 0;
-                                $ret = Language::get('Gender does not match leave type');
-                            }
-                            // ผู้ชายลาคลอดไม่ได้
-                            else if ($leave_user->sex == 'm' && $leave_id == 3) {
-                                $res['status'] = 0;
-                                $ret = Language::get('Gender does not match leave type');
-                            }
-                            // ตรวจสอบวันลาเกินวันที่กำหนด
-                            else if ($dataleave->num_days < $res['days']) {
-                                $res['status'] = 0;
-                                $ret = Language::get('Born on time').' '.$dataleave->num_days.' '.Language::get('days');
-                            }
+                        // ผู้หญิงลาบวชไม่ได้
+                        else if ($leave_user->sex == 'f' && $leave_id == 7) {
+                            $res['status'] = 0;
+                            $ret = Language::get('Gender does not match leave type');
+                        }
+                        // ผู้หญิงลาไปทหารไม่ได้
+                        else if ($leave_user->sex == 'f' && $leave_id == 5) {
+                            $res['status'] = 0;
+                            $ret = Language::get('Gender does not match leave type');
+                        }
+                        // ผู้ชายลาคลอดไม่ได้
+                        else if ($leave_user->sex == 'm' && $leave_id == 3) {
+                            $res['status'] = 0;
+                            $ret = Language::get('Gender does not match leave type');
+                        }
+                        // ตรวจสอบวันลาเกินวันที่กำหนด
+                        else if ($dataleave->num_days < $res['days']) {
+                            $res['status'] = 0;
+                            $ret = Language::get('Born on time').' '.$dataleave->num_days.' '.Language::get('days');
                         }
                     }
                 }
@@ -581,14 +574,21 @@ class Model extends \Kotchasan\Model
                     $result_quota = "";
                     $leave_quota = 0;
                     if ($leave_id != 0 && $leave_id != 6) {
-                        $year = date('Y');
+                        $year = date('Y', strtotime($start_date));
                         $result_quota = self::getQuota($year,$member_id,$leave_id);
-                        $result_sum = self::getSumLeave($member_id,$leave_id);
-                        $leave_quota = $result_sum->sum == null ? 0 : $result_sum->sum;
+                        $result_sum = self::getSumLeave($year,$member_id,$leave_id);
+                        $leave_days = $result_sum->days == null ? 0 : $result_sum->days;
+                        $leave_times = $result_sum->times == null ? 0 : $result_sum->times;
+                        $leave_quota = \Gcms\Functions::calculateDaysTimes($leave_days,$leave_times);
                         $result = true;
                     }
                     if ($result && $result_quota != "" && $result_quota != false) {
-                        if (($res['days'] + $leave_quota) > $result_quota->quota) {
+                        $Chdays = $res['days'] + $leave_quota['days'];
+                        $Chtimes = $res['times'] + $leave_quota['times'];
+                        $leave_use = \Gcms\Functions::calculateDaysTimes($Chdays,$Chtimes);
+                        $AllDaysTimes = \Gcms\Functions::sumdaystime($leave_use['days'],$leave_use['times']);
+
+                        if ($AllDaysTimes > $result_quota->quota) {
                             $res['status'] = 0;
                             $ret = Language::get('There arent enough leave days');
                         }
@@ -863,23 +863,28 @@ class Model extends \Kotchasan\Model
     }
 
     /**
+     * @param string $year
      * @param int $member_id
      * @param int $leave_id
      * @return static
      */
-    public function getSumLeave($member_id, $leave_id)
+    public function getSumLeave($year, $member_id, $leave_id)
     {
         $statusIn[] = 0;
         $statusIn[] = 1;
         $statusIn[] = 3;
+        $where = array(
+            array('I.member_id', $member_id),
+            array('I.leave_id', $leave_id),
+            array('I.status', 'IN', $statusIn)
+        );
+        if ($leave_id != 7) {
+            $where[] =  array('I.start_date', 'LIKE', $year.'%');
+        }
         return $this->createQuery()
                 ->from('leave_items I')
-                ->where(array(
-                    array('I.member_id', $member_id),
-                    array('I.leave_id', $leave_id),
-                    array('I.status', 'IN', $statusIn)
-                ))
-                ->first('SQL(SUM(days) AS sum)');
+                ->where($where)
+                ->first('SQL(SUM(days) AS days, SUM(times) AS times)');
     }
 
     /**

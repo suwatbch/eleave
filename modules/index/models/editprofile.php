@@ -123,26 +123,32 @@ class Model extends \Kotchasan\Model
 
                         $quota = [];
                         $quota[] = array(
+                            'leave_id' => 1,
                             'id' => $request->post('register_quota_leave1_id')->toInt(),
                             'quota' => $request->post('register_quota_leave1')->toInt()
                         );
                         $quota[] = array(
+                            'leave_id' => 2,
                             'id' => $request->post('register_quota_leave2_id')->toInt(),
                             'quota' => $request->post('register_quota_leave2')->toInt()
                         );
                         $quota[] = array(
+                            'leave_id' => 3,
                             'id' => $request->post('register_quota_leave3_id')->toInt(),
                             'quota' => $request->post('register_quota_leave3')->toInt()
                         );
                         $quota[] = array(
+                            'leave_id' => 5,
                             'id' => $request->post('register_quota_leave5_id')->toInt(),
                             'quota' => $request->post('register_quota_leave5')->toInt()
                         );
                         $quota[] = array(
+                            'leave_id' => 7,
                             'id' => $request->post('register_quota_leave7_id')->toInt(),
                             'quota' => $request->post('register_quota_leave7')->toInt()
                         );
                         $quota[] = array(
+                            'leave_id' => 8,
                             'id' => $request->post('register_quota_leave8_id')->toInt(),
                             'quota' => $request->post('register_quota_leave8')->toInt()
                         );
@@ -308,8 +314,16 @@ class Model extends \Kotchasan\Model
                             if ($isAdmin) {
                                 // leave_quota
                                 foreach ($quota as $item) {
-                                    $quotanum = array('quota' => $item['quota']);
-                                    $db->update($this->getTableName('leave_quota'), $item['id'], $quotanum);
+                                    if ($item['id'] > 0) {
+                                        $db->update($this->getTableName('leave_quota'), $item['id'], array('quota' => $item['quota']));
+                                    } else {
+                                        $db->insert($this->getTableName('leave_quota'), array(
+                                            'year' => date('Y'),
+                                            'member_id' => $user['id'],
+                                            'leave_id' => $item['leave_id'],
+                                            'quota' => $item['quota']
+                                        ));
+                                    }
                                 }
 
                                 // user_meta
