@@ -387,6 +387,8 @@ class Model extends \Kotchasan\Model
                 $shiftdata = self::getShifts($shift_id);
                 $static = $shiftdata->static;
 
+                // ตรวจสอบกะฟิกกับหมุนเวียน
+                if ($leave_user->shift_id==0) { $static=0;}
                 if ($static) {
                     // กำหนดวันทำงาน
                     $workweek = json_decode($shiftdata->workweek, true);
@@ -630,7 +632,7 @@ class Model extends \Kotchasan\Model
                         ->from('shift_workdays')
                         ->where(array(
                             array('member_id', $member_id),
-                            array('yaer', $year),
+                            array('year', $year),
                             array('month', 'IN', $month)
                         ))
                         ->cacheOn();
@@ -640,7 +642,7 @@ class Model extends \Kotchasan\Model
                             ->from('shift_workdays')
                             ->where(array(
                                 array('member_id', $member_id),
-                                array('yaer', $year),
+                                array('year', $year),
                                 array('month', $month_std)
                             ))
                             ->cacheOn()
@@ -650,7 +652,7 @@ class Model extends \Kotchasan\Model
                             ->from('shift_workdays')
                             ->where(array(
                                 array('member_id', $member_id),
-                                array('yaer', $year),
+                                array('year', $year),
                                 array('month', $month_end)
                             ))
                             ->cacheOn()
@@ -663,7 +665,7 @@ class Model extends \Kotchasan\Model
                         ->from('shift_workdays')
                         ->where(array(
                             array('member_id', $member_id),
-                            array('yaer', $year),
+                            array('year', $year),
                             array('month', $month_std),
                             array('days', 'LIKE','%'.$start_date.'%'),
                         ))
@@ -717,6 +719,19 @@ class Model extends \Kotchasan\Model
                     ->cacheOn()
                     ->first('*');
                     //->execute();
+    }
+
+    /**
+     * @param int $leave_id
+     * @return static
+     */
+    public static function getleaveofstatic($leave_id)
+    {
+        return static::createQuery()
+                    ->from('leave')
+                    ->where(array('id', $leave_id))
+                    ->cacheOn()
+                    ->first('*');
     }
 
     /**
