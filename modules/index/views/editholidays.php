@@ -35,12 +35,12 @@ class View extends \Gcms\View
         ));
         // date
         $fieldset->add('date', array(
-            'id' => 'date',
-            'name' => 'date',
+            'id' => 'holidays',
+            'name' => 'holidays',
             'labelClass' => 'g-input icon-calendar',
             'itemClass' => 'item',
             'label' => '{LNG_Date}',
-            'value' => isset($index->date) ? $index->date : ''
+            'value' => isset($index->holidays) ? $index->holidays : ''
         ));
         // description
         $fieldset->add('textarea', array(

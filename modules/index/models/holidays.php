@@ -51,7 +51,7 @@ public function action(Request $request)
             $action = $request->post('action')->toString();
             
             // กำหนดค่าตัวแปร $table
-            $table = $this->getTableName('holidays');
+            $table = $this->getTableName('shift_holidays');
             
             // id ที่ส่งมา
             if (preg_match_all('/,?([0-9]+),?/', $request->post('id')->toString(), $match)) {
