@@ -40,6 +40,8 @@ return array(
   'Can view or download file' => 'ສາມາດເບິ່ງຫລືດາວໂຫລດເອກະສານໄດ້',
   'Can view the report' => 'ທ່ານສາມາດເບິ່ງບົດລາຍງານ',
   'Can&#039;t login' => 'ບໍ່ສາມາດເຂົ້າສູ່ລະບົບໄດ້',
+  'Cancel' => 'ຍົກເລີກ',
+  'Cancel date' => 'ວັນທີຍົກເລີກ',
   'Cannot select this option' => 'ທາງເລືອກນີ້ບໍ່ສາມາດເລືອກໄດ້.',
   'Carry_out' => 'ປະຕິບັດ',
   'CATEGORIES' => array(
@@ -91,6 +93,8 @@ return array(
   'Description' => 'ຄຳອະທິບາຍ',
   'Detail' => 'ລາຍະລະອຽດ',
   'Details of' => 'ລາຍລະອຽດຂອງ',
+  'Details of request for approval' => 'ລາຍລະອຽດການຮ້ອງຂໍການອະນຸມັດ',
+  'Details of request for approval to cancel leave' => 'ລາຍ​ລະ​ອຽດ​ຂອງ​ຄໍາ​ຮ້ອງ​ສະ​ຫມັກ​ຂໍ​ອະ​ນຸ​ມັດ​ຍົກ​ເລີກ​ການ​ອອກ​ຈາກ​',
   'Details of request for leave' => 'ລາຍ​ລະ​ອຽດ​ຂອງ​ຄໍາ​ຮ້ອງ​ສະ​ຫມັກ​ອະ​ນຸ​ມັດ​ອອກ​',
   'Document' => 'ເອກະສານ',
   'Document No.' => 'ເລກທີເອກະສານ',
@@ -178,7 +182,9 @@ return array(
   'LEAVE_STATUS' => array(
     0 => 'ການອະນຸມັດທີ່ຍັງຄ້າງຢູ່',
     1 => 'ອະນຸມັດ',
-    2 => 'ບໍ່ໄດ້ຮັບອະນຸມັດ'
+    2 => 'ບໍ່ໄດ້ຮັບອະນຸມັດ',
+    3 => 'ອະນຸມັດຍົກເລີກ',
+    4 => 'ຍົກເລີກ'
   ),
   'LEAVE_TIME' => array(
     '00:00' => '00:00',
@@ -302,12 +308,14 @@ return array(
   'Necessary cookies' => 'ຄຸກກີພື້ນຖານທີ່ຈໍາເປັນ',
   'New' => 'ໃໝ່',
   'New members' => 'ສະມາຊິກໃໝ່',
+  'No approvers found' => 'ບໍ່ພົບຜູ້ອະນຸມັດ',
   'no larger than :size' => 'ຂະໜາດບໍ່ເກີນ :size',
   'No need to fill in English text. If the English text matches the Key' => 'ບໍ່ຈຳເປັນເພີ່ມຂໍ້ຄວາມໃນພາສາອັງກິດຫາກຂໍ້ຄວາມໃນພາສານອັງກົງກັບແປ້ນພີມ',
   'No working days found' => 'ບໍ່ພົບມື້ເຮັດວຽກ',
   'not a registered user' => 'ບໍ່ພົບສະມາຊິກນີ້ລົງທະບຽນໄວ້',
   'Not specified' => 'ບໍ່ໄດ້ກໍານົດ',
   'Number of leave days' => 'ຈຳນວນວັນຢຸດ',
+  'of' => 'ຂອງ',
   'Order' => 'ລຳດັບ',
   'Order of persons in positions' => 'ລຳດັບບຸກຄົນໃນຕຳແໜ່ງ',
   'Other' => 'ອື່ນໆ',
@@ -346,6 +354,8 @@ return array(
   'Remember me' => 'ຈົດຈຳການເຂົ້າລະບົບ',
   'Remove' => 'ລຶບ',
   'Report' => 'ລາຍງານ',
+  'Request for approval' => 'ຄຳຮ້ອງຂໍການອະນຸມັດ',
+  'Request for cancellation approval' => 'ຮ້ອງຂໍການອະນຸມັດເພື່ອຍົກເລີກ',
   'Request for leave' => 'ຮ້ອງຂໍລາພັກ',
   'resized automatically' => 'ປັບຂະໜາດອັດຕະໂນມັດ',
   'Rotating' => 'ໝູນວຽນ',

@@ -34,44 +34,43 @@ class Model extends \Kotchasan\Model
      */
     public static function toDataTable($params)
     {
-        $where = [];
-        if ($params['status'] == -1) {
-            $where = array(
-                array('F.status','<=', 2)
-            );
-        } else {
-            $where = array(
-                array('F.status', $params['status'])
-            );
-        }
-        if (!empty($params['department'])) {
-            $where[] = array('F.department', $params['department']);
-        }
-        if (!empty($params['member_id'])) {
-            $where[] = array('F.member_id', $params['member_id']);
-        }
-        if (!empty($params['leave_id'])) {
-            $where[] = array('F.leave_id', $params['leave_id']);
-        }
-        if (!empty($params['from']) || !empty($params['to'])) {
-            if (empty($params['to'])) {
-                $sql = "(F.`start_date`>='$params[from]')";
-                $sql .= " OR ('$params[from]' BETWEEN F.`start_date` AND F.`end_date`)";
-            } elseif (empty($params['from'])) {
-                $sql = "(F.`start_date`<='$params[to]')";
-                $sql .= " OR ('$params[to]' BETWEEN F.`start_date` AND F.`end_date`)";
-            } else {
-                $sql = "(F.`start_date`>='$params[from]' AND F.`start_date`<='$params[to]')";
-                $sql .= " OR ('$params[from]' BETWEEN F.`start_date` AND F.`end_date` AND '$params[to]' BETWEEN F.`start_date` AND F.`end_date`)";
-            }
-            $where[] = Sql::create($sql);
-        }
+        $qs = [];
+        // อนุมัติ รออนุมัติยกเลิก
+        $qs[] = static::createQuery()
+        ->select('F.id', 'F.create_date', 'U.name', 'F.leave_id', 'F.start_date',
+            'F.days', 'F.start_time', 'F.end_time', 'F.times', 'F.start_period', 'F.end_date', 'F.end_period',
+            'F.member_id', 'F.communication','F.detail', 'F.status', 'F.cancel_date')
+        ->from('leave_items F')
+        ->join('user U', 'LEFT', array('U.id', 'F.member_id'))
+        ->where(array(
+            array('F.start_date', '>=', $params['from']),
+            array('F.start_date', '<=', $params['to']),
+            array('F.status', 'IN', [1,3]),
+            array('F.isexport', 0),
+            array('F.iscancel', 0)
+        ))
+        ->order('status');
+        // ยกเลิก
+        $qs[] = static::createQuery()
+        ->select('F.id', 'F.create_date', 'U.name', 'F.leave_id', 'F.start_date',
+            'F.days', 'F.start_time', 'F.end_time', 'F.times', 'F.start_period', 'F.end_date', 'F.end_period',
+            'F.member_id', 'F.communication','F.detail', 'F.status', 'F.cancel_date')
+        ->from('leave_items F')
+        ->join('user U', 'LEFT', array('U.id', 'F.member_id'))
+        ->where(array(
+            array('F.cancel_date', '>=', $params['from']),
+            array('F.cancel_date', '<=', $params['to']),
+            array('F.cancel_date', '!=', NULL),
+            array('F.status', 4),
+            array('F.isexport', 1),
+            array('F.iscancel', 0)
+        ))
+        ->order('create_date');
         return static::createQuery()
-            ->select('F.id', 'F.create_date', 'U.name', 'F.leave_id', 'F.start_date',
-                'F.days', 'F.start_time', 'F.end_time', 'F.times', 'F.start_period', 'F.end_date', 'F.end_period', 'F.member_id', 'F.communication','F.detail', 'F.status')
-            ->from('leave_items F')
-            ->join('user U', 'LEFT', array('U.id', 'F.member_id'))
-            ->where($where);
+                    ->select()
+                    ->unionAll($qs)
+                    ->order('status')
+                    ->cacheOn();
     }
 
     /**

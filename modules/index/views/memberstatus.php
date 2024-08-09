@@ -43,17 +43,17 @@ class View extends \Gcms\View
         foreach (self::$cfg->member_status as $s => $item) {
             $list->appendChild(self::createRow($s, $item, (isset(self::$cfg->color_status[$s]) ? self::$cfg->color_status[$s] : '#000000')));
         }
-        // $fieldset = $form->add('fieldset', array(
-        //     'class' => 'submit'
-        // ));
-        // $a = $fieldset->add('a', array(
-        //     'class' => 'button add large',
-        //     'id' => 'list_add_0'
-        // ));
-        // $a->add('span', array(
-        //     'class' => 'icon-plus',
-        //     'innerHTML' => '{LNG_Add} {LNG_Member status}'
-        // ));
+        $fieldset = $form->add('fieldset', array(
+            'class' => 'submit'
+        ));
+        $a = $fieldset->add('a', array(
+            'class' => 'button add large',
+            'id' => 'list_add_0'
+        ));
+        $a->add('span', array(
+            'class' => 'icon-plus',
+            'innerHTML' => '{LNG_Add} {LNG_Member status}'
+        ));
         // Javascript
         $form->script('initEditInplace("list", "index/model/memberstatus/action", "list_add_0");');
         // คืนค่า HTML
@@ -70,11 +70,11 @@ class View extends \Gcms\View
     public static function createRow($id, $item, $color)
     {
         $row = '<li class="row" id="list_'.$id.'">';
-        // if ($id > 1) {
-        //     $row .= '<div><span id="list_delete_'.$id.'" class="icon-delete" title="{LNG_Delete}"></span></div>';
-        // } else {
-        //     $row .= '<div>&nbsp;</div>';
-        // }
+        if ($id > 1) {
+            $row .= '<div><span id="list_delete_'.$id.'" class="icon-delete" title="{LNG_Delete}"></span></div>';
+        } else {
+            $row .= '<div>&nbsp;</div>';
+        }
         $row .= '<div>&nbsp;</div>';
         $row .= '<div><span id="list_color_'.$id.'" class="icon-color" title="'.$color.'"></span></div>';
         $row .= '<div><span id="list_name_'.$id.'" title="{LNG_Click to edit}" class="editinplace">'.$item.'</span></div>';

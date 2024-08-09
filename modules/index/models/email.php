@@ -41,7 +41,7 @@ class Model extends \Kotchasan\KBase
         }
         $msg = Language::trans($msg);
         $subject = '['.self::$cfg->web_title.'] '.Language::get('Welcome new members');
-        $err = \Kotchasan\Email::send($save['username'], self::$cfg->noreply_email, $subject, $msg);
+        $err = \Kotchasan\Email::send($save['email'], self::$cfg->noreply_email, $subject, $msg);
         if ($err->error()) {
             // คืนค่า error
             return strip_tags($err->getErrorMessage());

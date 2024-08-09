@@ -43,15 +43,24 @@ class Controller extends \Gcms\Controller
                 'to' => $request->request('to')->date(),
                 'leave_id' => $request->request('leave_id')->toInt(),
                 'member_id' => $request->request('member_id')->toInt(),
-                'status' => $request->request('status')->toInt(),
-                'leave_status' => Language::get('LEAVE_STATUS')
+                'status' => $request->request('status')->toInt()
             );
-            //เพิ่มทั้งหมด
-            $add = array(-1 => Language::get('all items'));
-            foreach ($add as $key => $value){
-                $params['leave_status'] = array($key => $value) + $params['leave_status'];
-            }
-            $params['status'] = isset($params['leave_status'][$params['status']]) ? $params['status'] : -1;
+            if ($params['from'] == null)
+                $params['from'] = date('Y-m-01');
+            
+            if ($params['to'] == null)
+                $params['to'] = date('Y-m-t');
+            
+            //เพิ่ม leave_status 1 และ 4
+            // $leave_status = Language::get('LEAVE_STATUS');
+            // $params['leave_status'] = [];
+            // foreach ($leave_status as $key => $value){
+            //     if ($key == 1 || $key == 4){
+            //         $params['leave_status'][$key] = $value;
+            //     }
+            // }
+            $params['status'] = 0;
+
             // แสดงผล
             $section = Html::create('section');
             $div = $section->add('div', array(

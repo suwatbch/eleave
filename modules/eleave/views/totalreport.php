@@ -85,32 +85,7 @@ class View extends \Gcms\View
                     'text' => '{LNG_to}',
                     'value' => $params['to']
                 ),
-                array(
-                    'name' => 'leave_id',
-                    'options' => array(0 => '{LNG_all items}') + $this->leavetype->toSelect(),
-                    'text' => '{LNG_Leave type}',
-                    'value' => $params['leave_id']
-                ),
-                array(
-                    'name' => 'status',
-                    'options' => $params['leave_status'],
-                    'text' => '{LNG_Status}',
-                    'value' => $params['status']
-                )
             ),
-            /* ตั้งค่าการกระทำของของตัวเลือกต่างๆ ด้านล่างตาราง ซึ่งจะใช้ร่วมกับการขีดถูกเลือกแถว */
-            'action' => 'index.php/eleave/model/Totalreport/action',
-            'actionCallback' => 'dataTableActionCallback',
-            // 'actions' => array(
-            //     array(
-            //         'id' => 'action',
-            //         'class' => 'ok',
-            //         'text' => '{LNG_With selected}',
-            //         'options' => array(
-            //             'delete' => '{LNG_Delete}'
-            //         )
-            //     )
-            // ),
             /* ส่วนหัวของตาราง และการเรียงลำดับ (thead) */
             'headers' => array(
                 'create_date' => array(
@@ -151,34 +126,11 @@ class View extends \Gcms\View
                     'class' => 'left',
                     'sort' => 'status'
                 ),
-            ),
-            /* รูปแบบการแสดงผลของคอลัมน์ (tbody) */
-            'cols' => array(
-                'days' => array(
-                    'class' => 'left'
+                'cancel_date' => array(
+                    'text' => 'วันที่ยกเลิก',
+                    'sort' => 'cancel_date'
                 ),
-                'status' => array(
-                    'class' => 'left'
-                )
             ),
-            /* ปุ่มแสดงในแต่ละแถว */
-            // 'buttons' => array(
-            //     'statistics' => array(
-            //         'class' => 'icon-stats button pink',
-            //         'href' => $uri->createBackUri(array('module' => 'eleave-statistics', 'id' => ':member_id', 'start_date' => ':start_date')),
-            //         'text' => '{LNG_Statistics for leave}'
-            //     ),
-            //     'detail' => array(
-            //         'class' => 'icon-info button orange',
-            //         'id' => ':id',
-            //         'text' => '{LNG_Detail}'
-            //     ),
-            //     'edit' => array(
-            //         'class' => 'icon-valid button green',
-            //         'href' => $uri->createBackUri(array('module' => 'eleave-approve', 'id' => ':id')),
-            //         'text' => '{LNG_Carry_out}'
-            //     )
-            // )
         ));
         $params['sort'] = $table->sort;
         $table->actions[] = array(
@@ -217,6 +169,7 @@ class View extends \Gcms\View
         $item['days'] = \Gcms\Functions::gettimeleave($item['days'],$item['times']);
         $item['start_time'] = \Gcms\Functions::showtime($item['start_time'],$item['end_time']);
         $item['status'] = self::leave_status($item['status']) ? '<span class=status'.self::status_adap($item['status']).'>{LNG_'.self::leave_status($item['status']).'}</span>' : '';
+        $item['cancel_date'] = Date::format($item['cancel_date'], 'd M Y');
         return $item;
     }
 
@@ -227,7 +180,6 @@ class View extends \Gcms\View
      */
     public function onCreateFooter()
     {
-        // return '<tr><td></td><td class=check-column><a class="checkall icon-uncheck" title="{LNG_Select all}"></a></td><td class=right colspan=3>{LNG_Total}</td><td class=center>'.$this->days.'</td><td colspan="2"></td></tr>';
         return '<tr><td></td><td class=right colspan=4>{LNG_Total}</td><td class=left>'.\Gcms\Functions::getttotalleave($this->days,$this->times).'</td><td colspan="2"></td></tr>';
     }
     
@@ -255,12 +207,12 @@ class View extends \Gcms\View
     public static function status_adap($id)
     {
         $res = 0;
-        if ($id == 0){
-            $res = 2;
+        if ($id == 4){
+            $res = 1;
         } else if ($id == 1) {
             $res = 0;
         } else {
-            $res = 1;
+            $res = 2;
         }
         return $res;
     }

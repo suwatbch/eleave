@@ -28,14 +28,13 @@ class Functions
     public static function checkyearnow($start_date, $end_date) {
         $startYear = date('Y', strtotime($start_date));
         $endYear = date('Y', strtotime($end_date));
-        $datenew = date('Y');
 
         $res = 0;
-        if ($startYear === $endYear && $endYear === $datenew) {
+        if ($startYear === $endYear) {
             $res = 1;
         }
         return $res; 
-     }
+    }
 
     /**
      * @param string $start_time
@@ -190,6 +189,38 @@ class Functions
         if (!empty($starttime) && !($starttime=='00:00' && $endtime=='00:00')){
             $result = $starttime.' - '.$endtime;
         }
+        return $result;
+    }
+
+    /**
+     * @param string $days
+     * @param string $times
+     * @return float
+     */
+    public static function sumdaystime($days, $times) {
+        $strtime = strval($times);
+        $strtime = str_replace('.','',$strtime);
+        $days = strval($days).'.'.$strtime;
+        return (float)$days;
+    }
+
+    /**
+     * @param float $days
+     * @param float $times
+     * @return array
+     */
+    public static function calculateDaysTimes($days,$times)
+    {
+        $datetime = self::getdaysfromtimes($times);
+        if ($datetime['days'] > 0){
+            $days += $datetime['days'];
+        }
+        $times = $datetime['hours'];
+
+        $result = array(
+            'days' => $days,
+            'times' => $times
+        );
         return $result;
     }
 

@@ -52,6 +52,19 @@ class View extends \Gcms\View
         $this->leave_period = Language::get('LEAVE_PERIOD');
         // URL สำหรับส่งให้ตาราง
         $uri = $request->createUriWithGlobals(WEB_URL.'index.php');
+        $buttons = array(
+            'detail' => array(
+                'class' => 'icon-info button orange',
+                'id' => ':id',
+                'text' => '{LNG_Detail}'
+            ));
+        if ($params['status'] == 0 || $params['status'] == 1) {
+            $buttons['cancel'] = array(
+                'class' => 'icon-delete button red',
+                'href' => $uri->createBackUri(array('module' => 'eleave-leave', 'id' => ':id')),
+                'text' => $params['status'] ? Language::get('Request for cancellation approval') : Language::get('Cancel')
+            );
+        }
         // ตาราง
         $table = new DataTable(array(
             /* Uri */
@@ -136,21 +149,7 @@ class View extends \Gcms\View
             /* ฟังก์ชั่นตรวจสอบการแสดงผลปุ่มในแถว */
             'onCreateButton' => array($this, 'onCreateButton'),
             /* ปุ่มแสดงในแต่ละแถว */
-            'buttons' => array(
-                'detail' => array(
-                    'class' => 'icon-info button orange',
-                    'id' => ':id',
-                    'text' => '{LNG_Detail}'
-                ),
-
-                // ปิดการแก้ไข
-
-                // 'edit' => array(
-                //     'class' => 'icon-edit button green',
-                //     'href' => $uri->createBackUri(array('module' => 'eleave-leave', 'id' => ':id')),
-                //     'text' => '{LNG_Edit}'
-                // )
-            ),
+            'buttons' => $buttons,
             /* ปุ่มเพิ่ม */
             'addNew' => array(
                 'class' => 'float_button icon-new',
@@ -176,6 +175,7 @@ class View extends \Gcms\View
     {
         $this->days += $item['days'];
         $this->times += $item['times'];
+
         $item['create_date'] = Date::format($item['create_date'], 'd M Y');
         $item['leave_id'] = $this->leavetype->get($item['leave_id']);
         if ($item['start_date'] == $item['end_date']) {
