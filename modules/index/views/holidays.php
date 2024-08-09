@@ -36,12 +36,11 @@
       {
           $this->publisheds = Language::get('PUBLISHEDS');
           $uri = $request->createUriWithGlobals(WEB_URL.'index.php');
-          $years = array();
-          $currentYear = (int)date('Y');
-          for ($i = $currentYear - 10; $i <= $currentYear + 10; $i++) {
+          $year = (int)date('Y');
+          $years = [];
+          for ($i = $year - 2; $i <= $year + 2; $i++) {
               $years[$i] = $i;
           }
-          $year = $request->request('year', $currentYear)->toInt();
           $filters = array(
               array(
                   'name' => 'year',
@@ -55,13 +54,13 @@
               'model' => \Index\Holidays\Model::toDataTable($year),
               'perPage' => $request->cookie('eleaveSetup_perPage', 30)->toInt(),
             // เรียงลำดับ
-              'sort' => 'date',
+              'sort' => 'holidays',
               'onRow' => array($this, 'onRow'),
               'hideColumns' => array('id'),
             //   ลบ
               'action' => 'index.php/index/model/holidays/action',
               'actionCallback' => 'dataTableActionCallback',
-              'searchColumns' => array('ID', 'date', 'description'),
+              'searchColumns' => array('id', 'holidays', 'description'),
               'headers' => array(
                   'sequence' => array(
                       'text' => '{LNG_Sequence}',
@@ -70,7 +69,7 @@
                   'id' => array(
                       'text' => '{LNG_id}'
                   ),
-                  'date' => array(
+                  'holidays' => array(
                       'text' => '{LNG_date}',
                       'class' => 'center'
                   ),
@@ -89,7 +88,7 @@
                   'id' => array(
                       'class' => 'center'
                   ),
-                  'date' => array(
+                  'holidays' => array(
                       'class' => 'center'
                   ),
                   'description' => array(

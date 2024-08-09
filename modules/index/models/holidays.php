@@ -25,14 +25,15 @@ class Model extends \Kotchasan\Model
 {
     /**
      * Query ข้อมูลสำหรับส่งให้กับ DataTable
-     *
+     * @param string $year
      * @return \Kotchasan\Database\QueryBuilder
      */
-    public static function toDataTable()
+    public static function toDataTable($year)
     {
         return static::createQuery()
-            ->select('id', 'date', 'description')
-            ->from('holidays');
+            ->select('id', 'holidays', 'description')
+            ->from('shift_holidays')
+            ->where(array('year', $year));
     }
 
  /**
