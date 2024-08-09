@@ -156,9 +156,14 @@ class Model
             if ($isAdmin) {
                 $addmenu = ['totalreport' => array(
                     'text' => '{LNG_Total}{LNG_Report}',
-
-                    'url' => 'index.php?module=totalreport&status'
-                )];
+                    'url' => 'index.php?module=totalreport&status=-1'
+                ),
+                'workdaymanagement' => array(
+                    'text' => '{LNG_Workday Management}',
+                    'url' => 'index.php?module=workdaymanagement'
+                )
+            ];
+            
                 $position = count($result) -1;
                 array_splice($result, $position, 0, $addmenu);
             }
