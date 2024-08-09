@@ -102,7 +102,8 @@ function initEleaveLeave() {
       /*console.log('leavealert');*/
       element.addEventListener('change', function() {
           var params = new URLSearchParams({
-              'leave_id': $E('leave_id').value
+              'index_id': $E('id').value
+              ,'leave_id': $E('leave_id').value
               ,'shift_id': $E('shift_id').value
               ,'member_id': $E('member_id').value
               ,'start_period': $E('start_period').value

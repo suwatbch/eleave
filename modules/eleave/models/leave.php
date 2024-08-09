@@ -403,6 +403,7 @@ class Model extends \Kotchasan\Model
     {
         // รับค่า
         $queryParams = $request->getQueryParams();
+        $index_id = (int)$queryParams['index_id'];
         $leave_id = (int)$queryParams['leave_id'];
         $shift_id = (int)$queryParams['shift_id'];
         $member_id = (int)$queryParams['member_id'];
@@ -582,8 +583,13 @@ class Model extends \Kotchasan\Model
                         $result = true;
                     }
                     if ($result && $result_quota != "" && $result_quota != false) {
-                        $Chdays = $res['days'] + $leave_quota['days'];
-                        $Chtimes = $res['times'] + $leave_quota['times'];
+                        if ($index_id == 0) {
+                            $Chdays = $res['days'] + $leave_quota['days'];
+                            $Chtimes = $res['times'] + $leave_quota['times'];
+                        } else {
+                            $Chdays = $leave_quota['days'];
+                            $Chtimes = $leave_quota['times'];
+                        }
                         $leave_use = \Gcms\Functions::calculateDaysTimes($Chdays,$Chtimes);
                         $AllDaysTimes = \Gcms\Functions::sumdaystime($leave_use['days'],$leave_use['times']);
 
