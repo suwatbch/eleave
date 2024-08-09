@@ -83,7 +83,21 @@ class View extends \Gcms\View
                 '11' => 'November',
                 '12' => 'December'
             ),
+            'required' => true,
+            'pattern' => '[0-9]',
             'value' => isset($index->month) ? $index->month : ''
+        ));  
+        // days
+        $fieldset->add('text', array(
+            'id' => 'days',
+            'name' => 'days',
+            'labelClass' => 'g-input icon-number',
+            'itemClass' => 'item',
+            'label' => '{LNG_day}',
+            'placeholder' => '{LNG_day}',
+            'value' => isset($index->days) ? $index->days : '',
+            'required' => true,
+            'pattern' => '[0-9]'
         ));
         
         $fieldset = $form->add('fieldset', array(

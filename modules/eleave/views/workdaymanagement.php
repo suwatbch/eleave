@@ -8,60 +8,32 @@
  * @see https://www.kotchasan.com/
  */
 
-namespace Eleave\Workdaymanagement;
+ namespace Eleave\Workdaymanagement;
 
 use Kotchasan\DataTable;
 use Kotchasan\Http\Request;
 use Kotchasan\Language;
 
-/**
- * module=eleave-workdaymanagement
- *
- * @autor Goragod Wiriya <admin@goragod.com>
- *
- * @since 1.0
- */
 class View extends \Gcms\View
 {
-    /**
-     * @var array
-     */
     private $publisheds;
 
-    /**
-     * รายการการจัดการวันทำงาน
-     *
-     * @param Request $request
-     *
-     * @return string
-     */
     public function render(Request $request)
     {
         $this->publisheds = Language::get('PUBLISHEDS');
 
-        // URL สำหรับส่งให้ตาราง
         $uri = $request->createUriWithGlobals(WEB_URL.'index.php');
 
-        // ตาราง
         $table = new DataTable(array(
-            /* Uri */
             'uri' => $uri,
-            /* Model */
             'model' => \Eleave\Workdaymanagement\Model::toDataTable(),
-            /* รายการต่อหน้า */
             'perPage' => $request->cookie('eleaveSetup_perPage', 30)->toInt(),
-            /* เรียงลำดับ */
-           'sort' => ['month','yaer'],
-            /* ฟังก์ชั่นจัดรูปแบบการแสดงผลแถวของตาราง */
+            'sort' => ['month', 'year'],
             'onRow' => array($this, 'onRow'),
-            /* คอลัมน์ที่ไม่ต้องแสดงผล */
-            'hideColumns' => array('id'),
-            /* ตั้งค่าการกระทำของของตัวเลือกต่างๆ ด้านล่างตาราง ซึ่งจะใช้ร่วมกับการขีดถูกเลือกแถว */
+            'hideColumns' => array('id', 'days'),
             'action' => 'index.php/eleave/model/workdaymanagement/action',
             'actionCallback' => 'dataTableActionCallback',
-            /* คอลัมน์ที่สามารถค้นหาได้ */
-            'searchColumns' => array('member_id', 'name', 'yaer', 'month'),
-            /* ส่วนหัวของตาราง และการเรียงลำดับ (thead) */
+            'searchColumns' => array('member_id', 'name', 'year', 'month'),
             'headers' => array(
                 'member_id' => array(
                     'class' => 'center',
@@ -75,11 +47,14 @@ class View extends \Gcms\View
                     'text' => '{LNG_month}',
                     'class' => 'center'
                 ),
+                'business_days' => array(  //คอลัมน์ business_days
+                    'text' => '{LNG_Business Days}',
+                    'class' => 'center'
+                ),
                 'published' => array(
                     'text' => ''
                 )
             ),
-            /* รูปแบบการแสดงผลของคอลัมน์ (tbody) */
             'cols' => array(
                 'member_id' => array(
                     'class' => 'center'
@@ -89,9 +64,11 @@ class View extends \Gcms\View
                 ),
                 'month' => array(
                     'class' => 'center'
+                ),
+                'business_days' => array(  //คอลัมน์ business_days
+                    'class' => 'center'
                 )
             ),
-            /* ปุ่มแสดงในแต่ละแถว */
             'buttons' => array(
                 'edit' => array(
                     'class' => 'icon-edit button green',
@@ -105,30 +82,26 @@ class View extends \Gcms\View
                     'data-confirm' => '{LNG_Are you sure you want to delete?}'
                 )
             ),
-            /* ปุ่มเพิ่ม */
             'addNew' => array(
                 'class' => 'float_button icon-new',
                 'href' => $uri->createBackUri(array('module' => 'eleave-editworkdaymanagement')),
                 'title' => '{LNG_Add} {LNG_Workday}'
-            ),              
+            ),
         ));
 
-        // save cookie
         setcookie('eleaveSetup_perPage', $table->perPage, time() + 2592000, '/', HOST, HTTPS, true);
 
-        // คืนค่า HTML
         return $table->render();
     }
 
-    /**
-     * จัดรูปแบบการแสดงผลในแต่ละแถว.
-     *
-     * @param array $item
-     *
-     * @return array
-     */
     public function onRow($item, $o, $prop)
     {
+        // แปลง days เป็นรูปแบบจำนวนวัน
+        $daysArray = json_decode($item['days'], true); // แปลง JSON เป็น array
+        $numberOfBusinessDays = is_array($daysArray) ? count($daysArray) : 0;
+        $item['business_days'] = $numberOfBusinessDays . ' วัน';
+
+        // แปลง published icon
         $item['published'] = '<a id=published_'.$item['id'].' class="icon-published'.$item['published'].'" title="'.$this->publisheds[$item['published']].'"></a>';
         return $item;
     }
