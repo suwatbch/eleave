@@ -39,6 +39,12 @@ class Controller extends \Gcms\Controller
         $this->menu = 'Holidays';
         // สามารถจัดการโมดูลได้
         if (Login::checkPermission(Login::isMember(), 'can_manage_Holidays')) {
+            $params['year'] = $request->request('year')->toInt();
+            $params['years'] = [];
+            for ($i = (int)date('Y') - 2; $i <= (int)date('Y') + 2; $i++) {
+                $params['years'][$i] = $i;
+            }
+            $params['year'] = empty($params['year']) ? (int)date('Y') : $params['year'];
             // แสดงผล
             $section = Html::create('section');
             // breadcrumbs
@@ -58,7 +64,7 @@ class Controller extends \Gcms\Controller
                 'class' => 'content_bg'
             ));
             // ตาราง
-            $div->appendChild(\Index\Holidays\View::create()->render($request));
+            $div->appendChild(\Index\Holidays\View::create()->render($request, $params));
             // คืนค่า HTML
             return $section->render();
         }

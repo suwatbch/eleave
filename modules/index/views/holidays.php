@@ -32,21 +32,30 @@ class View extends \Gcms\View
      * รายการวันหยุด
      *
      * @param Request $request
-     *
+     * @param array $params
      * @return string
      */
-    public function render(Request $request)
+    public function render(Request $request, $params)
     {
         $this->publisheds = Language::get('PUBLISHEDS');
         $uri = $request->createUriWithGlobals(WEB_URL . 'index.php');
-        $year = (int)date('Y');
-        $years = [];
-        for ($i = $year - 2; $i <= $year + 2; $i++) {
-            $years[$i] = $i;
+
+        $year = $request->request('year')->toInt();
+        if ($year == 0) {
+            $addNew = array(
+                'class' => 'float_button icon-new',
+                'href' => $uri->createBackUri(array('module' => 'index-editholidays', 'id' => ':id', 'year' => $params['year']))
+            );
+        } else {
+            $addNew = array(
+                'class' => 'float_button icon-new',
+                'href' => $uri->createBackUri(array('module' => 'index-editholidays', 'id' => ':id'))
+            );
         }
+        
         $table = new DataTable(array(
             'uri' => $uri,
-            'model' => \Index\Holidays\Model::toDataTable($year),
+            'model' => \Index\Holidays\Model::toDataTable($params),
             'perPage' => $request->cookie('eleaveSetup_perPage', 30)->toInt(),
             // เรียงลำดับ
             'sort' => 'holidays',
@@ -55,13 +64,13 @@ class View extends \Gcms\View
             //   ลบ
             'action' => 'index.php/index/model/holidays/action',
             'actionCallback' => 'dataTableActionCallback',
-            'searchColumns' => array('holidays', 'description'),
+            'searchColumns' => array('year', 'holidays', 'description'),
             'filters' => array(
                 array(
                     'name' => 'year',
                     'text' => '{LNG_Year}',
-                    'options' => $years,
-                    'value' => $year
+                    'options' => $params['years'],
+                    'value' =>  $params['year']
                 )
             ),
             'headers' => array(
@@ -113,10 +122,7 @@ class View extends \Gcms\View
                     'text' => '{LNG_Delete}'
                 )
             ),
-            'addNew' => array(
-                'class' => 'float_button icon-new',
-                'href' => $uri->createBackUri(array('module' => 'index-editholidays', 'id' => ':id'))
-            ),
+            'addNew' => $addNew,
         ));
         // save cookie
         setcookie('eleaveSetup_perPage', $table->perPage, time() + 2592000, '/', HOST, HTTPS, true);

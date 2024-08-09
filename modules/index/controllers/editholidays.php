@@ -26,6 +26,8 @@ class Controller extends \Gcms\Controller
     {
         // ตรวจสอบรายการที่เลือก
         $index = \Index\Editholidays\Model::get($request->request('id')->toInt());
+        $year = $request->request('year')->toInt();
+        $year = $year == 0 ? $request->request('_year')->toInt() : $year;
         // ข้อความ title bar
         $title = '{LNG_'.(empty($index->id) ? 'Add' : 'Edit').'}';
         $this->title = Language::trans($title.'{LNG_Holiday}');
@@ -51,7 +53,7 @@ class Controller extends \Gcms\Controller
                 'class' => 'content_bg'
             ));
             // แสดงฟอร์ม
-            $div->appendChild(\Index\Editholidays\View::create()->render($index));
+            $div->appendChild(\Index\Editholidays\View::create()->render($index, $year));
             // คืนค่า HTML
             return $section->render();
         }

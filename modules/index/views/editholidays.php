@@ -16,10 +16,10 @@ class View extends \Gcms\View
      * ฟอร์มสร้าง/แก้ไข วันหยุด
      *
      * @param object $index
-     *
+     * @param int $year
      * @return string
      */
-    public function render($index)
+    public function render($index, $year)
     {
         $form = Html::create('form', array(
             'id' => 'setup_frm',
@@ -65,6 +65,10 @@ class View extends \Gcms\View
             'id' => 'id',
             'name' => 'id',
             'value' => $index->id
+        ));
+        $form->add('hidden', array(
+            'id' => 'year',
+            'value' => $year
         ));
         // คืนค่า HTML
         return $form->render();

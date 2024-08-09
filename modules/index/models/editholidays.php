@@ -55,6 +55,7 @@ class Model extends \Kotchasan\Model
                     // ค่าที่ส่งมา
                     $save = array(
                         'id' => $request->post('id')->toInt(),
+                        'year' => $request->post('year')->toInt(),
                         'holidays' => $request->post('holidays')->date(),
                         'description' => $request->post('description')->textarea()
                     );
